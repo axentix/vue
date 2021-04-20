@@ -8,6 +8,7 @@ module.exports = {
     '@storybook/addon-a11y',
     '@whitespace/storybook-addon-html',
     'storybook-addon-pseudo-states',
+    'storybook-dark-mode',
   ],
   webpackFinal: async (config, { configType }) => {
     config.module.rules.push({
