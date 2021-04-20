@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'Button',
+  name: 'AxBtn',
   props: {
     type: {
       type: String,
