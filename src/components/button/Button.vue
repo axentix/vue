@@ -1,7 +1,7 @@
 <template>
-  <component :is="type" class="btn" :class="[getClasses, ...extraClasses]" @click="onClick">
-    <slot v-if="!outline"></slot>
-    <span v-else :class="getOutlineClasses"><slot>Button</slot></span>
+  <component :is="tag" class="btn" :class="classes">
+    <slot v-if="!outline">Button</slot>
+    <span v-else :class="outlineClasses"><slot>Button</slot></span>
   </component>
 </template>
 
@@ -9,10 +9,10 @@
 export default {
   name: 'AxBtn',
   props: {
-    type: {
+    tag: {
       type: String,
       default: 'button',
-      validator: (val) => ['a', 'button', 'div'].includes(val),
+      validator: (val) => ['a', 'button', 'div', 'router-link'].includes(val),
     },
     circle: {
       type: Boolean,
@@ -43,13 +43,9 @@ export default {
       type: Boolean,
       default: false,
     },
-    extraClasses: {
-      type: Array,
-      default: () => ['primary', 'rounded-1'],
-    },
   },
   computed: {
-    getClasses() {
+    classes() {
       return {
         circle: this.circle,
         press: this.press,
@@ -60,16 +56,11 @@ export default {
         disabled: this.disabled,
       };
     },
-    getOutlineClasses() {
+    outlineClasses() {
       return {
         'outline-text': this.outline,
         'outline-invert': this.outlineInvert,
       };
-    },
-  },
-  methods: {
-    onClick() {
-      this.$emit('onClick');
     },
   },
 };

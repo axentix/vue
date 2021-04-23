@@ -4,14 +4,13 @@ export default {
   title: 'Axentix/Components/Button',
   component: AxBtn,
   argTypes: {
-    type: { control: { type: 'select', options: ['button', 'a', 'div'] } },
+    tag: { control: { type: 'select', options: ['button', 'a', 'div', 'router-link'] } },
     circle: false,
     press: false,
     outline: false,
     outlineOpening: false,
     outlineInvert: false,
     disabled: false,
-    extraClasses: [''],
     size: { control: { type: 'select', options: ['small', '', 'large'] } },
     content: {
       control: {
@@ -19,13 +18,19 @@ export default {
       },
       defaultValue: 'Button',
     },
+    classes: {
+      control: {
+        type: 'text',
+      },
+      defaultValue: 'primary rounded-1',
+    },
   },
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { AxBtn },
-  template: '<ax-btn @onClick="onClick" v-bind="$props"><span v-html="content"></span></ax-btn>',
+  template: '<ax-btn :class="classes" v-bind="$props"><span v-html="content"></span></ax-btn>',
 });
 
 export const Normal = Template.bind({});
@@ -55,21 +60,21 @@ Press.args = {
 export const Outline = Template.bind({});
 Outline.args = {
   outline: true,
-  extraClasses: ['txt-airforce', 'rounded-1'],
-};
-
-export const OutlineInvert = Template.bind({});
-OutlineInvert.args = {
-  outline: true,
-  outlineInvert: true,
-  extraClasses: ['txt-blue', 'txt-light-3', 'rounded-1'],
+  classes: 'txt-airforce rounded-1',
 };
 
 export const OutlineOpening = Template.bind({});
 OutlineOpening.args = {
   outline: true,
   outlineOpening: true,
-  extraClasses: ['txt-airforce', 'rounded-1'],
+  classes: 'txt-airforce rounded-1',
+};
+
+export const OutlineInvert = Template.bind({});
+OutlineInvert.args = {
+  outline: true,
+  outlineInvert: true,
+  classes: 'txt-blue txt-light-3 rounded-1',
 };
 
 export const Disabled = Template.bind({});

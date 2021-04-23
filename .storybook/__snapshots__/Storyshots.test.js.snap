@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Axentix/Components/Button Circle 1`] = `
+<button
+  class="btn circle primary rounded-1"
+  classes="primary rounded-1"
+  content="I"
+>
+  <span>
+    I
+  </span>
+</button>
+`;
+
+exports[`Storyshots Axentix/Components/Button Disabled 1`] = `
+<button
+  class="btn disabled primary rounded-1"
+  classes="primary rounded-1"
+  content="Button"
+>
+  <span>
+    Button
+  </span>
+</button>
+`;
+
+exports[`Storyshots Axentix/Components/Button Large 1`] = `
+<button
+  class="btn large primary rounded-1"
+  classes="primary rounded-1"
+  content="Button"
+>
+  <span>
+    Button
+  </span>
+</button>
+`;
+
+exports[`Storyshots Axentix/Components/Button Normal 1`] = `
+<button
+  class="btn primary rounded-1"
+  classes="primary rounded-1"
+  content="Button"
+>
+  <span>
+    Button
+  </span>
+</button>
+`;
+
+exports[`Storyshots Axentix/Components/Button Outline 1`] = `
+<button
+  class="btn outline txt-airforce rounded-1"
+  classes="txt-airforce rounded-1"
+  content="Button"
+>
+  <span
+    class="outline-text"
+  >
+    <span>
+      Button
+    </span>
+  </span>
+</button>
+`;
+
+exports[`Storyshots Axentix/Components/Button Outline Invert 1`] = `
+<button
+  class="btn outline txt-blue txt-light-3 rounded-1"
+  classes="txt-blue txt-light-3 rounded-1"
+  content="Button"
+>
+  <span
+    class="outline-text outline-invert"
+  >
+    <span>
+      Button
+    </span>
+  </span>
+</button>
+`;
+
+exports[`Storyshots Axentix/Components/Button Outline Opening 1`] = `
+<button
+  class="btn outline opening txt-airforce rounded-1"
+  classes="txt-airforce rounded-1"
+  content="Button"
+>
+  <span
+    class="outline-text"
+  >
+    <span>
+      Button
+    </span>
+  </span>
+</button>
+`;
+
+exports[`Storyshots Axentix/Components/Button Press 1`] = `
+<button
+  class="btn press primary rounded-1"
+  classes="primary rounded-1"
+  content="Button"
+>
+  <span>
+    Button
+  </span>
+</button>
+`;
+
+exports[`Storyshots Axentix/Components/Button Small 1`] = `
+<button
+  class="btn small primary rounded-1"
+  classes="primary rounded-1"
+  content="Button"
+>
+  <span>
+    Button
+  </span>
+</button>
+`;
