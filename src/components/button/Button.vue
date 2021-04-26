@@ -65,7 +65,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss">
-@import '~axentix/src/scss/components/button';
-</style>
