@@ -4,7 +4,9 @@
       >Toggle sidenav</ax-btn
     >
 
-    <ax-sidenav v-model="isSidenavOpened" class="airforce"></ax-sidenav>
+    <ax-sidenav v-model="isSidenavOpened" class="airforce">
+      <template v-slot:header> Test </template>
+    </ax-sidenav>
   </div>
 </template>
 

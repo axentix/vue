@@ -1,12 +1,12 @@
 <template>
   <div class="sidenav" ref="sidenav" :class="classes" :style="style" v-bind="$attrs" v-on="$listeners">
-    <div class="sidenav-header" v-if="$slots.header">
+    <div class="sidenav-header" v-if="hasHeader">
       <slot name="header"></slot>
     </div>
 
     <slot></slot>
 
-    <div class="sidenav-footer" v-if="$slots.footer">
+    <div class="sidenav-footer" v-if="hasFooter">
       <slot name="footer"></slot>
     </div>
   </div>
@@ -73,6 +73,12 @@ export default {
       return {
         transitionDuration: this.animationDuration + 'ms',
       };
+    },
+    hasHeader() {
+      return !!this.$slots.header;
+    },
+    hasFooter() {
+      return !!this.$slots.footer;
     },
   },
   watch: {
