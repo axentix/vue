@@ -4,25 +4,36 @@ export default {
   title: 'Axentix/Components/Sidenav',
   component: AxSidenav,
   argTypes: {
-    tag: { control: { type: 'select', options: ['button', 'a', 'div', 'router-link'] } },
-    circle: false,
-    press: false,
-    outline: false,
-    outlineOpening: false,
-    outlineInvert: false,
-    disabled: false,
-    size: { control: { type: 'select', options: ['small', '', 'large'] } },
+    value: false,
+    overlay: false,
+    bodyScrolling: false,
+    animationDuration: 300,
+    fixed: false,
+    large: false,
+    rightAligned: false,
+    header: {
+      control: {
+        type: 'text',
+      },
+      defaultValue: '',
+    },
     content: {
       control: {
         type: 'text',
       },
-      defaultValue: 'Button',
+      defaultValue: '',
+    },
+    footer: {
+      control: {
+        type: 'text',
+      },
+      defaultValue: '',
     },
     classes: {
       control: {
         type: 'text',
       },
-      defaultValue: 'primary rounded-1',
+      defaultValue: 'shadow-1',
     },
   },
 };
@@ -30,54 +41,20 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { AxSidenav },
-  template: '<ax-btn :class="classes" v-bind="$props"><span v-html="content"></span></ax-btn>',
+  template: `<ax-sidenav :class="classes" v-bind="$props" v-model="value" >
+    <template v-slot:header>
+      <span v-html="header"></span>
+    </template>
+
+    <template v-slot>
+      <span v-html="content"></span>
+    </template>
+
+    <template v-slot:footer>
+      <span v-html="footer"></span>
+    </template>
+  </ax-sidenav>`,
 });
 
 export const Normal = Template.bind({});
 Normal.args = {};
-
-export const Small = Template.bind({});
-Small.args = {
-  size: 'small',
-};
-
-export const Large = Template.bind({});
-Large.args = {
-  size: 'large',
-};
-
-export const Circle = Template.bind({});
-Circle.args = {
-  circle: true,
-  content: 'I',
-};
-
-export const Press = Template.bind({});
-Press.args = {
-  press: true,
-};
-
-export const Outline = Template.bind({});
-Outline.args = {
-  outline: true,
-  classes: 'txt-airforce rounded-1',
-};
-
-export const OutlineOpening = Template.bind({});
-OutlineOpening.args = {
-  outline: true,
-  outlineOpening: true,
-  classes: 'txt-airforce rounded-1',
-};
-
-export const OutlineInvert = Template.bind({});
-OutlineInvert.args = {
-  outline: true,
-  outlineInvert: true,
-  classes: 'txt-blue txt-light-3 rounded-1',
-};
-
-export const Disabled = Template.bind({});
-Disabled.args = {
-  disabled: true,
-};
