@@ -1,6 +1,6 @@
 {
   "name": "@axentix/vue",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "private": true,
   "main": "dist/vue-axentix.cjs.js",
   "module": "dist/vue-axentix.esm.js",

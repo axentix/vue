@@ -1,5 +1,5 @@
 <template>
-  <component :is="tag" class="btn" :class="classes">
+  <component :is="tag" class="btn" :class="classes" v-bind="$attrs" v-on="$listeners">
     <slot v-if="!outline">Button</slot>
     <span v-else :class="outlineClasses"><slot>Button</slot></span>
   </component>
