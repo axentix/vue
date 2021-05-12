@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import { addInstance, getInstancesByType } from '../../utils/config';
+
 export default {
   name: 'AxSidenav',
   props: {
@@ -51,7 +53,8 @@ export default {
     isAnimated: false,
     overlayElement: '',
     overlayActive: false,
-    closeRef: '',
+    firstSidenavInit: false,
+    resizeRef: '',
     listenerRef: '',
     extraClasses: [
       'sidenav-right',
@@ -80,6 +83,11 @@ export default {
     value(state) {
       if (state === null) return;
 
+      if (this.fixed && window.innerWidth >= 960) {
+        this.$emit('input', true);
+        return;
+      }
+
       this.isActive = state;
       state ? this.open() : this.close();
     },
@@ -92,78 +100,92 @@ export default {
   },
   methods: {
     setup() {
+      addInstance({ type: 'Sidenav', instance: this });
       this.layoutEl = this.$refs.sidenav.closest('.layout');
 
-      if (this.layoutEl) this.cleanLayout();
       if (this.overlay) this.createOverlay();
 
       this.setupListeners();
 
-      if (this.value) this.isActive = true;
+      this.detectMultipleSidenav();
+
+      if (this.value || (this.fixed && window.innerWidth >= 960)) this.isActive = true;
 
       this.$emit('setup');
     },
     setupListeners() {
       this.listenerRef = this.onClickTrigger.bind(this);
-      this.closeRef = this.close.bind(this);
-      window.addEventListener('resize', this.closeRef);
+      this.resizeRef = this.handleResize.bind(this);
+      window.addEventListener('resize', this.resizeRef);
     },
     removeListeners() {
-      window.removeEventListener('resize', this.closeRef);
+      window.removeEventListener('resize', this.resizeRef);
       this.destroyOverlay();
     },
     cleanLayout() {
       this.extraClasses.map((classes) => this.layoutEl.classList.remove(classes));
     },
-    // handleMultipleSidenav() {
-    //   if (!this.firstSidenavInit) {
-    //     return;
-    //   }
+    handleResize() {
+      if (this.fixed && window.innerWidth >= 960) this.isActive = true;
+      else this.isActive = false;
+    },
+    detectMultipleSidenav() {
+      const sidenavFixed = getInstancesByType('Sidenav').find((ins) => ins.fixed);
+      this.firstSidenavInit = sidenavFixed && sidenavFixed === this;
 
-    //   const sidenavs = Array.from(document.querySelectorAll('.sidenav')).filter((sidenav) =>
-    //     sidenav.classList.contains('fixed')
-    //   );
+      if (this.layoutEl && this.firstSidenavInit) this.cleanLayout();
 
-    //   const { sidenavsRight, sidenavsLeft } = sidenavs.reduce(
-    //     (acc, sidenav) => {
-    //       sidenav.classList.contains('right-aligned')
-    //         ? acc.sidenavsRight.push(sidenav)
-    //         : acc.sidenavsLeft.push(sidenav);
-    //       return acc;
-    //     },
-    //     { sidenavsRight: [], sidenavsLeft: [] }
-    //   );
+      if (this.layoutEl && this.fixed) this.handleMultipleSidenav();
+    },
+    handleMultipleSidenav() {
+      if (!this.firstSidenavInit) return;
 
-    //   const isBoth = sidenavsLeft.length > 0 && sidenavsRight.length > 0;
-    //   const sidenavRightLarge = sidenavsRight.some((sidenav) => sidenav.classList.contains('large'));
-    //   const sidenavLeftLarge = sidenavsLeft.some((sidenav) => sidenav.classList.contains('large'));
-    //   const isLarge = sidenavRightLarge || sidenavLeftLarge;
+      const sidenavs = Array.from(document.querySelectorAll('.sidenav')).filter((sidenav) =>
+        sidenav.classList.contains('fixed')
+      );
 
-    //   isLarge ? this.layoutEl.classList.add('sidenav-large') : '';
+      const { sidenavsRight, sidenavsLeft } = sidenavs.reduce(
+        (acc, sidenav) => {
+          sidenav.classList.contains('right-aligned')
+            ? acc.sidenavsRight.push(sidenav)
+            : acc.sidenavsLeft.push(sidenav);
+          return acc;
+        },
+        { sidenavsRight: [], sidenavsLeft: [] }
+      );
 
-    //   if (sidenavsRight.length > 0 && !isBoth) {
-    //     this.layoutEl.classList.add('sidenav-right');
-    //   } else if (isBoth) {
-    //     this.layoutEl.classList.add('sidenav-both');
-    //   }
+      const isBoth = sidenavsLeft.length > 0 && sidenavsRight.length > 0;
+      const sidenavRightLarge = sidenavsRight.some((sidenav) => sidenav.classList.contains('large'));
+      const sidenavLeftLarge = sidenavsLeft.some((sidenav) => sidenav.classList.contains('large'));
+      const isLarge = sidenavRightLarge || sidenavLeftLarge;
 
-    //   if (isLarge && isBoth) {
-    //     if (sidenavRightLarge && !sidenavLeftLarge) {
-    //       this.layoutEl.classList.add('sidenav-large-right');
-    //     } else if (!sidenavRightLarge && sidenavLeftLarge) {
-    //       this.layoutEl.classList.add('sidenav-large-left');
-    //     }
-    //   }
-    // },
+      isLarge ? this.layoutEl.classList.add('sidenav-large') : '';
+
+      if (sidenavsRight.length > 0 && !isBoth) {
+        this.layoutEl.classList.add('sidenav-right');
+      } else if (isBoth) {
+        this.layoutEl.classList.add('sidenav-both');
+      }
+
+      if (isLarge && isBoth) {
+        if (sidenavRightLarge && !sidenavLeftLarge) {
+          this.layoutEl.classList.add('sidenav-large-right');
+        } else if (!sidenavRightLarge && sidenavLeftLarge) {
+          this.layoutEl.classList.add('sidenav-large-left');
+        }
+      }
+    },
     createOverlay() {
       this.overlayElement = document.createElement('div');
       this.overlayElement.classList.add('sidenav-overlay');
     },
     updateOverlay(state) {
+      if (this.fixed) return;
+
       if (this.overlayElement) {
         if (!state) this.destroyOverlay();
 
-        if (this.isActive && state && !this.overlayActive) this.setOverlay(true, true);
+        if (this.isActive && state && !this.overlayActive) this.setOverlay(true);
         return;
       }
 
@@ -188,7 +210,7 @@ export default {
     },
     onClickTrigger(e) {
       e.preventDefault();
-      if (this.isFixed && window.innerWidth >= 960) return;
+      if (this.fixed && window.innerWidth >= 960) return;
 
       this.isActive = !this.isActive;
     },
