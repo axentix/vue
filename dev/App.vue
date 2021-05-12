@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="layout with-sidenav fixed-sidenav">
     <header>
-      <nav class="navbar primary"><span class="navbar-brand">Hey tocard</span></nav>
+      <nav class="navbar primary"><span class="navbar-brand">Vue Axentix</span></nav>
     </header>
 
     <ax-sidenav v-model="isSidenavOpened" class="airforce" :fixed="true">
