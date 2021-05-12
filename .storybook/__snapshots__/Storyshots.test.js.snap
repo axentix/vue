@@ -119,3 +119,99 @@ exports[`Storyshots Axentix/Components/Button Small 1`] = `
   </span>
 </button>
 `;
+
+exports[`Storyshots Axentix/Components/Sidenav Large 1`] = `
+<div
+  class="sidenav large airforce shadow-1"
+  classes="airforce shadow-1"
+  footer=""
+  header=""
+  style="transition-duration: 300ms;"
+>
+  <!---->
+    
+  <a
+    class="sidenav-link"
+  >
+    Link 1
+  </a>
+   
+  <a
+    class="sidenav-link active"
+  >
+    Link 2
+  </a>
+   
+  <a
+    class="sidenav-link"
+  >
+    Link 3
+  </a>
+   
+  <!---->
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/Sidenav Normal 1`] = `
+<div
+  class="sidenav airforce shadow-1"
+  classes="airforce shadow-1"
+  footer=""
+  header=""
+  style="transition-duration: 300ms;"
+>
+  <!---->
+    
+  <a
+    class="sidenav-link"
+  >
+    Link 1
+  </a>
+   
+  <a
+    class="sidenav-link active"
+  >
+    Link 2
+  </a>
+   
+  <a
+    class="sidenav-link"
+  >
+    Link 3
+  </a>
+   
+  <!---->
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/Sidenav Right Aligned 1`] = `
+<div
+  class="sidenav right-aligned airforce shadow-1"
+  classes="airforce shadow-1"
+  footer=""
+  header=""
+  style="transition-duration: 300ms;"
+>
+  <!---->
+    
+  <a
+    class="sidenav-link"
+  >
+    Link 1
+  </a>
+   
+  <a
+    class="sidenav-link active"
+  >
+    Link 2
+  </a>
+   
+  <a
+    class="sidenav-link"
+  >
+    Link 3
+  </a>
+   
+  <!---->
+</div>
+`;
