@@ -33,7 +33,7 @@ export default {
       control: {
         type: 'text',
       },
-      defaultValue: 'shadow-1',
+      defaultValue: 'white shadow-1',
     },
   },
 };
@@ -46,9 +46,7 @@ const Template = (args, { argTypes }) => ({
       <span v-html="header"></span>
     </template>
 
-    <template v-slot>
-      <span v-html="content"></span>
-    </template>
+    <span v-html="content"></span>
 
     <template v-slot:footer>
       <span v-html="footer"></span>

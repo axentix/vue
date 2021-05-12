@@ -6,6 +6,8 @@
 
     <ax-sidenav v-model="isSidenavOpened" class="airforce">
       <template v-slot:header> Test </template>
+
+      <ax-btn class="red" @click="isSidenavOpened = !isSidenavOpened">Toggle</ax-btn>
     </ax-sidenav>
   </div>
 </template>

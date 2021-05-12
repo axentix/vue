@@ -1,12 +1,12 @@
 <template>
   <div class="sidenav" ref="sidenav" :class="classes" :style="style" v-bind="$attrs" v-on="$listeners">
-    <div class="sidenav-header" v-if="hasHeader">
+    <div class="sidenav-header" v-if="!!$slots.header">
       <slot name="header"></slot>
     </div>
 
     <slot></slot>
 
-    <div class="sidenav-footer" v-if="hasFooter">
+    <div class="sidenav-footer" v-if="!!$slots.footer">
       <slot name="footer"></slot>
     </div>
   </div>
@@ -50,6 +50,7 @@ export default {
     isActive: false,
     isAnimated: false,
     overlayElement: '',
+    overlayActive: false,
     closeRef: '',
     listenerRef: '',
     extraClasses: [
@@ -74,12 +75,6 @@ export default {
         transitionDuration: this.animationDuration + 'ms',
       };
     },
-    hasHeader() {
-      return !!this.$slots.header;
-    },
-    hasFooter() {
-      return !!this.$slots.footer;
-    },
   },
   watch: {
     value(state) {
@@ -90,6 +85,9 @@ export default {
     },
     isActive(state) {
       this.$emit('input', state);
+    },
+    overlay(state) {
+      this.updateOverlay(state);
     },
   },
   methods: {
@@ -112,6 +110,7 @@ export default {
     },
     removeListeners() {
       window.removeEventListener('resize', this.closeRef);
+      this.destroyOverlay();
     },
     cleanLayout() {
       this.extraClasses.map((classes) => this.layoutEl.classList.remove(classes));
@@ -159,7 +158,28 @@ export default {
     createOverlay() {
       this.overlayElement = document.createElement('div');
       this.overlayElement.classList.add('sidenav-overlay');
-      this.overlayElement.style.transitionDuration = this.animationDuration + 'ms';
+    },
+    updateOverlay(state) {
+      if (this.overlayElement) {
+        if (!state) this.destroyOverlay();
+
+        if (this.isActive && state && !this.overlayActive) this.setOverlay(true, true);
+        return;
+      }
+
+      if (state) {
+        this.createOverlay();
+
+        if (this.isActive) this.setOverlay(true);
+      }
+    },
+    destroyOverlay() {
+      if (this.overlay && this.overlayActive) {
+        this.overlayElement.removeEventListener('click', this.listenerRef);
+        this.overlayElement.remove();
+        this.overlayElement = '';
+        this.overlayActive = false;
+      }
     },
     toggleBodyScroll(state) {
       if (!this.bodyScrolling) {
@@ -205,7 +225,10 @@ export default {
     setOverlay(state) {
       if (!this.overlay) return;
 
+      this.overlayElement.style.transitionDuration = this.animationDuration + 'ms';
+
       if (state) {
+        this.overlayActive = true;
         this.overlayElement.addEventListener('click', this.listenerRef);
         document.body.appendChild(this.overlayElement);
         setTimeout(() => {
@@ -216,12 +239,16 @@ export default {
         setTimeout(() => {
           this.overlayElement.removeEventListener('click', this.listenerRef);
           this.overlayElement.remove();
+          this.overlayActive = false;
         }, this.animationDuration);
       }
     },
   },
   mounted() {
     this.setup();
+  },
+  beforeUpdate() {
+    this.updateOverlay(this.overlay);
   },
   beforeDestroy() {
     this.removeListeners();
