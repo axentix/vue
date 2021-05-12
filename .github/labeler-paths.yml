@@ -1,0 +1,10 @@
+---
+scope/components:
+  - src/components/**/*
+scope/utils:
+  - src/utils/**/*
+scope/ci:
+  - .github/**/*
+  - build/**/*
+scope/storybook:
+  - .storybook/**/*

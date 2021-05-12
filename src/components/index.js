@@ -1,3 +1,4 @@
 import AxBtn from './button';
+import AxSidenav from './sidenav';
 
-export { AxBtn };
+export { AxBtn, AxSidenav };

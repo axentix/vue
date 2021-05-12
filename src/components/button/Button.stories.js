@@ -1,4 +1,4 @@
-import AxBtn from '../../components/button/Button.vue';
+import AxBtn from './Button.vue';
 
 export default {
   title: 'Axentix/Components/Button',
