@@ -1,3 +1,11 @@
+# 0.1.1 - 2021-05-12
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - CI build
+
 # 0.1.0 - 2021-05-12
 
 - ADDED
