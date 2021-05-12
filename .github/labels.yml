@@ -47,12 +47,6 @@
 - name: scope/storybook
   description: Improvements or additions to Storybook.
   color: 0075ca
-- name: scope/js
-  description: JavaScript related.
-  color: efd81d
-- name: scope/css
-  description: CSS related.
-  color: 006cb5
 
 # Sizing labels
 - name: size/XS
