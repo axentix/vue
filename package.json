@@ -1,7 +1,9 @@
 {
   "name": "@axentix/vue",
   "version": "0.1.0",
-  "private": true,
+  "description": "Vue Axentix is the Axentix integration for the VueJS framework.",
+  "license": "MIT",
+  "author": "Axel SIMONET, Vincent LEVEQUE",
   "main": "dist/vue-axentix.cjs.js",
   "module": "dist/vue-axentix.esm.js",
   "browser": "dist/vue-axentix.esm.js",
@@ -18,6 +20,33 @@
     "build:storybook": "build-storybook",
     "lint": "vue-cli-service lint"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:axentix/vue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/axentix/vue/issues"
+  },
+  "keywords": [
+    "axentix",
+    "framework",
+    "front-end",
+    "responsive",
+    "css",
+    "js",
+    "sass",
+    "web",
+    "vuejs",
+    "vue",
+    "library",
+    "vue-extension"
+  ],
+  "files": [
+    "dist",
+    "LICENSE",
+    "README",
+    "CHANGELOG"
+  ],
   "dependencies": {
     "axentix": "^1.2.1"
   },
