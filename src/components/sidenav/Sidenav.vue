@@ -53,7 +53,6 @@ export default {
     isAnimated: false,
     overlayElement: '',
     overlayActive: false,
-    firstSidenavInit: false,
     resizeRef: '',
     listenerRef: '',
     extraClasses: [
@@ -131,15 +130,13 @@ export default {
     },
     detectMultipleSidenav() {
       const sidenavFixed = getInstancesByType('Sidenav').find((ins) => ins.fixed);
-      this.firstSidenavInit = sidenavFixed && sidenavFixed === this;
+      const firstSidenavInit = sidenavFixed && sidenavFixed === this;
 
-      if (this.layoutEl && this.firstSidenavInit) this.cleanLayout();
+      if (this.layoutEl && firstSidenavInit) this.cleanLayout();
 
-      if (this.layoutEl && this.fixed) this.handleMultipleSidenav();
+      if (this.layoutEl && this.fixed && firstSidenavInit) this.handleMultipleSidenav();
     },
     handleMultipleSidenav() {
-      if (!this.firstSidenavInit) return;
-
       const sidenavs = Array.from(document.querySelectorAll('.sidenav')).filter((sidenav) =>
         sidenav.classList.contains('fixed')
       );
