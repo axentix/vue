@@ -57,7 +57,7 @@ steps:
       from_secret: docker_repo
     dockerfile: Dockerfile
     tags:
-      - latest
+      - develop
   when:
     branch:
       - develop
