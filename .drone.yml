@@ -1,0 +1,107 @@
+kind: pipeline
+name: axentix new release
+
+steps:
+- name: Install
+  image: node:14-alpine
+  commands:
+  - npm ci
+  when:
+    branch:
+      - master
+      - develop
+    event:
+      - push
+
+- name: Build
+  image: node:14-alpine
+  commands:
+  - npm run build:storybook
+  when:
+    branch:
+      - master
+      - develop
+    event:
+      - push
+
+- name: MASTER | Deploy new version
+  image: banzaicloud/drone-kaniko
+  settings:
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    registry: 
+      from_secret: docker_registry
+    repo: 
+      from_secret: docker_repo
+    dockerfile: Dockerfile
+    tags:
+      - latest
+  when:
+    branch:
+      - master
+    event:
+      - push
+
+- name: DEVELOP | Deploy new version
+  image: banzaicloud/drone-kaniko
+  settings:
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    registry: 
+      from_secret: docker_registry
+    repo: 
+      from_secret: docker_repo
+    dockerfile: Dockerfile
+    tags:
+      - latest
+  when:
+    branch:
+      - develop
+    event:
+      - push
+
+- name: MASTER | Update image
+  image: appleboy/drone-ssh
+  settings:
+    host: 
+      from_secret: ssh_host
+    port: 
+      from_secret: ssh_port
+    username:
+      from_secret: ssh_username
+    password:
+      from_secret: ssh_password
+    script:
+      - docker-compose pull axentix-story-vue
+      - docker-compose up -d axentix-story-vue
+      - docker image prune -f
+  when:
+    branch:
+      - master
+    event:
+      - push
+
+- name: DEVELOP | Update image
+  image: appleboy/drone-ssh
+  settings:
+    host: 
+      from_secret: ssh_host
+    port: 
+      from_secret: ssh_port
+    username:
+      from_secret: ssh_username
+    password:
+      from_secret: ssh_password
+    script:
+      - docker-compose pull axentix-story-vue-dev
+      - docker-compose up -d axentix-story-vue-dev
+      - docker image prune -f
+  when:
+    branch:
+      - develop
+    event:
+      - push
