@@ -1,5 +1,5 @@
 kind: pipeline
-name: axentix new release
+name: Vue Axentix Storybook deployment
 
 steps:
 - name: Install
@@ -13,13 +13,26 @@ steps:
     event:
       - push
 
-- name: Build
+- name: MASTER | Build
   image: node:14-alpine
   commands:
   - npm run build:storybook
+  environment:
+    PUBLIC_PATH: /vue/
   when:
     branch:
       - master
+    event:
+      - push
+
+- name: DEVELOP | Build
+  image: node:14-alpine
+  commands:
+  - npm run build:storybook
+  environment:
+    PUBLIC_PATH: /vue/develop/
+  when:
+    branch:
       - develop
     event:
       - push
