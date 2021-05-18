@@ -13,26 +13,13 @@ steps:
     event:
       - push
 
-- name: MASTER | Build
+- name: Build
   image: node:14-alpine
   commands:
   - npm run build:storybook
-  environment:
-    PUBLIC_PATH: /vue/
   when:
     branch:
       - master
-    event:
-      - push
-
-- name: DEVELOP | Build
-  image: node:14-alpine
-  commands:
-  - npm run build:storybook
-  environment:
-    PUBLIC_PATH: /vue/develop/
-  when:
-    branch:
       - develop
     event:
       - push
