@@ -1,4 +1,3 @@
-FROM nginx:1-alpine
+FROM socialengine/nginx-spa
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY storybook-static /usr/share/nginx/html
+COPY storybook-static /app
