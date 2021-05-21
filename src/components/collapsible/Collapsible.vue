@@ -22,6 +22,7 @@ export default {
       default: false,
     },
     isInSidenav: {
+      //delete this & handle it with the Axel's parent detection method
       type: Boolean,
       default: false,
     },
@@ -39,11 +40,13 @@ export default {
     isAnimated: false,
     resizeRef: '',
     listenerRef: '',
+    isAutoClosing: false,
   }),
   computed: {
     classes() {
       return {
         active: this.isActive,
+        'overflow-hidden': this.isAnimated,
       };
     },
     style() {
@@ -57,7 +60,6 @@ export default {
       if (state === null) return;
       this.isActive = state;
       state ? this.open() : this.close();
-      console.log(state);
     },
     isActive(state) {
       this.$emit('input', state);
@@ -82,28 +84,21 @@ export default {
     handleResize() {
       if (this.isActive && !this.isInSidenav) this.$el.style.maxHeight = this.$el.scrollHeight + 'px';
     },
-    detectChild() {
-      setTimeout(() => {
-        if (Array.from(this.$el.children).some((child) => child.classList.contains('active'))) {
-          this.childIsActive = true;
-        }
-        if (this.childIsActive && !this.isActive) {
-          this.toggle();
-        }
-      }, 500);
-    },
-    applyOverflow() {
-      this.$el.style.overflow = 'hidden';
-
-      setTimeout(() => {
-        if (!this.isAutoClosing) this.$el.style.overflow = '';
-      }, this.animationDuration);
-    },
+    // detectChild() {
+    //   setTimeout(() => {
+    //     if (Array.from(this.$el.children).some((child) => child.classList.contains('active'))) {
+    //       this.childIsActive = true;
+    //     }
+    //     if (this.childIsActive && !this.isActive) {
+    //       this.toggle();
+    //     }
+    //   }, 500);
+    // },
     open() {
-      if (this.isAnimated) return;
+      if (this.isAnimated && !this.autoClosing) return;
 
       getInstancesByType('Collapsible').map((collapsible) => {
-        if (collapsible !== this) collapsible.autoClosing(collapsible.instance);
+        collapsible.autoClosing(this);
       });
 
       this.$emit('open');
@@ -111,35 +106,29 @@ export default {
       this.isActive = true;
       this.isAnimated = true;
       this.$el.style.display = 'block';
-      this.applyOverflow();
       this.$el.style.maxHeight = this.$el.scrollHeight + 'px';
 
       setTimeout(() => {
         this.isAnimated = false;
       }, this.animationDuration);
     },
-    close(autoClose = false) {
-      if (this.isAnimated && !autoClose) return;
+    close() {
+      if (this.isAnimated && !this.autoClosing) return;
       this.$emit('close');
 
       this.isAnimated = true;
       this.$el.style.maxHeight = '';
 
-      this.applyOverflow();
-
       setTimeout(() => {
         this.$el.style.display = '';
         this.isAnimated = false;
-        this.isActive = false;
+        this.isAutoClosing = false;
       }, this.animationDuration);
     },
     autoClosing(instance) {
-      if (this.autoClose && instance !== this && !this.isActive) {
-        this.close(true);
+      if (this.autoClose && instance !== this) {
+        this.isActive = false;
         this.isAutoClosing = true;
-        setTimeout(() => {
-          this.isAutoClosing = false;
-        }, this.animationDuration);
       }
     },
   },
@@ -148,9 +137,6 @@ export default {
   },
   beforeDestroy() {
     this.removeListeners();
-  },
-  updated() {
-    // console.log('updated');
   },
 };
 </script>

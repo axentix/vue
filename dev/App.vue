@@ -20,7 +20,7 @@
       >
         Collapse
       </div>
-      <ax-collapsible :animationDuration="2000" v-model="isCollapsibleOpened">
+      <ax-collapsible v-model="isCollapsibleOpened">
         <div class="sidenav-link">Link 1</div>
         <div class="sidenav-link">Link 2</div>
       </ax-collapsible>
@@ -38,9 +38,20 @@
     </ax-sidenav>
 
     <main class="m-5">
-      <ax-btn class="airforce dark-1 rounded-1 shadow-1" @click="isSidenavOpened = !isSidenavOpened"
-        >Toggle sidenav</ax-btn
-      >
+      <div class="d-flex fx-col">
+        <ax-btn class="airforce dark-1 rounded-1 shadow-1" @click="isSidenavOpened = !isSidenavOpened"
+          >Toggle sidenav</ax-btn
+        >
+        <ax-btn
+          class="airforce dark-2 rounded-1 shadow-1 mt-3"
+          @click="isCollapsibleOpened3 = !isCollapsibleOpened3"
+          >Toggle collapsible</ax-btn
+        >
+      </div>
+
+      <ax-collapsible v-model="isCollapsibleOpened3">
+        <p class="m-0 p-3 red">You can collapse me.</p>
+      </ax-collapsible>
     </main>
   </div>
 </template>
@@ -52,6 +63,7 @@ export default {
     isSidenavOpened: false,
     isCollapsibleOpened: false,
     isCollapsibleOpened2: false,
+    isCollapsibleOpened3: false,
   }),
   watch: {
     isSidenavOpened(state) {
