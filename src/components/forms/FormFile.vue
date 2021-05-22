@@ -1,5 +1,5 @@
 <template>
-  <div class="form-file" :class="classes">
+  <div class="form-file">
     <label for="input" :class="labelClasses" ref="label">{{ label }}</label>
 
     <input type="file" ref="input" id="input" v-bind="$attrs" v-on="$listeners" @change="handleFileInput" />
@@ -13,10 +13,6 @@ export default {
   name: 'AxFormFile',
   inheritAttrs: false,
   props: {
-    classes: {
-      type: String,
-      default: '',
-    },
     labelClasses: {
       type: String,
       default: '',
@@ -25,11 +21,6 @@ export default {
       type: String,
       default: '',
     },
-  },
-  data() {
-    return {
-      value: '',
-    };
   },
   methods: {
     handleFileInput() {
