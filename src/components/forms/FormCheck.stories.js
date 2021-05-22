@@ -3,12 +3,12 @@ import AxFormCheck from './FormCheck.vue';
 import AxFormField from './FormField.vue';
 
 export default {
-  title: 'Axentix/Components/Forms/Check',
+  title: 'Axentix/Components/Forms/Checkbox & Radio',
   component: AxFormCheck,
   subcomponents: { AxForm, AxFormField },
   argTypes: {
     full: false,
-    checked: { control: { type: 'boolean' } },
+    checkedValue: { control: { type: 'boolean' } },
     value: '',
     nativeValue: '',
     type: { control: { type: 'select', options: ['checkbox', 'radio'] } },
@@ -34,7 +34,7 @@ const CheckboxTemplate = (args, { argTypes }) => ({
   template: `
     <ax-form :material="material">
       <ax-form-field>
-        <ax-form-check v-bind="$props" v-model="checked" :class="classes"><span v-html="content"></span></ax-form-check>
+        <ax-form-check v-bind="$props" v-model="checkedValue" :class="classes"><span v-html="content"></span></ax-form-check>
       </ax-form-field>
     </ax-form>
   `,
