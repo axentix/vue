@@ -79,6 +79,7 @@
     "sass": "^1.34.0",
     "sass-loader": "^10.1.1",
     "storybook-addon-pseudo-states": "^1.0.0",
+    "storybook-addon-turbo-build": "^1.0.0-beta.0",
     "storybook-dark-mode": "^1.0.8",
     "typescript": "^4.2.4",
     "vite": "^2.3.3",
