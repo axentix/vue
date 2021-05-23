@@ -120,6 +120,1064 @@ exports[`Storyshots Axentix/Components/Button Small 1`] = `
 </button>
 `;
 
+exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Checkbox 1`] = `
+<form
+  class=""
+>
+  <div
+    class="form-field"
+  >
+    <!---->
+     
+    <label
+      class="form-check"
+    >
+      <input
+        classes=""
+        content="Ok"
+        type="checkbox"
+        value=""
+      />
+       
+      <span
+        class=""
+      >
+        <span>
+          Ok
+        </span>
+      </span>
+    </label>
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Full Material Radio 1`] = `
+<form
+  class="form-material"
+>
+  <div
+    class="form-field"
+  >
+    <!---->
+     
+    <label
+      class="form-check"
+    >
+      <input
+        classes=""
+        content="Ok"
+        material="true"
+        type="radio"
+        value="1"
+      />
+       
+      <span
+        class="full"
+      >
+        1
+      </span>
+    </label>
+     
+    <label
+      class="form-check"
+    >
+      <input
+        classes=""
+        content="Ok"
+        material="true"
+        type="radio"
+        value="2"
+      />
+       
+      <span
+        class="full"
+      >
+        2
+      </span>
+    </label>
+     
+    <label
+      class="form-check"
+    >
+      <input
+        classes=""
+        content="Ok"
+        material="true"
+        type="radio"
+        value="3"
+      />
+       
+      <span
+        class="full"
+      >
+        3
+      </span>
+    </label>
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Material Checkbox 1`] = `
+<form
+  class="form-material"
+>
+  <div
+    class="form-field"
+  >
+    <!---->
+     
+    <label
+      class="form-check"
+    >
+      <input
+        classes=""
+        content="Ok"
+        material="true"
+        type="checkbox"
+        value=""
+      />
+       
+      <span
+        class=""
+      >
+        <span>
+          Ok
+        </span>
+      </span>
+    </label>
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Material Radio 1`] = `
+<form
+  class="form-material"
+>
+  <div
+    class="form-field"
+  >
+    <!---->
+     
+    <label
+      class="form-check"
+    >
+      <input
+        classes=""
+        content="Ok"
+        material="true"
+        type="radio"
+        value="1"
+      />
+       
+      <span
+        class=""
+      >
+        1
+      </span>
+    </label>
+     
+    <label
+      class="form-check"
+    >
+      <input
+        classes=""
+        content="Ok"
+        material="true"
+        type="radio"
+        value="2"
+      />
+       
+      <span
+        class=""
+      >
+        2
+      </span>
+    </label>
+     
+    <label
+      class="form-check"
+    >
+      <input
+        classes=""
+        content="Ok"
+        material="true"
+        type="radio"
+        value="3"
+      />
+       
+      <span
+        class=""
+      >
+        3
+      </span>
+    </label>
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Radio 1`] = `
+<form
+  class=""
+>
+  <div
+    class="form-field"
+  >
+    <!---->
+     
+    <label
+      class="form-check"
+    >
+      <input
+        classes=""
+        content="Ok"
+        type="radio"
+        value="1"
+      />
+       
+      <span
+        class=""
+      >
+        1
+      </span>
+    </label>
+     
+    <label
+      class="form-check"
+    >
+      <input
+        classes=""
+        content="Ok"
+        type="radio"
+        value="2"
+      />
+       
+      <span
+        class=""
+      >
+        2
+      </span>
+    </label>
+     
+    <label
+      class="form-check"
+    >
+      <input
+        classes=""
+        content="Ok"
+        type="radio"
+        value="3"
+      />
+       
+      <span
+        class=""
+      >
+        3
+      </span>
+    </label>
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/File Multiple 1`] = `
+<form
+  class=""
+>
+  <div
+    class="form-file"
+  >
+    <label
+      class="btn airforce dark-1 rounded-1 shadow-1"
+      for="input"
+    >
+      Upload
+    </label>
+     
+    <input
+      classes=""
+      id="input"
+      multiple="multiple"
+      type="file"
+    />
+     
+    <div
+      class="form-file-path"
+    />
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/File Normal 1`] = `
+<form
+  class=""
+>
+  <div
+    class="form-file"
+  >
+    <label
+      class="btn airforce dark-1 rounded-1 shadow-1"
+      for="input"
+    >
+      Upload
+    </label>
+     
+    <input
+      classes=""
+      id="input"
+      type="file"
+    />
+     
+    <div
+      class="form-file-path"
+    />
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Group (Suffix & Prefix) Both 1`] = `
+<form
+  class=""
+>
+  <div
+    class="form-field"
+  >
+    <!---->
+     
+    <div
+      class="form-group rounded-1"
+      classes="rounded-1"
+    >
+      <span
+        class="form-group-txt bd-1 bd-solid bd-r-0 bd-grey bd-light-1"
+      >
+        @
+      </span>
+       
+      <input
+        class="form-control"
+        type="text"
+      />
+       
+      <span
+        class="form-group-txt bd-1 bd-solid bd-l-0 bd-grey bd-light-1 grey light-3"
+      >
+        useaxentix.com
+      </span>
+    </div>
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Group (Suffix & Prefix) Prefix 1`] = `
+<form
+  class=""
+>
+  <div
+    class="form-field"
+  >
+    <!---->
+     
+    <div
+      class="form-group"
+      classes=""
+    >
+      <span
+        class="form-group-txt"
+      >
+        @
+      </span>
+       
+      <input
+        class="form-control"
+        type="text"
+      />
+    </div>
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Group (Suffix & Prefix) Suffix 1`] = `
+<form
+  class=""
+>
+  <div
+    class="form-field"
+  >
+    <!---->
+     
+    <div
+      class="form-group"
+      classes=""
+    >
+      <input
+        class="form-control"
+        type="text"
+      />
+       
+      <span
+        class="form-group-txt"
+      >
+        @
+      </span>
+    </div>
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Inputs Basic 1`] = `
+<form
+  class=""
+>
+  <div
+    class="form-field"
+    controlclasses=""
+    fieldclasses=""
+    placeholder=""
+    tag="input"
+    type="text"
+  >
+    <label>
+      Text input
+    </label>
+     
+    <input
+      class="form-control"
+      placeholder=""
+      type="text"
+    />
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Inputs Basic Material 1`] = `
+<form
+  class="form-material"
+>
+  <div
+    class="form-field"
+    controlclasses=""
+    fieldclasses=""
+    material="true"
+    placeholder=""
+    style="--form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 100%;"
+    tag="input"
+    type="text"
+  >
+    <label
+      style="left: 0px;"
+    >
+      Text input
+    </label>
+     
+    <input
+      class="form-control"
+      placeholder=""
+      type="text"
+    />
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Inputs Disabled 1`] = `
+<form
+  class=""
+>
+  <div
+    class="form-field"
+    controlclasses=""
+    disabled="disabled"
+    fieldclasses=""
+    placeholder=""
+    tag="input"
+    type="text"
+  >
+    <label>
+      Text input
+    </label>
+     
+    <input
+      class="form-control"
+      disabled="disabled"
+      placeholder=""
+      type="text"
+    />
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Inputs Disabled Material 1`] = `
+<form
+  class="form-material"
+>
+  <div
+    class="form-field"
+    controlclasses=""
+    disabled="disabled"
+    fieldclasses=""
+    material="true"
+    placeholder=""
+    tag="input"
+    type="text"
+  >
+    <label>
+      Text input
+    </label>
+     
+    <input
+      class="form-control"
+      disabled="disabled"
+      placeholder=""
+      type="text"
+    />
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Inputs Helper 1`] = `
+<form
+  class=""
+>
+  <div
+    class="form-field"
+    controlclasses=""
+    fieldclasses=""
+    placeholder=""
+    tag="input"
+    type="text"
+  >
+    <label>
+      Text input
+    </label>
+     
+    <input
+      class="form-control"
+      placeholder=""
+      type="text"
+    />
+     
+    <span
+      class="form-helper"
+    >
+      This is a helper text.
+    </span>
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Inputs Helper Custom 1`] = `
+<form
+  class=""
+>
+  <div
+    class="form-field"
+    controlclasses=""
+    fieldclasses=""
+    placeholder=""
+    tag="input"
+    type="text"
+  >
+    <label>
+      Text input
+    </label>
+     
+    <input
+      class="form-control"
+      placeholder=""
+      type="text"
+    />
+     
+    <span
+      class="form-helper txt-red txt-center"
+    >
+      Error message.
+    </span>
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Inputs Inline 1`] = `
+<form
+  class=""
+>
+  <div
+    class="form-field inline"
+    controlclasses=""
+    fieldclasses=""
+    placeholder=""
+    tag="input"
+    type="text"
+  >
+    <label>
+      Text input
+    </label>
+     
+    <input
+      class="form-control"
+      placeholder=""
+      type="text"
+    />
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Inputs Multiple Select 1`] = `
+<form
+  class=""
+>
+  <div
+    class="form-field"
+    controlclasses=""
+    fieldclasses=""
+    multiple="multiple"
+    placeholder=""
+    tag="select"
+    type=""
+  >
+    <label>
+      Select
+    </label>
+     
+    <select
+      class="form-control"
+      multiple="multiple"
+    >
+      <option>
+        Option 1
+      </option>
+       
+      <option>
+        Option 2
+      </option>
+       
+      <option>
+        Option 3
+      </option>
+    </select>
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Inputs Placeholder 1`] = `
+<form
+  class=""
+>
+  <div
+    class="form-field"
+    controlclasses=""
+    fieldclasses=""
+    placeholder="Axentix <3"
+    tag="input"
+    type="text"
+  >
+    <label>
+      Text input
+    </label>
+     
+    <input
+      class="form-control"
+      placeholder="Axentix <3"
+      type="text"
+    />
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Inputs Placeholder Material 1`] = `
+<form
+  class="form-material"
+>
+  <div
+    class="form-field active"
+    controlclasses=""
+    fieldclasses=""
+    material="true"
+    placeholder="Axentix <3"
+    style="--form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 100%;"
+    tag="input"
+    type="text"
+  >
+    <label
+      style="left: 0px;"
+    >
+      Text input
+    </label>
+     
+    <input
+      class="form-control"
+      placeholder="Axentix <3"
+      type="text"
+    />
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Inputs Readonly 1`] = `
+<form
+  class=""
+>
+  <div
+    class="form-field"
+    controlclasses=""
+    fieldclasses=""
+    placeholder=""
+    readonly="readonly"
+    tag="input"
+    type="text"
+  >
+    <label>
+      Text input
+    </label>
+     
+    <input
+      class="form-control"
+      placeholder=""
+      readonly="readonly"
+      type="text"
+    />
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Inputs Readonly Material 1`] = `
+<form
+  class="form-material"
+>
+  <div
+    class="form-field"
+    controlclasses=""
+    fieldclasses=""
+    material="true"
+    placeholder=""
+    readonly="readonly"
+    tag="input"
+    type="text"
+  >
+    <label>
+      Text input
+    </label>
+     
+    <input
+      class="form-control"
+      placeholder=""
+      readonly="readonly"
+      type="text"
+    />
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Inputs Select 1`] = `
+<form
+  class=""
+>
+  <div
+    class="form-field"
+    controlclasses=""
+    fieldclasses=""
+    placeholder=""
+    tag="select"
+    type=""
+  >
+    <label>
+      Select
+    </label>
+     
+    <select
+      class="form-control"
+    >
+      <option>
+        Option 1
+      </option>
+       
+      <option>
+        Option 2
+      </option>
+       
+      <option>
+        Option 3
+      </option>
+    </select>
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Inputs Select Material 1`] = `
+<form
+  class="form-material"
+>
+  <div
+    class="form-field active"
+    controlclasses=""
+    fieldclasses=""
+    material="true"
+    placeholder=""
+    style="--form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 100%;"
+    tag="select"
+    type=""
+  >
+    <label
+      style="left: 0px;"
+    >
+      Select
+    </label>
+     
+    <select
+      class="form-control"
+    >
+      <option>
+        Option 1
+      </option>
+       
+      <option>
+        Option 2
+      </option>
+       
+      <option>
+        Option 3
+      </option>
+    </select>
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Inputs Textarea 1`] = `
+<form
+  class=""
+>
+  <div
+    class="form-field"
+    controlclasses=""
+    fieldclasses=""
+    placeholder=""
+    tag="textarea"
+    type="text"
+  >
+    <label>
+      Text input
+    </label>
+     
+    <textarea
+      class="form-control"
+      placeholder=""
+      type="text"
+    />
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Inputs Textarea Material 1`] = `
+<form
+  class="form-material"
+>
+  <div
+    class="form-field"
+    controlclasses=""
+    fieldclasses=""
+    material="true"
+    placeholder=""
+    tag="textarea"
+    type="text"
+  >
+    <label>
+      Text input
+    </label>
+     
+    <textarea
+      class="form-control"
+      placeholder=""
+      type="text"
+    />
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Switch Custom Color 1`] = `
+<form
+  class=""
+>
+  <div
+    class="form-field form-default"
+  >
+    <!---->
+     
+    <label
+      class="form-switch"
+    >
+      <span />
+       
+      <input
+        classes=""
+        content="On"
+        falsevalue=""
+        type="checkbox"
+      />
+       
+      <span
+        class="slider"
+        style="--form-switch-active-color: #000000;"
+      />
+        
+      <span>
+        On
+      </span>
+    </label>
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Switch Large 1`] = `
+<form
+  class=""
+>
+  <div
+    class="form-field form-default"
+  >
+    <!---->
+     
+    <label
+      class="form-switch"
+    >
+      <span />
+       
+      <input
+        classes=""
+        content="On"
+        falsevalue=""
+        type="checkbox"
+      />
+       
+      <span
+        class="slider large"
+        style="--form-switch-active-color: #e92626;"
+      />
+        
+      <span>
+        On
+      </span>
+    </label>
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Switch Normal 1`] = `
+<form
+  class=""
+>
+  <div
+    class="form-field form-default"
+  >
+    <!---->
+     
+    <label
+      class="form-switch"
+    >
+      <span />
+       
+      <input
+        classes=""
+        content="On"
+        falsevalue=""
+        type="checkbox"
+      />
+       
+      <span
+        class="slider"
+        style="--form-switch-active-color: #e92626;"
+      />
+        
+      <span>
+        On
+      </span>
+    </label>
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Switch Small 1`] = `
+<form
+  class=""
+>
+  <div
+    class="form-field form-default"
+  >
+    <!---->
+     
+    <label
+      class="form-switch"
+    >
+      <span />
+       
+      <input
+        classes=""
+        content="On"
+        falsevalue=""
+        type="checkbox"
+      />
+       
+      <span
+        class="slider small"
+        style="--form-switch-active-color: #e92626;"
+      />
+        
+      <span>
+        On
+      </span>
+    </label>
+     
+    <!---->
+  </div>
+</form>
+`;
+
 exports[`Storyshots Axentix/Components/Sidenav Large 1`] = `
 <div
   class="sidenav large airforce shadow-1"
