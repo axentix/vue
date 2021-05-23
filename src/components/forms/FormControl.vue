@@ -124,6 +124,9 @@ export default {
       label.style.left = labelLeft + 'px';
     },
   },
+  mounted() {
+    this.handle();
+  },
   updated() {
     this.handle();
   },
