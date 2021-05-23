@@ -1,3 +1,12 @@
+# 0.2.0 - Under development
+
+- ADDED
+  - Forms (all doc category)
+- REMOVED
+- IMPROVED
+  - CI: storybook build speed
+- BUGFIXES
+
 # 0.1.1 - 2021-05-12
 
 - ADDED
