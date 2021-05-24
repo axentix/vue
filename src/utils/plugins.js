@@ -1,7 +1,9 @@
+import { isVue3 } from 'vue-demi';
+
 export const use = (plugin) => {
-  if (typeof window !== 'undefined' && window.Vue) {
-    window.Vue.use(plugin);
-  }
+  if (isVue3) return;
+
+  if (typeof window !== 'undefined' && window.Vue) window.Vue.use(plugin);
 };
 
 export const registerComponent = (Vue, component) => {
@@ -9,6 +11,11 @@ export const registerComponent = (Vue, component) => {
 };
 
 export const registerComponentProgrammatic = (Vue, property, component) => {
+  if (isVue3) {
+    Vue.config.globalProperties.$axentix[property] = component;
+    return;
+  }
+
   if (!Vue.prototype.$axentix) Vue.prototype.$axentix = {};
   Vue.prototype.$axentix[property] = component;
 };

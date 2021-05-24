@@ -67,10 +67,10 @@ const baseConfig = {
   },
 };
 
-const external = ['vue'];
+const external = ['vue-demi'];
 
 const globals = {
-  vue: 'Vue',
+  'vue-demi': 'VueDemi',
 };
 
 // Customize configs for individual targets

@@ -18,7 +18,9 @@
     "build:esm": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format esm",
     "build:iife": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife",
     "build:storybook": "build-storybook",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "switch:2": "vue-demi-switch 2 && npm i -D rollup-plugin-vue@5.1.9",
+    "switch:3": "vue-demi-switch 3 && npm i -D rollup-plugin-vue@6.0.0"
   },
   "repository": {
     "type": "git",
@@ -48,7 +50,8 @@
     "CHANGELOG"
   ],
   "dependencies": {
-    "axentix": "^1.2.1"
+    "axentix": "^1.2.1",
+    "vue-demi": "^0.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",
@@ -67,6 +70,7 @@
     "@vue/cli-plugin-babel": "^4.5.13",
     "@vue/cli-plugin-eslint": "^4.5.13",
     "@vue/cli-service": "^4.5.13",
+    "@vue/composition-api": "^1.0.0-rc.9",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@whitespace/storybook-addon-html": "^5.0.0",
     "babel-eslint": "^10.1.0",
@@ -93,6 +97,12 @@
     "vue-template-compiler": "^2.6.12"
   },
   "peerDependencies": {
-    "vue": "^2.6.12"
+    "@vue/composition-api": "^1.0.0-beta.1",
+    "vue": "^2.0.0 || >=3.0.0-rc.0"
+  },
+  "peerDependenciesMeta": {
+    "@vue/composition-api": {
+      "optional": true
+    }
   }
 }

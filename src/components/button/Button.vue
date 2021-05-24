@@ -1,12 +1,14 @@
 <template>
-  <component :is="tag" class="btn" :class="classes" v-bind="$attrs" v-on="$listeners">
+  <component :is="tag" class="btn" :class="classes" v-bind="$attrs">
     <slot v-if="!outline">Button</slot>
     <span v-else :class="outlineClasses"><slot>Button</slot></span>
   </component>
 </template>
 
 <script>
-export default {
+import { computed, defineComponent } from 'vue-demi';
+
+export default defineComponent({
   name: 'AxBtn',
   props: {
     tag: {
@@ -44,24 +46,49 @@ export default {
       default: false,
     },
   },
-  computed: {
-    classes() {
+  setup(props) {
+    const classes = computed(() => {
       return {
-        circle: this.circle,
-        press: this.press,
-        outline: this.outline,
-        opening: this.outlineOpening,
-        small: this.size === 'small',
-        large: this.size === 'large',
-        disabled: this.disabled,
+        circle: props.circle,
+        press: props.press,
+        outline: props.outline,
+        opening: props.outlineOpening,
+        small: props.size === 'small',
+        large: props.size === 'large',
+        disabled: props.disabled,
       };
-    },
-    outlineClasses() {
+    });
+
+    const outlineClasses = computed(() => {
       return {
-        'outline-text': this.outline,
-        'outline-invert': this.outlineInvert,
+        'outline-text': props.outline,
+        'outline-invert': props.outlineInvert,
       };
-    },
+    });
+
+    return {
+      classes,
+      outlineClasses,
+    };
   },
-};
+  // computed: {
+  //   classes() {
+  //     return {
+  //       circle: this.circle,
+  //       press: this.press,
+  //       outline: this.outline,
+  //       opening: this.outlineOpening,
+  //       small: this.size === 'small',
+  //       large: this.size === 'large',
+  //       disabled: this.disabled,
+  //     };
+  //   },
+  //   outlineClasses() {
+  //     return {
+  //       'outline-text': this.outline,
+  //       'outline-invert': this.outlineInvert,
+  //     };
+  //   },
+  // },
+});
 </script>
