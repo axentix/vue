@@ -9,8 +9,7 @@ import replace from '@rollup/plugin-replace';
 import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import minimist from 'minimist';
-
-import packageJson from '../package.json';
+import { isVue3 } from 'vue-demi';
 
 const esbrowserslist = fs
   .readFileSync('./.browserslistrc')
@@ -26,13 +25,10 @@ const argv = minimist(process.argv.slice(2));
 
 const projectRoot = path.resolve(__dirname, '..');
 
-const banner = `/*! VueAxentix version ${packageJson.version} | MIT License | https://github.com/axentix/vue */`;
+const distRoot = isVue3 ? 'dist/vue3' : 'dist/vue2';
 
 const baseConfig = {
   input: 'src/index.js',
-  output: {
-    banner,
-  },
   plugins: {
     preVue: [
       alias({
@@ -67,9 +63,10 @@ const baseConfig = {
   },
 };
 
-const external = ['vue-demi'];
+const external = ['vue', 'vue-demi'];
 
 const globals = {
+  vue: 'Vue',
   'vue-demi': 'VueDemi',
 };
 
@@ -81,7 +78,7 @@ if (!argv.format || argv.format === 'esm') {
     input: 'src/index.esm.js',
     external,
     output: {
-      file: 'dist/vue-axentix.esm.js',
+      file: path.resolve(distRoot, 'vue-axentix.esm.js'),
       format: 'esm',
       exports: 'named',
     },
@@ -113,7 +110,7 @@ if (!argv.format || argv.format === 'cjs') {
     external,
     output: {
       compact: true,
-      file: 'dist/vue-axentix.cjs.js',
+      file: path.resolve(distRoot, 'vue-axentix.cjs.js'),
       format: 'cjs',
       name: 'VueAxentix',
       exports: 'auto',
@@ -142,7 +139,7 @@ if (!argv.format || argv.format === 'iife') {
     external,
     output: {
       compact: true,
-      file: 'dist/vue-axentix.min.js',
+      file: path.resolve(distRoot, 'vue-axentix.min.js'),
       format: 'iife',
       name: 'VueAxentix',
       exports: 'auto',

@@ -71,24 +71,5 @@ export default defineComponent({
       outlineClasses,
     };
   },
-  // computed: {
-  //   classes() {
-  //     return {
-  //       circle: this.circle,
-  //       press: this.press,
-  //       outline: this.outline,
-  //       opening: this.outlineOpening,
-  //       small: this.size === 'small',
-  //       large: this.size === 'large',
-  //       disabled: this.disabled,
-  //     };
-  //   },
-  //   outlineClasses() {
-  //     return {
-  //       'outline-text': this.outline,
-  //       'outline-invert': this.outlineInvert,
-  //     };
-  //   },
-  // },
 });
 </script>

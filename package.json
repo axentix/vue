@@ -4,23 +4,26 @@
   "description": "Vue Axentix is the Axentix integration for the VueJS framework.",
   "license": "MIT",
   "author": "Axel SIMONET, Vincent LEVEQUE",
-  "main": "dist/vue-axentix.cjs.js",
-  "module": "dist/vue-axentix.esm.js",
-  "browser": "dist/vue-axentix.esm.js",
-  "unpkg": "dist/vue-axentix.min.js",
+  "main": "dist/vue2/vue-axentix.cjs.js",
+  "module": "dist/vue2/vue-axentix.esm.js",
+  "browser": "dist/vue2/vue-axentix.esm.js",
+  "unpkg": "dist/vue2/vue-axentix.min.js",
   "scripts": {
     "test": "jest",
     "test:u": "jest -u",
     "serve": "vue-cli-service serve ./dev/main.js",
     "serve:storybook": "start-storybook -p 6006",
-    "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
+    "build": "npm run build:2 && npm run build:3",
     "build:cjs": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "build:esm": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format esm",
     "build:iife": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife",
+    "build:2": "npm run switch:2 && cross-env NODE_ENV=production rollup --config build/rollup.config.js",
+    "build:3": "npm run switch:3 && cross-env NODE_ENV=production rollup --config build/rollup.config.js",
     "build:storybook": "build-storybook",
     "lint": "vue-cli-service lint",
     "switch:2": "vue-demi-switch 2 && npm i -D rollup-plugin-vue@5.1.9",
-    "switch:3": "vue-demi-switch 3 && npm i -D rollup-plugin-vue@6.0.0"
+    "switch:3": "vue-demi-switch 3 && npm i -D rollup-plugin-vue@6.0.0",
+    "postinstall": "node ./scripts/postinstall.js"
   },
   "repository": {
     "type": "git",
@@ -94,10 +97,11 @@
     "typescript": "^4.2.4",
     "vue": "^2.6.12",
     "vue-loader": "^15.9.7",
-    "vue-template-compiler": "^2.6.12"
+    "vue-template-compiler": "^2.6.12",
+    "vue3": "npm:vue@3"
   },
   "peerDependencies": {
-    "@vue/composition-api": "^1.0.0-beta.1",
+    "@vue/composition-api": "^1.0.0-rc.9",
     "vue": "^2.0.0 || >=3.0.0-rc.0"
   },
   "peerDependenciesMeta": {
