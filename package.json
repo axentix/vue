@@ -11,7 +11,7 @@
   "scripts": {
     "test": "npm run switch:2 && jest",
     "test:u": "npm run switch:2 && jest -u",
-    "serve": "npm run switch:2 && vite --open --host",
+    "serve": "npm run switch:2 && vite --host",
     "serve:storybook": "npm run switch:2 && start-storybook -p 6006",
     "build": "npm run build:2 && npm run build:3",
     "build:2": "npm run switch:2 && vite build",

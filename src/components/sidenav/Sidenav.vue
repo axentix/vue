@@ -13,9 +13,20 @@
 </template>
 
 <script>
+import {
+  computed,
+  defineComponent,
+  getCurrentInstance,
+  onBeforeUpdate,
+  onMounted,
+  onUnmounted,
+  reactive,
+  ref,
+  watch,
+} from 'vue-demi';
 import { addInstance, getInstancesByType } from '../../utils/config';
 
-export default {
+export default defineComponent({
   name: 'AxSidenav',
   props: {
     value: {
@@ -47,96 +58,109 @@ export default {
       default: false,
     },
   },
-  data: () => ({
-    layoutEl: '',
-    isActive: false,
-    isAnimated: false,
-    overlayElement: '',
-    overlayActive: false,
-    resizeRef: '',
-    listenerRef: '',
-    extraClasses: [
+  setup(props, ctx) {
+    const layoutEl = ref(null),
+      isActive = ref(false),
+      isAnimated = ref(false),
+      overlayElement = ref(null),
+      overlayActive = ref(false),
+      resizeRef = ref(null),
+      listenerRef = ref(null),
+      value = ref(props.value),
+      sidenav = ref(null);
+
+    const extraClasses = reactive([
       'sidenav-right',
       'sidenav-both',
       'sidenav-large',
       'sidenav-large-left',
       'sidenav-large-right',
-    ],
-  }),
-  computed: {
-    classes() {
+    ]);
+
+    const classes = computed(() => {
       return {
-        active: this.isActive,
-        fixed: this.fixed,
-        'right-aligned': this.rightAligned,
-        large: this.large,
+        active: props.isActive,
+        fixed: props.fixed,
+        'right-aligned': props.rightAligned,
+        large: props.large,
       };
-    },
-    style() {
+    });
+
+    const style = computed(() => {
       return {
-        transitionDuration: this.animationDuration + 'ms',
+        transitionDuration: props.animationDuration + 'ms',
       };
-    },
-  },
-  watch: {
-    value(state) {
+    });
+
+    watch(value, (state) => {
+      console.log('hey', state);
       if (state === null) return;
 
-      if (this.fixed && window.innerWidth >= 960) {
-        this.$emit('input', true);
+      if (props.fixed && window.innerWidth >= 960) {
+        ctx.emit('input', true);
         return;
       }
 
-      this.isActive = state;
-      state ? this.open() : this.close();
-    },
-    isActive(state) {
-      this.$emit('input', state);
-    },
-    overlay(state) {
-      this.updateOverlay(state);
-    },
-  },
-  methods: {
-    setup() {
-      addInstance({ type: 'Sidenav', instance: this });
-      this.layoutEl = this.$refs.sidenav.closest('.layout');
+      isActive.value = state;
+      state ? openSidenav() : closeSidenav();
+    });
 
-      if (this.overlay) this.createOverlay();
+    watch(isActive, (state) => {
+      ctx.emit('input', state);
+    });
 
-      this.setupListeners();
+    watch(
+      () => props.overlay,
+      (state) => {
+        updateOverlay(state);
+      }
+    );
 
-      this.detectMultipleSidenav();
+    const init = () => {
+      addInstance({ type: 'Sidenav', instance: getCurrentInstance() });
+      layoutEl.value = sidenav.value.closest('.layout');
 
-      if (this.value || (this.fixed && window.innerWidth >= 960)) this.isActive = true;
+      if (props.overlay) createOverlay();
 
-      this.$emit('setup');
-    },
-    setupListeners() {
-      this.listenerRef = this.onClickTrigger.bind(this);
-      this.resizeRef = this.handleResize.bind(this);
-      window.addEventListener('resize', this.resizeRef);
-    },
-    removeListeners() {
-      window.removeEventListener('resize', this.resizeRef);
-      this.destroyOverlay();
-    },
-    cleanLayout() {
-      this.extraClasses.map((classes) => this.layoutEl.classList.remove(classes));
-    },
-    handleResize() {
-      if (this.fixed && window.innerWidth >= 960) this.isActive = true;
-      else this.isActive = false;
-    },
-    detectMultipleSidenav() {
+      setupListeners();
+
+      detectMultipleSidenav();
+
+      if (props.value || (props.fixed && window.innerWidth >= 960)) isActive.value = true;
+
+      ctx.emit('setup');
+    };
+
+    const setupListeners = () => {
+      listenerRef.value = onClickTrigger.bind(this);
+      resizeRef.value = handleResize.bind(this);
+      window.addEventListener('resize', resizeRef);
+    };
+
+    const removeListeners = () => {
+      window.removeEventListener('resize', resizeRef);
+      destroyOverlay();
+    };
+
+    const cleanLayout = () => {
+      extraClasses.map((classes) => layoutEl.classList.remove(classes));
+    };
+
+    const handleResize = () => {
+      if (props.fixed && window.innerWidth >= 960) isActive.value = true;
+      else isActive.value = false;
+    };
+
+    const detectMultipleSidenav = () => {
       const sidenavFixed = getInstancesByType('Sidenav').find((ins) => ins.fixed);
       const firstSidenavInit = sidenavFixed && sidenavFixed === this;
 
-      if (this.layoutEl && firstSidenavInit) this.cleanLayout();
+      if (layoutEl && firstSidenavInit) cleanLayout();
 
-      if (this.layoutEl && this.fixed && firstSidenavInit) this.handleMultipleSidenav();
-    },
-    handleMultipleSidenav() {
+      if (layoutEl && props.fixed && firstSidenavInit) handleMultipleSidenav();
+    };
+
+    const handleMultipleSidenav = () => {
       const sidenavs = Array.from(document.querySelectorAll('.sidenav')).filter((sidenav) =>
         sidenav.classList.contains('fixed')
       );
@@ -156,121 +180,140 @@ export default {
       const sidenavLeftLarge = sidenavsLeft.some((sidenav) => sidenav.classList.contains('large'));
       const isLarge = sidenavRightLarge || sidenavLeftLarge;
 
-      isLarge ? this.layoutEl.classList.add('sidenav-large') : '';
+      isLarge ? layoutEl.classList.add('sidenav-large') : '';
 
       if (sidenavsRight.length > 0 && !isBoth) {
-        this.layoutEl.classList.add('sidenav-right');
+        layoutEl.classList.add('sidenav-right');
       } else if (isBoth) {
-        this.layoutEl.classList.add('sidenav-both');
+        layoutEl.classList.add('sidenav-both');
       }
 
       if (isLarge && isBoth) {
         if (sidenavRightLarge && !sidenavLeftLarge) {
-          this.layoutEl.classList.add('sidenav-large-right');
+          layoutEl.classList.add('sidenav-large-right');
         } else if (!sidenavRightLarge && sidenavLeftLarge) {
-          this.layoutEl.classList.add('sidenav-large-left');
+          layoutEl.classList.add('sidenav-large-left');
         }
       }
-    },
-    createOverlay() {
-      this.overlayElement = document.createElement('div');
-      this.overlayElement.classList.add('sidenav-overlay');
-    },
-    updateOverlay(state) {
-      if (this.fixed) return;
+    };
 
-      if (this.overlayElement) {
-        if (!state) this.destroyOverlay();
+    const createOverlay = () => {
+      overlayElement.value = document.createElement('div');
+      overlayElement.value.classList.add('sidenav-overlay');
+    };
 
-        if (this.isActive && state && !this.overlayActive) this.setOverlay(true);
+    const updateOverlay = (state) => {
+      if (props.fixed) return;
+
+      if (overlayElement) {
+        if (!state) destroyOverlay();
+
+        if (isActive && state && !overlayActive) setOverlay(true);
         return;
       }
 
       if (state) {
-        this.createOverlay();
+        createOverlay();
 
-        if (this.isActive) this.setOverlay(true);
+        if (isActive) setOverlay(true);
       }
-    },
-    destroyOverlay() {
-      if (this.overlay && this.overlayActive) {
-        this.overlayElement.removeEventListener('click', this.listenerRef);
-        this.overlayElement.remove();
-        this.overlayElement = '';
-        this.overlayActive = false;
+    };
+
+    const destroyOverlay = () => {
+      if (props.overlay && overlayActive) {
+        overlayElement.value.removeEventListener('click', listenerRef);
+        overlayElement.value.remove();
+        overlayElement.value = '';
+        overlayActive.value = false;
       }
-    },
-    toggleBodyScroll(state) {
-      if (!this.bodyScrolling) {
+    };
+
+    const toggleBodyScroll = (state) => {
+      if (!props.bodyScrolling) {
         state ? (document.body.style.overflow = '') : (document.body.style.overflow = 'hidden');
       }
-    },
-    onClickTrigger(e) {
+    };
+
+    const onClickTrigger = (e) => {
       e.preventDefault();
-      if (this.fixed && window.innerWidth >= 960) return;
+      if (props.fixed && window.innerWidth >= 960) return;
 
-      this.isActive = !this.isActive;
-    },
-    open() {
-      if (this.isAnimated) return;
+      isActive.value = !isActive;
+    };
 
-      this.isActive = true;
-      this.$emit('open');
-      this.isAnimated = true;
-      this.setOverlay(true);
+    const openSidenav = () => {
+      if (isAnimated) return;
 
-      this.toggleBodyScroll(false);
+      isActive.value = true;
+      ctx.emit('open');
+      isAnimated.value = true;
+      setOverlay(true);
 
-      setTimeout(() => {
-        this.isAnimated = false;
-        this.$emit('opened');
-      }, this.animationDuration);
-    },
-    close() {
-      if (this.isAnimated) return;
-
-      this.isActive = false;
-      this.isAnimated = true;
-      this.$emit('close');
-      this.setOverlay(false);
+      toggleBodyScroll(false);
 
       setTimeout(() => {
-        this.toggleBodyScroll(true);
+        isAnimated.value = false;
+        ctx.emit('opened');
+      }, props.animationDuration);
+    };
 
-        this.isAnimated = false;
-        this.$emit('closed');
-      }, this.animationDuration);
-    },
-    setOverlay(state) {
-      if (!this.overlay) return;
+    const closeSidenav = () => {
+      if (isAnimated) return;
 
-      this.overlayElement.style.transitionDuration = this.animationDuration + 'ms';
+      isActive.value = false;
+      isAnimated.value = true;
+      ctx.emit('close');
+      setOverlay(false);
+
+      setTimeout(() => {
+        toggleBodyScroll(true);
+
+        isAnimated.value = false;
+        ctx.emit('closed');
+      }, props.animationDuration);
+    };
+
+    const setOverlay = (state) => {
+      if (!props.overlay) return;
+
+      overlayElement.value.style.transitionDuration = props.animationDuration + 'ms';
 
       if (state) {
-        this.overlayActive = true;
-        this.overlayElement.addEventListener('click', this.listenerRef);
-        document.body.appendChild(this.overlayElement);
+        overlayActive.value = true;
+        overlayElement.value.addEventListener('click', listenerRef);
+        document.body.appendChild(overlayElement);
+
         setTimeout(() => {
-          this.overlayElement.classList.add('active');
+          overlayElement.value.classList.add('active');
         }, 50);
       } else {
-        this.overlayElement.classList.remove('active');
+        overlayElement.value.classList.remove('active');
+
         setTimeout(() => {
-          this.overlayElement.removeEventListener('click', this.listenerRef);
-          this.overlayElement.remove();
-          this.overlayActive = false;
-        }, this.animationDuration);
+          overlayElement.value.removeEventListener('click', listenerRef);
+          overlayElement.value.remove();
+          overlayActive.value = false;
+        }, props.animationDuration);
       }
-    },
+    };
+
+    onMounted(() => {
+      init();
+    });
+
+    onBeforeUpdate(() => {
+      updateOverlay(props.overlay);
+    });
+
+    onUnmounted(() => {
+      removeListeners();
+    });
+
+    return {
+      classes,
+      style,
+      sidenav,
+    };
   },
-  mounted() {
-    this.setup();
-  },
-  beforeUpdate() {
-    this.updateOverlay(this.overlay);
-  },
-  beforeDestroy() {
-    this.removeListeners();
-  },
-};
+});
 </script>
