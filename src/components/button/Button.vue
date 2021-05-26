@@ -1,5 +1,5 @@
 <template>
-  <component :is="tag" class="btn" :class="classes" v-bind="$attrs">
+  <component :is="tag" class="btn" :class="classes" v-bind="$attrs" v-on="listeners">
     <slot v-if="!outline">Button</slot>
     <span v-else :class="outlineClasses"><slot>Button</slot></span>
   </component>
@@ -46,7 +46,7 @@ export default defineComponent({
       default: false,
     },
   },
-  setup(props) {
+  setup(props, ctx) {
     const classes = computed(() => {
       return {
         circle: props.circle,
@@ -69,6 +69,7 @@ export default defineComponent({
     return {
       classes,
       outlineClasses,
+      listeners: ctx.listeners ? ctx.listeners : {},
     };
   },
 });

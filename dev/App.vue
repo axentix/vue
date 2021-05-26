@@ -28,7 +28,7 @@
 export default {
   name: 'App',
   data: () => ({
-    isSidenavOpened: true,
+    isSidenavOpened: false,
   }),
   watch: {
     isSidenavOpened(state) {

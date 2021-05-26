@@ -1,5 +1,5 @@
 <template>
-  <div class="sidenav" ref="sidenav" :class="classes" :style="style" v-bind="$attrs" v-on="$listeners">
+  <div class="sidenav" ref="sidenav" :class="classes" :style="style" v-bind="$attrs" v-on="listeners">
     <div class="sidenav-header" v-if="!!$slots.header">
       <slot name="header"></slot>
     </div>
@@ -22,12 +22,15 @@ import {
   onUnmounted,
   reactive,
   ref,
+  toRefs,
   watch,
 } from 'vue-demi';
 import { addInstance, getInstancesByType } from '../../utils/config';
+import vModelMixin, { getVModelKey, getVModelEvent } from '../../utils/v-model';
 
 export default defineComponent({
   name: 'AxSidenav',
+  mixins: [vModelMixin],
   props: {
     value: {
       type: Boolean,
@@ -66,8 +69,10 @@ export default defineComponent({
       overlayActive = ref(false),
       resizeRef = ref(null),
       listenerRef = ref(null),
-      value = ref(props.value),
+      vmodel = toRefs(props)[getVModelKey()],
       sidenav = ref(null);
+
+    const vmodelEvent = getVModelEvent();
 
     const extraClasses = reactive([
       'sidenav-right',
@@ -79,7 +84,7 @@ export default defineComponent({
 
     const classes = computed(() => {
       return {
-        active: props.isActive,
+        active: isActive.value,
         fixed: props.fixed,
         'right-aligned': props.rightAligned,
         large: props.large,
@@ -92,12 +97,11 @@ export default defineComponent({
       };
     });
 
-    watch(value, (state) => {
-      console.log('hey', state);
+    watch(vmodel, (state) => {
       if (state === null) return;
 
       if (props.fixed && window.innerWidth >= 960) {
-        ctx.emit('input', true);
+        ctx.emit(vmodelEvent, true);
         return;
       }
 
@@ -106,7 +110,7 @@ export default defineComponent({
     });
 
     watch(isActive, (state) => {
-      ctx.emit('input', state);
+      ctx.emit(vmodelEvent, state);
     });
 
     watch(
@@ -126,7 +130,7 @@ export default defineComponent({
 
       detectMultipleSidenav();
 
-      if (props.value || (props.fixed && window.innerWidth >= 960)) isActive.value = true;
+      if (vmodel || (props.fixed && window.innerWidth >= 960)) openSidenav();
 
       ctx.emit('setup');
     };
@@ -134,16 +138,16 @@ export default defineComponent({
     const setupListeners = () => {
       listenerRef.value = onClickTrigger.bind(this);
       resizeRef.value = handleResize.bind(this);
-      window.addEventListener('resize', resizeRef);
+      window.addEventListener('resize', resizeRef.value);
     };
 
     const removeListeners = () => {
-      window.removeEventListener('resize', resizeRef);
+      window.removeEventListener('resize', resizeRef.value);
       destroyOverlay();
     };
 
     const cleanLayout = () => {
-      extraClasses.map((classes) => layoutEl.classList.remove(classes));
+      extraClasses.map((classes) => layoutEl.value.classList.remove(classes));
     };
 
     const handleResize = () => {
@@ -155,9 +159,9 @@ export default defineComponent({
       const sidenavFixed = getInstancesByType('Sidenav').find((ins) => ins.fixed);
       const firstSidenavInit = sidenavFixed && sidenavFixed === this;
 
-      if (layoutEl && firstSidenavInit) cleanLayout();
+      if (layoutEl.value && firstSidenavInit) cleanLayout();
 
-      if (layoutEl && props.fixed && firstSidenavInit) handleMultipleSidenav();
+      if (layoutEl.value && props.fixed && firstSidenavInit) handleMultipleSidenav();
     };
 
     const handleMultipleSidenav = () => {
@@ -180,19 +184,19 @@ export default defineComponent({
       const sidenavLeftLarge = sidenavsLeft.some((sidenav) => sidenav.classList.contains('large'));
       const isLarge = sidenavRightLarge || sidenavLeftLarge;
 
-      isLarge ? layoutEl.classList.add('sidenav-large') : '';
+      isLarge ? layoutEl.value.classList.add('sidenav-large') : '';
 
       if (sidenavsRight.length > 0 && !isBoth) {
-        layoutEl.classList.add('sidenav-right');
+        layoutEl.value.classList.add('sidenav-right');
       } else if (isBoth) {
-        layoutEl.classList.add('sidenav-both');
+        layoutEl.value.classList.add('sidenav-both');
       }
 
       if (isLarge && isBoth) {
         if (sidenavRightLarge && !sidenavLeftLarge) {
-          layoutEl.classList.add('sidenav-large-right');
+          layoutEl.value.classList.add('sidenav-large-right');
         } else if (!sidenavRightLarge && sidenavLeftLarge) {
-          layoutEl.classList.add('sidenav-large-left');
+          layoutEl.value.classList.add('sidenav-large-left');
         }
       }
     };
@@ -205,23 +209,23 @@ export default defineComponent({
     const updateOverlay = (state) => {
       if (props.fixed) return;
 
-      if (overlayElement) {
+      if (overlayElement.value) {
         if (!state) destroyOverlay();
 
-        if (isActive && state && !overlayActive) setOverlay(true);
+        if (isActive.value && state && !overlayActive.value) setOverlay(true);
         return;
       }
 
       if (state) {
         createOverlay();
 
-        if (isActive) setOverlay(true);
+        if (isActive.value) setOverlay(true);
       }
     };
 
     const destroyOverlay = () => {
-      if (props.overlay && overlayActive) {
-        overlayElement.value.removeEventListener('click', listenerRef);
+      if (props.overlay && overlayActive.value) {
+        overlayElement.value.removeEventListener('click', listenerRef.value);
         overlayElement.value.remove();
         overlayElement.value = '';
         overlayActive.value = false;
@@ -242,7 +246,7 @@ export default defineComponent({
     };
 
     const openSidenav = () => {
-      if (isAnimated) return;
+      if (isAnimated.value) return;
 
       isActive.value = true;
       ctx.emit('open');
@@ -258,7 +262,7 @@ export default defineComponent({
     };
 
     const closeSidenav = () => {
-      if (isAnimated) return;
+      if (isAnimated.value) return;
 
       isActive.value = false;
       isAnimated.value = true;
@@ -274,14 +278,14 @@ export default defineComponent({
     };
 
     const setOverlay = (state) => {
-      if (!props.overlay) return;
+      if (!props.overlay || window.innerWidth >= 960) return;
 
       overlayElement.value.style.transitionDuration = props.animationDuration + 'ms';
 
       if (state) {
         overlayActive.value = true;
-        overlayElement.value.addEventListener('click', listenerRef);
-        document.body.appendChild(overlayElement);
+        overlayElement.value.addEventListener('click', listenerRef.value);
+        document.body.appendChild(overlayElement.value);
 
         setTimeout(() => {
           overlayElement.value.classList.add('active');
@@ -290,7 +294,7 @@ export default defineComponent({
         overlayElement.value.classList.remove('active');
 
         setTimeout(() => {
-          overlayElement.value.removeEventListener('click', listenerRef);
+          overlayElement.value.removeEventListener('click', listenerRef.value);
           overlayElement.value.remove();
           overlayActive.value = false;
         }, props.animationDuration);
@@ -313,6 +317,7 @@ export default defineComponent({
       classes,
       style,
       sidenav,
+      listeners: ctx.listeners ? ctx.listeners : {},
     };
   },
 });
