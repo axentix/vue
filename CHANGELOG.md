@@ -1,3 +1,11 @@
+# 0.2.1 - 2021-05-26
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Update Axentix to 1.3.0
+- BUGFIXES
+
 # 0.2.0 - 2021-05-26
 
 - ADDED
