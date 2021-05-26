@@ -1,10 +1,15 @@
-# 0.2.0 - Under development
+# 0.2.0 - 2021-05-26
 
 - ADDED
+  - Compatibility with Vue 2 & Vue 3
   - Forms (all doc category)
+  - Reworked components with Composition API
+  - vitejs CI
 - REMOVED
+  - vue-cli-* packages
+  - Rollup build
 - IMPROVED
-  - CI: storybook build speed
+  - storybook build speed
 - BUGFIXES
 
 # 0.1.1 - 2021-05-12
