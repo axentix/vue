@@ -6,13 +6,8 @@ const defaultValue = {
   default: false,
 };
 
-let key = 'modelValue',
-  event = 'update:modelValue';
-
-if (isVue2) {
-  key = 'value';
-  event = 'input';
-}
+const key = isVue2 ? 'value' : 'modelValue',
+  event = isVue2 ? 'input' : 'update:modelValue';
 
 props[key] = defaultValue;
 
