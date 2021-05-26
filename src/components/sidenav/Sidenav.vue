@@ -32,10 +32,6 @@ export default defineComponent({
   name: 'AxSidenav',
   mixins: [vModelMixin],
   props: {
-    value: {
-      type: Boolean,
-      default: false,
-    },
     overlay: {
       type: Boolean,
       default: true,
