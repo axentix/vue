@@ -1,28 +1,24 @@
 <template>
-  <component :is="tag" class="sidenav-link" :class="classes" v-bind="$attrs" v-on="listeners">
+  <form v-bind="$attrs" v-on="listeners" :class="classes">
     <slot></slot>
-  </component>
+  </form>
 </template>
 
 <script>
 import { computed, defineComponent } from 'vue-demi';
 
 export default defineComponent({
-  name: 'AxSidenavLink',
+  name: 'AxForm',
   props: {
-    active: {
+    material: {
       type: Boolean,
       default: false,
-    },
-    tag: {
-      type: String,
-      default: 'a',
     },
   },
   setup(props, ctx) {
     const classes = computed(() => {
       return {
-        active: props.active,
+        'form-material': props.material,
       };
     });
 

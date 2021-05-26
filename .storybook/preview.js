@@ -2,6 +2,10 @@ import '!style-loader!css-loader!sass-loader!./global.scss';
 
 import '@storybook/addon-console';
 
+import VueCompositionApi from '@vue/composition-api';
+import Vue from 'vue';
+Vue.use(VueCompositionApi);
+
 const viewportsBreakpoints = {
   xs: {
     name: 'xs',

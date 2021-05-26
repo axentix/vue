@@ -38,7 +38,7 @@ After installation you have access to our source files.
 
 Test every components on [https://storybook.useaxentix.com/vue/](https://storybook.useaxentix.com/vue/).
 
-Get the development version with this url : [https://storybook.useaxentix.com/vue/dev](https://storybook.useaxentix.com/vue/dev).
+Get the development version with this url : [https://storybook.useaxentix.com/vue/develop/](https://storybook.useaxentix.com/vue/develop/).
 ## Changelog
 
 Changelog is accessible in the [CHANGELOG.md](CHANGELOG.md) file or in [the release section](https://github.com/axentix/vue/releases).
