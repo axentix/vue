@@ -1,11 +1,13 @@
 <template>
-  <component :is="tag" class="sidenav-link" :class="classes" v-bind="$attrs" v-on="$listeners">
+  <component :is="tag" class="sidenav-link" :class="classes" v-bind="$attrs" v-on="listeners">
     <slot></slot>
   </component>
 </template>
 
 <script>
-export default {
+import { computed, defineComponent } from 'vue-demi';
+
+export default defineComponent({
   name: 'AxSidenavLink',
   props: {
     active: {
@@ -15,15 +17,19 @@ export default {
     tag: {
       type: String,
       default: 'a',
-      validator: (val) => ['a', 'router-link'].includes(val),
     },
   },
-  computed: {
-    classes() {
+  setup(props, ctx) {
+    const classes = computed(() => {
       return {
-        active: this.active,
+        active: props.active,
       };
-    },
+    });
+
+    return {
+      classes,
+      listeners: ctx.listeners ? ctx.listeners : {},
+    };
   },
-};
+});
 </script>

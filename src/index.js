@@ -1,9 +1,19 @@
-import plugin, * as components from '@/index.esm';
+import { use } from './utils/plugins';
+import * as components from './components';
+import { install } from 'vue-demi';
 
-Object.entries(components).map(([name, component]) => {
-  if (name !== 'default') {
-    plugin[name] = component;
-  }
-});
+const VueAxentix = {
+  install(Vue) {
+    install();
 
-export default plugin;
+    for (let name in components) {
+      Vue.use(components[name]);
+    }
+  },
+};
+
+use(VueAxentix);
+
+export default VueAxentix;
+
+export * from './components';

@@ -17,13 +17,6 @@ module.exports = {
       include: path.resolve(__dirname, '../'),
     });
 
-    config.output.publicPath = process.env.PUBLIC_PATH;
-
-    return config;
-  },
-
-  managerWebpack: async (config) => {
-    config.output.publicPath = process.env.PUBLIC_PATH;
     return config;
   },
 };
