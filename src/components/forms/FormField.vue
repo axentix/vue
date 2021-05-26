@@ -1,5 +1,5 @@
 <template>
-  <div class="form-field" :class="classes" v-bind="$attrs" v-on="$listeners">
+  <div class="form-field" :class="classes" v-bind="$attrs" v-on="listeners" ref="field">
     <label v-if="label">{{ label }}</label>
 
     <slot></slot>
@@ -9,7 +9,9 @@
 </template>
 
 <script>
-export default {
+import { computed, defineComponent, ref } from 'vue-demi';
+
+export default defineComponent({
   name: 'AxFormField',
   props: {
     label: {
@@ -37,14 +39,22 @@ export default {
       default: false,
     },
   },
-  computed: {
-    classes() {
+  setup(props, ctx) {
+    const classes = computed(() => {
       return {
-        inline: this.inline,
-        'form-default': this.default,
-        'form-rtl': this.rtl,
+        inline: props.inline,
+        'form-default': props.default,
+        'form-rtl': props.rtl,
       };
-    },
+    });
+
+    const field = ref(null);
+
+    return {
+      classes,
+      field,
+      listeners: ctx.listeners ? ctx.listeners : {},
+    };
   },
-};
+});
 </script>

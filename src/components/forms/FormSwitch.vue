@@ -10,16 +10,14 @@
 </template>
 
 <script>
-export default {
+import { computed, defineComponent, ref, toRefs, watch } from 'vue-demi';
+import vModelMixin, { getVModelEvent, getVModelKey } from '../../utils/v-model';
+
+export default defineComponent({
   name: 'AxFormSwitch',
   inheritAttrs: false,
-  data() {
-    return {
-      localValue: this.value,
-    };
-  },
+  mixins: [vModelMixin],
   props: {
-    value: [String, Number, Boolean, Function, Object, Array],
     labelClasses: {
       type: String,
       default: '',
@@ -38,33 +36,49 @@ export default {
       default: '#e92626',
     },
   },
-  watch: {
-    value(val) {
-      this.localValue = val;
-    },
-  },
-  computed: {
-    classes() {
+  setup(props, ctx) {
+    const vmodel = toRefs(props)[getVModelKey()],
+      input = ref(null),
+      slider = ref(null),
+      localValue = ref(vmodel.value);
+
+    const vmodelEvent = getVModelEvent();
+
+    watch(vmodel, (val) => {
+      localValue.value = val;
+    });
+
+    const classes = computed(() => {
       return {
-        thin: this.thin,
-        small: this.size === 'small',
-        large: this.size === 'large',
+        thin: props.thin,
+        small: props.size === 'small',
+        large: props.size === 'large',
       };
-    },
-    style() {
+    });
+
+    const style = computed(() => {
       return {
-        '--form-switch-active-color': this.color,
+        '--form-switch-active-color': props.color,
       };
-    },
-    computedValue: {
+    });
+
+    const computedValue = computed({
       get() {
-        return this.localValue;
+        return localValue.value;
       },
       set(val) {
-        this.localValue = val;
-        this.$emit('input', val);
+        localValue.value = val;
+        ctx.emit(vmodelEvent, val);
       },
-    },
+    });
+
+    return {
+      classes,
+      input,
+      slider,
+      style,
+      computedValue,
+    };
   },
-};
+});
 </script>

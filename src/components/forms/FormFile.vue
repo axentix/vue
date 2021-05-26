@@ -1,15 +1,17 @@
 <template>
   <div class="form-file">
-    <label for="input" :class="labelClasses" ref="label">{{ label }}</label>
+    <label for="input" :class="labelClasses">{{ label }}</label>
 
-    <input type="file" ref="input" id="input" v-bind="$attrs" v-on="$listeners" @change="handleFileInput" />
+    <input type="file" ref="input" id="input" v-bind="$attrs" v-on="listeners" @change="handleFileInput" />
 
     <div class="form-file-path" ref="path"></div>
   </div>
 </template>
 
 <script>
-export default {
+import { defineComponent, ref } from 'vue-demi';
+
+export default defineComponent({
   name: 'AxFormFile',
   inheritAttrs: false,
   props: {
@@ -22,20 +24,30 @@ export default {
       default: '',
     },
   },
-  methods: {
-    handleFileInput() {
-      const files = this.$refs.input.files;
+  setup(_, ctx) {
+    const input = ref(null),
+      path = ref(null);
+
+    const handleFileInput = () => {
+      const files = input.value.files;
       if (files.length > 1) {
-        this.$refs.path.innerHTML = Array.from(files)
+        path.value.innerHTML = Array.from(files)
           .reduce((acc, file) => {
             acc.push(file.name);
             return acc;
           }, [])
           .join(', ');
       } else if (files[0]) {
-        this.$refs.path.innerHTML = files[0].name;
+        path.value.innerHTML = files[0].name;
       }
-    },
+    };
+
+    return {
+      handleFileInput,
+      input,
+      path,
+      listeners: ctx.listeners ? ctx.listeners : {},
+    };
   },
-};
+});
 </script>

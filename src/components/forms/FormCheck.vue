@@ -9,14 +9,13 @@
 </template>
 
 <script>
-export default {
+import { computed, defineComponent, ref, toRefs, watch } from 'vue-demi';
+import vModelMixin, { getVModelEvent, getVModelKey } from '../../utils/v-model';
+
+export default defineComponent({
   name: 'AxFormCheck',
   inheritAttrs: false,
-  data() {
-    return {
-      localValue: this.value,
-    };
-  },
+  mixins: [vModelMixin],
   props: {
     type: {
       type: String,
@@ -27,29 +26,40 @@ export default {
       type: Boolean,
       default: false,
     },
-    value: [String, Number, Boolean, Function, Object, Array],
     nativeValue: [String, Number, Boolean, Function, Object, Array],
   },
-  watch: {
-    value(val) {
-      this.localValue = val;
-    },
-  },
-  computed: {
-    spanClasses() {
+  setup(props, ctx) {
+    const vmodel = toRefs(props)[getVModelKey()],
+      input = ref(null),
+      localValue = ref(vmodel.value);
+
+    const vmodelEvent = getVModelEvent();
+
+    watch(vmodel, (val) => {
+      localValue.value = val;
+    });
+
+    const spanClasses = computed(() => {
       return {
-        full: this.full,
+        full: props.full,
       };
-    },
-    computedValue: {
+    });
+
+    const computedValue = computed({
       get() {
-        return this.localValue;
+        return localValue.value;
       },
       set(val) {
-        this.localValue = val;
-        this.$emit('input', val);
+        localValue.value = val;
+        ctx.emit(vmodelEvent, val);
       },
-    },
+    });
+
+    return {
+      spanClasses,
+      computedValue,
+      input,
+    };
   },
-};
+});
 </script>
