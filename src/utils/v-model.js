@@ -2,7 +2,6 @@ import { isVue2, defineComponent } from 'vue-demi';
 
 const props = {};
 const defaultValue = {
-  type: Boolean,
   default: false,
 };
 
