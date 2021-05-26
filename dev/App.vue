@@ -7,6 +7,29 @@
     <ax-sidenav v-model="isSidenavOpened" class="airforce" :fixed="true">
       <template v-slot:header> Test </template>
 
+      <div
+        class="sidenav-link"
+        :class="{ active: isCollapsibleOpened }"
+        @click="isCollapsibleOpened = !isCollapsibleOpened"
+      >
+        Collapse
+      </div>
+      <ax-collapsible v-model="isCollapsibleOpened">
+        <div class="sidenav-link">Link 1</div>
+        <div class="sidenav-link">Link 2</div>
+      </ax-collapsible>
+      <div
+        class="sidenav-link"
+        :class="{ active: isCollapsibleOpened2 }"
+        @click="isCollapsibleOpened2 = !isCollapsibleOpened2"
+      >
+        Collapse
+      </div>
+      <ax-collapsible v-model="isCollapsibleOpened2">
+        <div class="sidenav-link">Link 1</div>
+        <div class="sidenav-link">Link 2</div>
+      </ax-collapsible>
+
       <ax-btn class="red" @click="isSidenavOpened = !isSidenavOpened">Toggle</ax-btn>
     </ax-sidenav>
 
@@ -64,6 +87,8 @@ export default {
   name: 'App',
   data: () => ({
     isSidenavOpened: false,
+    isCollapsibleOpened: false,
+    isCollapsibleOpened2: false,
     radio: 'Yes',
     checked: true,
   }),
