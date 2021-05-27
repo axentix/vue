@@ -6,8 +6,8 @@ export default {
   component: AxSidenav,
   subcomponents: { AxSidenavLink },
   argTypes: {
-    value: false,
-    overlay: false,
+    value: { control: { type: 'boolean' } },
+    overlay: true,
     bodyScrolling: false,
     animationDuration: 300,
     fixed: false,
