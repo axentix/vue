@@ -1,26 +1,35 @@
 <template>
   <div
-    class="collapsible"
+    class="collapsible overflow-hidden"
     ref="collapsible"
     :class="classes"
     :style="style"
     v-bind="$attrs"
-    v-on="$listeners"
+    v-on="listeners"
   >
     <slot></slot>
   </div>
 </template>
 
 <script>
+import {
+  computed,
+  defineComponent,
+  getCurrentInstance,
+  onBeforeUnmount,
+  onMounted,
+  toRefs,
+  ref,
+  watch,
+  isVue2,
+} from 'vue-demi';
+import vModelMixin, { getVModelKey, getVModelEvent } from '../../utils/v-model';
 import { addInstance, getInstancesByType } from '../../utils/config';
 
-export default {
+export default defineComponent({
   name: 'AxCollapsible',
+  mixins: [vModelMixin],
   props: {
-    value: {
-      type: Boolean,
-      default: false,
-    },
     isInSidenav: {
       //delete this & handle it with the Axel's parent detection method
       type: Boolean,
@@ -32,117 +41,125 @@ export default {
     },
     autoClose: {
       type: Boolean,
-      default: true,
+      default: false,
     },
   },
-  data: () => ({
-    isActive: false,
-    isAnimated: false,
-    resizeRef: '',
-    listenerRef: '',
-    isAutoClosing: false,
-  }),
-  computed: {
-    classes() {
+  setup(props, ctx) {
+    const vmodel = toRefs(props)[getVModelKey()],
+      vmodelEvent = getVModelEvent(),
+      isActive = ref(false),
+      isAnimated = ref(false),
+      maxHeight = ref(null),
+      display = ref(null),
+      collapsible = ref(null),
+      resizeRef = ref(null);
+
+    const classes = computed(() => {
       return {
-        active: this.isActive,
-        'overflow-hidden': this.isAnimated,
+        active: props.isActive,
+        'overflow-hidden': props.isAnimated,
       };
-    },
-    style() {
+    });
+
+    const style = computed(() => {
       return {
-        transitionDuration: this.animationDuration + 'ms',
+        transitionDuration: props.animationDuration + 'ms',
+        maxHeight: maxHeight.value,
+        display: display.value,
       };
-    },
-  },
-  watch: {
-    value(state) {
+    });
+
+    watch(vmodel, (state) => {
       if (state === null) return;
-      this.isActive = state;
-      state ? this.open() : this.close();
-    },
-    isActive(state) {
-      this.$emit('input', state);
-    },
-  },
-  methods: {
-    setup() {
-      addInstance({ type: 'Collapsible', instance: this });
 
+      state ? openCollapsible() : closeCollapsible();
+    });
+
+    watch(isActive, (state) => {
+      ctx.emit(vmodelEvent, state);
+    });
+
+    const init = () => {
+      addInstance({ type: 'Collapsible', instance: getCurrentInstance() });
       // this.detectChild();
-      this.setupListeners();
+      setupListeners();
 
-      this.$emit('setup');
-    },
-    setupListeners() {
-      this.resizeRef = this.handleResize.bind(this);
-      window.addEventListener('resize', this.resizeRef);
-    },
-    removeListeners() {
-      window.removeEventListener('resize', this.resizeRef);
-    },
-    handleResize() {
-      if (this.isActive && !this.isInSidenav) this.$el.style.maxHeight = this.$el.scrollHeight + 'px';
-    },
-    // detectChild() {
-    //   setTimeout(() => {
-    //     if (Array.from(this.$el.children).some((child) => child.classList.contains('active'))) {
-    //       this.childIsActive = true;
-    //     }
-    //     if (this.childIsActive && !this.isActive) {
-    //       this.toggle();
-    //     }
-    //   }, 500);
-    // },
-    open() {
-      if (this.isAnimated && !this.autoClosing) return;
+      if (vmodel.value) openCollapsible();
 
-      getInstancesByType('Collapsible').map((collapsible) => {
-        collapsible.autoClosing(this);
+      ctx.emit('setup');
+    };
+
+    const setupListeners = () => {
+      resizeRef.value = handleResize.bind(this);
+      window.addEventListener('resize', resizeRef.value);
+    };
+
+    const removeListeners = () => {
+      window.removeEventListener('resize', resizeRef.value);
+    };
+
+    const handleResize = () => {
+      if (isActive.value && !props.isInSidenav) style.value.maxHeight = collapsible.value.scrollHeight + 'px';
+    };
+
+    const openCollapsible = () => {
+      if (isAnimated.value || isActive.value) return;
+
+      getInstancesByType('Collapsible').map((ins) => {
+        if (isVue2) {
+          ins.proxy.closeCollapsible(collapsible.value);
+        } else {
+          ins.ctx.closeCollapsible(collapsible.value);
+        }
       });
 
-      this.$emit('open');
+      ctx.emit('open');
 
-      this.isActive = true;
-      this.isAnimated = true;
-      this.$el.style.display = 'block';
-      this.$el.style.maxHeight = this.$el.scrollHeight + 'px';
+      isActive.value = true;
+      isAnimated.value = true;
+      display.value = 'block';
+      setTimeout(() => {
+        maxHeight.value = collapsible.value.scrollHeight + 'px';
+      }, 10);
 
       setTimeout(() => {
-        this.isAnimated = false;
-      }, this.animationDuration);
-    },
-    close() {
-      if (this.isAnimated && !this.autoClosing) return;
-      this.$emit('close');
+        isAnimated.value = false;
+      }, props.animationDuration + 10);
+    };
 
-      this.isAnimated = true;
-      this.$el.style.maxHeight = '';
+    const closeCollapsible = (closeInstance) => {
+      if ((isAnimated.value && !closeInstance) || closeInstance === collapsible.value || !isActive.value)
+        return;
+
+      ctx.emit('close');
 
       setTimeout(() => {
-        this.$el.style.display = '';
-        this.isAnimated = false;
-        this.isAutoClosing = false;
-      }, this.animationDuration);
-    },
-    autoClosing(instance) {
-      if (this.autoClose && instance !== this) {
-        this.isActive = false;
-        this.isAutoClosing = true;
-      }
-    },
+        isAnimated.value = true;
+        maxHeight.value = '0';
+      }, 10);
+
+      setTimeout(() => {
+        display.value = '';
+        isActive.value = false;
+        isAnimated.value = false;
+      }, props.animationDuration + 10);
+    };
+
+    onMounted(() => {
+      init();
+    });
+
+    onBeforeUnmount(() => {
+      removeListeners();
+    });
+
+    return {
+      classes,
+      style,
+      collapsible,
+      closeCollapsible,
+      listeners: ctx.listeners ? ctx.listeners : {},
+    };
   },
-  mounted() {
-    this.setup();
-  },
-  beforeDestroy() {
-    this.removeListeners();
-  },
-};
+});
 </script>
-
-<style scoped lang="scss">
-.no-overflow {
-  overflow: hidden !important;
-}
-</style>

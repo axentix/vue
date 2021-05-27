@@ -6,7 +6,11 @@ export default {
   title: 'Axentix/Components/Collapsible',
   component: AxCollapsible,
   argTypes: {
-    value: false,
+    value: {
+      control: {
+        type: 'boolean',
+      },
+    },
     animationDuration: 300,
     isInSidenav: false,
     autoClose: false,
@@ -14,11 +18,14 @@ export default {
       control: {
         type: 'text',
       },
-      defaultValue: '<span>Collapsed content</span>',
+      defaultValue: `<span>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+      Error, soluta asperiores nobis, iusto tenetur illum sunt modi quisquam
+      blanditiis aspernatur sequi minus corporis quibusdam quam voluptatem!
+      Cumque nemo debitis porro.</span>`,
     },
     secondValue: {
       control: {
-        type: "boolean",
+        type: 'boolean',
       },
     },
   },
@@ -40,23 +47,22 @@ const AutoCloseTemplate = (args, { argTypes }) => ({
   components: { AxCollapsible },
   template: `<div class="grey light-2 p-5">
     <ax-collapsible v-model="value" v-bind="$props">
-      <span class="red" v-html="content"></span>
+      <span class="red d-block rounded-bl1 rounded-br1 py-3" v-html="content"></span>
     </ax-collapsible>
     <ax-collapsible v-model="secondValue" v-bind="$props">
-      <span class="blue" v-html="content"></span>
+      <span class="blue d-block rounded-tl1 rounded-tr1 py-3" v-html="content"></span>
     </ax-collapsible>
   </div>`,
 });
 
 export const AutoClose = AutoCloseTemplate.bind({});
 AutoClose.args = {
-  autoClose: true
+  autoClose: true,
 };
-
 
 const SidenavTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { AxCollapsible, AxSidenav, AxSidenavLink  },
+  components: { AxCollapsible, AxSidenav, AxSidenavLink },
   template: `<ax-sidenav :fixed="true" class="shadow-1">
   <ax-sidenav-link>Link 1</ax-sidenav-link>
   <ax-sidenav-link :active="value">Collapse</ax-sidenav-link>
@@ -75,5 +81,5 @@ const SidenavTemplate = (args, { argTypes }) => ({
 
 export const InSidenav = SidenavTemplate.bind({});
 InSidenav.args = {
-  isInSidenav: true
+  isInSidenav: true,
 };

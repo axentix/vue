@@ -88,7 +88,7 @@ export default {
   data: () => ({
     isSidenavOpened: false,
     isCollapsibleOpened: false,
-    isCollapsibleOpened2: false,
+    isCollapsibleOpened2: true,
     radio: 'Yes',
     checked: true,
   }),
