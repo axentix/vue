@@ -3,7 +3,7 @@
 - ADDED
   - Modal
   - FormField materialColor option
-  - removedInstance utils
+  - removeInstance utils
 - REMOVED
 - IMPROVED
   - Core utils
