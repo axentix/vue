@@ -1,5 +1,5 @@
 <template>
-  <div class="form-field" :class="classes" v-bind="$attrs" v-on="listeners" ref="field">
+  <div class="form-field" :class="classes" v-bind="$attrs" v-on="listeners" ref="field" :style="style">
     <label v-if="label">{{ label }}</label>
 
     <slot></slot>
@@ -38,6 +38,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    materialColor: {
+      type: String,
+      default: '#4c9f85',
+    },
   },
   setup(props, ctx) {
     const classes = computed(() => {
@@ -48,11 +52,18 @@ export default defineComponent({
       };
     });
 
+    const style = computed(() => {
+      return {
+        '--form-material-color': props.materialColor,
+      };
+    });
+
     const field = ref(null);
 
     return {
       classes,
       field,
+      style,
       listeners: ctx.listeners ? ctx.listeners : {},
     };
   },
