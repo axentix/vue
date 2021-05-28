@@ -33,7 +33,7 @@ export default defineComponent({
     },
     color: {
       type: String,
-      default: '#e92626',
+      default: '#4c9f85',
     },
   },
   setup(props, ctx) {
