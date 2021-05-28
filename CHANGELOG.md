@@ -1,3 +1,15 @@
+# 0.3.0 - 2021-05-27
+
+- ADDED
+  - Modal
+  - FormField materialColor option
+  - removeInstance utils
+- REMOVED
+- IMPROVED
+  - Core utils
+  - Update dependencies
+- BUGFIXES
+
 # 0.2.1 - 2021-05-26
 
 - ADDED

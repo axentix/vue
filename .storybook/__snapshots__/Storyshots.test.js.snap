@@ -290,6 +290,7 @@ exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Checkbox 1`] = `
 >
   <div
     class="form-field"
+    style="--form-material-color: #4c9f85;"
   >
     <!---->
      
@@ -323,6 +324,7 @@ exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Full Material Radi
 >
   <div
     class="form-field"
+    style="--form-material-color: #4c9f85;"
   >
     <!---->
      
@@ -391,6 +393,7 @@ exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Material Checkbox 
 >
   <div
     class="form-field"
+    style="--form-material-color: #4c9f85;"
   >
     <!---->
      
@@ -425,6 +428,7 @@ exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Material Radio 1`]
 >
   <div
     class="form-field"
+    style="--form-material-color: #4c9f85;"
   >
     <!---->
      
@@ -493,6 +497,7 @@ exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Radio 1`] = `
 >
   <div
     class="form-field"
+    style="--form-material-color: #4c9f85;"
   >
     <!---->
      
@@ -613,6 +618,7 @@ exports[`Storyshots Axentix/Components/Forms/Group (Suffix & Prefix) Both 1`] = 
 >
   <div
     class="form-field"
+    style="--form-material-color: #4c9f85;"
   >
     <!---->
      
@@ -649,6 +655,7 @@ exports[`Storyshots Axentix/Components/Forms/Group (Suffix & Prefix) Prefix 1`] 
 >
   <div
     class="form-field"
+    style="--form-material-color: #4c9f85;"
   >
     <!---->
      
@@ -679,6 +686,7 @@ exports[`Storyshots Axentix/Components/Forms/Group (Suffix & Prefix) Suffix 1`] 
 >
   <div
     class="form-field"
+    style="--form-material-color: #4c9f85;"
   >
     <!---->
      
@@ -712,6 +720,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Basic 1`] = `
     controlclasses=""
     fieldclasses=""
     placeholder=""
+    style="--form-material-color: #4c9f85;"
     tag="input"
     type="text"
   >
@@ -740,7 +749,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Basic Material 1`] = `
     fieldclasses=""
     material="true"
     placeholder=""
-    style="--form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 100%;"
+    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 100%;"
     tag="input"
     type="text"
   >
@@ -771,6 +780,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Disabled 1`] = `
     disabled="disabled"
     fieldclasses=""
     placeholder=""
+    style="--form-material-color: #4c9f85;"
     tag="input"
     type="text"
   >
@@ -801,6 +811,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Disabled Material 1`] = `
     fieldclasses=""
     material="true"
     placeholder=""
+    style="--form-material-color: #4c9f85;"
     tag="input"
     type="text"
   >
@@ -829,6 +840,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Helper 1`] = `
     controlclasses=""
     fieldclasses=""
     placeholder=""
+    style="--form-material-color: #4c9f85;"
     tag="input"
     type="text"
   >
@@ -860,6 +872,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Helper Custom 1`] = `
     controlclasses=""
     fieldclasses=""
     placeholder=""
+    style="--form-material-color: #4c9f85;"
     tag="input"
     type="text"
   >
@@ -891,6 +904,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Inline 1`] = `
     controlclasses=""
     fieldclasses=""
     placeholder=""
+    style="--form-material-color: #4c9f85;"
     tag="input"
     type="text"
   >
@@ -919,6 +933,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Multiple Select 1`] = `
     fieldclasses=""
     multiple="multiple"
     placeholder=""
+    style="--form-material-color: #4c9f85;"
     tag="select"
     type=""
   >
@@ -957,6 +972,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Placeholder 1`] = `
     controlclasses=""
     fieldclasses=""
     placeholder="Axentix <3"
+    style="--form-material-color: #4c9f85;"
     tag="input"
     type="text"
   >
@@ -985,7 +1001,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Placeholder Material 1`] = `
     fieldclasses=""
     material="true"
     placeholder="Axentix <3"
-    style="--form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 100%;"
+    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 100%;"
     tag="input"
     type="text"
   >
@@ -1016,6 +1032,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Readonly 1`] = `
     fieldclasses=""
     placeholder=""
     readonly="readonly"
+    style="--form-material-color: #4c9f85;"
     tag="input"
     type="text"
   >
@@ -1046,6 +1063,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Readonly Material 1`] = `
     material="true"
     placeholder=""
     readonly="readonly"
+    style="--form-material-color: #4c9f85;"
     tag="input"
     type="text"
   >
@@ -1074,6 +1092,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Select 1`] = `
     controlclasses=""
     fieldclasses=""
     placeholder=""
+    style="--form-material-color: #4c9f85;"
     tag="select"
     type=""
   >
@@ -1112,7 +1131,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Select Material 1`] = `
     fieldclasses=""
     material="true"
     placeholder=""
-    style="--form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 100%;"
+    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 100%;"
     tag="select"
     type=""
   >
@@ -1152,6 +1171,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Textarea 1`] = `
     controlclasses=""
     fieldclasses=""
     placeholder=""
+    style="--form-material-color: #4c9f85;"
     tag="textarea"
     type="text"
   >
@@ -1180,6 +1200,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Textarea Material 1`] = `
     fieldclasses=""
     material="true"
     placeholder=""
+    style="--form-material-color: #4c9f85;"
     tag="textarea"
     type="text"
   >
@@ -1204,6 +1225,7 @@ exports[`Storyshots Axentix/Components/Forms/Switch Custom Color 1`] = `
 >
   <div
     class="form-field form-default"
+    style="--form-material-color: #4c9f85;"
   >
     <!---->
      
@@ -1240,6 +1262,7 @@ exports[`Storyshots Axentix/Components/Forms/Switch Large 1`] = `
 >
   <div
     class="form-field form-default"
+    style="--form-material-color: #4c9f85;"
   >
     <!---->
      
@@ -1257,7 +1280,7 @@ exports[`Storyshots Axentix/Components/Forms/Switch Large 1`] = `
        
       <span
         class="slider large"
-        style="--form-switch-active-color: #e92626;"
+        style="--form-switch-active-color: #4c9f85;"
       />
         
       <span>
@@ -1276,6 +1299,7 @@ exports[`Storyshots Axentix/Components/Forms/Switch Normal 1`] = `
 >
   <div
     class="form-field form-default"
+    style="--form-material-color: #4c9f85;"
   >
     <!---->
      
@@ -1293,7 +1317,7 @@ exports[`Storyshots Axentix/Components/Forms/Switch Normal 1`] = `
        
       <span
         class="slider"
-        style="--form-switch-active-color: #e92626;"
+        style="--form-switch-active-color: #4c9f85;"
       />
         
       <span>
@@ -1312,6 +1336,7 @@ exports[`Storyshots Axentix/Components/Forms/Switch Small 1`] = `
 >
   <div
     class="form-field form-default"
+    style="--form-material-color: #4c9f85;"
   >
     <!---->
      
@@ -1329,7 +1354,7 @@ exports[`Storyshots Axentix/Components/Forms/Switch Small 1`] = `
        
       <span
         class="slider small"
-        style="--form-switch-active-color: #e92626;"
+        style="--form-switch-active-color: #4c9f85;"
       />
         
       <span>
@@ -1340,6 +1365,158 @@ exports[`Storyshots Axentix/Components/Forms/Switch Small 1`] = `
     <!---->
   </div>
 </form>
+`;
+
+exports[`Storyshots Axentix/Components/Modal Bouncing 1`] = `
+<div
+  class="modal bouncing white rounded-1"
+  classes="white rounded-1"
+  content="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus voluptas ipsam rerum repellendus,
+      quibusdam architecto laboriosam quia itaque voluptates et, fuga tenetur possimus debitis quisquam
+      assumenda fugit modi magnam earum."
+  footer=""
+  header=""
+  style="transition-duration: 400ms; animation-duration: 400ms; z-index: 810;"
+>
+  <!---->
+   
+  <div
+    class="modal-content"
+  >
+     
+    <span>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus voluptas ipsam rerum repellendus,
+      quibusdam architecto laboriosam quia itaque voluptates et, fuga tenetur possimus debitis quisquam
+      assumenda fugit modi magnam earum.
+    </span>
+  </div>
+   
+  <!---->
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/Modal Falling 1`] = `
+<div
+  class="modal falling white rounded-1"
+  classes="white rounded-1"
+  content="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus voluptas ipsam rerum repellendus,
+      quibusdam architecto laboriosam quia itaque voluptates et, fuga tenetur possimus debitis quisquam
+      assumenda fugit modi magnam earum."
+  footer=""
+  header=""
+  style="transition-duration: 400ms; animation-duration: 400ms; z-index: 810;"
+>
+  <!---->
+   
+  <div
+    class="modal-content"
+  >
+     
+    <span>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus voluptas ipsam rerum repellendus,
+      quibusdam architecto laboriosam quia itaque voluptates et, fuga tenetur possimus debitis quisquam
+      assumenda fugit modi magnam earum.
+    </span>
+  </div>
+   
+  <!---->
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/Modal Footer 1`] = `
+<div
+  class="modal white rounded-1"
+  classes="white rounded-1"
+  content="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus voluptas ipsam rerum repellendus,
+      quibusdam architecto laboriosam quia itaque voluptates et, fuga tenetur possimus debitis quisquam
+      assumenda fugit modi magnam earum."
+  footer="Footer content"
+  header=""
+  style="transition-duration: 400ms; animation-duration: 400ms; z-index: 810;"
+>
+  <!---->
+   
+  <div
+    class="modal-content"
+  >
+     
+    <span>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus voluptas ipsam rerum repellendus,
+      quibusdam architecto laboriosam quia itaque voluptates et, fuga tenetur possimus debitis quisquam
+      assumenda fugit modi magnam earum.
+    </span>
+  </div>
+   
+  <div
+    class="modal-footer"
+  >
+    <span>
+      Footer content
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/Modal Header 1`] = `
+<div
+  class="modal white rounded-1"
+  classes="white rounded-1"
+  content="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus voluptas ipsam rerum repellendus,
+      quibusdam architecto laboriosam quia itaque voluptates et, fuga tenetur possimus debitis quisquam
+      assumenda fugit modi magnam earum."
+  footer=""
+  header="Header title"
+  style="transition-duration: 400ms; animation-duration: 400ms; z-index: 810;"
+>
+  <div
+    class="modal-header"
+  >
+    <span>
+      Header title
+    </span>
+  </div>
+   
+  <div
+    class="modal-content"
+  >
+     
+    <span>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus voluptas ipsam rerum repellendus,
+      quibusdam architecto laboriosam quia itaque voluptates et, fuga tenetur possimus debitis quisquam
+      assumenda fugit modi magnam earum.
+    </span>
+  </div>
+   
+  <!---->
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/Modal Normal 1`] = `
+<div
+  class="modal white rounded-1"
+  classes="white rounded-1"
+  content="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus voluptas ipsam rerum repellendus,
+      quibusdam architecto laboriosam quia itaque voluptates et, fuga tenetur possimus debitis quisquam
+      assumenda fugit modi magnam earum."
+  footer=""
+  header=""
+  style="transition-duration: 400ms; animation-duration: 400ms; z-index: 810;"
+>
+  <!---->
+   
+  <div
+    class="modal-content"
+  >
+     
+    <span>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus voluptas ipsam rerum repellendus,
+      quibusdam architecto laboriosam quia itaque voluptates et, fuga tenetur possimus debitis quisquam
+      assumenda fugit modi magnam earum.
+    </span>
+  </div>
+   
+  <!---->
+</div>
 `;
 
 exports[`Storyshots Axentix/Components/Sidenav Large 1`] = `
