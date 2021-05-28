@@ -1,12 +1,5 @@
 <template>
-  <div
-    class="collapsible overflow-hidden"
-    ref="collapsible"
-    :class="classes"
-    :style="style"
-    v-bind="$attrs"
-    v-on="listeners"
-  >
+  <div class="collapsible" ref="collapsible" :class="classes" :style="style" v-bind="$attrs" v-on="listeners">
     <slot></slot>
   </div>
 </template>
@@ -16,8 +9,8 @@ import {
   computed,
   defineComponent,
   getCurrentInstance,
-  onBeforeUnmount,
   onMounted,
+  onUnmounted,
   toRefs,
   ref,
   watch,
@@ -49,12 +42,12 @@ export default defineComponent({
       display = ref(null),
       collapsible = ref(null),
       resizeRef = ref(null),
-      isInSidenav = ref(false);
+      isInSidenav = ref(false),
+      sidenav = ref(null);
 
     const classes = computed(() => {
       return {
-        active: props.isActive,
-        'overflow-hidden': props.isAnimated,
+        active: isActive.value,
       };
     });
 
@@ -63,6 +56,7 @@ export default defineComponent({
         transitionDuration: props.animationDuration + 'ms',
         maxHeight: maxHeight.value,
         display: display.value,
+        overflow: isAnimated.value ? 'hidden' : 'visible',
       };
     });
 
@@ -78,7 +72,7 @@ export default defineComponent({
 
     const init = () => {
       addInstance({ type: 'Collapsible', instance: getCurrentInstance() });
-      // this.detectChild();
+
       setupListeners();
 
       isInSidenav.value = detectSidenav();
@@ -98,7 +92,7 @@ export default defineComponent({
 
     const detectSidenav = () => {
       const parent = getCurrentInstance().parent;
-      const sidenav = getParentByName(parent, 'AxSidenav');
+      sidenav.value = getParentByName(parent, 'AxSidenav');
       if (!sidenav) {
         return false;
       }
@@ -114,9 +108,9 @@ export default defineComponent({
 
       getInstancesByType('Collapsible').map((ins) => {
         if (isVue2) {
-          ins.proxy.closeCollapsible(collapsible.value);
+          ins.proxy.closeCollapsible(collapsible.value, sidenav.value);
         } else {
-          ins.ctx.closeCollapsible(collapsible.value);
+          ins.ctx.closeCollapsible(collapsible.value, sidenav.value);
         }
       });
 
@@ -134,12 +128,19 @@ export default defineComponent({
       }, props.animationDuration + 10);
     };
 
-    const closeCollapsible = (closeInstance) => {
+    const closeCollapsible = (closeInstance, sidenavInstance) => {
+      // if we are not autoclosing the collapsible, don't close it if it's animated.
+      // if the instance calling the close function is the same as the one receiving, don't close it.
+      // don't close if this is already closed (not active)
+      // and if we are really trying to close this instance with "autoclose" option:
+      // only close it if the prop autoclose has been set to true, if it is placed in a sidenav,
+      // and if the parent sidenav of the collapsible calling this is the same as this instance
       if (
         (isAnimated.value && !closeInstance) ||
         closeInstance === collapsible.value ||
         !isActive.value ||
-        (closeInstance && (!props.autoClose || !isInSidenav.value))
+        (closeInstance &&
+          (!props.autoClose || !isInSidenav.value || (sidenav && sidenav.value !== sidenavInstance)))
       )
         return;
 
@@ -161,7 +162,7 @@ export default defineComponent({
       init();
     });
 
-    onBeforeUnmount(() => {
+    onUnmounted(() => {
       removeListeners();
     });
 

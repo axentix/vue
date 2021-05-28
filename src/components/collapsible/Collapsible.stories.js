@@ -5,6 +5,7 @@ import AxSidenavLink from '../sidenav/SidenavLink.vue';
 export default {
   title: 'Axentix/Components/Collapsible',
   component: AxCollapsible,
+  subComponents: { AxSidenav, AxSidenavLink },
   argTypes: {
     value: {
       control: {
