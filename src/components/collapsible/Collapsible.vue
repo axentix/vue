@@ -25,23 +25,19 @@ import {
 } from 'vue-demi';
 import vModelMixin, { getVModelKey, getVModelEvent } from '../../utils/v-model';
 import { addInstance, getInstancesByType } from '../../utils/config';
+import { getParentByName } from '../../utils/utils';
 
 export default defineComponent({
   name: 'AxCollapsible',
   mixins: [vModelMixin],
   props: {
-    isInSidenav: {
-      //delete this & handle it with the Axel's parent detection method
-      type: Boolean,
-      default: false,
-    },
     animationDuration: {
       type: Number,
       default: 300,
     },
     autoClose: {
       type: Boolean,
-      default: false,
+      default: true,
     },
   },
   setup(props, ctx) {
@@ -52,7 +48,8 @@ export default defineComponent({
       maxHeight = ref(null),
       display = ref(null),
       collapsible = ref(null),
-      resizeRef = ref(null);
+      resizeRef = ref(null),
+      isInSidenav = ref(false);
 
     const classes = computed(() => {
       return {
@@ -84,6 +81,7 @@ export default defineComponent({
       // this.detectChild();
       setupListeners();
 
+      isInSidenav.value = detectSidenav();
       if (vmodel.value) openCollapsible();
 
       ctx.emit('setup');
@@ -98,8 +96,17 @@ export default defineComponent({
       window.removeEventListener('resize', resizeRef.value);
     };
 
+    const detectSidenav = () => {
+      const parent = getCurrentInstance().parent;
+      const sidenav = getParentByName(parent, 'AxSidenav');
+      if (!sidenav) {
+        return false;
+      }
+      return true;
+    };
+
     const handleResize = () => {
-      if (isActive.value && !props.isInSidenav) style.value.maxHeight = collapsible.value.scrollHeight + 'px';
+      if (isActive.value && !isInSidenav.value) style.value.maxHeight = collapsible.value.scrollHeight + 'px';
     };
 
     const openCollapsible = () => {
@@ -128,7 +135,12 @@ export default defineComponent({
     };
 
     const closeCollapsible = (closeInstance) => {
-      if ((isAnimated.value && !closeInstance) || closeInstance === collapsible.value || !isActive.value)
+      if (
+        (isAnimated.value && !closeInstance) ||
+        closeInstance === collapsible.value ||
+        !isActive.value ||
+        (closeInstance && (!props.autoClose || !isInSidenav.value))
+      )
         return;
 
       ctx.emit('close');

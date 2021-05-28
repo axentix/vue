@@ -14,7 +14,7 @@
       >
         Collapse
       </div>
-      <ax-collapsible v-model="isCollapsibleOpened">
+      <ax-collapsible :auto-close="false" v-model="isCollapsibleOpened">
         <div class="sidenav-link">Link 1</div>
         <div class="sidenav-link">Link 2</div>
       </ax-collapsible>
