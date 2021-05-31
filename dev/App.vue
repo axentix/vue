@@ -35,6 +35,8 @@
       <div class="mt-5"></div>
 
       <ax-form material>
+        <ax-form-select :items="items" v-model="selectedValue" label="Choisissez une option"></ax-form-select>
+
         <ax-form-field label="Test input">
           <ax-form-control tag="input" type="text"></ax-form-control>
         </ax-form-field>
@@ -72,23 +74,6 @@
           </ax-form-switch>
         </ax-form-field>
       </ax-form>
-
-      <div class="mt-5"></div>
-
-      <ax-btn class="airforce dark-1 rounded-1 shadow-1" @click="isModalOpened = !isModalOpened"
-        >Toggle modal</ax-btn
-      >
-
-      <ax-modal class="white rounded-1 shadow-1" v-model="isModalOpened">
-        Hey guys
-
-        <template v-slot:footer>
-          <ax-btn class="airforce dark-1 rounded-1 shadow-1" @click="isModal2Opened = !isModal2Opened"
-            >Toggle modal 2</ax-btn
-          >
-        </template>
-      </ax-modal>
-      <ax-modal class="red rounded-1 shadow-1" v-model="isModal2Opened"> HOLA </ax-modal>
     </main>
   </div>
 </template>
@@ -102,8 +87,8 @@ export default {
     isCollapsibleOpened2: true,
     radio: 'Yes',
     checked: true,
-    isModalOpened: false,
-    isModal2Opened: false,
+    items: ['Voiture', 'Moto', 'Bus', 'Velo'],
+    selectedValue: '',
   }),
   watch: {
     radio(val) {
@@ -112,8 +97,8 @@ export default {
     checked(state) {
       console.log('check', state);
     },
-    isModalOpened(state) {
-      console.log('modalOpened', state);
+    selectedValue(val) {
+      console.log('selected', val);
     },
   },
 };
