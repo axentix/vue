@@ -34,8 +34,52 @@
 
       <div class="mt-5"></div>
 
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, officiis distinctio asperiores ea
+      quidem laudantium earum ducimus mollitia eos modi atque consectetur praesentium aut. A atque tenetur
+      doloremque ad voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, officiis
+      distinctio asperiores ea quidem laudantium earum ducimus mollitia eos modi atque consectetur praesentium
+      aut. A atque tenetur doloremque ad voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+      Architecto, officiis distinctio asperiores ea quidem laudantium earum ducimus mollitia eos modi atque
+      consectetur praesentium aut. A atque tenetur doloremque ad voluptates. Lorem ipsum, dolor sit amet
+      consectetur adipisicing elit. Architecto, officiis distinctio asperiores ea quidem laudantium earum
+      ducimus mollitia eos modi atque consectetur praesentium aut. A atque tenetur doloremque ad voluptates.
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, officiis distinctio asperiores ea
+      quidem laudantium earum ducimus mollitia eos modi atque consectetur praesentium aut. A atque tenetur
+      doloremque ad voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, officiis
+      distinctio asperiores ea quidem laudantium earum ducimus mollitia eos modi atque consectetur praesentium
+      aut. A atque tenetur doloremque ad voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+      Architecto, officiis distinctio asperiores ea quidem laudantium earum ducimus mollitia eos modi atque
+      consectetur praesentium aut. A atque tenetur doloremque ad voluptates. Lorem ipsum, dolor sit amet
+      consectetur adipisicing elit. Architecto, officiis distinctio asperiores ea quidem laudantium earum
+      ducimus mollitia eos modi atque consectetur praesentium aut. A atque tenetur doloremque ad voluptates.
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, officiis distinctio asperiores ea
+      quidem laudantium earum ducimus mollitia eos modi atque consectetur praesentium aut. A atque tenetur
+      doloremque ad voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, officiis
+      distinctio asperiores ea quidem laudantium earum ducimus mollitia eos modi atque consectetur praesentium
+      aut. A atque tenetur doloremque ad voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+      Architecto, officiis distinctio asperiores ea quidem laudantium earum ducimus mollitia eos modi atque
+      consectetur praesentium aut. A atque tenetur doloremque ad voluptates. Lorem ipsum, dolor sit amet
+      consectetur adipisicing elit. Architecto, officiis distinctio asperiores ea quidem laudantium earum
+      ducimus mollitia eos modi atque consectetur praesentium aut. A atque tenetur doloremque ad voluptates.
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, officiis distinctio asperiores ea
+      quidem laudantium earum ducimus mollitia eos modi atque consectetur praesentium aut. A atque tenetur
+      doloremque ad voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, officiis
+      distinctio asperiores ea quidem laudantium earum ducimus mollitia eos modi atque consectetur praesentium
+      aut. A atque tenetur doloremque ad voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+      Architecto, officiis distinctio asperiores ea quidem laudantium earum ducimus mollitia eos modi atque
+      consectetur praesentium aut. A atque tenetur doloremque ad voluptates. Lorem ipsum, dolor sit amet
+      consectetur adipisicing elit. Architecto, officiis distinctio asperiores ea quidem laudantium earum
+      ducimus mollitia eos modi atque consectetur praesentium aut. A atque tenetur doloremque ad voluptates.
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, officiis distinctio asperiores ea
+      quidem laudantium earum ducimus mollitia eos modi atque consectetur praesentium aut. A atque tenetur
+      doloremque ad voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, officiis
+      distinctio asperiores ea quidem laudantium earum ducimus mollitia eos modi atque consectetur praesentium
+      aut. A atque tenetur doloremque ad voluptates.
+
       <ax-form material>
         <ax-form-select :items="items" v-model="selectedValue" label="Choisissez une option"></ax-form-select>
+
+        <ax-form-select :items="items" multiple v-model="multipleSelectedValue"></ax-form-select>
 
         <ax-form-field label="Test input">
           <ax-form-control tag="input" type="text"></ax-form-control>
@@ -89,6 +133,7 @@ export default {
     checked: true,
     items: ['Voiture', 'Moto', 'Bus', 'Velo'],
     selectedValue: '',
+    multipleSelectedValue: [],
   }),
   watch: {
     radio(val) {
@@ -99,6 +144,9 @@ export default {
     },
     selectedValue(val) {
       console.log('selected', val);
+    },
+    multipleSelectedValue(val) {
+      console.log('multipleSelectedValue', val);
     },
   },
 };

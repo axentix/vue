@@ -2,7 +2,7 @@
   <ax-form-field v-bind="$attrs" v-ax-click-outside="() => toggle(false)">
     <div>
       <ax-form-control
-        :value="selected.name"
+        :value="multiple ? result.join(', ') : result.name"
         readonly
         custom-select
         tag="input"
@@ -16,9 +16,10 @@
           v-for="(item, i) in computedItems"
           :key="i"
           :class="{ selected: item.selected }"
-          @click="select(i)"
+          @click.prevent="() => select(i)"
         >
-          {{ item.name }}
+          <ax-form-check v-model="item.selected" v-if="multiple">{{ item.name }}</ax-form-check>
+          <template v-else>{{ item.name }}</template>
         </div>
       </div>
     </div>
@@ -32,7 +33,6 @@ import AxClickOutside from '../../directives/click-outside';
 
 export default defineComponent({
   name: 'AxFormSelect',
-  inheritAttrs: false,
   mixins: [vModelMixin],
   directives: {
     axClickOutside: AxClickOutside,
@@ -55,6 +55,7 @@ export default defineComponent({
     const computedItems = ref([]),
       isOpened = ref(false),
       selected = ref({}),
+      multipleSelected = ref([]),
       opacity = ref(0),
       vmodel = toRefs(props)[getVModelKey()];
 
@@ -67,9 +68,32 @@ export default defineComponent({
       };
     });
 
+    const result = computed(() => {
+      if (!props.multiple) {
+        return selected.value;
+      }
+
+      return multipleSelected.value.reduce((acc, val) => {
+        acc.push(val.value);
+        return acc;
+      }, []);
+    });
+
     watch(vmodel, (val) => {
-      const i = computedItems.value.findIndex((item) => item.value === val);
-      select(i);
+      if (!props.multiple) {
+        if (val === selected.value.value) return;
+        const i = computedItems.value.findIndex((item) => item.value === val);
+        select(i);
+        return;
+      }
+
+      val.map((v) => {
+        if (!result.value.includes(v)) {
+          const i = computedItems.value.findIndex((item) => item.value === v);
+          console.log('hey', v, i);
+          selectMultiple(i);
+        }
+      });
     });
 
     watch(
@@ -120,7 +144,10 @@ export default defineComponent({
     };
 
     const select = (i) => {
+      if (props.multiple) return selectMultiple(i);
+
       if (selected.value && selected.value.index >= 0) {
+        if (selected.value.index === i) return;
         const lastItem = computedItems.value[selected.value.index];
         lastItem.selected = false;
         computedItems.value.splice(selected.value.index, 1, lastItem);
@@ -137,6 +164,28 @@ export default defineComponent({
       if (props.closeOnClick) toggle();
     };
 
+    const selectMultiple = (i) => {
+      if (!props.multiple) return;
+
+      const item = computedItems.value[i];
+
+      const index = multipleSelected.value.findIndex((val) => val.value === item.value && item.selected);
+
+      if (index !== -1) {
+        multipleSelected.value.splice(index, 1);
+        item.selected = false;
+      } else {
+        multipleSelected.value.push(item);
+        item.selected = true;
+      }
+
+      console.log(index, item, multipleSelected.value);
+
+      computedItems.value.splice(i, 1, item);
+
+      ctx.emit(vmodelEvent, result.value);
+    };
+
     onMounted(() => {
       updateComputedItems();
     });
@@ -144,8 +193,8 @@ export default defineComponent({
     return {
       style,
       toggle,
-      selected,
       select,
+      result,
       computedItems,
     };
   },
@@ -199,6 +248,16 @@ export default defineComponent({
     &:focus {
       &::before {
         opacity: 0.12;
+      }
+    }
+
+    label {
+      color: inherit !important;
+      font-size: 1rem !important;
+      transition: none !important;
+
+      input {
+        margin-right: 0.5rem;
       }
     }
   }
