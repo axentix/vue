@@ -1450,3 +1450,19 @@ exports[`Storyshots Axentix/Components/Sidenav Right Aligned 1`] = `
   <!---->
 </div>
 `;
+
+exports[`Storyshots Axentix/Components/Tooltip Normal 1`] = `
+<div
+  class="d-flex fx-center"
+>
+  <div
+    class="tooltiper my-auto"
+  >
+    <button
+      class="btn airforce txt-white rounded-1"
+    >
+      Tooltiped
+    </button>
+  </div>
+</div>
+`;
