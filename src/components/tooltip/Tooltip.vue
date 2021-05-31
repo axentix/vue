@@ -1,5 +1,5 @@
 <template>
-  <div class="inline-block" @mouseenter="show" @mouseleave="hide" v-on="listeners">
+  <div :class="tooltiper" @mouseenter="show" @mouseleave="hide" v-on="listeners">
     <slot></slot>
   </div>
 </template>
@@ -160,7 +160,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.inline-block {
-  display: inline-block;
+.tooltiper {
+  width: fit-content;
+  height: fit-content;
 }
 </style>
