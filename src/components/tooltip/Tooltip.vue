@@ -1,5 +1,5 @@
 <template>
-  <div :class="tooltiper" @mouseenter="show" @mouseleave="hide" v-on="listeners">
+  <div class="tooltiper" @mouseenter="show" @mouseleave="hide" v-on="listeners">
     <slot></slot>
   </div>
 </template>
