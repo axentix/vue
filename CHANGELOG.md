@@ -1,3 +1,13 @@
+# 0.4.0 - 2021-06-01
+
+- ADDED
+  - Collapsible component
+  - Tooltip component
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+
 # 0.3.0 - 2021-05-27
 
 - ADDED
