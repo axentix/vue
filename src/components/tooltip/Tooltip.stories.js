@@ -27,8 +27,32 @@ const Template = (args, { argTypes }) => ({
   `,
 });
 
-export const Normal = Template.bind({});
-Normal.parameters = {
+export const Top = Template.bind({});
+Top.parameters = {
   layout: 'centered',
 };
-Normal.args = {};
+Top.args = {};
+
+export const Right = Template.bind({});
+Right.parameters = {
+  layout: 'centered',
+};
+Right.args = {
+  position: 'right',
+};
+
+export const Bottom = Template.bind({});
+Bottom.parameters = {
+  layout: 'centered',
+};
+Bottom.args = {
+  position: 'bottom',
+};
+
+export const Left = Template.bind({});
+Left.parameters = {
+  layout: 'centered',
+};
+Left.args = {
+  position: 'left',
+};

@@ -1451,7 +1451,55 @@ exports[`Storyshots Axentix/Components/Sidenav Right Aligned 1`] = `
 </div>
 `;
 
-exports[`Storyshots Axentix/Components/Tooltip Normal 1`] = `
+exports[`Storyshots Axentix/Components/Tooltip Bottom 1`] = `
+<div
+  class="d-flex fx-center"
+>
+  <div
+    class="tooltiper my-auto"
+  >
+    <button
+      class="btn airforce txt-white rounded-1"
+    >
+      Tooltiped
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/Tooltip Left 1`] = `
+<div
+  class="d-flex fx-center"
+>
+  <div
+    class="tooltiper my-auto"
+  >
+    <button
+      class="btn airforce txt-white rounded-1"
+    >
+      Tooltiped
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/Tooltip Right 1`] = `
+<div
+  class="d-flex fx-center"
+>
+  <div
+    class="tooltiper my-auto"
+  >
+    <button
+      class="btn airforce txt-white rounded-1"
+    >
+      Tooltiped
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/Tooltip Top 1`] = `
 <div
   class="d-flex fx-center"
 >

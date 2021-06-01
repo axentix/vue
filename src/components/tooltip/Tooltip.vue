@@ -51,8 +51,6 @@ export default defineComponent({
 
       tooltipRect.value = instance.value.proxy.$el.getBoundingClientRect();
 
-      console.log(tooltipRect.value);
-
       createTooltip();
       updatePosition();
     };
