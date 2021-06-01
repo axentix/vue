@@ -11,6 +11,8 @@
       ></ax-form-control>
 
       <div class="form-select-content" :style="style">
+        <slot name="prepend" :toggle="toggle"></slot>
+
         <div
           class="form-select-item"
           v-for="(item, i) in computedItems"
@@ -23,6 +25,8 @@
           }}</ax-form-check>
           <template v-else>{{ item.name }}</template>
         </div>
+
+        <slot name="append" :toggle="toggle"></slot>
       </div>
     </div>
   </ax-form-field>
@@ -31,7 +35,14 @@
 <script>
 import { computed, defineComponent, onMounted, ref, toRefs, watch } from 'vue-demi';
 import vModelMixin, { getVModelEvent, getVModelKey } from '../../utils/v-model';
-import { selectEl, selectMixin, selectMultipleEl, toggleState, updateComputedItems } from './shared/select';
+import {
+  selectEl,
+  selectMixin,
+  selectMultipleEl,
+  toggleState,
+  unselectEl,
+  updateComputedItems,
+} from './shared/select';
 
 export default defineComponent({
   name: 'AxFormSelect',
@@ -73,11 +84,17 @@ export default defineComponent({
         return;
       }
 
-      val.map((v) => {
-        if (!result.value.includes(v)) {
-          const i = computedItems.value.findIndex((item) => item.value === v);
-          selectMultiple(i);
-        }
+      const added = val.filter((item) => !result.value.includes(item));
+      const removed = result.value.filter((item) => !val.includes(item));
+
+      added.map((v) => {
+        const i = computedItems.value.findIndex((item) => item.value === v);
+        selectMultiple(i);
+      });
+
+      removed.map((v) => {
+        const i = computedItems.value.findIndex((item) => item.value === v);
+        unselectEl(i, computedItems, multipleSelected);
       });
     });
 
@@ -116,7 +133,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .form-select-content {
   box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%),
     0 3px 14px 2px rgb(0 0 0 / 12%);

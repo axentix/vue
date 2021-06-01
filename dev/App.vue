@@ -77,9 +77,14 @@
       aut. A atque tenetur doloremque ad voluptates.
 
       <ax-form material>
-        <ax-form-select :items="items" v-model="selectedValue" label="Choisissez une option"></ax-form-select>
+        <ax-form-select :items="items" v-model="selectedValue" label="Choisissez une option">
+        </ax-form-select>
 
-        <ax-form-select :items="items" multiple v-model="multipleSelectedValue"></ax-form-select>
+        <ax-form-select :items="items" multiple v-model="multipleSelectedValue">
+          <template #prepend="{ toggle }">
+            <div @click.prevent="selectAll(toggle)" class="form-select-item">Select all</div>
+          </template>
+        </ax-form-select>
 
         <ax-form-field label="Test input">
           <ax-form-control tag="input" type="text"></ax-form-control>
@@ -151,6 +156,13 @@ export default {
     },
     multipleSelectedValue(val) {
       console.log('multipleSelectedValue', val);
+    },
+  },
+  methods: {
+    selectAll(toggle) {
+      this.multipleSelectedValue = this.multipleSelectedValue.length > 0 ? [] : this.items;
+      console.log(this.multipleSelectedValue);
+      toggle(false);
     },
   },
 };
