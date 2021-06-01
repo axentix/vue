@@ -36,6 +36,7 @@ export default defineConfig({
     rollupOptions: {
       external: ['vue', 'vue-demi'],
       output: {
+        assetFileNames: `vue-axentix.[ext]`,
         globals: {
           vue: 'Vue',
           'vue-demi': 'VueDemi',

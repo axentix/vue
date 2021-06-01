@@ -7,13 +7,30 @@
     <ax-sidenav v-model="isSidenavOpened" class="airforce" :fixed="true">
       <template v-slot:header> Test </template>
 
+      <ax-sidenav-link :active="isCollapsibleOpened" @click="isCollapsibleOpened = !isCollapsibleOpened">
+        Collapse
+      </ax-sidenav-link>
+      <ax-collapsible :auto-close="false" v-model="isCollapsibleOpened">
+        <div class="sidenav-link">Link 1</div>
+        <div class="sidenav-link">Link 2</div>
+      </ax-collapsible>
+      <ax-sidenav-link :active="isCollapsibleOpened2" @click="isCollapsibleOpened2 = !isCollapsibleOpened2">
+        Collapse
+      </ax-sidenav-link>
+      <ax-collapsible v-model="isCollapsibleOpened2">
+        <div class="sidenav-link">Link 1</div>
+        <div class="sidenav-link">Link 2</div>
+      </ax-collapsible>
+
       <ax-btn class="red" @click="isSidenavOpened = !isSidenavOpened">Toggle</ax-btn>
     </ax-sidenav>
 
     <main class="m-5">
-      <ax-btn class="airforce dark-1 rounded-1 shadow-1" @click="isSidenavOpened = !isSidenavOpened"
-        >Toggle sidenav</ax-btn
-      >
+      <ax-tooltip content="sidenav toggler">
+        <ax-btn class="airforce dark-1 rounded-1 shadow-1" @click="isSidenavOpened = !isSidenavOpened"
+          >Toggle sidenav</ax-btn
+        >
+      </ax-tooltip>
 
       <div class="mt-5"></div>
 
@@ -81,6 +98,8 @@ export default {
   name: 'App',
   data: () => ({
     isSidenavOpened: false,
+    isCollapsibleOpened: false,
+    isCollapsibleOpened2: true,
     radio: 'Yes',
     checked: true,
     isModalOpened: false,

@@ -120,6 +120,170 @@ exports[`Storyshots Axentix/Components/Button Small 1`] = `
 </button>
 `;
 
+exports[`Storyshots Axentix/Components/Collapsible Auto Close 1`] = `
+<div
+  class="sidenav shadow-1 fixed"
+  style="transition-duration: 300ms;"
+>
+  <!---->
+   
+  <a
+    class="sidenav-link"
+  >
+    Link 1
+  </a>
+   
+  <a
+    class="sidenav-link"
+  >
+    Collapse
+  </a>
+   
+  <div
+    class="collapsible"
+    content="<div class=\\"blue p-3\\">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+      Error, soluta asperiores nobis, iusto tenetur illum sunt modi quisquam
+      blanditiis aspernatur sequi minus corporis quibusdam quam voluptatem!
+      Cumque nemo debitis porro.</div>"
+    style="transition-duration: 300ms; overflow: visible;"
+  >
+    <a
+      class="sidenav-link"
+    >
+      Collapsed 1
+    </a>
+     
+    <a
+      class="sidenav-link"
+    >
+      Collapsed 2
+    </a>
+  </div>
+   
+  <a
+    class="sidenav-link"
+  >
+    Collapse 2
+  </a>
+   
+  <div
+    class="collapsible"
+    content="<div class=\\"blue p-3\\">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+      Error, soluta asperiores nobis, iusto tenetur illum sunt modi quisquam
+      blanditiis aspernatur sequi minus corporis quibusdam quam voluptatem!
+      Cumque nemo debitis porro.</div>"
+    style="transition-duration: 300ms; overflow: visible;"
+  >
+    <a
+      class="sidenav-link"
+    >
+      Collapsed 1
+    </a>
+     
+    <a
+      class="sidenav-link"
+    >
+      Collapsed 2
+    </a>
+  </div>
+   
+  <!---->
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/Collapsible In Sidenav 1`] = `
+<div
+  class="sidenav shadow-1 fixed"
+  style="transition-duration: 300ms;"
+>
+  <!---->
+   
+  <a
+    class="sidenav-link"
+  >
+    Link 1
+  </a>
+   
+  <a
+    class="sidenav-link"
+  >
+    Collapse
+  </a>
+   
+  <div
+    class="collapsible"
+    content="<div class=\\"blue p-3\\">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+      Error, soluta asperiores nobis, iusto tenetur illum sunt modi quisquam
+      blanditiis aspernatur sequi minus corporis quibusdam quam voluptatem!
+      Cumque nemo debitis porro.</div>"
+    style="transition-duration: 300ms; overflow: visible;"
+  >
+    <a
+      class="sidenav-link"
+    >
+      Collapsed 1
+    </a>
+     
+    <a
+      class="sidenav-link"
+    >
+      Collapsed 2
+    </a>
+  </div>
+   
+  <a
+    class="sidenav-link"
+  >
+    Collapse 2
+  </a>
+   
+  <div
+    class="collapsible"
+    content="<div class=\\"blue p-3\\">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+      Error, soluta asperiores nobis, iusto tenetur illum sunt modi quisquam
+      blanditiis aspernatur sequi minus corporis quibusdam quam voluptatem!
+      Cumque nemo debitis porro.</div>"
+    style="transition-duration: 300ms; overflow: visible;"
+  >
+    <a
+      class="sidenav-link"
+    >
+      Collapsed 1
+    </a>
+     
+    <a
+      class="sidenav-link"
+    >
+      Collapsed 2
+    </a>
+  </div>
+   
+  <!---->
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/Collapsible Normal 1`] = `
+<div
+  class="collapsible"
+  content="<div class=\\"blue p-3\\">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+      Error, soluta asperiores nobis, iusto tenetur illum sunt modi quisquam
+      blanditiis aspernatur sequi minus corporis quibusdam quam voluptatem!
+      Cumque nemo debitis porro.</div>"
+  style="transition-duration: 300ms; overflow: visible;"
+>
+  <span>
+    <div
+      class="blue p-3"
+    >
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+      Error, soluta asperiores nobis, iusto tenetur illum sunt modi quisquam
+      blanditiis aspernatur sequi minus corporis quibusdam quam voluptatem!
+      Cumque nemo debitis porro.
+    </div>
+  </span>
+</div>
+`;
+
 exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Checkbox 1`] = `
 <form
   class=""
@@ -1448,5 +1612,69 @@ exports[`Storyshots Axentix/Components/Sidenav Right Aligned 1`] = `
   </a>
    
   <!---->
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/Tooltip Bottom 1`] = `
+<div
+  class="d-flex fx-center"
+>
+  <div
+    class="tooltiper my-auto"
+  >
+    <button
+      class="btn airforce txt-white rounded-1"
+    >
+      Tooltiped
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/Tooltip Left 1`] = `
+<div
+  class="d-flex fx-center"
+>
+  <div
+    class="tooltiper my-auto"
+  >
+    <button
+      class="btn airforce txt-white rounded-1"
+    >
+      Tooltiped
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/Tooltip Right 1`] = `
+<div
+  class="d-flex fx-center"
+>
+  <div
+    class="tooltiper my-auto"
+  >
+    <button
+      class="btn airforce txt-white rounded-1"
+    >
+      Tooltiped
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/Tooltip Top 1`] = `
+<div
+  class="d-flex fx-center"
+>
+  <div
+    class="tooltiper my-auto"
+  >
+    <button
+      class="btn airforce txt-white rounded-1"
+    >
+      Tooltiped
+    </button>
+  </div>
 </div>
 `;
