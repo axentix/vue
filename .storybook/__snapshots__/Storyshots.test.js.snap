@@ -140,12 +140,12 @@ exports[`Storyshots Axentix/Components/Collapsible Auto Close 1`] = `
   </a>
    
   <div
-    class="collapsible overflow-hidden"
+    class="collapsible"
     content="<div class=\\"blue p-3\\">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
       Error, soluta asperiores nobis, iusto tenetur illum sunt modi quisquam
       blanditiis aspernatur sequi minus corporis quibusdam quam voluptatem!
       Cumque nemo debitis porro.</div>"
-    style="transition-duration: 300ms;"
+    style="transition-duration: 300ms; overflow: visible;"
   >
     <a
       class="sidenav-link"
@@ -167,12 +167,12 @@ exports[`Storyshots Axentix/Components/Collapsible Auto Close 1`] = `
   </a>
    
   <div
-    class="collapsible overflow-hidden"
+    class="collapsible"
     content="<div class=\\"blue p-3\\">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
       Error, soluta asperiores nobis, iusto tenetur illum sunt modi quisquam
       blanditiis aspernatur sequi minus corporis quibusdam quam voluptatem!
       Cumque nemo debitis porro.</div>"
-    style="transition-duration: 300ms;"
+    style="transition-duration: 300ms; overflow: visible;"
   >
     <a
       class="sidenav-link"
@@ -211,12 +211,12 @@ exports[`Storyshots Axentix/Components/Collapsible In Sidenav 1`] = `
   </a>
    
   <div
-    class="collapsible overflow-hidden"
+    class="collapsible"
     content="<div class=\\"blue p-3\\">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
       Error, soluta asperiores nobis, iusto tenetur illum sunt modi quisquam
       blanditiis aspernatur sequi minus corporis quibusdam quam voluptatem!
       Cumque nemo debitis porro.</div>"
-    style="transition-duration: 300ms;"
+    style="transition-duration: 300ms; overflow: visible;"
   >
     <a
       class="sidenav-link"
@@ -238,12 +238,12 @@ exports[`Storyshots Axentix/Components/Collapsible In Sidenav 1`] = `
   </a>
    
   <div
-    class="collapsible overflow-hidden"
+    class="collapsible"
     content="<div class=\\"blue p-3\\">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
       Error, soluta asperiores nobis, iusto tenetur illum sunt modi quisquam
       blanditiis aspernatur sequi minus corporis quibusdam quam voluptatem!
       Cumque nemo debitis porro.</div>"
-    style="transition-duration: 300ms;"
+    style="transition-duration: 300ms; overflow: visible;"
   >
     <a
       class="sidenav-link"
@@ -264,12 +264,12 @@ exports[`Storyshots Axentix/Components/Collapsible In Sidenav 1`] = `
 
 exports[`Storyshots Axentix/Components/Collapsible Normal 1`] = `
 <div
-  class="collapsible overflow-hidden"
+  class="collapsible"
   content="<div class=\\"blue p-3\\">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
       Error, soluta asperiores nobis, iusto tenetur illum sunt modi quisquam
       blanditiis aspernatur sequi minus corporis quibusdam quam voluptatem!
       Cumque nemo debitis porro.</div>"
-  style="transition-duration: 300ms;"
+  style="transition-duration: 300ms; overflow: visible;"
 >
   <span>
     <div
