@@ -17,7 +17,7 @@ import {
   isVue2,
 } from 'vue-demi';
 import vModelMixin, { getVModelKey, getVModelEvent } from '../../utils/v-model';
-import { addInstance, getInstancesByType } from '../../utils/config';
+import { addInstance, getInstancesByType, removeInstance } from '../../utils/config';
 import { getParentByName } from '../../utils/utils';
 
 export default defineComponent({
@@ -164,6 +164,7 @@ export default defineComponent({
 
     onUnmounted(() => {
       removeListeners();
+      removeInstance(getCurrentInstance());
     });
 
     return {
