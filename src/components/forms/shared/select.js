@@ -54,10 +54,15 @@ export const updateComputedItems = (computedItems, itemsRef, vmodel, props, mult
   }, []);
 };
 
-export const toggleState = (state = false, isOpened, opacity) => {
+export const toggleState = (state = false, isOpened, opacity, isTop, container) => {
   if (state) {
     isOpened.value = true;
     setTimeout(() => {
+      const bottomEl = container.value.getBoundingClientRect().bottom;
+      const isInViewport = bottomEl <= (window.innerHeight || document.documentElement.clientHeight) - 10;
+
+      isInViewport ? (isTop.value = false) : (isTop.value = true);
+
       opacity.value = 1;
     }, 50);
     return;
@@ -66,6 +71,7 @@ export const toggleState = (state = false, isOpened, opacity) => {
   opacity.value = 0;
   setTimeout(() => {
     isOpened.value = false;
+    isTop.value = false;
   }, 300);
 };
 

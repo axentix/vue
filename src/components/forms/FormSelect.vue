@@ -1,35 +1,33 @@
 <template>
-  <ax-form-field v-bind="$attrs" v-ax-click-outside="() => toggle(false)">
-    <div>
-      <ax-form-control
-        :value="multiple ? result.join(', ') : result.name"
-        readonly
-        custom-select
-        tag="input"
-        type="text"
-        @click="() => toggle(true)"
-      ></ax-form-control>
+  <div v-bind="$attrs" v-ax-click-outside="() => toggle(false)">
+    <ax-form-control
+      :value="multiple ? result.join(', ') : result.name"
+      readonly
+      custom-select
+      tag="input"
+      type="text"
+      @click="() => toggle(true)"
+    ></ax-form-control>
 
-      <div class="form-select-content" :style="style">
-        <slot name="prepend" :toggle="toggle"></slot>
+    <div class="form-select-content" :style="style" ref="container">
+      <slot name="prepend" :toggle="toggle"></slot>
 
-        <div
-          class="form-select-item"
-          v-for="(item, i) in computedItems"
-          :key="i"
-          :class="{ selected: item.selected, disabled: item.disabled }"
-          @click.prevent="item.disabled ? '' : select(i)"
-        >
-          <ax-form-check v-model="item.selected" v-if="multiple" :disabled="item.disabled">{{
-            item.name
-          }}</ax-form-check>
-          <template v-else>{{ item.name }}</template>
-        </div>
-
-        <slot name="append" :toggle="toggle"></slot>
+      <div
+        class="form-select-item"
+        v-for="(item, i) in computedItems"
+        :key="i"
+        :class="{ selected: item.selected, disabled: item.disabled }"
+        @click.prevent="item.disabled ? '' : select(i)"
+      >
+        <ax-form-check v-model="item.selected" v-if="multiple" :disabled="item.disabled">{{
+          item.name
+        }}</ax-form-check>
+        <template v-else>{{ item.name }}</template>
       </div>
+
+      <slot name="append" :toggle="toggle"></slot>
     </div>
-  </ax-form-field>
+  </div>
 </template>
 
 <script>
@@ -50,6 +48,8 @@ export default defineComponent({
   setup(props, ctx) {
     const computedItems = ref([]),
       isOpened = ref(false),
+      isTop = ref(false),
+      container = ref(null),
       selected = ref({}),
       multipleSelected = ref([]),
       opacity = ref(0),
@@ -62,6 +62,7 @@ export default defineComponent({
       return {
         display: isOpened.value ? 'block' : '',
         opacity: opacity.value,
+        bottom: isTop.value ? 0 : '',
       };
     });
 
@@ -102,7 +103,7 @@ export default defineComponent({
       updateComputedItems(computedItems, itemsRef, vmodel, props, multipleSelected, selected);
     });
 
-    const toggle = (state = false) => toggleState(state, isOpened, opacity);
+    const toggle = (state = false) => toggleState(state, isOpened, opacity, isTop, container);
 
     const select = (i) => {
       if (props.multiple) return selectMultiple(i);
@@ -127,6 +128,7 @@ export default defineComponent({
       toggle,
       select,
       result,
+      container,
       computedItems,
     };
   },
