@@ -15,10 +15,12 @@
           class="form-select-item"
           v-for="(item, i) in computedItems"
           :key="i"
-          :class="{ selected: item.selected }"
-          @click.prevent="() => select(i)"
+          :class="{ selected: item.selected, disabled: item.disabled }"
+          @click.prevent="item.disabled ? '' : select(i)"
         >
-          <ax-form-check v-model="item.selected" v-if="multiple">{{ item.name }}</ax-form-check>
+          <ax-form-check v-model="item.selected" v-if="multiple" :disabled="item.disabled">{{
+            item.name
+          }}</ax-form-check>
           <template v-else>{{ item.name }}</template>
         </div>
       </div>
@@ -29,34 +31,18 @@
 <script>
 import { computed, defineComponent, onMounted, ref, toRefs, watch } from 'vue-demi';
 import vModelMixin, { getVModelEvent, getVModelKey } from '../../utils/v-model';
-import AxClickOutside from '../../directives/click-outside';
+import { selectEl, selectMixin, selectMultipleEl, toggleState, updateComputedItems } from './shared/select';
 
 export default defineComponent({
   name: 'AxFormSelect',
-  mixins: [vModelMixin],
-  directives: {
-    axClickOutside: AxClickOutside,
-  },
-  props: {
-    multiple: {
-      type: Boolean,
-      default: false,
-    },
-    items: {
-      type: Array,
-      default: () => [],
-    },
-    closeOnClick: {
-      type: Boolean,
-      default: true,
-    },
-  },
+  mixins: [vModelMixin, selectMixin],
   setup(props, ctx) {
     const computedItems = ref([]),
       isOpened = ref(false),
       selected = ref({}),
       multipleSelected = ref([]),
       opacity = ref(0),
+      itemsRef = ref(props.items),
       vmodel = toRefs(props)[getVModelKey()];
 
     const vmodelEvent = getVModelEvent();
@@ -90,76 +76,21 @@ export default defineComponent({
       val.map((v) => {
         if (!result.value.includes(v)) {
           const i = computedItems.value.findIndex((item) => item.value === v);
-          console.log('hey', v, i);
           selectMultiple(i);
         }
       });
     });
 
-    watch(
-      () => props.items,
-      () => {
-        updateComputedItems();
-      }
-    );
+    watch(itemsRef, () => {
+      updateComputedItems(computedItems, itemsRef, vmodel, props, multipleSelected, selected);
+    });
 
-    const updateComputedItems = () => {
-      computedItems.value = props.items.reduce((acc, item, i) => {
-        let obj;
-        const baseObj = {
-          index: i,
-          selected: (item.selected && !vmodel.value) || (!props.multiple && vmodel.value === item),
-        };
-
-        if (typeof item !== 'object') {
-          obj = Object.assign(
-            {
-              name: item,
-              value: item,
-            },
-            baseObj
-          );
-        } else {
-          obj = Object.assign(item, baseObj);
-        }
-
-        acc.push(obj);
-        return acc;
-      }, []);
-    };
-
-    const toggle = (state = false) => {
-      if (state) {
-        isOpened.value = true;
-        setTimeout(() => {
-          opacity.value = 1;
-        }, 50);
-        return;
-      }
-
-      opacity.value = 0;
-      setTimeout(() => {
-        isOpened.value = false;
-      }, 300);
-    };
+    const toggle = (state = false) => toggleState(state, isOpened, opacity);
 
     const select = (i) => {
       if (props.multiple) return selectMultiple(i);
 
-      if (selected.value && selected.value.index >= 0) {
-        if (selected.value.index === i) return;
-        const lastItem = computedItems.value[selected.value.index];
-        lastItem.selected = false;
-        computedItems.value.splice(selected.value.index, 1, lastItem);
-      }
-
-      const item = computedItems.value[i];
-      item.selected = true;
-      selected.value = item;
-
-      computedItems.value.splice(i, 1, item);
-
-      ctx.emit(vmodelEvent, item.value);
+      selectEl(i, selected, computedItems, ctx, vmodelEvent);
 
       if (props.closeOnClick) toggle();
     };
@@ -167,27 +98,11 @@ export default defineComponent({
     const selectMultiple = (i) => {
       if (!props.multiple) return;
 
-      const item = computedItems.value[i];
-
-      const index = multipleSelected.value.findIndex((val) => val.value === item.value && item.selected);
-
-      if (index !== -1) {
-        multipleSelected.value.splice(index, 1);
-        item.selected = false;
-      } else {
-        multipleSelected.value.push(item);
-        item.selected = true;
-      }
-
-      console.log(index, item, multipleSelected.value);
-
-      computedItems.value.splice(i, 1, item);
-
-      ctx.emit(vmodelEvent, result.value);
+      selectMultipleEl(i, computedItems, multipleSelected, ctx, vmodelEvent, result);
     };
 
     onMounted(() => {
-      updateComputedItems();
+      updateComputedItems(computedItems, itemsRef, vmodel, props, multipleSelected, selected);
     });
 
     return {
@@ -214,6 +129,8 @@ export default defineComponent({
   display: none;
   z-index: 40;
   transition: opacity 0.3s ease;
+  max-height: 18rem;
+  overflow-y: auto;
 
   .form-select-item {
     display: flex;
@@ -241,6 +158,16 @@ export default defineComponent({
 
     &.selected {
       color: var(--form-material-color);
+    }
+
+    &.disabled {
+      color: rgba(0, 0, 0, 0.3);
+      cursor: default;
+      pointer-events: none;
+
+      &::before {
+        opacity: 0.1;
+      }
     }
 
     &:hover,

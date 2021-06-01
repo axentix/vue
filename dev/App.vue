@@ -131,7 +131,11 @@ export default {
     isCollapsibleOpened2: true,
     radio: 'Yes',
     checked: true,
-    items: ['Voiture', 'Moto', 'Bus', 'Velo'],
+    items: ['Voiture', 'Moto', 'Bus', 'Velo', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
+    // items: [
+    //   { name: 'Voiture', value: 'Voiture', disabled: false, selected: true },
+    //   { name: 'Moto', value: 'Moto', disabled: false },
+    // ],
     selectedValue: '',
     multipleSelectedValue: [],
   }),
