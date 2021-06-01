@@ -82,7 +82,14 @@
         </ax-form-field>
 
         <ax-form-field>
-          <ax-form-select :items="items" multiple v-model="multipleSelectedValue">
+          <ax-form-select
+            :items="items"
+            multiple
+            v-model="multipleSelectedValue"
+            single-line
+            chips
+            chips-closable
+          >
             <template #prepend="{ toggle }">
               <div @click.prevent="selectAll(toggle)" class="form-select-item">Select all</div>
             </template>

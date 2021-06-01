@@ -8,6 +8,8 @@
     ref="input"
     @focus="handle"
     @blur="handle"
+    @click="handleDiv"
+    v-ax-click-outside="() => handleDiv(false)"
   >
     <slot></slot>
   </component>
@@ -24,9 +26,13 @@ import {
   ref,
 } from 'vue-demi';
 import { getParentByName } from '../../utils/utils';
+import AxClickOutside from '../../directives/click-outside';
 
 export default defineComponent({
   name: 'AxFormControl',
+  directives: {
+    axClickOutside: AxClickOutside,
+  },
   props: {
     tag: {
       type: String,
@@ -36,9 +42,14 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    singleLine: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, ctx) {
     const resizeRef = ref(null),
+      isClicked = ref(false),
       input = ref(null);
 
     const parent = getCurrentInstance().parent;
@@ -46,6 +57,7 @@ export default defineComponent({
     const classes = computed(() => {
       return {
         'custom-select': props.customSelect,
+        'single-line': props.singleLine,
       };
     });
 
@@ -61,6 +73,12 @@ export default defineComponent({
 
       window.removeEventListener('resize', resizeRef.value);
       resizeRef.value = null;
+    };
+
+    const handleDiv = (state = true) => {
+      if (props.tag !== 'div') return;
+      isClicked.value = state;
+      handle();
     };
 
     const handle = () => {
@@ -81,15 +99,22 @@ export default defineComponent({
       formField = formField.refs.field;
 
       const isActive = formField.classList.contains('active');
-      const hasContent =
-        input.value.value.length > 0 ||
-        (input.value.tagName !== 'SELECT' && input.value.placeholder.length > 0) ||
-        input.value.tagName === 'SELECT' ||
-        input.value.matches('[type="date"]') ||
-        input.value.matches('[type="month"]') ||
-        input.value.matches('[type="week"]') ||
-        input.value.matches('[type="time"]');
-      const isFocused = document.activeElement === input.value;
+
+      let hasContent;
+      if (props.tag === 'div') {
+        hasContent = input.value.innerHTML.trim() !== '';
+      } else {
+        hasContent =
+          input.value.value.length > 0 ||
+          (input.value.tagName !== 'SELECT' && input.value.placeholder.length > 0) ||
+          input.value.tagName === 'SELECT' ||
+          input.value.matches('[type="date"]') ||
+          input.value.matches('[type="month"]') ||
+          input.value.matches('[type="week"]') ||
+          input.value.matches('[type="time"]');
+      }
+
+      const isFocused = document.activeElement === input.value || (props.tag === 'div' && isClicked.value);
       const isDisabled =
         input.value.hasAttribute('disabled') || (input.value.hasAttribute('readonly') && !props.customSelect);
 
@@ -162,6 +187,7 @@ export default defineComponent({
 
     return {
       handle,
+      handleDiv,
       input,
       classes,
       listeners: ctx.listeners ? ctx.listeners : {},
@@ -171,7 +197,12 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.form-material .form-field .form-control[readonly].custom-select {
+.form-material .form-field .form-control.custom-select {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  height: auto;
+  min-height: 2.5rem;
   cursor: pointer !important;
   background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20xmlns%3Axlink%3D'http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink'%20aria-hidden%3D'true'%20focusable%3D'false'%20width%3D'1.5rem'%20height%3D'1.5rem'%20style%3D'-ms-transform%3A%20rotate(360deg)%3B%20-webkit-transform%3A%20rotate(360deg)%3B%20transform%3A%20rotate(360deg)%3B'%20preserveAspectRatio%3D'xMidYMid%20meet'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M8.12%209.29L12%2013.17l3.88-3.88a.996.996%200%201%201%201.41%201.41l-4.59%204.59a.996.996%200%200%201-1.41%200L6.7%2010.7a.996.996%200%200%201%200-1.41c.39-.38%201.03-.39%201.42%200z'%20fill%3D'%23626262'%2F%3E%3C%2Fsvg%3E") !important;
   background-repeat: no-repeat !important;
@@ -182,6 +213,11 @@ export default defineComponent({
 
   &[disabled] {
     cursor: default !important;
+  }
+
+  &.single-line {
+    white-space: nowrap;
+    overflow-x: hidden;
   }
 }
 </style>

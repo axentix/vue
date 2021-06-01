@@ -17,6 +17,18 @@ export const selectMixin = {
       type: Boolean,
       default: true,
     },
+    singleLine: {
+      type: Boolean,
+      default: false,
+    },
+    chips: {
+      type: Boolean,
+      default: false,
+    },
+    chipsClosable: {
+      type: Boolean,
+      default: false,
+    },
   },
 };
 
@@ -117,4 +129,9 @@ export const unselectEl = (i, computedItems, multipleSelected) => {
 
   const index = multipleSelected.value.findIndex((val) => val.value === item.value);
   multipleSelected.value.splice(index, 1);
+};
+
+export const removeByVal = (value, computedItems, multipleSelected) => {
+  const i = computedItems.value.findIndex((val) => val.value === value);
+  unselectEl(i, computedItems, multipleSelected);
 };

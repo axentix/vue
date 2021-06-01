@@ -1,13 +1,20 @@
 <template>
   <div v-bind="$attrs" v-ax-click-outside="() => toggle(false)">
-    <ax-form-control
-      :value="multiple ? result.join(', ') : result.name"
-      readonly
-      custom-select
-      tag="input"
-      type="text"
-      @click="() => toggle(true)"
-    ></ax-form-control>
+    <ax-form-control custom-select tag="div" @click="() => toggle(true)" :single-line="singleLine">
+      <template v-if="!chips">
+        {{ multiple ? result.join(', ') : result.name }}
+      </template>
+      <template v-else>
+        <template v-if="!multiple">{{ result.name }}</template>
+        <div class="form-chips" v-else v-for="(value, i) in result" :key="i">
+          {{ value }}
+
+          <span class="form-chips-closable" v-if="chipsClosable" @click.prevent.stop="removeByValue(value)"
+            >&times;</span
+          >
+        </div>
+      </template>
+    </ax-form-control>
 
     <div class="form-select-content" :style="style" ref="container">
       <slot name="prepend" :toggle="toggle"></slot>
@@ -34,6 +41,7 @@
 import { computed, defineComponent, onMounted, ref, toRefs, watch } from 'vue-demi';
 import vModelMixin, { getVModelEvent, getVModelKey } from '../../utils/v-model';
 import {
+  removeByVal,
   selectEl,
   selectMixin,
   selectMultipleEl,
@@ -105,6 +113,8 @@ export default defineComponent({
 
     const toggle = (state = false) => toggleState(state, isOpened, opacity, isTop, container);
 
+    const removeByValue = (value) => removeByVal(value, computedItems, multipleSelected);
+
     const select = (i) => {
       if (props.multiple) return selectMultiple(i);
 
@@ -129,6 +139,7 @@ export default defineComponent({
       select,
       result,
       container,
+      removeByValue,
       computedItems,
     };
   },
@@ -205,6 +216,44 @@ export default defineComponent({
       input {
         margin-right: 0.5rem;
       }
+    }
+  }
+}
+
+.form-chips {
+  --form-chips-background: #e2e2e2;
+  --form-chips-color: #000000;
+  --form-chips-closable-background: #686868;
+  --form-chips-closable-color: #ffffff;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  margin: 0 0.125rem;
+  border-radius: 20px;
+  background-color: var(--form-chips-background);
+  color: var(--form-chips-color);
+
+  .form-chips-closable {
+    color: var(--form-chips-closable-color);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.25rem;
+    overflow: hidden;
+    font-size: 1rem;
+    line-height: 1;
+    z-index: 2;
+    background-color: var(--form-chips-closable-background);
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.8;
     }
   }
 }
