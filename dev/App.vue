@@ -26,9 +26,11 @@
     </ax-sidenav>
 
     <main class="m-5">
-      <ax-btn class="airforce dark-1 rounded-1 shadow-1" @click="isSidenavOpened = !isSidenavOpened"
-        >Toggle sidenav</ax-btn
-      >
+      <ax-tooltip content="sidenav toggler">
+        <ax-btn class="airforce dark-1 rounded-1 shadow-1" @click="isSidenavOpened = !isSidenavOpened"
+          >Toggle sidenav</ax-btn
+        >
+      </ax-tooltip>
 
       <div class="mt-5"></div>
 
