@@ -1219,6 +1219,194 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Textarea Material 1`] = `
 </form>
 `;
 
+exports[`Storyshots Axentix/Components/Forms/Select Chips 1`] = `
+<form
+  class="form-material"
+>
+  <div
+    class="form-field"
+    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 100%;"
+  >
+    <label
+      style="left: 0px;"
+    >
+      Choose an option
+    </label>
+     
+    <div
+      class=""
+      classes=""
+      multipleselectedvalue=""
+    >
+      <div
+        class="form-control custom-select"
+      />
+       
+      <div
+        class="form-select-content"
+        style="opacity: 0;"
+      >
+          
+      </div>
+    </div>
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Select Chips Closable 1`] = `
+<form
+  class="form-material"
+>
+  <div
+    class="form-field"
+    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 100%;"
+  >
+    <label
+      style="left: 0px;"
+    >
+      Choose an option
+    </label>
+     
+    <div
+      class=""
+      classes=""
+      multipleselectedvalue=""
+    >
+      <div
+        class="form-control custom-select"
+      />
+       
+      <div
+        class="form-select-content"
+        style="opacity: 0;"
+      >
+          
+      </div>
+    </div>
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Select Multiple 1`] = `
+<form
+  class="form-material"
+>
+  <div
+    class="form-field"
+    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 100%;"
+  >
+    <label
+      style="left: 0px;"
+    >
+      Choose an option
+    </label>
+     
+    <div
+      class=""
+      classes=""
+      multipleselectedvalue=""
+    >
+      <div
+        class="form-control custom-select"
+      >
+        
+      
+    
+      </div>
+       
+      <div
+        class="form-select-content"
+        style="opacity: 0;"
+      >
+          
+      </div>
+    </div>
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Select Normal 1`] = `
+<form
+  class="form-material"
+>
+  <div
+    class="form-field"
+    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 100%;"
+  >
+    <label
+      style="left: 0px;"
+    >
+      Choose an option
+    </label>
+     
+    <div
+      class=""
+      classes=""
+      multipleselectedvalue=""
+    >
+      <div
+        class="form-control custom-select"
+      >
+        
+      
+    
+      </div>
+       
+      <div
+        class="form-select-content"
+        style="opacity: 0;"
+      >
+          
+      </div>
+    </div>
+     
+    <!---->
+  </div>
+</form>
+`;
+
+exports[`Storyshots Axentix/Components/Forms/Select Single Line 1`] = `
+<form
+  class="form-material"
+>
+  <div
+    class="form-field"
+    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 100%;"
+  >
+    <label
+      style="left: 0px;"
+    >
+      Choose an option
+    </label>
+     
+    <div
+      class=""
+      classes=""
+      multipleselectedvalue=""
+    >
+      <div
+        class="form-control custom-select single-line"
+      />
+       
+      <div
+        class="form-select-content"
+        style="opacity: 0;"
+      >
+          
+      </div>
+    </div>
+     
+    <!---->
+  </div>
+</form>
+`;
+
 exports[`Storyshots Axentix/Components/Forms/Switch Custom Color 1`] = `
 <form
   class=""
