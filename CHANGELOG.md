@@ -6,6 +6,7 @@
 - REMOVED
 - IMPROVED
   - Clean code
+  - Update dependencies
 - BUGFIXES
   - Form control not work with v-model
 

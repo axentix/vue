@@ -1,6 +1,6 @@
 {
   "name": "@axentix/vue",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Vue Axentix is the Axentix integration for the VueJS framework.",
   "license": "MIT",
   "author": "Axel SIMONET, Vincent LEVEQUE",
@@ -82,11 +82,11 @@
     "storybook-addon-turbo-build": "^1.0.0-beta.0",
     "storybook-dark-mode": "^1.0.8",
     "typescript": "^4.3.2",
-    "vite": "^2.3.5",
+    "vite": "^2.3.6",
     "vite-plugin-vue2": "^1.5.2",
-    "vue": "^2.6.12",
+    "vue": "^2.6.13",
     "vue-loader": "^15.9.7",
-    "vue-template-compiler": "^2.6.12",
+    "vue-template-compiler": "^2.6.13",
     "vue3": "npm:vue@3"
   },
   "peerDependencies": {
