@@ -141,6 +141,9 @@
           </ax-form-switch>
         </ax-form-field>
       </ax-form>
+
+      <!-- <ax-pagination size="small" :items="['a', 'b', 'c', 'd']"> </ax-pagination> -->
+      <ax-pagination size="large" :total="200" :per-page="10"> </ax-pagination>
     </main>
   </div>
 </template>
