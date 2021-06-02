@@ -2,10 +2,20 @@
   <div v-bind="$attrs" v-ax-click-outside="() => toggle(false)">
     <ax-form-control
       custom-select
+      tag="input"
+      type="text"
+      @click.native="() => toggle(true)"
+      :single-line="singleLine"
+      v-model="inputValue"
+      v-if="!multiple && !chips"
+    ></ax-form-control>
+
+    <ax-form-control
+      custom-select
       tag="div"
       @click.native="() => toggle(true)"
       :single-line="singleLine"
-      v-if="multiple"
+      v-else
     >
       <!-- <template v-if="!chips">
         {{ multiple ? result.join(', ') : result.name }}
@@ -20,19 +30,18 @@
           >
         </div>
       </template> -->
-      {{ result.name }}
-      <input type="text" class="form-autocomplete-input" v-model="inputValue" />
+      <template v-if="multiple">
+        <div
+          class="form-autocomplete-selected"
+          :class="{ 'form-autocomplete-focused': i === result.length - 1 && isFocused }"
+          v-for="(value, i) in result"
+          :key="i"
+        >
+          {{ value }}<template v-if="i !== result.length - 1">,</template>
+        </div>
+        <input type="text" class="form-autocomplete-input" ref="input" v-model="inputValue" />
+      </template>
     </ax-form-control>
-
-    <ax-form-control
-      custom-select
-      tag="input"
-      type="text"
-      @click.native="() => toggle(true)"
-      :single-line="singleLine"
-      v-model="inputValue"
-      v-else
-    ></ax-form-control>
 
     <div class="form-select-content" :style="style" ref="container">
       <slot name="prepend" :toggle="toggle"></slot>
@@ -56,7 +65,7 @@
 </template>
 
 <script>
-import { computed, defineComponent, onMounted, ref, toRefs, watch } from 'vue-demi';
+import { computed, defineComponent, onMounted, onUnmounted, ref, toRefs, watch } from 'vue-demi';
 import vModelMixin, { getVModelEvent, getVModelKey } from '../../utils/v-model';
 import {
   removeByVal,
@@ -83,10 +92,12 @@ export default defineComponent({
       isOpened = ref(false),
       isTop = ref(false),
       container = ref(null),
+      input = ref(null),
       inputValue = ref(''),
       selected = ref({}),
       multipleSelected = ref([]),
       opacity = ref(0),
+      isFocused = ref(false),
       itemsRef = ref(props.items),
       vmodel = toRefs(props)[getVModelKey()];
 
@@ -148,6 +159,16 @@ export default defineComponent({
       updateComputedItems(computedItems, itemsRef, vmodel, props, multipleSelected, selected);
     });
 
+    const setupListeners = () => {
+      window.addEventListener('keyup', onBackspace);
+      document.addEventListener('click', removeFocus);
+    };
+
+    const removeListeners = () => {
+      window.removeEventListener('keyup', onBackspace);
+      document.removeEventListener('click', removeFocus);
+    };
+
     const toggle = (state = false) => toggleState(state, isOpened, opacity, isTop, container);
 
     const removeByValue = (value) => removeByVal(value, computedItems, multipleSelected);
@@ -167,10 +188,32 @@ export default defineComponent({
       if (!props.multiple) return;
 
       selectMultipleEl(i, computedItems, multipleSelected, ctx, vmodelEvent, result);
+      input.value.focus();
+    };
+
+    const onBackspace = (e) => {
+      if (e.keyCode !== 8 || inputValue.value !== '' || multipleSelected.value.length === 0) return;
+
+      if (isFocused.value) {
+        const itemIndex = multipleSelected.value[multipleSelected.value.length - 1].index;
+        selectMultiple(itemIndex);
+      } else {
+        isFocused.value = true;
+        input.value.blur();
+      }
+    };
+
+    const removeFocus = () => {
+      isFocused.value = false;
     };
 
     onMounted(() => {
+      setupListeners();
       updateComputedItems(computedItems, itemsRef, vmodel, props, multipleSelected, selected);
+    });
+
+    onUnmounted(() => {
+      removeListeners();
     });
 
     return {
@@ -179,6 +222,8 @@ export default defineComponent({
       select,
       result,
       container,
+      input,
+      isFocused,
       removeByValue,
       inputValue,
       filteredItems,
@@ -188,11 +233,24 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+:root {
+  --form-autocomplete-focus: #4c9f85;
+}
+
 .form-autocomplete-input {
   outline: none;
   display: flex;
   width: 100%;
   max-width: 100%;
   border: none;
+  margin-right: 1rem;
+}
+
+.form-autocomplete-selected {
+  margin-right: 0.25rem;
+
+  &.form-autocomplete-focused {
+    color: var(--form-autocomplete-focus);
+  }
 }
 </style>
