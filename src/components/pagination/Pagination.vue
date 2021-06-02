@@ -15,7 +15,7 @@
     </span>
 
     <slot name="next">
-      <li class="next" @click.prevent="next" :disabled="current === pageCount">
+      <li class="next" @click.prevent="next" :class="{ disabled: current === pageCount }">
         <a>&#8250;</a>
       </li>
     </slot>
@@ -83,7 +83,7 @@ export default {
     };
 
     const goto = (i) => {
-      if (vmodel.value !== i) ctx.emit(vmodelEvent, i + 1);
+      if (vmodel.value !== i + 1) ctx.emit(vmodelEvent, i + 1);
     };
 
     return {
