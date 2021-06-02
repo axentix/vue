@@ -1,17 +1,17 @@
 import AxForm from './Form.vue';
-import AxFormSelect from './FormSelect.vue';
+import AxFormAutocomplete from './FormAutocomplete.vue';
 import AxFormControl from './FormControl.vue';
 import AxFormCheck from './FormCheck.vue';
 import AxFormField from './FormField.vue';
 
-AxFormSelect.components = {
+AxFormAutocomplete.components = {
   AxFormControl,
   AxFormCheck,
 };
 
 export default {
-  title: 'Axentix/Components/Forms/Select',
-  component: AxFormSelect,
+  title: 'Axentix/Components/Forms/Autocomplete',
+  component: AxFormAutocomplete,
   subcomponents: { AxForm, AxFormField, AxFormControl, AxFormCheck },
   argTypes: {
     multipleSelectedValue: {
@@ -38,11 +38,11 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { AxFormSelect, AxForm, AxFormField, AxFormControl, AxFormCheck },
+  components: { AxFormAutocomplete, AxForm, AxFormField, AxFormControl, AxFormCheck },
   template: `
     <ax-form material>
       <ax-form-field label="Choose an option">
-        <ax-form-select v-bind="$props" :class="classes" v-model="selectedValue"></ax-form-select>
+        <ax-form-autocomplete v-bind="$props" :class="classes" v-model="selectedValue"></ax-form-autocomplete>
       </ax-form-field>
     </ax-form>
   `,
@@ -53,11 +53,11 @@ Normal.args = {};
 
 const MultipleTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { AxFormSelect, AxForm, AxFormField, AxFormControl, AxFormCheck },
+  components: { AxFormAutocomplete, AxForm, AxFormField, AxFormControl, AxFormCheck },
   template: `
     <ax-form material>
       <ax-form-field label="Choose options">
-        <ax-form-select v-bind="$props" :class="classes" v-model="multipleSelectedValue"></ax-form-select>
+        <ax-form-autocomplete v-bind="$props" :class="classes" v-model="multipleSelectedValue"></ax-form-autocomplete>
       </ax-form-field>
     </ax-form>
   `,
