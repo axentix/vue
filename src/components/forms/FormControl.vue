@@ -238,6 +238,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .form-field .form-control.custom-select {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   height: auto;
   padding: 0.5rem;

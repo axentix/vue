@@ -77,7 +77,7 @@
       aut. A atque tenetur doloremque ad voluptates.
 
       <ax-form material>
-        <!-- <ax-form-field label="Choisissez une option">
+        <ax-form-field label="Choisissez une option">
           <ax-form-select :items="items" v-model="selectedValue"> </ax-form-select>
         </ax-form-field>
 
@@ -94,10 +94,10 @@
               <div @click.prevent="selectAll(toggle)" class="form-select-item">Select all</div>
             </template>
           </ax-form-select>
-        </ax-form-field> -->
+        </ax-form-field>
 
         <ax-form-field>
-          <ax-form-autocomplete :items="items" multiple v-model="multipleSelectedValue">
+          <ax-form-autocomplete :items="items" multiple chips chips-closable v-model="multipleSelectedValue">
             <template #prepend="{ toggle }">
               <div @click.prevent="selectAll(toggle)" class="form-select-item">Select all</div>
             </template>

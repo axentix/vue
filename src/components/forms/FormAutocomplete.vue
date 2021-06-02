@@ -7,7 +7,7 @@
       @click.native="() => toggle(true)"
       :single-line="singleLine"
       v-model="inputValue"
-      v-if="!multiple && !chips"
+      v-if="!multiple"
     ></ax-form-control>
 
     <ax-form-control
@@ -17,30 +17,22 @@
       :single-line="singleLine"
       v-else
     >
-      <!-- <template v-if="!chips">
-        {{ multiple ? result.join(', ') : result.name }}
-      </template>
-      <template v-else>
-        <template v-if="!multiple">{{ result.name }}</template>
-        <div class="form-chips" v-else v-for="(value, i) in result" :key="i">
-          {{ value }}
-
-          <span class="form-chips-closable" v-if="chipsClosable" @click.prevent.stop="removeByValue(value)"
-            >&times;</span
-          >
-        </div>
-      </template> -->
-      <template v-if="multiple">
-        <div
-          class="form-autocomplete-selected"
-          :class="{ 'form-autocomplete-focused': i === result.length - 1 && isFocused }"
-          v-for="(value, i) in result"
-          :key="i"
+      <div
+        class="form-autocomplete-selected"
+        :class="{ 'form-autocomplete-focused': i === result.length - 1 && isFocused, 'form-chips': chips }"
+        v-for="(value, i) in result"
+        :key="i"
+      >
+        {{ value }}<template v-if="i !== result.length - 1 && !chips">,</template>
+        <span
+          class="form-chips-closable"
+          v-if="chips && chipsClosable"
+          @click.prevent.stop="removeByValue(value)"
         >
-          {{ value }}<template v-if="i !== result.length - 1">,</template>
-        </div>
-        <input type="text" class="form-autocomplete-input" ref="input" v-model="inputValue" />
-      </template>
+          &times;
+        </span>
+      </div>
+      <input type="text" class="form-autocomplete-input" ref="input" v-model="inputValue" />
     </ax-form-control>
 
     <div class="form-select-content" :style="style" ref="container">
@@ -96,6 +88,8 @@ export default defineComponent({
       inputValue = ref(''),
       selected = ref({}),
       multipleSelected = ref([]),
+      backspaceCount = ref(0),
+      lastInputValue = ref(''),
       opacity = ref(0),
       isFocused = ref(false),
       itemsRef = ref(props.items),
@@ -127,7 +121,8 @@ export default defineComponent({
       return filtered;
     });
 
-    watch(inputValue, (val) => {
+    watch(inputValue, (val, oldVal) => {
+      lastInputValue.value = oldVal;
       if (selected.value.index >= 0 && val === '' && !props.multiple) {
         unselectEl(selected.value.index, computedItems, multipleSelected);
         ctx.emit(vmodelEvent, val);
@@ -194,13 +189,21 @@ export default defineComponent({
     const onBackspace = (e) => {
       if (e.keyCode !== 8 || inputValue.value !== '' || multipleSelected.value.length === 0) return;
 
+      if (lastInputValue.value !== '') {
+        backspaceCount.value++;
+        if (backspaceCount.value !== 2) return;
+
+        backspaceCount.value = 0;
+        lastInputValue.value = '';
+      }
+
       if (isFocused.value) {
         const itemIndex = multipleSelected.value[multipleSelected.value.length - 1].index;
         selectMultiple(itemIndex);
       } else {
         isFocused.value = true;
-        input.value.blur();
       }
+      input.value.blur();
     };
 
     const removeFocus = () => {
@@ -235,15 +238,17 @@ export default defineComponent({
 <style lang="scss">
 :root {
   --form-autocomplete-focus: #4c9f85;
+  --form-autocomplete-focus-chips-color: #ffffff;
 }
 
 .form-autocomplete-input {
   outline: none;
   display: flex;
-  width: 100%;
   max-width: 100%;
   border: none;
   margin-right: 1rem;
+  flex: 1 1;
+  line-height: 1.3;
 }
 
 .form-autocomplete-selected {
@@ -251,6 +256,11 @@ export default defineComponent({
 
   &.form-autocomplete-focused {
     color: var(--form-autocomplete-focus);
+
+    &.form-chips {
+      color: var(--form-autocomplete-focus-chips-color);
+      background-color: var(--form-autocomplete-focus);
+    }
   }
 }
 </style>

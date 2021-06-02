@@ -229,7 +229,7 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
   padding: 0.5rem;
-  margin: 0 0.125rem;
+  margin: 0.125rem;
   border-radius: 20px;
   background-color: var(--form-chips-background);
   color: var(--form-chips-color);
