@@ -5,6 +5,7 @@ import AxFormField from './FormField.vue';
 import AxFormFile from './FormFile.vue';
 import AxFormGroup from './FormGroup.vue';
 import AxFormSwitch from './FormSwitch.vue';
+import AxFormSelect from './FormSelect.vue';
 
 import { use, registerComponent } from '../../utils/plugins';
 
@@ -17,6 +18,7 @@ const Plugin = {
     registerComponent(Vue, AxFormFile);
     registerComponent(Vue, AxFormGroup);
     registerComponent(Vue, AxFormSwitch);
+    registerComponent(Vue, AxFormSelect);
   },
 };
 

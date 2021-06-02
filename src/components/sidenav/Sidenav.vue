@@ -229,7 +229,7 @@ export default defineComponent({
     };
 
     const toggleBodyScroll = (state) => {
-      if (!props.bodyScrolling) {
+      if (!props.bodyScrolling && window.innerWidth < 960) {
         state ? (document.body.style.overflow = '') : (document.body.style.overflow = 'hidden');
       }
     };
