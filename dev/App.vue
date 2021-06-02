@@ -96,8 +96,16 @@
           </ax-form-select>
         </ax-form-field>
 
+        <ax-form-field>
+          <ax-form-autocomplete :items="items" multiple chips chips-closable v-model="multipleSelectedValue">
+            <template #prepend="{ toggle }">
+              <div @click.prevent="selectAll(toggle)" class="form-select-item">Select all</div>
+            </template>
+          </ax-form-autocomplete>
+        </ax-form-field>
+
         <ax-form-field label="Test input">
-          <ax-form-control tag="input" type="text"></ax-form-control>
+          <ax-form-control tag="input" type="text" v-model="test"></ax-form-control>
         </ax-form-field>
 
         <ax-form-field label="Select">
@@ -153,6 +161,7 @@ export default {
     // ],
     selectedValue: '',
     multipleSelectedValue: [],
+    test: '',
   }),
   watch: {
     radio(val) {

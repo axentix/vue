@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { defineComponent, onMounted, onUnmounted, ref, getCurrentInstance, watch } from 'vue-demi';
+import { defineComponent, onMounted, onUnmounted, ref, getCurrentInstance } from 'vue-demi';
 import { addInstance, removeInstance } from '../../utils/config';
 
 export default defineComponent({

@@ -1,6 +1,6 @@
 <template>
   <div v-bind="$attrs" v-ax-click-outside="() => toggle(false)">
-    <ax-form-control custom-select tag="div" @click="() => toggle(true)" :single-line="singleLine">
+    <ax-form-control custom-select tag="div" @click.native="() => toggle(true)" :single-line="singleLine">
       <template v-if="!chips">
         {{ multiple ? result.join(', ') : result.name }}
       </template>
@@ -229,7 +229,7 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
   padding: 0.5rem;
-  margin: 0 0.125rem;
+  margin: 0.125rem;
   border-radius: 20px;
   background-color: var(--form-chips-background);
   color: var(--form-chips-color);

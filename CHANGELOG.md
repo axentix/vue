@@ -1,3 +1,15 @@
+# 0.5.0 - 2021-06-02
+
+- ADDED
+  - Form select
+  - Form autocomplete
+- REMOVED
+- IMPROVED
+  - Clean code
+  - Update dependencies
+- BUGFIXES
+  - Form control wasn't working with v-model
+
 # 0.4.0 - 2021-06-01
 
 - ADDED
