@@ -4,11 +4,12 @@
     class="form-control"
     :class="classes"
     v-bind="$attrs"
-    v-on="listeners"
     ref="input"
     @focus="handle"
     @blur="handle"
     @click="handleDiv"
+    @change="onInput"
+    @input="onInput"
     v-ax-click-outside="() => handleDiv(false)"
   >
     <slot></slot>
@@ -24,15 +25,19 @@ import {
   onUnmounted,
   onUpdated,
   ref,
+  toRefs,
+  watch,
 } from 'vue-demi';
 import { getParentByName } from '../../utils/utils';
 import AxClickOutside from '../../directives/click-outside';
+import vModelMixin, { getVModelEvent, getVModelKey } from '../../utils/v-model';
 
 export default defineComponent({
   name: 'AxFormControl',
   directives: {
     axClickOutside: AxClickOutside,
   },
+  mixins: [vModelMixin],
   props: {
     tag: {
       type: String,
@@ -46,11 +51,39 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    lazy: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, ctx) {
     const resizeRef = ref(null),
+      vmodel = toRefs(props)[getVModelKey()],
+      localValue = ref(vmodel.value),
       isClicked = ref(false),
       input = ref(null);
+
+    const vmodelEvent = getVModelEvent();
+
+    watch(vmodel, (val) => {
+      localValue.value = val;
+    });
+
+    const computedValue = computed({
+      get() {
+        return localValue.value;
+      },
+      set(val) {
+        localValue.value = val;
+        ctx.emit(vmodelEvent, val);
+      },
+    });
+
+    watch(computedValue, (val) => {
+      if (props.tag === 'div') return;
+      input.value.value = val;
+      handle();
+    });
 
     const parent = getCurrentInstance().parent;
 
@@ -60,6 +93,11 @@ export default defineComponent({
         'single-line': props.singleLine,
       };
     });
+
+    const onInput = (e) => {
+      if (props.lazy && e.type === 'input') return;
+      computedValue.value = e.target.value;
+    };
 
     const setupListener = () => {
       if (resizeRef.value) return;
@@ -190,7 +228,8 @@ export default defineComponent({
       handleDiv,
       input,
       classes,
-      listeners: ctx.listeners ? ctx.listeners : {},
+      computedValue,
+      onInput,
     };
   },
 });

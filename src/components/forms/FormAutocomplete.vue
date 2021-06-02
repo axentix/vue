@@ -1,7 +1,13 @@
 <template>
   <div v-bind="$attrs" v-ax-click-outside="() => toggle(false)">
-    <ax-form-control custom-select tag="div" @click.native="() => toggle(true)" :single-line="singleLine">
-      <template v-if="!chips">
+    <ax-form-control
+      custom-select
+      tag="div"
+      @click.native="() => toggle(true)"
+      :single-line="singleLine"
+      v-if="multiple"
+    >
+      <!-- <template v-if="!chips">
         {{ multiple ? result.join(', ') : result.name }}
       </template>
       <template v-else>
@@ -13,18 +19,30 @@
             >&times;</span
           >
         </div>
-      </template>
+      </template> -->
+      {{ result.name }}
+      <input type="text" class="form-autocomplete-input" v-model="inputValue" />
     </ax-form-control>
+
+    <ax-form-control
+      custom-select
+      tag="input"
+      type="text"
+      @click.native="() => toggle(true)"
+      :single-line="singleLine"
+      v-model="inputValue"
+      v-else
+    ></ax-form-control>
 
     <div class="form-select-content" :style="style" ref="container">
       <slot name="prepend" :toggle="toggle"></slot>
 
       <div
         class="form-select-item"
-        v-for="(item, i) in computedItems"
+        v-for="(item, i) in filteredItems"
         :key="i"
         :class="{ selected: item.selected, disabled: item.disabled }"
-        @click.prevent="item.disabled ? '' : select(i)"
+        @click.prevent="item.disabled ? '' : select(item.value)"
       >
         <ax-form-check v-model="item.selected" v-if="multiple" :disabled="item.disabled">{{
           item.name
@@ -51,13 +69,21 @@ import {
 } from './shared/select';
 
 export default defineComponent({
-  name: 'AxFormSelect',
+  name: 'AxFormAutocomplete',
   mixins: [vModelMixin, selectMixin],
+  props: {
+    filter: {
+      type: Function,
+      default: (items, query) =>
+        items.filter((item) => item.name.toLowerCase().indexOf(query.toLowerCase()) !== -1),
+    },
+  },
   setup(props, ctx) {
     const computedItems = ref([]),
       isOpened = ref(false),
       isTop = ref(false),
       container = ref(null),
+      inputValue = ref(''),
       selected = ref({}),
       multipleSelected = ref([]),
       opacity = ref(0),
@@ -70,7 +96,7 @@ export default defineComponent({
       return {
         display: isOpened.value ? 'block' : '',
         opacity: opacity.value,
-        bottom: isTop.value ? 0 : '',
+        bottom: isTop.value ? '100%' : '',
       };
     });
 
@@ -85,11 +111,22 @@ export default defineComponent({
       }, []);
     });
 
+    const filteredItems = computed(() => {
+      const filtered = props.filter(computedItems.value, inputValue.value);
+      return filtered;
+    });
+
+    watch(inputValue, (val) => {
+      if (selected.value.index >= 0 && val === '' && !props.multiple) {
+        unselectEl(selected.value.index, computedItems, multipleSelected);
+        ctx.emit(vmodelEvent, val);
+      }
+    });
+
     watch(vmodel, (val) => {
       if (!props.multiple) {
         if (val === selected.value.value) return;
-        const i = computedItems.value.findIndex((item) => item.value === val);
-        select(i);
+        select(val);
         return;
       }
 
@@ -115,10 +152,13 @@ export default defineComponent({
 
     const removeByValue = (value) => removeByVal(value, computedItems, multipleSelected);
 
-    const select = (i) => {
+    const select = (value) => {
+      const i = computedItems.value.findIndex((item) => item.value === value);
+      if (i === -1) return;
       if (props.multiple) return selectMultiple(i);
 
       selectEl(i, selected, computedItems, ctx, vmodelEvent);
+      inputValue.value = value;
 
       if (props.closeOnClick) toggle();
     };
@@ -140,120 +180,19 @@ export default defineComponent({
       result,
       container,
       removeByValue,
-      computedItems,
+      inputValue,
+      filteredItems,
     };
   },
 });
 </script>
 
 <style lang="scss">
-.form-select-content {
-  box-shadow: 0 5px 8px 0 rgb(0 0 0 / 10%), 0 3px 8px 3px rgb(0 0 0 / 10%);
-  background-color: #fff;
-  color: #000;
-  border-radius: 4px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  display: none;
-  z-index: 40;
-  transition: opacity 0.3s ease;
-  max-height: 18rem;
-  overflow-y: auto;
-
-  .form-select-item {
-    display: flex;
-    align-items: center;
-    min-height: 48px;
-    position: relative;
-    padding: 1rem 1.25rem;
-    cursor: pointer;
-    transition: color 0.2s ease;
-    will-change: color;
-
-    &::before {
-      content: '';
-      position: absolute;
-      background-color: currentColor;
-      opacity: 0;
-      pointer-events: none;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      top: 0;
-      transition: opacity 0.2s ease;
-      will-change: opacity;
-    }
-
-    &.selected {
-      color: var(--form-material-color);
-    }
-
-    &.disabled {
-      color: rgba(0, 0, 0, 0.3);
-      cursor: default;
-      pointer-events: none;
-
-      &::before {
-        opacity: 0.1;
-      }
-    }
-
-    &:hover,
-    &.selected,
-    &:focus {
-      &::before {
-        opacity: 0.12;
-      }
-    }
-
-    label {
-      color: inherit !important;
-      font-size: 1rem !important;
-      transition: none !important;
-
-      input {
-        margin-right: 0.5rem;
-      }
-    }
-  }
-}
-
-.form-chips {
-  --form-chips-background: #e2e2e2;
-  --form-chips-color: #000000;
-  --form-chips-closable-background: #686868;
-  --form-chips-closable-color: #ffffff;
-
+.form-autocomplete-input {
+  outline: none;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5rem;
-  margin: 0 0.125rem;
-  border-radius: 20px;
-  background-color: var(--form-chips-background);
-  color: var(--form-chips-color);
-
-  .form-chips-closable {
-    color: var(--form-chips-closable-color);
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    width: 1rem;
-    height: 1rem;
-    margin-left: 0.25rem;
-    overflow: hidden;
-    font-size: 1rem;
-    line-height: 1;
-    z-index: 2;
-    background-color: var(--form-chips-closable-background);
-    transition: opacity 0.2s ease;
-
-    &:hover {
-      opacity: 0.8;
-    }
-  }
+  width: 100%;
+  max-width: 100%;
+  border: none;
 }
 </style>
