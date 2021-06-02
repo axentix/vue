@@ -143,7 +143,7 @@
       </ax-form>
 
       <!-- <ax-pagination size="small" :items="['a', 'b', 'c', 'd']"> </ax-pagination> -->
-      <ax-pagination size="large" :total="200" :per-page="10"> </ax-pagination>
+      <ax-pagination v-model="current" size="small" :total="10" :per-page="1"> </ax-pagination>
     </main>
   </div>
 </template>
@@ -155,6 +155,7 @@ export default {
     isSidenavOpened: false,
     isCollapsibleOpened: false,
     isCollapsibleOpened2: true,
+    current: 2,
     radio: 'Yes',
     checked: true,
     items: ['Voiture', 'Moto', 'Bus', 'Velo', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
