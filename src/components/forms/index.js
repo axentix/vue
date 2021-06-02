@@ -5,6 +5,8 @@ import AxFormField from './FormField.vue';
 import AxFormFile from './FormFile.vue';
 import AxFormGroup from './FormGroup.vue';
 import AxFormSwitch from './FormSwitch.vue';
+import AxFormSelect from './FormSelect.vue';
+import AxFormAutocomplete from './FormAutocomplete.vue';
 
 import { use, registerComponent } from '../../utils/plugins';
 
@@ -17,6 +19,8 @@ const Plugin = {
     registerComponent(Vue, AxFormFile);
     registerComponent(Vue, AxFormGroup);
     registerComponent(Vue, AxFormSwitch);
+    registerComponent(Vue, AxFormSelect);
+    registerComponent(Vue, AxFormAutocomplete);
   },
 };
 
@@ -24,4 +28,14 @@ use(Plugin);
 
 export default Plugin;
 
-export { AxForm, AxFormCheck, AxFormControl, AxFormField, AxFormFile, AxFormGroup, AxFormSwitch };
+export {
+  AxForm,
+  AxFormCheck,
+  AxFormControl,
+  AxFormField,
+  AxFormFile,
+  AxFormGroup,
+  AxFormSwitch,
+  AxFormSelect,
+  AxFormAutocomplete,
+};
