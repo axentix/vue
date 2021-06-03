@@ -64,6 +64,8 @@ export default defineComponent({
       if (state === null) return;
 
       state ? openCollapsible() : closeCollapsible();
+
+      ctx.emit(vmodelEvent, isActive.value);
     });
 
     watch(isActive, (state) => {

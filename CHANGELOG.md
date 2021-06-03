@@ -1,3 +1,12 @@
+# 0.5.2 - 2021-06-03
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Fix autocomplete color
+  - Collapsible update vmodel
+
 # 0.5.1 - 2021-06-03
 
 - ADDED

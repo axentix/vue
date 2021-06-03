@@ -260,6 +260,7 @@ export default defineComponent({
   flex: 1 1;
   line-height: 1.3;
   background-color: transparent;
+  color: inherit;
 }
 
 .form-autocomplete-selected {
