@@ -7,8 +7,8 @@
     </slot>
 
     <span v-for="(total, i) of pageCount" :key="i">
-      <slot>
-        <li @click="goto(i)" :class="{ classes, active: current === i + 1 }">
+      <slot v-if="isShown(i)" :pageNumber="i + 1" :current="current - 1" :isActive="current - 1 === i">
+        <li @click="goto(i + 1)" :class="{ classes, active: current - 1 === i }">
           <a>{{ i + 1 }}</a>
         </li>
       </slot>
@@ -49,6 +49,10 @@ export default {
       type: Number,
       default: 10,
     },
+    maxVisible: {
+      type: Number,
+      default: 0,
+    },
   },
   setup(props, ctx) {
     const activeItem = ref(1),
@@ -56,6 +60,8 @@ export default {
       vmodel = toRefs(props)[getVModelKey()],
       current = ref(vmodel.value);
 
+    let shownCount = 1,
+      rest = 0;
     const vmodelEvent = getVModelEvent();
 
     const classes = computed(() => {
@@ -83,7 +89,45 @@ export default {
     };
 
     const goto = (i) => {
-      if (vmodel.value !== i + 1) ctx.emit(vmodelEvent, i + 1);
+      if (vmodel.value !== i + 1) ctx.emit(vmodelEvent, i);
+    };
+
+    const isShown = (i) => {
+      if (props.maxVisible < 3 || props.maxVisible > pageCount.value) return true;
+      let active = current.value - 1;
+
+      if (i === 0 || i === pageCount.value - 1 || active === i) {
+        shownCount++;
+        if (i === pageCount.value - 1) {
+          rest = 0;
+          shownCount = 1;
+        }
+
+        return true;
+      }
+
+      if (active <= Math.ceil(props.maxVisible / 2)) {
+        if (i < active || shownCount <= props.maxVisible) {
+          shownCount++;
+
+          return true;
+        }
+      } else if (pageCount.value - active < props.maxVisible) {
+        if (i < active && i < pageCount.value - props.maxVisible) return false;
+        shownCount++;
+
+        return true;
+      } else if (shownCount < props.maxVisible) {
+        if (rest === 0) rest = (props.maxVisible - shownCount) / 2;
+
+        const showable = active - i < Math.ceil(rest) || active - i <= Math.floor(rest);
+        if (!showable) return false;
+        shownCount++;
+
+        return true;
+      }
+
+      return false;
     };
 
     return {
@@ -94,6 +138,7 @@ export default {
       prev,
       next,
       goto,
+      isShown,
     };
   },
 };
