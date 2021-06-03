@@ -1,3 +1,12 @@
+# 0.5.1 - 2021-06-03
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Fix autocomplete background color
+  - Fix closable chips cross
+
 # 0.5.0 - 2021-06-02
 
 - ADDED
