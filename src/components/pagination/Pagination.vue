@@ -65,14 +65,10 @@ export default {
       defaut: '',
       validator: (val) => ['', 'small', 'large'].includes(val),
     },
-    maxItems: {
-      type: Number,
-      default: 10,
-    },
     maxVisible: {
       type: Number,
       default: 0,
-      validator: (val) => val > 3,
+      validator: (val) => val > 3 || val === 0,
     },
   },
   setup(props, ctx) {
@@ -97,6 +93,24 @@ export default {
       current.value = state;
     });
 
+    watch(
+      () => props.total,
+      () => {
+        resetPageCount();
+      }
+    );
+
+    watch(
+      () => props.perPage,
+      () => {
+        resetPageCount();
+      }
+    );
+
+    const resetPageCount = () => {
+      pageCount.value = Math.ceil(props.total / props.perPage);
+    };
+
     const prev = () => {
       if (vmodel.value !== 1) ctx.emit(vmodelEvent, vmodel.value - 1);
     };
@@ -110,7 +124,7 @@ export default {
     };
 
     const isShown = (i) => {
-      if (props.maxVisible > pageCount.value) return true;
+      if (props.maxVisible < 3 || props.maxVisible > pageCount.value) return true;
       let active = current.value - 1;
 
       if (i === 0 || i === pageCount.value - 1 || active === i) {
@@ -199,8 +213,7 @@ export default {
     }
   }
 
-  .prev,
-  .next {
+  .arrow {
     height: 42px;
     font-size: 1.5rem !important;
   }
