@@ -1,12 +1,12 @@
 <template>
   <ul class="pagination" :class="classes">
-    <slot name="first-arrow" :goto="goto" :pageCount="pageCount">
+    <slot name="first-arrow" :goto="goto" :pageCount="pageCount" :isDisabled="current === 1">
       <li class="arrow" @click.prevent="goto(1)" :class="{ disabled: current === 1 }">
         <a>&#171;</a>
       </li>
     </slot>
 
-    <slot name="prev-arrow" :prev="prev" :pageCount="pageCount">
+    <slot name="prev-arrow" :prev="prev" :pageCount="pageCount" :isDisabled="current === 1">
       <li class="arrow" @click.prevent="prev" :class="{ disabled: current === 1 }">
         <a>&#8249;</a>
       </li>
@@ -28,13 +28,13 @@
       <li v-else-if="i === 1 || i === pageCount - 2" class="dots">...</li>
     </span>
 
-    <slot name="next-arrow" :next="next" :pageCount="pageCount">
+    <slot name="next-arrow" :next="next" :pageCount="pageCount" :isDisabled="current === pageCount">
       <li class="arrow" @click.prevent="next" :class="{ disabled: current === pageCount }">
         <a>&#8250;</a>
       </li>
     </slot>
 
-    <slot name="last-arrow" :goto="goto" :pageCount="pageCount">
+    <slot name="last-arrow" :goto="goto" :pageCount="pageCount" :isDisabled="current === pageCount">
       <li class="arrow" @click.prevent="goto(pageCount)" :class="{ disabled: current === pageCount }">
         <a>&#187;</a>
       </li>
@@ -43,8 +43,8 @@
 </template>
 
 <script>
-import { computed, getCurrentInstance, onMounted, ref, toRefs, watch } from 'vue-demi';
-import { addInstance, getInstancesByType, removeInstance } from '../../utils/config';
+import { computed, getCurrentInstance, onMounted, onUnmounted, ref, toRefs, watch } from 'vue-demi';
+import { addInstance, removeInstance } from '../../utils/config';
 import vModelMixin, { getVModelKey, getVModelEvent } from '../../utils/v-model';
 
 export default {
@@ -72,6 +72,7 @@ export default {
     maxVisible: {
       type: Number,
       default: 0,
+      validator: (val) => val > 3,
     },
   },
   setup(props, ctx) {
@@ -89,10 +90,6 @@ export default {
         small: props.size === 'small',
         large: props.size === 'large',
       };
-    });
-
-    onMounted(() => {
-      addInstance({ type: 'Pagination', instance: getCurrentInstance() });
     });
 
     watch(vmodel, (state) => {
@@ -113,7 +110,7 @@ export default {
     };
 
     const isShown = (i) => {
-      if (props.maxVisible < 3 || props.maxVisible > pageCount.value) return true;
+      if (props.maxVisible > pageCount.value) return true;
       let active = current.value - 1;
 
       if (i === 0 || i === pageCount.value - 1 || active === i) {
@@ -167,6 +164,14 @@ export default {
 
       return true;
     };
+
+    onMounted(() => {
+      addInstance({ type: 'Pagination', instance: getCurrentInstance() });
+    });
+
+    onUnmounted(() => {
+      removeInstance(getCurrentInstance());
+    });
 
     return {
       pageCount,

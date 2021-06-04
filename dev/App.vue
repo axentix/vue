@@ -143,32 +143,28 @@
       </ax-form>
 
       <!-- <ax-pagination size="small" :items="['a', 'b', 'c', 'd']"> </ax-pagination> -->
-      <ax-pagination :max-visible="7" v-model="current" :total="100" :per-page="5">
-        <template #first-arrow="{ goto }">
-          <li class="txt-green font-w600" :class="{ disabled: current === 1 }" @click="goto(1)">A</li>
+      <ax-pagination :max-visible="maxVisible" v-model="current" :total="20" :per-page="1">
+        <template #first-arrow="{ goto, isDisabled }">
+          <li class="txt-airforce font-w600" :class="{ disabled: isDisabled }" @click="goto(1)">first</li>
         </template>
 
-        <template #prev-arrow="{ prev }">
-          <ax-btn class="primary rounded-1" :class="{ disabled: current === 1 }" @click="prev">prev</ax-btn>
+        <template #prev-arrow="{ prev, isDisabled }">
+          <li class="txt-airforce" :class="{ disabled: isDisabled }" @click="prev">prev</li>
         </template>
 
         <template #default="{ pageNumber, goto, isActive }">
-          <li :class="isActive ? 'red' : 'grey light-4'" @click="goto(pageNumber)">
+          <li :class="isActive ? 'active' : 'grey light-4'" @click="goto(pageNumber)">
             <a> {{ pageNumber }} </a>
           </li>
         </template>
 
-        <template #next-arrow="{ next, pageCount }">
-          <li class="txt-red" :class="{ disabled: current === pageCount }" @click="next">C</li>
+        <template #next-arrow="{ next, isDisabled }">
+          <li class="txt-airforce" :class="{ disabled: isDisabled }" @click="next">next</li>
         </template>
 
-        <template #last-arrow="{ goto, pageCount }">
-          <li
-            class="txt-green font-w600"
-            :class="{ disabled: current === pageCount }"
-            @click="goto(pageCount)"
-          >
-            D
+        <template #last-arrow="{ goto, pageCount, isDisabled }">
+          <li class="txt-airforce font-w600" :class="{ disabled: isDisabled }" @click="goto(pageCount)">
+            last
           </li>
         </template>
       </ax-pagination>
@@ -184,6 +180,7 @@ export default {
     isCollapsibleOpened: false,
     isCollapsibleOpened2: true,
     current: 4,
+    maxVisible: 7,
     radio: 'Yes',
     checked: true,
     items: ['Voiture', 'Moto', 'Bus', 'Velo', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
