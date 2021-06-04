@@ -143,7 +143,34 @@
       </ax-form>
 
       <!-- <ax-pagination size="small" :items="['a', 'b', 'c', 'd']"> </ax-pagination> -->
-      <ax-pagination :max-visible="7" v-model="current" size="small" :total="20" :per-page="1">
+      <ax-pagination :max-visible="7" v-model="current" :total="100" :per-page="5">
+        <template #first-arrow="{ goto }">
+          <li class="txt-green font-w600" :class="{ disabled: current === 1 }" @click="goto(1)">A</li>
+        </template>
+
+        <template #prev-arrow="{ prev }">
+          <ax-btn class="primary rounded-1" :class="{ disabled: current === 1 }" @click="prev">prev</ax-btn>
+        </template>
+
+        <template #default="{ pageNumber, goto, isActive }">
+          <li :class="isActive ? 'red' : 'grey light-4'" @click="goto(pageNumber)">
+            <a> {{ pageNumber }} </a>
+          </li>
+        </template>
+
+        <template #next-arrow="{ next, pageCount }">
+          <li class="txt-red" :class="{ disabled: current === pageCount }" @click="next">C</li>
+        </template>
+
+        <template #last-arrow="{ goto, pageCount }">
+          <li
+            class="txt-green font-w600"
+            :class="{ disabled: current === pageCount }"
+            @click="goto(pageCount)"
+          >
+            D
+          </li>
+        </template>
       </ax-pagination>
     </main>
   </div>
@@ -156,7 +183,7 @@ export default {
     isSidenavOpened: false,
     isCollapsibleOpened: false,
     isCollapsibleOpened2: true,
-    current: 10,
+    current: 4,
     radio: 'Yes',
     checked: true,
     items: ['Voiture', 'Moto', 'Bus', 'Velo', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
@@ -192,4 +219,8 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.pagination li {
+  transition: none !important;
+}
+</style>

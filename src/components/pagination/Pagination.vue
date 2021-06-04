@@ -1,22 +1,42 @@
 <template>
   <ul class="pagination" :class="classes">
-    <slot name="prev">
-      <li class="prev" @click.prevent="prev" :class="{ disabled: current === 1 }">
+    <slot name="first-arrow" :goto="goto" :pageCount="pageCount">
+      <li class="arrow" @click.prevent="goto(1)" :class="{ disabled: current === 1 }">
+        <a>&#171;</a>
+      </li>
+    </slot>
+
+    <slot name="prev-arrow" :prev="prev" :pageCount="pageCount">
+      <li class="arrow" @click.prevent="prev" :class="{ disabled: current === 1 }">
         <a>&#8249;</a>
       </li>
     </slot>
 
-    <span v-for="(total, i) of pageCount" :key="i">
-      <slot v-if="isShown(i)" :pageNumber="i + 1" :current="current - 1" :isActive="current - 1 === i">
+    <span v-for="(total, i) of pageCount" :key="i" class="d-flex">
+      <slot
+        v-if="isShown(i)"
+        :pageNumber="i + 1"
+        :activePage="current - 1"
+        :isActive="current - 1 === i"
+        :goto="goto"
+      >
         <li @click="goto(i + 1)" :class="{ classes, active: current - 1 === i }">
           <a>{{ i + 1 }}</a>
         </li>
       </slot>
+
+      <li v-else-if="i === 1 || i === pageCount - 2" class="dots">...</li>
     </span>
 
-    <slot name="next">
-      <li class="next" @click.prevent="next" :class="{ disabled: current === pageCount }">
+    <slot name="next-arrow" :next="next" :pageCount="pageCount">
+      <li class="arrow" @click.prevent="next" :class="{ disabled: current === pageCount }">
         <a>&#8250;</a>
+      </li>
+    </slot>
+
+    <slot name="last-arrow" :goto="goto" :pageCount="pageCount">
+      <li class="arrow" @click.prevent="goto(pageCount)" :class="{ disabled: current === pageCount }">
+        <a>&#187;</a>
       </li>
     </slot>
   </ul>
@@ -89,7 +109,7 @@ export default {
     };
 
     const goto = (i) => {
-      if (vmodel.value !== i + 1) ctx.emit(vmodelEvent, i);
+      if (vmodel.value !== i) ctx.emit(vmodelEvent, i);
     };
 
     const isShown = (i) => {
@@ -97,37 +117,55 @@ export default {
       let active = current.value - 1;
 
       if (i === 0 || i === pageCount.value - 1 || active === i) {
-        shownCount++;
-        if (i === pageCount.value - 1) {
-          rest = 0;
-          shownCount = 1;
-        }
+        handleActiveOrExtremity(i);
 
         return true;
       }
 
-      if (active <= Math.ceil(props.maxVisible / 2)) {
-        if (i < active || shownCount <= props.maxVisible) {
-          shownCount++;
-
-          return true;
-        }
-      } else if (pageCount.value - active < props.maxVisible) {
-        if (i < active && i < pageCount.value - props.maxVisible) return false;
-        shownCount++;
-
-        return true;
+      if (active <= Math.floor(props.maxVisible / 2)) {
+        return handleBeginning(i, active);
+      } else if (pageCount.value - active + 1 < props.maxVisible) {
+        return handleEnding(i, active);
       } else if (shownCount < props.maxVisible) {
-        if (rest === 0) rest = (props.maxVisible - shownCount) / 2;
+        return handleMiddle(i, active);
+      }
 
-        const showable = active - i < Math.ceil(rest) || active - i <= Math.floor(rest);
-        if (!showable) return false;
+      return false;
+    };
+
+    const handleActiveOrExtremity = (i) => {
+      shownCount++;
+      if (i === pageCount.value - 1) {
+        rest = 0;
+        shownCount = 1;
+      }
+    };
+
+    const handleBeginning = (i, active) => {
+      if (i < active || shownCount < props.maxVisible) {
         shownCount++;
 
         return true;
       }
 
       return false;
+    };
+
+    const handleEnding = (i, active) => {
+      if (i < active && i <= pageCount.value - props.maxVisible) return false;
+      shownCount++;
+
+      return true;
+    };
+
+    const handleMiddle = (i, active) => {
+      if (rest === 0) rest = (props.maxVisible - shownCount) / 2;
+
+      const showable = active - i < Math.ceil(rest) || active - i <= Math.floor(rest);
+      if (!showable) return false;
+      shownCount++;
+
+      return true;
     };
 
     return {
@@ -146,18 +184,28 @@ export default {
 
 <style lang="scss" >
 .pagination {
+  user-select: none;
+
+  .dots {
+    margin: 0 1rem;
+
+    &:hover {
+      background: transparent;
+    }
+  }
+
   .prev,
   .next {
     height: 42px;
     font-size: 1.5rem !important;
   }
-  &.small .prev,
-  &.small .next {
+
+  &.small .arrow {
     height: 31px;
     font-size: 1.2rem !important;
   }
-  &.large .prev,
-  &.large .next {
+
+  &.large .arrow {
     height: 55px;
     font-size: 2rem !important;
   }
