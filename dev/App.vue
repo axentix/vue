@@ -142,29 +142,53 @@
         </ax-form-field>
       </ax-form>
 
-      <!-- <ax-pagination size="small" :items="['a', 'b', 'c', 'd']"> </ax-pagination> -->
       <ax-pagination :max-visible="maxVisible" v-model="current" :total="20" :per-page="1">
         <template #first-arrow="{ goto, isDisabled }">
-          <li class="txt-airforce font-w600" :class="{ disabled: isDisabled }" @click="goto(1)">first</li>
+          <li
+            class="txt-blue arrow pb-1 grey light-4 bd-solid bd-1 bd-grey bd-light-3"
+            :class="{ disabled: isDisabled }"
+            @click="goto(1)"
+          >
+            <a>&#8592;</a>
+          </li>
         </template>
 
         <template #prev-arrow="{ prev, isDisabled }">
-          <li class="txt-airforce" :class="{ disabled: isDisabled }" @click="prev">prev</li>
+          <li
+            class="txt-blue grey light-4 bd-solid bd-1 bd-grey bd-light-3"
+            :class="{ disabled: isDisabled }"
+            @click="prev"
+          >
+            <a>prev</a>
+          </li>
         </template>
 
         <template #default="{ pageNumber, goto, isActive }">
-          <li :class="isActive ? 'active' : 'grey light-4'" @click="goto(pageNumber)">
+          <li
+            :class="isActive ? 'active' : 'grey light-4 bd-solid bd-1 bd-grey bd-light-3'"
+            @click="goto(pageNumber)"
+          >
             <a> {{ pageNumber }} </a>
           </li>
         </template>
 
         <template #next-arrow="{ next, isDisabled }">
-          <li class="txt-airforce" :class="{ disabled: isDisabled }" @click="next">next</li>
+          <li
+            class="txt-blue grey light-4 bd-solid bd-1 bd-grey bd-light-3"
+            :class="{ disabled: isDisabled }"
+            @click="next"
+          >
+            <a>next</a>
+          </li>
         </template>
 
         <template #last-arrow="{ goto, pageCount, isDisabled }">
-          <li class="txt-airforce font-w600" :class="{ disabled: isDisabled }" @click="goto(pageCount)">
-            last
+          <li
+            class="arrow txt-blue pb-1 grey light-4 bd-solid bd-1 bd-grey bd-light-3"
+            :class="{ disabled: isDisabled }"
+            @click="goto(pageCount)"
+          >
+            <a>&#8594;</a>
           </li>
         </template>
       </ax-pagination>
