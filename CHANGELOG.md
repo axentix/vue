@@ -1,3 +1,11 @@
+# 0.6.0 - 2021-06-07
+
+- ADDED
+  - Pagination
+- REMOVED
+- IMPROVED
+- BUGFIXES
+
 # 0.5.2 - 2021-06-03
 
 - ADDED
