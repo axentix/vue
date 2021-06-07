@@ -1,5 +1,5 @@
 <template>
-  <ul class="pagination" :class="classes">
+  <ul class="pagination" :class="classes" v-bind="$attrs" v-on="listeners">
     <slot name="first-arrow" :goto="goto" :pageCount="pageCount" :isDisabled="current === 1">
       <li class="arrow" @click.prevent="goto(1)" :class="{ disabled: current === 1 }">
         <a>&#171;</a>
@@ -112,15 +112,24 @@ export default {
     };
 
     const prev = () => {
-      if (vmodel.value !== 1) ctx.emit(vmodelEvent, vmodel.value - 1);
+      if (vmodel.value !== 1) {
+        ctx.emit('prev', vmodel.value - 1);
+        ctx.emit(vmodelEvent, vmodel.value - 1);
+      }
     };
 
     const next = () => {
-      if (vmodel.value !== pageCount.value) ctx.emit(vmodelEvent, vmodel.value + 1);
+      if (vmodel.value !== pageCount.value) {
+        ctx.emit('next', vmodel.value + 1);
+        ctx.emit(vmodelEvent, vmodel.value + 1);
+      }
     };
 
     const goto = (i) => {
-      if (vmodel.value !== i) ctx.emit(vmodelEvent, i);
+      if (vmodel.value !== i) {
+        ctx.emit('goto', i);
+        ctx.emit(vmodelEvent, i);
+      }
     };
 
     const isShown = (i) => {
@@ -196,6 +205,7 @@ export default {
       next,
       goto,
       isShown,
+      listeners: ctx.listeners ? ctx.listeners : {},
     };
   },
 };
