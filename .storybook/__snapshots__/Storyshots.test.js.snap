@@ -1936,7 +1936,7 @@ exports[`Storyshots Axentix/Components/Pagination Custom Arrows 1`] = `
     class="flex"
   >
     <li
-      class="classes active"
+      class="active"
     >
       <a>
         1
@@ -1947,7 +1947,7 @@ exports[`Storyshots Axentix/Components/Pagination Custom Arrows 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         2
@@ -1958,7 +1958,7 @@ exports[`Storyshots Axentix/Components/Pagination Custom Arrows 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         3
@@ -1969,7 +1969,7 @@ exports[`Storyshots Axentix/Components/Pagination Custom Arrows 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         4
@@ -1980,7 +1980,7 @@ exports[`Storyshots Axentix/Components/Pagination Custom Arrows 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         5
@@ -1991,7 +1991,7 @@ exports[`Storyshots Axentix/Components/Pagination Custom Arrows 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         6
@@ -2021,7 +2021,7 @@ exports[`Storyshots Axentix/Components/Pagination Custom Arrows 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         10
@@ -2206,7 +2206,7 @@ exports[`Storyshots Axentix/Components/Pagination Large 1`] = `
     class="flex"
   >
     <li
-      class="classes active"
+      class="active"
     >
       <a>
         1
@@ -2217,7 +2217,7 @@ exports[`Storyshots Axentix/Components/Pagination Large 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         2
@@ -2228,7 +2228,7 @@ exports[`Storyshots Axentix/Components/Pagination Large 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         3
@@ -2239,7 +2239,7 @@ exports[`Storyshots Axentix/Components/Pagination Large 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         4
@@ -2250,7 +2250,7 @@ exports[`Storyshots Axentix/Components/Pagination Large 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         5
@@ -2261,7 +2261,7 @@ exports[`Storyshots Axentix/Components/Pagination Large 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         6
@@ -2291,7 +2291,7 @@ exports[`Storyshots Axentix/Components/Pagination Large 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         10
@@ -2341,7 +2341,7 @@ exports[`Storyshots Axentix/Components/Pagination Max Visible 1`] = `
     class="flex"
   >
     <li
-      class="classes active"
+      class="active"
     >
       <a>
         1
@@ -2352,7 +2352,7 @@ exports[`Storyshots Axentix/Components/Pagination Max Visible 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         2
@@ -2363,7 +2363,7 @@ exports[`Storyshots Axentix/Components/Pagination Max Visible 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         3
@@ -2374,7 +2374,7 @@ exports[`Storyshots Axentix/Components/Pagination Max Visible 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         4
@@ -2414,7 +2414,7 @@ exports[`Storyshots Axentix/Components/Pagination Max Visible 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         10
@@ -2464,7 +2464,7 @@ exports[`Storyshots Axentix/Components/Pagination Normal 1`] = `
     class="flex"
   >
     <li
-      class="classes active"
+      class="active"
     >
       <a>
         1
@@ -2475,7 +2475,7 @@ exports[`Storyshots Axentix/Components/Pagination Normal 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         2
@@ -2486,7 +2486,7 @@ exports[`Storyshots Axentix/Components/Pagination Normal 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         3
@@ -2497,7 +2497,7 @@ exports[`Storyshots Axentix/Components/Pagination Normal 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         4
@@ -2508,7 +2508,7 @@ exports[`Storyshots Axentix/Components/Pagination Normal 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         5
@@ -2519,7 +2519,7 @@ exports[`Storyshots Axentix/Components/Pagination Normal 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         6
@@ -2549,7 +2549,7 @@ exports[`Storyshots Axentix/Components/Pagination Normal 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         10
@@ -2599,7 +2599,7 @@ exports[`Storyshots Axentix/Components/Pagination Small 1`] = `
     class="flex"
   >
     <li
-      class="classes active"
+      class="active"
     >
       <a>
         1
@@ -2610,7 +2610,7 @@ exports[`Storyshots Axentix/Components/Pagination Small 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         2
@@ -2621,7 +2621,7 @@ exports[`Storyshots Axentix/Components/Pagination Small 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         3
@@ -2632,7 +2632,7 @@ exports[`Storyshots Axentix/Components/Pagination Small 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         4
@@ -2643,7 +2643,7 @@ exports[`Storyshots Axentix/Components/Pagination Small 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         5
@@ -2654,7 +2654,7 @@ exports[`Storyshots Axentix/Components/Pagination Small 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         6
@@ -2684,7 +2684,7 @@ exports[`Storyshots Axentix/Components/Pagination Small 1`] = `
     class="flex"
   >
     <li
-      class="classes"
+      class=""
     >
       <a>
         10
