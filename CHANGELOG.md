@@ -1,3 +1,11 @@
+# 0.6.1 - 2021-06-07
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Pagination total prop validator
+- BUGFIXES
+
 # 0.6.0 - 2021-06-07
 
 - ADDED

@@ -20,7 +20,7 @@
         :isActive="current - 1 === i"
         :goto="goto"
       >
-        <li @click="goto(i + 1)" :class="{ classes, active: current - 1 === i }">
+        <li @click="goto(i + 1)" :class="{ active: current - 1 === i }">
           <a>{{ i + 1 }}</a>
         </li>
       </slot>
@@ -55,11 +55,12 @@ export default {
       type: Number,
       default: 0,
       required: true,
-      validator: (val) => val > 0,
+      validator: (val) => val >= 0,
     },
     perPage: {
       type: Number,
       default: 10,
+      validator: (val) => val > 0,
     },
     size: {
       type: String,
