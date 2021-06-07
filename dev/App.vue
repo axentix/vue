@@ -142,7 +142,7 @@
         </ax-form-field>
       </ax-form>
 
-      <ax-pagination :max-visible="maxVisible" v-model="current" :total="20" :per-page="1">
+      <ax-pagination :max-visible="maxVisible" v-model="current" :total="-15" :per-page="1">
         <template #first-arrow="{ goto, isDisabled }">
           <li
             class="txt-blue arrow pb-1 grey light-4 bd-solid bd-1 bd-grey bd-light-3"
