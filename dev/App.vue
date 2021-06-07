@@ -141,6 +141,57 @@
           </ax-form-switch>
         </ax-form-field>
       </ax-form>
+
+      <ax-pagination :max-visible="maxVisible" v-model="current" :total="20" :per-page="1">
+        <template #first-arrow="{ goto, isDisabled }">
+          <li
+            class="txt-blue arrow pb-1 grey light-4 bd-solid bd-1 bd-grey bd-light-3"
+            :class="{ disabled: isDisabled }"
+            @click="goto(1)"
+          >
+            <a>&#8592;</a>
+          </li>
+        </template>
+
+        <template #prev-arrow="{ prev, isDisabled }">
+          <li
+            class="txt-blue grey light-4 bd-solid bd-1 bd-grey bd-light-3"
+            :class="{ disabled: isDisabled }"
+            @click="prev"
+          >
+            <a>prev</a>
+          </li>
+        </template>
+
+        <template #default="{ pageNumber, goto, isActive }">
+          <li
+            :class="isActive ? 'active' : 'grey light-4 bd-solid bd-1 bd-grey bd-light-3'"
+            @click="goto(pageNumber)"
+          >
+            <a> {{ pageNumber }} </a>
+          </li>
+        </template>
+
+        <template #next-arrow="{ next, isDisabled }">
+          <li
+            class="txt-blue grey light-4 bd-solid bd-1 bd-grey bd-light-3"
+            :class="{ disabled: isDisabled }"
+            @click="next"
+          >
+            <a>next</a>
+          </li>
+        </template>
+
+        <template #last-arrow="{ goto, pageCount, isDisabled }">
+          <li
+            class="arrow txt-blue pb-1 grey light-4 bd-solid bd-1 bd-grey bd-light-3"
+            :class="{ disabled: isDisabled }"
+            @click="goto(pageCount)"
+          >
+            <a>&#8594;</a>
+          </li>
+        </template>
+      </ax-pagination>
     </main>
   </div>
 </template>
@@ -152,6 +203,8 @@ export default {
     isSidenavOpened: false,
     isCollapsibleOpened: false,
     isCollapsibleOpened2: true,
+    current: 4,
+    maxVisible: 5,
     radio: 'Yes',
     checked: true,
     items: ['Voiture', 'Moto', 'Bus', 'Velo', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
@@ -187,4 +240,8 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.pagination li {
+  transition: none !important;
+}
+</style>

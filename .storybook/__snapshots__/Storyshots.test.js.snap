@@ -1912,6 +1912,939 @@ exports[`Storyshots Axentix/Components/Modal Normal 1`] = `
 </div>
 `;
 
+exports[`Storyshots Axentix/Components/Pagination Custom Arrows 1`] = `
+<ul
+  class="pagination"
+>
+  <li
+    class="txt-blue arrow pb-1 disabled"
+  >
+    <a>
+      ←
+    </a>
+  </li>
+   
+  <li
+    class="txt-blue disabled"
+  >
+    <a>
+      prev
+    </a>
+  </li>
+   
+  <div
+    class="flex"
+  >
+    <li
+      class="classes active"
+    >
+      <a>
+        1
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        2
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        3
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        4
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        5
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        6
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <!---->
+  </div>
+  <div
+    class="flex"
+  >
+    <!---->
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="dots"
+    >
+      ...
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        10
+      </a>
+    </li>
+  </div>
+   
+  <li
+    class="txt-blue"
+  >
+    <a>
+      next
+    </a>
+  </li>
+   
+  <li
+    class="arrow txt-blue pb-1"
+  >
+    <a>
+      →
+    </a>
+  </li>
+</ul>
+`;
+
+exports[`Storyshots Axentix/Components/Pagination Custom Items 1`] = `
+<ul
+  class="pagination"
+>
+  <li
+    class="arrow disabled"
+  >
+    <a>
+      «
+    </a>
+  </li>
+   
+  <li
+    class="arrow disabled"
+  >
+    <a>
+      ‹
+    </a>
+  </li>
+   
+  <div
+    class="flex"
+  >
+    <li
+      class="active"
+    >
+      <a>
+         1 
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="grey light-4 bd-solid bd-1 bd-grey bd-light-3"
+    >
+      <a>
+         2 
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="grey light-4 bd-solid bd-1 bd-grey bd-light-3"
+    >
+      <a>
+         3 
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="grey light-4 bd-solid bd-1 bd-grey bd-light-3"
+    >
+      <a>
+         4 
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="grey light-4 bd-solid bd-1 bd-grey bd-light-3"
+    >
+      <a>
+         5 
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="grey light-4 bd-solid bd-1 bd-grey bd-light-3"
+    >
+      <a>
+         6 
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <!---->
+  </div>
+  <div
+    class="flex"
+  >
+    <!---->
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="dots"
+    >
+      ...
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="grey light-4 bd-solid bd-1 bd-grey bd-light-3"
+    >
+      <a>
+         10 
+      </a>
+    </li>
+  </div>
+   
+  <li
+    class="arrow"
+  >
+    <a>
+      ›
+    </a>
+  </li>
+   
+  <li
+    class="arrow"
+  >
+    <a>
+      »
+    </a>
+  </li>
+</ul>
+`;
+
+exports[`Storyshots Axentix/Components/Pagination Large 1`] = `
+<ul
+  class="pagination large"
+>
+  <li
+    class="arrow disabled"
+  >
+    <a>
+      «
+    </a>
+  </li>
+   
+  <li
+    class="arrow disabled"
+  >
+    <a>
+      ‹
+    </a>
+  </li>
+   
+  <div
+    class="flex"
+  >
+    <li
+      class="classes active"
+    >
+      <a>
+        1
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        2
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        3
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        4
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        5
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        6
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <!---->
+  </div>
+  <div
+    class="flex"
+  >
+    <!---->
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="dots"
+    >
+      ...
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        10
+      </a>
+    </li>
+  </div>
+   
+  <li
+    class="arrow"
+  >
+    <a>
+      ›
+    </a>
+  </li>
+   
+  <li
+    class="arrow"
+  >
+    <a>
+      »
+    </a>
+  </li>
+</ul>
+`;
+
+exports[`Storyshots Axentix/Components/Pagination Max Visible 1`] = `
+<ul
+  class="pagination"
+>
+  <li
+    class="arrow disabled"
+  >
+    <a>
+      «
+    </a>
+  </li>
+   
+  <li
+    class="arrow disabled"
+  >
+    <a>
+      ‹
+    </a>
+  </li>
+   
+  <div
+    class="flex"
+  >
+    <li
+      class="classes active"
+    >
+      <a>
+        1
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        2
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        3
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        4
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <!---->
+  </div>
+  <div
+    class="flex"
+  >
+    <!---->
+  </div>
+  <div
+    class="flex"
+  >
+    <!---->
+  </div>
+  <div
+    class="flex"
+  >
+    <!---->
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="dots"
+    >
+      ...
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        10
+      </a>
+    </li>
+  </div>
+   
+  <li
+    class="arrow"
+  >
+    <a>
+      ›
+    </a>
+  </li>
+   
+  <li
+    class="arrow"
+  >
+    <a>
+      »
+    </a>
+  </li>
+</ul>
+`;
+
+exports[`Storyshots Axentix/Components/Pagination Normal 1`] = `
+<ul
+  class="pagination"
+>
+  <li
+    class="arrow disabled"
+  >
+    <a>
+      «
+    </a>
+  </li>
+   
+  <li
+    class="arrow disabled"
+  >
+    <a>
+      ‹
+    </a>
+  </li>
+   
+  <div
+    class="flex"
+  >
+    <li
+      class="classes active"
+    >
+      <a>
+        1
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        2
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        3
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        4
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        5
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        6
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <!---->
+  </div>
+  <div
+    class="flex"
+  >
+    <!---->
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="dots"
+    >
+      ...
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        10
+      </a>
+    </li>
+  </div>
+   
+  <li
+    class="arrow"
+  >
+    <a>
+      ›
+    </a>
+  </li>
+   
+  <li
+    class="arrow"
+  >
+    <a>
+      »
+    </a>
+  </li>
+</ul>
+`;
+
+exports[`Storyshots Axentix/Components/Pagination Small 1`] = `
+<ul
+  class="pagination small"
+>
+  <li
+    class="arrow disabled"
+  >
+    <a>
+      «
+    </a>
+  </li>
+   
+  <li
+    class="arrow disabled"
+  >
+    <a>
+      ‹
+    </a>
+  </li>
+   
+  <div
+    class="flex"
+  >
+    <li
+      class="classes active"
+    >
+      <a>
+        1
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        2
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        3
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        4
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        5
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        6
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <!---->
+  </div>
+  <div
+    class="flex"
+  >
+    <!---->
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="dots"
+    >
+      ...
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="classes"
+    >
+      <a>
+        10
+      </a>
+    </li>
+  </div>
+   
+  <li
+    class="arrow"
+  >
+    <a>
+      ›
+    </a>
+  </li>
+   
+  <li
+    class="arrow"
+  >
+    <a>
+      »
+    </a>
+  </li>
+</ul>
+`;
+
+exports[`Storyshots Axentix/Components/Pagination Totally Custom 1`] = `
+<ul
+  class="pagination"
+>
+  <li
+    class="txt-blue arrow pb-1 grey light-4 bd-solid bd-1 bd-grey bd-light-3 disabled"
+  >
+    <a>
+      ←
+    </a>
+  </li>
+   
+  <li
+    class="txt-blue grey light-4 bd-solid bd-1 bd-grey bd-light-3 disabled"
+  >
+    <a>
+      prev
+    </a>
+  </li>
+   
+  <div
+    class="flex"
+  >
+    <li
+      class="active"
+    >
+      <a>
+         1 
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="grey light-4 bd-solid bd-1 bd-grey bd-light-3"
+    >
+      <a>
+         2 
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="grey light-4 bd-solid bd-1 bd-grey bd-light-3"
+    >
+      <a>
+         3 
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="grey light-4 bd-solid bd-1 bd-grey bd-light-3"
+    >
+      <a>
+         4 
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="grey light-4 bd-solid bd-1 bd-grey bd-light-3"
+    >
+      <a>
+         5 
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="grey light-4 bd-solid bd-1 bd-grey bd-light-3"
+    >
+      <a>
+         6 
+      </a>
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <!---->
+  </div>
+  <div
+    class="flex"
+  >
+    <!---->
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="dots"
+    >
+      ...
+    </li>
+  </div>
+  <div
+    class="flex"
+  >
+    <li
+      class="grey light-4 bd-solid bd-1 bd-grey bd-light-3"
+    >
+      <a>
+         10 
+      </a>
+    </li>
+  </div>
+   
+  <li
+    class="txt-blue grey light-4 bd-solid bd-1 bd-grey bd-light-3"
+  >
+    <a>
+      next
+    </a>
+  </li>
+   
+  <li
+    class="arrow txt-blue pb-1 grey light-4 bd-solid bd-1 bd-grey bd-light-3"
+  >
+    <a>
+      →
+    </a>
+  </li>
+</ul>
+`;
+
 exports[`Storyshots Axentix/Components/Sidenav Large 1`] = `
 <div
   class="sidenav large airforce shadow-1"
