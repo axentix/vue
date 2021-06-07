@@ -12,7 +12,7 @@
       </li>
     </slot>
 
-    <span v-for="(total, i) of pageCount" :key="i" class="d-flex">
+    <div v-for="(total, i) of pageCount" :key="i" class="flex">
       <slot
         v-if="isShown(i)"
         :pageNumber="i + 1"
@@ -26,7 +26,7 @@
       </slot>
 
       <li v-else-if="i === 1 || i === pageCount - 2" class="dots">...</li>
-    </span>
+    </div>
 
     <slot name="next-arrow" :next="next" :pageCount="pageCount" :isDisabled="current === pageCount">
       <li class="arrow" @click.prevent="next" :class="{ disabled: current === pageCount }">
@@ -54,6 +54,7 @@ export default {
     total: {
       type: Number,
       default: 0,
+      required: true,
       validator: (val) => val > 0,
     },
     perPage: {
@@ -67,15 +68,14 @@ export default {
     },
     maxVisible: {
       type: Number,
-      default: 0,
-      validator: (val) => val > 3 || val === 0,
+      default: 7,
+      validator: (val) => val > 2 || val === 0,
     },
   },
   setup(props, ctx) {
-    const activeItem = ref(1),
-      pageCount = ref(Math.ceil(props.total / props.perPage)),
+    const pageCount = ref(Math.ceil(props.total / props.perPage)),
       vmodel = toRefs(props)[getVModelKey()],
-      current = ref(vmodel.value);
+      current = ref(1);
 
     let shownCount = 1,
       rest = 0;
@@ -89,8 +89,12 @@ export default {
     });
 
     watch(vmodel, (state) => {
-      if (state === null) return;
+      if (state === null || current.value === state) return;
       current.value = state;
+    });
+
+    watch(current, (state) => {
+      ctx.emit(vmodelEvent, state);
     });
 
     watch(
@@ -112,23 +116,23 @@ export default {
     };
 
     const prev = () => {
-      if (vmodel.value !== 1) {
-        ctx.emit('prev', vmodel.value - 1);
-        ctx.emit(vmodelEvent, vmodel.value - 1);
+      if (current.value !== 1) {
+        ctx.emit('prev', current.value - 1);
+        current.value -= 1;
       }
     };
 
     const next = () => {
-      if (vmodel.value !== pageCount.value) {
-        ctx.emit('next', vmodel.value + 1);
-        ctx.emit(vmodelEvent, vmodel.value + 1);
+      if (current.value !== pageCount.value) {
+        ctx.emit('next', current.value + 1);
+        current.value += 1;
       }
     };
 
     const goto = (i) => {
-      if (vmodel.value !== i) {
+      if (current.value !== i) {
         ctx.emit('goto', i);
-        ctx.emit(vmodelEvent, i);
+        current.value = i;
       }
     };
 
@@ -199,7 +203,6 @@ export default {
     return {
       pageCount,
       classes,
-      activeItem,
       current,
       prev,
       next,
@@ -214,6 +217,10 @@ export default {
 <style lang="scss" >
 .pagination {
   user-select: none;
+
+  .flex {
+    display: flex;
+  }
 
   .dots {
     margin: 0 1rem;

@@ -204,7 +204,7 @@ export default {
     isCollapsibleOpened: false,
     isCollapsibleOpened2: true,
     current: 4,
-    maxVisible: 7,
+    maxVisible: 5,
     radio: 'Yes',
     checked: true,
     items: ['Voiture', 'Moto', 'Bus', 'Velo', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
