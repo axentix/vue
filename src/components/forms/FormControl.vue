@@ -153,10 +153,8 @@ export default defineComponent({
       }
 
       const isFocused = document.activeElement === input.value || (props.tag === 'div' && isClicked.value);
-      const isDisabled =
-        input.value.hasAttribute('disabled') || (input.value.hasAttribute('readonly') && !props.customSelect);
 
-      isDisabled ? '' : updateInput(isActive, hasContent, isFocused, formField);
+      updateInput(isActive, hasContent, isFocused, formField);
     };
 
     const updateInput = (isActive, hasContent, isFocused, formField) => {

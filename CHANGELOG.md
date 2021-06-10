@@ -1,3 +1,11 @@
+# 0.6.5 - 2021-06-10
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Form control won't work with disabled input
+
 # 0.6.4 - 2021-06-10
 
 - ADDED
