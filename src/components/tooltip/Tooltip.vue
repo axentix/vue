@@ -41,6 +41,7 @@ export default defineComponent({
     const instance = ref(null),
       elRect = ref(null),
       tooltip = ref(null),
+      resizeRef = ref(null),
       tooltipRect = ref(null);
 
     const init = () => {
@@ -49,10 +50,21 @@ export default defineComponent({
       instance.value = getCurrentInstance();
       addInstance({ type: 'Tooltip', instance: instance.value });
 
+      setupListeners();
+
       tooltipRect.value = instance.value.proxy.$el.getBoundingClientRect();
 
       createTooltip();
       updatePosition();
+    };
+
+    const setupListeners = () => {
+      resizeRef.value = updatePosition.bind(this);
+      window.addEventListener('resize', resizeRef.value);
+    };
+
+    const removeListeners = () => {
+      window.removeEventListener('resize', resizeRef.value);
     };
 
     const createTooltip = () => {
@@ -146,6 +158,7 @@ export default defineComponent({
     });
 
     onUnmounted(() => {
+      removeListeners();
       removeInstance(getCurrentInstance());
     });
 
