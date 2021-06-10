@@ -107,7 +107,7 @@
         </ax-form-field>
 
         <ax-form-field label="Test input">
-          <ax-form-control tag="input" type="text" v-model="test"></ax-form-control>
+          <ax-form-control tag="input" type="text" value="tzz" disabled></ax-form-control>
         </ax-form-field>
 
         <ax-form-field label="Select">
