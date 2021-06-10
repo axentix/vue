@@ -1,3 +1,11 @@
+# 0.6.4 - 2021-06-10
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - The tooltip position wasn't updated when the window was resized
+
 # 0.6.3 - 2021-06-10
 
 - ADDED
