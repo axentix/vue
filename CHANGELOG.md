@@ -1,3 +1,11 @@
+# 0.6.2 - 2021-06-10
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - The collapsible active value was set at the wrong time when closed
+
 # 0.6.1 - 2021-06-07
 
 - ADDED
