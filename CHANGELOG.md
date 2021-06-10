@@ -1,3 +1,13 @@
+# 0.6.6 - 2021-06-10
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Autocomplete label
+  - Autocomplete watch items
+  - Tooltip unmount removing
+
 # 0.6.5 - 2021-06-10
 
 - ADDED

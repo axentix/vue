@@ -2,6 +2,7 @@
   <div v-bind="$attrs" v-ax-click-outside="() => toggle(false)">
     <ax-form-control
       custom-select
+      :autocomplete="result.length > 0 ? 1 : inputValue.length"
       tag="input"
       type="text"
       @click.native="() => toggle(true)"
@@ -12,6 +13,7 @@
 
     <ax-form-control
       custom-select
+      :autocomplete="result.length > 0 ? 1 : inputValue.length"
       tag="div"
       @click.native="() => toggle(true)"
       :single-line="singleLine"
@@ -102,7 +104,7 @@ export default defineComponent({
       lastInputValue = ref(''),
       opacity = ref(0),
       isFocused = ref(false),
-      itemsRef = ref(props.items),
+      itemsRef = toRefs(props).items,
       vmodel = toRefs(props)[getVModelKey()];
 
     const vmodelEvent = getVModelEvent();

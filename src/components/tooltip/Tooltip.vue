@@ -65,12 +65,17 @@ export default defineComponent({
 
     const removeListeners = () => {
       window.removeEventListener('resize', resizeRef.value);
+      destroyTooltip();
     };
 
     const createTooltip = () => {
       tooltip.value = document.createElement('div');
       setProperties();
       document.body.appendChild(tooltip.value);
+    };
+
+    const destroyTooltip = () => {
+      tooltip.value.remove();
     };
 
     const setProperties = () => {
