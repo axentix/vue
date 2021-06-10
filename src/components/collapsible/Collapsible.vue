@@ -148,6 +148,7 @@ export default defineComponent({
 
       ctx.emit('close');
 
+      isActive.value = false;
       setTimeout(() => {
         isAnimated.value = true;
         maxHeight.value = '0';
@@ -155,7 +156,6 @@ export default defineComponent({
 
       setTimeout(() => {
         display.value = '';
-        isActive.value = false;
         isAnimated.value = false;
       }, props.animationDuration + 10);
     };
