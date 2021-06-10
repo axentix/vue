@@ -4,7 +4,7 @@
       <nav class="navbar primary"><span class="navbar-brand">Vue Axentix</span></nav>
     </header>
 
-    <ax-sidenav v-model="isSidenavOpened" class="airforce" :fixed="true">
+    <ax-sidenav v-model="isSidenavOpened" class="airforce" fixed large>
       <template v-slot:header> Test </template>
 
       <ax-sidenav-link :active="isCollapsibleOpened" @click="isCollapsibleOpened = !isCollapsibleOpened">
