@@ -152,8 +152,8 @@ export default defineComponent({
     };
 
     const detectMultipleSidenav = () => {
-      const sidenavFixed = getInstancesByType('Sidenav').find((ins) => ins.fixed);
-      const firstSidenavInit = sidenavFixed && sidenavFixed === this;
+      const sidenavFixed = getInstancesByType('Sidenav').find((ins) => ins.props.fixed);
+      const firstSidenavInit = sidenavFixed && sidenavFixed === getCurrentInstance();
 
       if (layoutEl.value && firstSidenavInit) cleanLayout();
 
