@@ -47,6 +47,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    autocomplete: {
+      type: Number,
+      default: -1,
+    },
     singleLine: {
       type: Boolean,
       default: false,
@@ -140,7 +144,7 @@ export default defineComponent({
 
       let hasContent;
       if (props.tag === 'div') {
-        hasContent = input.value.innerHTML.trim() !== '';
+        hasContent = props.autocomplete !== -1 ? props.autocomplete > 0 : input.value.innerHTML.trim() !== '';
       } else {
         hasContent =
           input.value.value.length > 0 ||

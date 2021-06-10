@@ -33,7 +33,7 @@ export const selectMixin = {
 };
 
 export const updateComputedItems = (computedItems, itemsRef, vmodel, props, multipleSelected, selected) => {
-  computedItems.value = itemsRef.value.reduce((acc, item, i) => {
+  computedItems.value = [...itemsRef.value].reduce((acc, item, i) => {
     let obj;
     const isSelected =
       (item.selected && !vmodel.value) ||

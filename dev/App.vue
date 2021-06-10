@@ -98,7 +98,7 @@
           </ax-form-select>
         </ax-form-field>
 
-        <ax-form-field>
+        <ax-form-field label="Toto">
           <ax-form-autocomplete :items="items" multiple chips chips-closable v-model="multipleSelectedValue">
             <template #prepend="{ toggle }">
               <div @click.prevent="selectAll(toggle)" class="form-select-item">Select all</div>
