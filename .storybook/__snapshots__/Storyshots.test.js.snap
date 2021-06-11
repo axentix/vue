@@ -289,7 +289,7 @@ exports[`Storyshots Axentix/Components/Forms/Autocomplete Chips 1`] = `
   class="form-material"
 >
   <div
-    class="form-field active"
+    class="form-field"
     style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 100%;"
   >
     <label
@@ -331,7 +331,7 @@ exports[`Storyshots Axentix/Components/Forms/Autocomplete Chips Closable 1`] = `
   class="form-material"
 >
   <div
-    class="form-field active"
+    class="form-field"
     style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 100%;"
   >
     <label
@@ -373,7 +373,7 @@ exports[`Storyshots Axentix/Components/Forms/Autocomplete Multiple 1`] = `
   class="form-material"
 >
   <div
-    class="form-field active"
+    class="form-field"
     style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 100%;"
   >
     <label
@@ -452,7 +452,7 @@ exports[`Storyshots Axentix/Components/Forms/Autocomplete Single Line 1`] = `
   class="form-material"
 >
   <div
-    class="form-field active"
+    class="form-field"
     style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 100%;"
   >
     <label
@@ -1016,11 +1016,13 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Disabled Material 1`] = `
     fieldclasses=""
     material="true"
     placeholder=""
-    style="--form-material-color: #4c9f85;"
+    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 100%;"
     tag="input"
     type="text"
   >
-    <label>
+    <label
+      style="left: 0px;"
+    >
       Text input
     </label>
      
@@ -1268,11 +1270,13 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Readonly Material 1`] = `
     material="true"
     placeholder=""
     readonly="readonly"
-    style="--form-material-color: #4c9f85;"
+    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 100%;"
     tag="input"
     type="text"
   >
-    <label>
+    <label
+      style="left: 0px;"
+    >
       Text input
     </label>
      
