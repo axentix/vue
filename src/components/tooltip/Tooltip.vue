@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { defineComponent, onMounted, onUnmounted, ref, getCurrentInstance } from 'vue-demi';
+import { defineComponent, onMounted, onUnmounted, ref, getCurrentInstance, watch } from 'vue-demi';
 import { addInstance, removeInstance } from '../../utils/config';
 
 export default defineComponent({
@@ -28,8 +28,8 @@ export default defineComponent({
       default: 0,
     },
     offset: {
-      type: String,
-      default: '10px',
+      type: Number,
+      default: '10',
     },
     position: {
       type: String,
@@ -40,9 +40,20 @@ export default defineComponent({
   setup(props, ctx) {
     const instance = ref(null),
       elRect = ref(null),
+      isShown = ref(false),
       tooltip = ref(null),
       resizeRef = ref(null),
       tooltipRect = ref(null);
+
+    watch(
+      () => props.content,
+      (state) => {
+        if (!tooltip.value) return;
+        tooltip.value.innerHTML = state;
+
+        updatePosition();
+      }
+    );
 
     const init = () => {
       ctx.emit('init');
@@ -118,7 +129,8 @@ export default defineComponent({
       }
 
       if (props.position === 'top') {
-        tooltip.value.style.top = tooltipRect.value.top - tooltipRect.value.height + 'px';
+        tooltip.value.style.top =
+          tooltipRect.value.top + (isShown.value ? props.offset : 0) - tooltipRect.value.height + 'px';
       } else if (props.position === 'left') {
         tooltip.value.style.left = elRect.value.left - tooltipRect.value.width + 'px';
       }
@@ -135,16 +147,18 @@ export default defineComponent({
       setProperties();
       updatePosition();
 
+      isShown.value = true;
+
       ctx.emit('show');
       setTimeout(() => {
         props.position == 'top'
-          ? (tooltip.value.style.transform = `translateY(-${props.offset})`)
+          ? (tooltip.value.style.transform = `translateY(-${props.offset}px)`)
           : props.position == 'right'
-          ? (tooltip.value.style.transform = `translateX(${props.offset})`)
+          ? (tooltip.value.style.transform = `translateX(${props.offset}px)`)
           : props.position == 'bottom'
-          ? (tooltip.value.style.transform = `translateY(${props.offset})`)
+          ? (tooltip.value.style.transform = `translateY(${props.offset}px)`)
           : props.position == 'left'
-          ? (tooltip.value.style.transform = `translateX(-${props.offset})`)
+          ? (tooltip.value.style.transform = `translateX(-${props.offset}px)`)
           : '';
 
         tooltip.value.style.opacity = 1;
@@ -153,6 +167,8 @@ export default defineComponent({
 
     const hide = () => {
       ctx.emit('hide');
+
+      isShown.value = false;
 
       tooltip.value.style.transform = 'translate(0)';
       tooltip.value.style.opacity = 0;
