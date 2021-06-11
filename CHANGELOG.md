@@ -1,3 +1,12 @@
+# 0.6.7 - 2021-06-11
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Switch instances array to ref(array)
+  - Handle dynamic tooltip content
+
 # 0.6.6 - 2021-06-10
 
 - ADDED

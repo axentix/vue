@@ -28,11 +28,11 @@
     <main class="m-5">
       <div class="d-flex" style="justify-content: flex-end">
         <ax-tooltip content="sidenav toggler">
-          <ax-btn class="airforce dark-1 rounded-1 shadow-1" @click="isSidenavOpened = !isSidenavOpened"
-            >Toggle sidenav</ax-btn
-          >
+          <ax-btn class="airforce dark-1 rounded-1 shadow-1" @click="modal = !modal">Toggle sidenav</ax-btn>
         </ax-tooltip>
       </div>
+
+      <ax-modal class="white rounded-1 shadow-1" v-model="modal"> Hey </ax-modal>
 
       <div class="mt-5"></div>
 
@@ -202,6 +202,7 @@
 export default {
   name: 'App',
   data: () => ({
+    modal: false,
     isSidenavOpened: false,
     isCollapsibleOpened: false,
     isCollapsibleOpened2: true,
