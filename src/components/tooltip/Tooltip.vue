@@ -29,7 +29,7 @@ export default defineComponent({
     },
     offset: {
       type: Number,
-      default: '10',
+      default: 10,
     },
     position: {
       type: String,
