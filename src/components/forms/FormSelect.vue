@@ -9,7 +9,7 @@
         <div class="form-chips" v-else v-for="(value, i) in result" :key="i">
           {{ value }}
 
-          <span class="form-chips-closable" v-if="chipsClosable" @click.prevent.stop="removeByValue(value)">
+          <span class="form-chips-closable" v-if="chipsClosable" @click.prevent.stop="select(value)">
             <svg
               version="1.1"
               viewBox="0 0 512 512"
@@ -51,7 +51,6 @@
 import { computed, defineComponent, onMounted, ref, toRefs, watch } from 'vue-demi';
 import vModelMixin, { getVModelEvent, getVModelKey } from '../../utils/v-model';
 import {
-  removeByVal,
   selectEl,
   selectMixin,
   selectMultipleEl,
@@ -123,8 +122,6 @@ export default defineComponent({
 
     const toggle = (state = false) => toggleState(state, isOpened, opacity, isTop, container);
 
-    const removeByValue = (value) => removeByVal(value, computedItems, multipleSelected);
-
     const select = (i) => {
       if (props.multiple) return selectMultiple(i);
 
@@ -149,7 +146,6 @@ export default defineComponent({
       select,
       result,
       container,
-      removeByValue,
       computedItems,
     };
   },

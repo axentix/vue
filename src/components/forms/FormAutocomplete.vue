@@ -2,7 +2,7 @@
   <div v-bind="$attrs" v-ax-click-outside="() => toggle(false)">
     <ax-form-control
       custom-select
-      :autocomplete="result.length > 0 ? 1 : inputValue.length"
+      :autocomplete="autocompleteActive"
       tag="input"
       type="text"
       @click.native="() => toggle(true)"
@@ -13,7 +13,7 @@
 
     <ax-form-control
       custom-select
-      :autocomplete="result.length > 0 ? 1 : inputValue.length"
+      :autocomplete="autocompleteActive"
       tag="div"
       @click.native="() => toggle(true)"
       :single-line="singleLine"
@@ -26,11 +26,7 @@
         :key="i"
       >
         {{ value }}<template v-if="i !== result.length - 1 && !chips">,</template>
-        <span
-          class="form-chips-closable"
-          v-if="chips && chipsClosable"
-          @click.prevent.stop="removeByValue(value)"
-        >
+        <span class="form-chips-closable" v-if="chips && chipsClosable" @click.prevent.stop="select(value)">
           <svg
             version="1.1"
             viewBox="0 0 512 512"
@@ -72,7 +68,6 @@
 import { computed, defineComponent, onMounted, onUnmounted, ref, toRefs, watch } from 'vue-demi';
 import vModelMixin, { getVModelEvent, getVModelKey } from '../../utils/v-model';
 import {
-  removeByVal,
   selectEl,
   selectMixin,
   selectMultipleEl,
@@ -133,6 +128,11 @@ export default defineComponent({
       return filtered;
     });
 
+    const autocompleteActive = computed(() => {
+      if (result.value.length > 0) return 1;
+      return opacity.value === 1 ? 1 : inputValue.value.length;
+    });
+
     watch(inputValue, (val, oldVal) => {
       lastInputValue.value = oldVal;
       if (selected.value.index >= 0 && val === '' && !props.multiple) {
@@ -177,8 +177,6 @@ export default defineComponent({
     };
 
     const toggle = (state = false) => toggleState(state, isOpened, opacity, isTop, container);
-
-    const removeByValue = (value) => removeByVal(value, computedItems, multipleSelected);
 
     const select = (value) => {
       const i = computedItems.value.findIndex((item) => item.value === value);
@@ -239,9 +237,9 @@ export default defineComponent({
       container,
       input,
       isFocused,
-      removeByValue,
       inputValue,
       filteredItems,
+      autocompleteActive,
     };
   },
 });
