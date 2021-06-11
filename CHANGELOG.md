@@ -1,3 +1,12 @@
+# 0.6.8 - 2021-06-11
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Form group position
+  - Tooltip offset default value
+
 # 0.6.7 - 2021-06-11
 
 - ADDED

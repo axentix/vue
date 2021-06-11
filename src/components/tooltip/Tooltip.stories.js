@@ -11,7 +11,7 @@ export default {
     classes: 'grey dark-4 light-shadow-2 p-2',
     animationDuration: 200,
     animationDelay: 0,
-    offset: '10px',
+    offset: 10,
   },
 };
 

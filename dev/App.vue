@@ -123,8 +123,8 @@
 
         <ax-form-field>
           <ax-form-group>
-            <span class="form-group-txt">@</span>
             <ax-form-control tag="input" type="text"></ax-form-control>
+            <span class="form-group-txt">@</span>
           </ax-form-group>
         </ax-form-field>
 
