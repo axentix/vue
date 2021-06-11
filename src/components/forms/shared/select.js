@@ -38,7 +38,7 @@ export const updateComputedItems = (computedItems, itemsRef, vmodel, props, mult
     const isSelected =
       (item.selected && !vmodel.value) ||
       (!props.multiple && vmodel.value === item) ||
-      (props.multiple && vmodel.value.includes(item.value)) ||
+      (props.multiple && vmodel.value.includes(item)) ||
       (props.multiple && vmodel.value.length === 0 && item.selected);
 
     const baseObj = {
@@ -129,9 +129,4 @@ export const unselectEl = (i, computedItems, multipleSelected) => {
 
   const index = multipleSelected.value.findIndex((val) => val.value === item.value);
   multipleSelected.value.splice(index, 1);
-};
-
-export const removeByVal = (value, computedItems, multipleSelected) => {
-  const i = computedItems.value.findIndex((val) => val.value === value);
-  unselectEl(i, computedItems, multipleSelected);
 };

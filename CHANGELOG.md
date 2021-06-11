@@ -1,3 +1,12 @@
+# 0.6.9 - 2021-06-11
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Form autocomplete closable chips not synchronize with vmodel
+  - Form autocomplete vmodel watch not work
+
 # 0.6.8 - 2021-06-11
 
 - ADDED
