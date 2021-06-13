@@ -1,3 +1,11 @@
+# 0.6.12 - 2021-06-13
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Form autocomplete & Form select automatically removed duplicated values
+- BUGFIXES
+
 # 0.6.11 - 2021-06-13
 
 - ADDED

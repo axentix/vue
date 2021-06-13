@@ -33,7 +33,7 @@ export const selectMixin = {
 };
 
 export const updateComputedItems = (computedItems, itemsRef, vmodel, props, multipleSelected, selected) => {
-  computedItems.value = [...itemsRef.value].reduce((acc, item, i) => {
+  computedItems.value = [...new Set(itemsRef.value)].reduce((acc, item, i) => {
     let obj;
     const isSelected =
       (item.selected && !vmodel.value) ||
@@ -59,7 +59,10 @@ export const updateComputedItems = (computedItems, itemsRef, vmodel, props, mult
       if (!obj.value) obj.value = obj.name;
     }
 
-    if (isSelected) props.multiple ? multipleSelected.value.push(obj) : (selected.value = obj);
+    if (isSelected)
+      props.multiple && !multipleSelected.value.some((el) => obj.value === el.value)
+        ? multipleSelected.value.push(obj)
+        : (selected.value = obj);
 
     acc.push(obj);
     return acc;
