@@ -143,7 +143,7 @@ export default defineComponent({
 
     watch(vmodel, (val) => {
       if (!props.multiple) {
-        if (val === selected.value.value) return;
+        if (selected.value && val === selected.value.value) return;
         select(val);
         return;
       }

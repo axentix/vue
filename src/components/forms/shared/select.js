@@ -105,6 +105,7 @@ export const selectEl = (i, selected, computedItems, ctx, vmodelEvent) => {
 };
 
 export const selectMultipleEl = (i, computedItems, multipleSelected, ctx, vmodelEvent, result) => {
+  if (i < 0) return;
   const item = computedItems.value[i];
 
   const index = multipleSelected.value.findIndex((val) => val.value === item.value && item.selected);
@@ -123,6 +124,7 @@ export const selectMultipleEl = (i, computedItems, multipleSelected, ctx, vmodel
 };
 
 export const unselectEl = (i, computedItems, multipleSelected) => {
+  if (i < 0) return;
   const item = computedItems.value[i];
   item.selected = false;
   computedItems.value.splice(i, 1, item);
