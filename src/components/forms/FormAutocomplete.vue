@@ -23,7 +23,7 @@
         class="form-autocomplete-selected"
         :class="{ 'form-autocomplete-focused': i === result.length - 1 && isFocused, 'form-chips': chips }"
         v-for="(value, i) in result"
-        :key="i"
+        :key="'auto-val-' + i"
       >
         {{ value }}<template v-if="i !== result.length - 1 && !chips">,</template>
         <span class="form-chips-closable" v-if="chips && chipsClosable" @click.prevent.stop="select(value)">
@@ -49,13 +49,13 @@
       <div
         class="form-select-item"
         v-for="(item, i) in filteredItems"
-        :key="i"
+        :key="'show-item-' + i"
         :class="{ selected: item.selected, disabled: item.disabled }"
         @click.prevent="item.disabled ? '' : select(item.value)"
       >
-        <ax-form-check v-model="item.selected" v-if="multiple" :disabled="item.disabled">{{
-          item.name
-        }}</ax-form-check>
+        <ax-form-check v-model="item.selected" v-if="multiple" :disabled="item.disabled">
+          {{ item.name }}
+        </ax-form-check>
         <template v-else>{{ item.name }}</template>
       </div>
 

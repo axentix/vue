@@ -6,7 +6,7 @@
       </template>
       <template v-else>
         <template v-if="!multiple">{{ result.name }}</template>
-        <div class="form-chips" v-else v-for="(value, i) in result" :key="i">
+        <div class="form-chips" v-else v-for="(value, i) in result" :key="'auto-val-' + i">
           {{ value }}
 
           <span class="form-chips-closable" v-if="chipsClosable" @click.prevent.stop="select(value)">
@@ -32,13 +32,13 @@
       <div
         class="form-select-item"
         v-for="(item, i) in computedItems"
-        :key="i"
+        :key="'show-item-' + i"
         :class="{ selected: item.selected, disabled: item.disabled }"
         @click.prevent="item.disabled ? '' : select(i)"
       >
-        <ax-form-check v-model="item.selected" v-if="multiple" :disabled="item.disabled">{{
-          item.name
-        }}</ax-form-check>
+        <ax-form-check v-model="item.selected" v-if="multiple" :disabled="item.disabled">
+          {{ item.name }}
+        </ax-form-check>
         <template v-else>{{ item.name }}</template>
       </div>
 
