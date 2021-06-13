@@ -210,7 +210,8 @@ export default {
     maxVisible: 5,
     radio: 'Yes',
     checked: true,
-    items: ['Voiture', 'Moto', 'Bus', 'Velo', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
+    // items: ['Voiture', 'Moto', 'Bus', 'Velo', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
+    items: [],
     // items: [
     //   { name: 'Voiture', value: 'Voiture', disabled: false, selected: true },
     //   { name: 'Moto', value: 'Moto', disabled: false },
@@ -239,6 +240,17 @@ export default {
       console.log(this.multipleSelectedValue);
       toggle(false);
     },
+  },
+  mounted() {
+    setTimeout(() => {
+      this.items = [];
+      console.log('empty');
+
+      setTimeout(() => {
+        this.items = ['Ehy', 'oh'];
+        console.log('no empty');
+      }, 1000);
+    }, 1000);
   },
 };
 </script>

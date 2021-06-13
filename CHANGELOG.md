@@ -1,3 +1,12 @@
+# 0.6.10 - 2021-06-13
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Form select vmodel watch not work
+  - Form autocomplete ca throw error with async data
+
 # 0.6.9 - 2021-06-11
 
 - ADDED

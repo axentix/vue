@@ -70,7 +70,7 @@ export default defineComponent({
       selected = ref({}),
       multipleSelected = ref([]),
       opacity = ref(0),
-      itemsRef = ref(props.items),
+      itemsRef = toRefs(props).items,
       vmodel = toRefs(props)[getVModelKey()];
 
     const vmodelEvent = getVModelEvent();
@@ -96,9 +96,9 @@ export default defineComponent({
 
     watch(vmodel, (val) => {
       if (!props.multiple) {
-        if (val === selected.value.value) return;
+        if (selected.value && val === selected.value.value) return;
         const i = computedItems.value.findIndex((item) => item.value === val);
-        select(i);
+        if (i >= 0) select(i);
         return;
       }
 
