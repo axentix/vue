@@ -230,7 +230,7 @@ export default {
     //   { name: 'Moto', value: 'Moto', disabled: false },
     // ],
     selectedValue: '',
-    multipleSelectedValue: ['Voiture'],
+    multipleSelectedValue: [],
     test: '',
   }),
   watch: {

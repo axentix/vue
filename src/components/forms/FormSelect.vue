@@ -34,7 +34,7 @@
         v-for="(item, i) in computedItems"
         :key="'show-item-' + i"
         :class="{ selected: item.selected, disabled: item.disabled }"
-        @click.prevent="item.disabled ? '' : select(i)"
+        @click.prevent="item.disabled ? '' : select(item.value)"
       >
         <ax-form-check v-model="item.selected" v-if="multiple" :disabled="item.disabled">
           {{ item.name }}
@@ -81,6 +81,7 @@ export default defineComponent({
       container = ref(null),
       selected = ref({}),
       multipleSelected = ref([]),
+      firstToggle = ref(true),
       opacity = ref(0),
       itemsRef = toRefs(props).items,
       vmodel = toRefs(props)[getVModelKey()];
@@ -114,6 +115,7 @@ export default defineComponent({
         if (selected.value && val === selected.value.value) return;
         const i = computedItems.value.findIndex((item) => item.value === val);
         if (i >= 0) select(i);
+        validate();
         return;
       }
 
@@ -129,6 +131,8 @@ export default defineComponent({
         const i = computedItems.value.findIndex((item) => item.value === v);
         unselectEl(i, computedItems, multipleSelected);
       });
+
+      validate();
     });
 
     watch(itemsRef, () => {
@@ -136,12 +140,16 @@ export default defineComponent({
     });
 
     const toggle = (state = false) => {
-      if (!state) validate();
+      if (firstToggle.value && state) firstToggle.value = false;
+
+      if (!state && !firstToggle.value) validate();
       else resetFormField(formField);
       toggleState(state, isOpened, opacity, isTop, container);
     };
 
-    const select = (i) => {
+    const select = (value) => {
+      const i = computedItems.value.findIndex((item) => item.value === value);
+      if (i === -1) return;
       if (props.multiple) return selectMultiple(i);
 
       selectEl(i, selected, computedItems, ctx, vmodelEvent);

@@ -111,6 +111,7 @@ export default defineComponent({
       lastInputValue = ref(''),
       opacity = ref(0),
       isFocused = ref(false),
+      firstToggle = ref(true),
       itemsRef = toRefs(props).items,
       vmodel = toRefs(props)[getVModelKey()];
 
@@ -160,6 +161,7 @@ export default defineComponent({
       if (!props.multiple) {
         if (selected.value && val === selected.value.value) return;
         select(val);
+        validate();
         return;
       }
 
@@ -175,6 +177,8 @@ export default defineComponent({
         const i = computedItems.value.findIndex((item) => item.value === v);
         unselectEl(i, computedItems, multipleSelected);
       });
+
+      validate();
     });
 
     watch(itemsRef, () => {
@@ -192,7 +196,9 @@ export default defineComponent({
     };
 
     const toggle = (state = false) => {
-      if (!state) validate();
+      if (firstToggle.value && state) firstToggle.value = false;
+
+      if (!state && !firstToggle.value) validate();
       else resetFormField(formField);
       toggleState(state, isOpened, opacity, isTop, container);
     };
