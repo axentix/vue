@@ -30,14 +30,15 @@ export default defineComponent({
     provide('ax-form-uniqid', uniqid);
 
     const validate = () =>
-      !instances.value
+      instances.value
         .filter(
           (ins) => validType.includes(ins.type) && !ins.instance.isUnmounted && ins.FormUniqid === uniqid
         )
-        .some((ins) => {
-          if (isVue2) return !ins.instance.proxy.validate();
-          return !ins.instance.ctx.validate();
-        });
+        .map((ins) => {
+          if (isVue2) return ins.instance.proxy.validate();
+          return ins.instance.ctx.validate();
+        })
+        .every((b) => b);
 
     return {
       classes,
