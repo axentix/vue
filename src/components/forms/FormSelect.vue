@@ -143,7 +143,7 @@ export default defineComponent({
       if (firstToggle.value && state) firstToggle.value = false;
 
       if (!state && !firstToggle.value) validate();
-      else resetFormField(formField);
+      else if (!firstToggle.value) resetFormField(formField);
       toggleState(state, isOpened, opacity, isTop, container);
     };
 
