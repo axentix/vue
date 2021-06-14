@@ -65,7 +65,18 @@
 </template>
 
 <script>
-import { computed, defineComponent, onMounted, onUnmounted, ref, toRefs, watch } from 'vue-demi';
+import {
+  computed,
+  defineComponent,
+  getCurrentInstance,
+  inject,
+  onMounted,
+  onUnmounted,
+  ref,
+  toRefs,
+  watch,
+} from 'vue-demi';
+import { addInstance, removeInstance } from '../../utils/config';
 import vModelMixin, { getVModelEvent, getVModelKey } from '../../utils/v-model';
 import {
   selectEl,
@@ -75,10 +86,11 @@ import {
   unselectEl,
   updateComputedItems,
 } from './shared/select';
+import validateMixin, { resetFormField, validateField } from './shared/validate';
 
 export default defineComponent({
   name: 'AxFormAutocomplete',
-  mixins: [vModelMixin, selectMixin],
+  mixins: [vModelMixin, selectMixin, validateMixin],
   props: {
     filter: {
       type: Function,
@@ -103,6 +115,9 @@ export default defineComponent({
       vmodel = toRefs(props)[getVModelKey()];
 
     const vmodelEvent = getVModelEvent();
+
+    const formUniqid = inject('ax-form-uniqid'),
+      formField = inject('ax-form-field');
 
     const style = computed(() => {
       return {
@@ -176,7 +191,11 @@ export default defineComponent({
       document.removeEventListener('click', removeFocus);
     };
 
-    const toggle = (state = false) => toggleState(state, isOpened, opacity, isTop, container);
+    const toggle = (state = false) => {
+      if (!state) validate();
+      else resetFormField(formField);
+      toggleState(state, isOpened, opacity, isTop, container);
+    };
 
     const select = (value) => {
       const i = computedItems.value.findIndex((item) => item.value === value);
@@ -197,7 +216,13 @@ export default defineComponent({
     };
 
     const onBackspace = (e) => {
-      if (e.keyCode !== 8 || inputValue.value !== '' || multipleSelected.value.length === 0) return;
+      if (
+        e.keyCode !== 8 ||
+        inputValue.value !== '' ||
+        multipleSelected.value.length === 0 ||
+        !isOpened.value
+      )
+        return;
 
       if (lastInputValue.value !== '') {
         backspaceCount.value++;
@@ -220,13 +245,20 @@ export default defineComponent({
       isFocused.value = false;
     };
 
+    const validate = () => {
+      if (props.multiple) return validateField(props, multipleSelected, formField);
+      return validateField(props, selected, formField);
+    };
+
     onMounted(() => {
+      addInstance({ type: 'AxFormAutocomplete', instance: getCurrentInstance(), FormUniqid: formUniqid });
       setupListeners();
       updateComputedItems(computedItems, itemsRef, vmodel, props, multipleSelected, selected);
     });
 
     onUnmounted(() => {
       removeListeners();
+      removeInstance(getCurrentInstance());
     });
 
     return {
@@ -239,6 +271,7 @@ export default defineComponent({
       isFocused,
       inputValue,
       filteredItems,
+      validate,
       autocompleteActive,
     };
   },

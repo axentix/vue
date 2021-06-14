@@ -1,3 +1,14 @@
+# 0.7.0 - 2021-06-14
+
+- ADDED
+  - Form validation with `:rules` prop & `.validate()` method
+- REMOVED
+- IMPROVED
+  - Form field & Form control reactivity
+  - Forms now use provide/inject
+- BUGFIXES
+  - Form autocomplete backspace event can be triggered when autocomplete isn't opened
+
 # 0.6.12 - 2021-06-13
 
 - ADDED

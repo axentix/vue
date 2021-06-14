@@ -21,23 +21,27 @@ import {
   computed,
   defineComponent,
   getCurrentInstance,
+  inject,
+  isVue2,
   onMounted,
   onUnmounted,
   onUpdated,
+  reactive,
   ref,
   toRefs,
   watch,
 } from 'vue-demi';
-import { getParentByName } from '../../utils/utils';
 import AxClickOutside from '../../directives/click-outside';
 import vModelMixin, { getVModelEvent, getVModelKey } from '../../utils/v-model';
+import validateMixin, { validateField } from './shared/validate';
+import { addInstance, removeInstance } from '../../utils/config';
 
 export default defineComponent({
   name: 'AxFormControl',
   directives: {
     axClickOutside: AxClickOutside,
   },
-  mixins: [vModelMixin],
+  mixins: [vModelMixin, validateMixin],
   props: {
     tag: {
       type: String,
@@ -65,9 +69,40 @@ export default defineComponent({
       vmodel = toRefs(props)[getVModelKey()],
       localValue = ref(vmodel.value),
       isClicked = ref(false),
+      formFieldClasses = reactive({
+        active: false,
+        'is-focused': false,
+        'is-txtarea-focused': false,
+      }),
+      formFieldStyle = reactive({
+        '--form-material-position': 0,
+        '--form-material-left-offset': 0,
+        '--form-material-right-offset': 0,
+        '--form-material-width': 0,
+      }),
       input = ref(null);
 
     const vmodelEvent = getVModelEvent();
+
+    const isMaterial = inject('ax-form-material', false),
+      formUniqid = inject('ax-form-uniqid'),
+      formField = inject('ax-form-field');
+
+    watch(formField, () => {
+      handle();
+    });
+
+    watch(formFieldClasses, () => {
+      isVue2
+        ? (formField.value.data.extraClasses = formFieldClasses)
+        : (formField.value.proxy.extraClasses = formFieldClasses);
+    });
+
+    watch(formFieldStyle, () => {
+      isVue2
+        ? (formField.value.data.extraStyle = formFieldStyle)
+        : (formField.value.proxy.extraStyle = formFieldStyle);
+    });
 
     watch(vmodel, (val) => {
       localValue.value = val;
@@ -87,9 +122,8 @@ export default defineComponent({
       if (props.tag === 'div') return;
       input.value.value = val;
       handle();
+      validate();
     });
-
-    const parent = getCurrentInstance().parent;
 
     const classes = computed(() => {
       return {
@@ -117,30 +151,28 @@ export default defineComponent({
       resizeRef.value = null;
     };
 
-    const handleDiv = (state = true) => {
+    const handleDiv = (state = true, e) => {
       if (props.tag !== 'div') return;
       isClicked.value = state;
-      handle();
+      handle(e);
     };
 
-    const handle = () => {
-      const form = getParentByName(parent, 'AxForm');
-      if (!form || !form.props.material) {
+    const handle = (e) => {
+      if (!isMaterial) {
         removeListener();
         return;
       }
 
-      let formField = getParentByName(parent, 'AxFormField');
-      if (!formField || formField.props.default) {
+      if (!formField.value || (isVue2 ? formField.value.props.default : formField.value.ctx.default)) {
         removeListener();
         return;
       }
+
+      if (e && (e.type === 'click' || e.type === 'blur')) validate();
 
       setupListener();
 
-      formField = formField.refs.field;
-
-      const isActive = formField.classList.contains('active');
+      const isActive = formFieldClasses.active;
 
       let hasContent;
       if (props.tag === 'div') {
@@ -158,59 +190,62 @@ export default defineComponent({
 
       const isFocused = document.activeElement === input.value || (props.tag === 'div' && isClicked.value);
 
-      updateInput(isActive, hasContent, isFocused, formField);
+      updateInput(isActive, hasContent, isFocused);
     };
 
-    const updateInput = (isActive, hasContent, isFocused, formField) => {
+    const updateInput = (isActive, hasContent, isFocused) => {
       const isTextArea = input.value.type === 'textarea';
 
       if (!isActive && (hasContent || isFocused)) {
-        formField.classList.add('active');
+        formFieldClasses.active = true;
       } else if (isActive && !(hasContent || isFocused)) {
-        formField.classList.remove('active');
+        formFieldClasses.active = false;
       }
 
-      isTextArea ? '' : setFormPosition(formField);
+      isTextArea ? '' : setFormPosition();
 
       isFocused && !isTextArea
-        ? formField.classList.add('is-focused')
-        : formField.classList.remove('is-focused');
+        ? (formFieldClasses['is-focused'] = true)
+        : (formFieldClasses['is-focused'] = false);
 
       isFocused && isTextArea
-        ? formField.classList.add('is-txtarea-focused')
-        : formField.classList.remove('is-txtarea-focused');
+        ? (formFieldClasses['is-txtarea-focused'] = true)
+        : (formFieldClasses['is-txtarea-focused'] = false);
     };
 
-    const setFormPosition = (formField) => {
+    const setFormPosition = () => {
       const inputWidth = input.value.clientWidth,
         inputLeftOffset = input.value.offsetLeft;
 
       const topOffset = input.value.clientHeight + input.value.offsetTop + 'px';
 
-      formField.style.setProperty('--form-material-position', topOffset);
+      formFieldStyle['--form-material-position'] = topOffset;
 
       let offset = inputLeftOffset,
         side = 'left',
         width = inputWidth + 'px',
         labelLeft = '0';
 
-      if (formField.classList.contains('form-rtl')) {
+      if (formField.value.props['form-rtl']) {
         side = 'right';
-        offset = formField.clientWidth - inputWidth - inputLeftOffset;
+        offset = formField.value.refs.field.clientWidth - inputWidth - inputLeftOffset;
       }
 
-      formField.style.setProperty(`--form-material-${side}-offset`, offset + 'px');
+      formFieldStyle[`--form-material-${side}-offset`] = offset + 'px';
 
       if (offset != 0) labelLeft = inputLeftOffset;
 
-      formField.style.setProperty('--form-material-width', width);
+      formFieldStyle['--form-material-width'] = width;
 
-      const label = formField.querySelector('label');
+      const label = formField.value.refs.labelRef;
       if (!label) return;
       label.style.left = labelLeft + 'px';
     };
 
+    const validate = () => validateField(props, localValue, formField);
+
     onMounted(() => {
+      addInstance({ type: 'AxFormControl', instance: getCurrentInstance(), FormUniqid: formUniqid });
       handle();
     });
 
@@ -220,6 +255,7 @@ export default defineComponent({
 
     onUnmounted(() => {
       removeListener();
+      removeInstance(getCurrentInstance());
     });
 
     return {
@@ -229,6 +265,7 @@ export default defineComponent({
       classes,
       computedValue,
       onInput,
+      validate,
     };
   },
 });

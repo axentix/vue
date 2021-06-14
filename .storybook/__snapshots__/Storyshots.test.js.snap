@@ -290,11 +290,9 @@ exports[`Storyshots Axentix/Components/Forms/Autocomplete Chips 1`] = `
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 0px;"
+    style="--form-material-color: #4c9f85;"
   >
-    <label
-      style="left: 0px;"
-    >
+    <label>
       Choose options
     </label>
      
@@ -332,11 +330,9 @@ exports[`Storyshots Axentix/Components/Forms/Autocomplete Chips Closable 1`] = `
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 0px;"
+    style="--form-material-color: #4c9f85;"
   >
-    <label
-      style="left: 0px;"
-    >
+    <label>
       Choose options
     </label>
      
@@ -374,11 +370,9 @@ exports[`Storyshots Axentix/Components/Forms/Autocomplete Multiple 1`] = `
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 0px;"
+    style="--form-material-color: #4c9f85;"
   >
-    <label
-      style="left: 0px;"
-    >
+    <label>
       Choose options
     </label>
      
@@ -416,11 +410,9 @@ exports[`Storyshots Axentix/Components/Forms/Autocomplete Normal 1`] = `
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 0px;"
+    style="--form-material-color: #4c9f85;"
   >
-    <label
-      style="left: 0px;"
-    >
+    <label>
       Choose an option
     </label>
      
@@ -453,11 +445,9 @@ exports[`Storyshots Axentix/Components/Forms/Autocomplete Single Line 1`] = `
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 0px;"
+    style="--form-material-color: #4c9f85;"
   >
-    <label
-      style="left: 0px;"
-    >
+    <label>
       Choose options
     </label>
      
@@ -954,13 +944,11 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Basic Material 1`] = `
     fieldclasses=""
     material="true"
     placeholder=""
-    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 0px;"
+    style="--form-material-color: #4c9f85;"
     tag="input"
     type="text"
   >
-    <label
-      style="left: 0px;"
-    >
+    <label>
       Text input
     </label>
      
@@ -1016,13 +1004,11 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Disabled Material 1`] = `
     fieldclasses=""
     material="true"
     placeholder=""
-    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 0px;"
+    style="--form-material-color: #4c9f85;"
     tag="input"
     type="text"
   >
-    <label
-      style="left: 0px;"
-    >
+    <label>
       Text input
     </label>
      
@@ -1203,18 +1189,16 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Placeholder Material 1`] = `
   class="form-material"
 >
   <div
-    class="form-field active"
+    class="form-field"
     controlclasses=""
     fieldclasses=""
     material="true"
     placeholder="Axentix <3"
-    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 0px;"
+    style="--form-material-color: #4c9f85;"
     tag="input"
     type="text"
   >
-    <label
-      style="left: 0px;"
-    >
+    <label>
       Text input
     </label>
      
@@ -1270,13 +1254,11 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Readonly Material 1`] = `
     material="true"
     placeholder=""
     readonly="readonly"
-    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 0px;"
+    style="--form-material-color: #4c9f85;"
     tag="input"
     type="text"
   >
-    <label
-      style="left: 0px;"
-    >
+    <label>
       Text input
     </label>
      
@@ -1335,18 +1317,16 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Select Material 1`] = `
   class="form-material"
 >
   <div
-    class="form-field active"
+    class="form-field"
     controlclasses=""
     fieldclasses=""
     material="true"
     placeholder=""
-    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 0px;"
+    style="--form-material-color: #4c9f85;"
     tag="select"
     type=""
   >
-    <label
-      style="left: 0px;"
-    >
+    <label>
       Select
     </label>
      
@@ -1434,11 +1414,9 @@ exports[`Storyshots Axentix/Components/Forms/Select Chips 1`] = `
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 0px;"
+    style="--form-material-color: #4c9f85;"
   >
-    <label
-      style="left: 0px;"
-    >
+    <label>
       Choose options
     </label>
      
@@ -1470,11 +1448,9 @@ exports[`Storyshots Axentix/Components/Forms/Select Chips Closable 1`] = `
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 0px;"
+    style="--form-material-color: #4c9f85;"
   >
-    <label
-      style="left: 0px;"
-    >
+    <label>
       Choose options
     </label>
      
@@ -1506,11 +1482,9 @@ exports[`Storyshots Axentix/Components/Forms/Select Multiple 1`] = `
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 0px;"
+    style="--form-material-color: #4c9f85;"
   >
-    <label
-      style="left: 0px;"
-    >
+    <label>
       Choose options
     </label>
      
@@ -1546,11 +1520,9 @@ exports[`Storyshots Axentix/Components/Forms/Select Normal 1`] = `
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 0px;"
+    style="--form-material-color: #4c9f85;"
   >
-    <label
-      style="left: 0px;"
-    >
+    <label>
       Choose an option
     </label>
      
@@ -1586,11 +1558,9 @@ exports[`Storyshots Axentix/Components/Forms/Select Single Line 1`] = `
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85; --form-material-position: 0px; --form-material-left-offset: 0px; --form-material-width: 0px;"
+    style="--form-material-color: #4c9f85;"
   >
-    <label
-      style="left: 0px;"
-    >
+    <label>
       Choose options
     </label>
      
