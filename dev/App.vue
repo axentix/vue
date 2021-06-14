@@ -78,7 +78,9 @@
       distinctio asperiores ea quidem laudantium earum ducimus mollitia eos modi atque consectetur praesentium
       aut. A atque tenetur doloremque ad voluptates.
 
-      <ax-form material>
+      <ax-btn class="airforce dark-1 shadow-1 rounded-1 d-block" @click="validateForm">Validate form</ax-btn>
+
+      <ax-form material ref="form">
         <ax-form-field label="Choisissez une option">
           <ax-form-select :items="items" v-model="selectedValue"> </ax-form-select>
         </ax-form-field>
@@ -99,7 +101,14 @@
         </ax-form-field>
 
         <ax-form-field label="Toto">
-          <ax-form-autocomplete :items="items" multiple chips chips-closable v-model="multipleSelectedValue">
+          <ax-form-autocomplete
+            :items="items"
+            :rules="[rules.autocomplete]"
+            multiple
+            chips
+            chips-closable
+            v-model="multipleSelectedValue"
+          >
             <template #prepend="{ toggle }">
               <div @click.prevent="selectAll(toggle)" class="form-select-item">Select all</div>
             </template>
@@ -107,7 +116,7 @@
         </ax-form-field>
 
         <ax-form-field label="Test input">
-          <ax-form-control tag="input" type="text" value="tzz" disabled></ax-form-control>
+          <ax-form-control tag="input" type="text" :rules="[rules.required]"></ax-form-control>
         </ax-form-field>
 
         <ax-form-field label="Select">
@@ -202,6 +211,10 @@
 export default {
   name: 'App',
   data: () => ({
+    rules: {
+      required: (value) => !!value || 'Required.',
+      autocomplete: (v) => v.length > 0 || 'Required.',
+    },
     modal: false,
     isSidenavOpened: false,
     isCollapsibleOpened: false,
@@ -239,6 +252,9 @@ export default {
       this.multipleSelectedValue = this.multipleSelectedValue.length > 0 ? [] : this.items;
       console.log(this.multipleSelectedValue);
       toggle(false);
+    },
+    validateForm() {
+      console.log(this.$refs.form.validate());
     },
   },
 };

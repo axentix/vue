@@ -2,7 +2,14 @@
   <label class="form-switch" :class="labelClasses">
     <slot name="false-value"></slot>
 
-    <input type="checkbox" v-model="computedValue" v-bind="$attrs" ref="input" />
+    <input
+      type="checkbox"
+      v-model="computedValue"
+      v-bind="$attrs"
+      ref="input"
+      @input="validate"
+      @change="validate"
+    />
     <span class="slider" :class="classes" :style="style" ref="slider"></span>
 
     <slot></slot>
@@ -10,13 +17,25 @@
 </template>
 
 <script>
-import { computed, defineComponent, ref, toRefs, watch } from 'vue-demi';
+import {
+  computed,
+  defineComponent,
+  getCurrentInstance,
+  inject,
+  onMounted,
+  onUnmounted,
+  ref,
+  toRefs,
+  watch,
+} from 'vue-demi';
+import { addInstance, removeInstance } from '../../utils/config';
 import vModelMixin, { getVModelEvent, getVModelKey } from '../../utils/v-model';
+import validateMixin, { validateField } from './shared/validate';
 
 export default defineComponent({
   name: 'AxFormSwitch',
   inheritAttrs: false,
-  mixins: [vModelMixin],
+  mixins: [vModelMixin, validateMixin],
   props: {
     labelClasses: {
       type: String,
@@ -43,6 +62,9 @@ export default defineComponent({
       localValue = ref(vmodel.value);
 
     const vmodelEvent = getVModelEvent();
+
+    const formUniqid = inject('ax-form-uniqid'),
+      formField = inject('ax-form-field');
 
     watch(vmodel, (val) => {
       localValue.value = val;
@@ -72,12 +94,23 @@ export default defineComponent({
       },
     });
 
+    const validate = () => validateField(props, localValue, formField);
+
+    onMounted(() => {
+      addInstance({ type: 'AxFormSwitch', instance: getCurrentInstance(), FormUniqid: formUniqid });
+    });
+
+    onUnmounted(() => {
+      removeInstance(getCurrentInstance());
+    });
+
     return {
       classes,
       input,
       slider,
       style,
       computedValue,
+      validate,
     };
   },
 });

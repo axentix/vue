@@ -5,7 +5,8 @@
 </template>
 
 <script>
-import { computed, defineComponent } from 'vue-demi';
+import { computed, defineComponent, isVue2, provide } from 'vue-demi';
+import { instances } from '../../utils/config';
 
 export default defineComponent({
   name: 'AxForm',
@@ -22,8 +23,25 @@ export default defineComponent({
       };
     });
 
+    const validType = ['AxFormControl', 'AxFormCheck', 'AxFormAutocomplete', 'AxFormSwitch'],
+      uniqid = 'axForm' + Date.now();
+
+    provide('ax-form-material', props.material);
+    provide('ax-form-uniqid', uniqid);
+
+    const validate = () =>
+      !instances.value
+        .filter(
+          (ins) => validType.includes(ins.type) && !ins.instance.isUnmounted && ins.FormUniqid === uniqid
+        )
+        .some((ins) => {
+          if (isVue2) return !ins.instance.proxy.validate();
+          return !ins.instance.ctx.validate();
+        });
+
     return {
       classes,
+      validate,
       listeners: ctx.listeners ? ctx.listeners : {},
     };
   },
