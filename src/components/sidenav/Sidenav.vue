@@ -17,6 +17,7 @@ import {
   computed,
   defineComponent,
   getCurrentInstance,
+  isVue2,
   onMounted,
   onUnmounted,
   onUpdated,
@@ -152,7 +153,9 @@ export default defineComponent({
     };
 
     const detectMultipleSidenav = () => {
-      const sidenavFixed = getInstancesByType('Sidenav').find((ins) => ins.props.fixed);
+      const sidenavFixed = getInstancesByType('Sidenav').find((ins) =>
+        isVue2 ? ins.props.fixed : ins.ctx.fixed
+      );
       const firstSidenavInit = sidenavFixed && sidenavFixed === getCurrentInstance();
 
       if (layoutEl.value && firstSidenavInit) cleanLayout();

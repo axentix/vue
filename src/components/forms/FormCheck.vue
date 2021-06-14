@@ -1,6 +1,14 @@
 <template>
   <label class="form-check">
-    <input v-bind="$attrs" :type="type" v-model="computedValue" ref="input" :value="nativeValue" />
+    <input
+      v-bind="$attrs"
+      :type="type"
+      v-model="computedValue"
+      ref="input"
+      :value="nativeValue"
+      @input="validate"
+      @change="validate"
+    />
 
     <span :class="spanClasses">
       <slot></slot>
@@ -9,13 +17,25 @@
 </template>
 
 <script>
-import { computed, defineComponent, ref, toRefs, watch } from 'vue-demi';
+import {
+  computed,
+  defineComponent,
+  getCurrentInstance,
+  inject,
+  onMounted,
+  onUnmounted,
+  ref,
+  toRefs,
+  watch,
+} from 'vue-demi';
+import { addInstance, removeInstance } from '../../utils/config';
 import vModelMixin, { getVModelEvent, getVModelKey } from '../../utils/v-model';
+import validateMixin, { validateField } from './shared/validate';
 
 export default defineComponent({
   name: 'AxFormCheck',
   inheritAttrs: false,
-  mixins: [vModelMixin],
+  mixins: [vModelMixin, validateMixin],
   props: {
     type: {
       type: String,
@@ -45,6 +65,9 @@ export default defineComponent({
       };
     });
 
+    const formUniqid = inject('ax-form-uniqid'),
+      formField = inject('ax-form-field');
+
     const computedValue = computed({
       get() {
         return localValue.value;
@@ -55,9 +78,20 @@ export default defineComponent({
       },
     });
 
+    const validate = () => validateField(props, localValue, formField);
+
+    onMounted(() => {
+      addInstance({ type: 'AxFormCheck', instance: getCurrentInstance(), FormUniqid: formUniqid });
+    });
+
+    onUnmounted(() => {
+      removeInstance(getCurrentInstance());
+    });
+
     return {
       spanClasses,
       computedValue,
+      validate,
       input,
     };
   },

@@ -1,15 +1,25 @@
 <template>
-  <div class="form-field" :class="classes" v-bind="$attrs" v-on="listeners" ref="field" :style="style">
-    <label v-if="label">{{ label }}</label>
+  <div
+    class="form-field"
+    :class="[classes, extraClasses]"
+    v-bind="$attrs"
+    v-on="listeners"
+    ref="field"
+    :style="[style, extraStyle]"
+  >
+    <label v-if="label" ref="labelRef">{{ label }}</label>
 
     <slot></slot>
 
-    <span class="form-helper" :class="helperClasses" v-if="helper">{{ helper }}</span>
+    <span class="form-helper" :class="helperClasses" v-if="helper && !notValidHelper">{{ helper }}</span>
+    <span class="form-helper txt-error" :class="helperClasses" v-else-if="notValidHelper">
+      {{ notValidHelper }}
+    </span>
   </div>
 </template>
 
 <script>
-import { computed, defineComponent, ref } from 'vue-demi';
+import { computed, defineComponent, getCurrentInstance, onMounted, provide, ref } from 'vue-demi';
 
 export default defineComponent({
   name: 'AxFormField',
@@ -49,23 +59,53 @@ export default defineComponent({
         inline: props.inline,
         'form-default': props.default,
         'form-rtl': props.rtl,
+        'not-valid': notValidColor.value ? true : false,
       };
     });
+
+    const notValidColor = ref(null),
+      currentInstance = ref(null),
+      notValidHelper = ref(null),
+      extraClasses = ref(null),
+      extraStyle = ref(null),
+      labelRef = ref(null),
+      field = ref(null);
+
+    provide('ax-form-field', currentInstance);
 
     const style = computed(() => {
       return {
-        '--form-material-color': props.materialColor,
+        '--form-material-color': notValidColor.value ? notValidColor.value : props.materialColor,
       };
     });
 
-    const field = ref(null);
+    onMounted(() => {
+      currentInstance.value = getCurrentInstance();
+    });
 
     return {
       classes,
       field,
+      labelRef,
       style,
+      notValidColor,
+      notValidHelper,
+      extraClasses,
+      extraStyle,
       listeners: ctx.listeners ? ctx.listeners : {},
     };
   },
 });
 </script>
+
+<style lang="scss">
+.form-material .form-field:not(.form-default).not-valid {
+  label {
+    color: var(--form-material-color);
+  }
+
+  &::after {
+    width: var(--form-material-width);
+  }
+}
+</style>

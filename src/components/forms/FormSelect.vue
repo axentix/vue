@@ -48,7 +48,18 @@
 </template>
 
 <script>
-import { computed, defineComponent, onMounted, ref, toRefs, watch } from 'vue-demi';
+import {
+  computed,
+  defineComponent,
+  getCurrentInstance,
+  inject,
+  onMounted,
+  onUnmounted,
+  ref,
+  toRefs,
+  watch,
+} from 'vue-demi';
+import { addInstance, removeInstance } from '../../utils/config';
 import vModelMixin, { getVModelEvent, getVModelKey } from '../../utils/v-model';
 import {
   selectEl,
@@ -58,10 +69,11 @@ import {
   unselectEl,
   updateComputedItems,
 } from './shared/select';
+import validateMixin, { resetFormField, validateField } from './shared/validate';
 
 export default defineComponent({
   name: 'AxFormSelect',
-  mixins: [vModelMixin, selectMixin],
+  mixins: [vModelMixin, selectMixin, validateMixin],
   setup(props, ctx) {
     const computedItems = ref([]),
       isOpened = ref(false),
@@ -74,6 +86,9 @@ export default defineComponent({
       vmodel = toRefs(props)[getVModelKey()];
 
     const vmodelEvent = getVModelEvent();
+
+    const formUniqid = inject('ax-form-uniqid'),
+      formField = inject('ax-form-field');
 
     const style = computed(() => {
       return {
@@ -120,7 +135,11 @@ export default defineComponent({
       updateComputedItems(computedItems, itemsRef, vmodel, props, multipleSelected, selected);
     });
 
-    const toggle = (state = false) => toggleState(state, isOpened, opacity, isTop, container);
+    const toggle = (state = false) => {
+      if (!state) validate();
+      else resetFormField(formField);
+      toggleState(state, isOpened, opacity, isTop, container);
+    };
 
     const select = (i) => {
       if (props.multiple) return selectMultiple(i);
@@ -136,8 +155,18 @@ export default defineComponent({
       selectMultipleEl(i, computedItems, multipleSelected, ctx, vmodelEvent, result);
     };
 
+    const validate = () => {
+      if (props.multiple) return validateField(props, multipleSelected, formField);
+      return validateField(props, selected, formField);
+    };
+
     onMounted(() => {
+      addInstance({ type: 'AxFormSelect', instance: getCurrentInstance(), FormUniqid: formUniqid });
       updateComputedItems(computedItems, itemsRef, vmodel, props, multipleSelected, selected);
+    });
+
+    onUnmounted(() => {
+      removeInstance(getCurrentInstance());
     });
 
     return {
@@ -147,6 +176,7 @@ export default defineComponent({
       result,
       container,
       computedItems,
+      validate,
     };
   },
 });
