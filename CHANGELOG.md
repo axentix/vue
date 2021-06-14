@@ -1,3 +1,11 @@
+# 0.7.1 - 2021-06-13
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Form autocomplete & Form select validation not work correctly
+
 # 0.7.0 - 2021-06-14
 
 - ADDED
