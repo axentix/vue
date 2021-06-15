@@ -61,14 +61,7 @@ import {
 } from 'vue-demi';
 import { addInstance, removeInstance } from '../../utils/config';
 import vModelMixin, { getVModelEvent, getVModelKey } from '../../utils/v-model';
-import {
-  selectEl,
-  selectMixin,
-  selectMultipleEl,
-  toggleState,
-  unselectEl,
-  updateComputedItems,
-} from './shared/select';
+import { selectEl, selectMixin, selectMultipleEl, toggleState, updateComputedItems } from './shared/select';
 import validateMixin, { resetFormField, validateField } from './shared/validate';
 
 export default defineComponent({
