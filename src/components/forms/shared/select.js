@@ -114,11 +114,11 @@ export const selectMultipleEl = (i, computedItems, multipleSelected, ctx, vmodel
   const index = multipleSelected.value.findIndex((val) => val.value === item.value && item.selected);
 
   if (index !== -1) {
-    multipleSelected.value.splice(index, 1);
     item.selected = false;
+    multipleSelected.value.splice(index, 1);
   } else {
-    multipleSelected.value.push(item);
     item.selected = true;
+    multipleSelected.value.push(item);
   }
 
   computedItems.value.splice(i, 1, item);
