@@ -257,6 +257,19 @@ export default {
       console.log(this.$refs.form.validate());
     },
   },
+  mounted() {
+    setTimeout(() => {
+      this.multipleSelectedValue.push('Voiture');
+
+      setTimeout(() => {
+        this.multipleSelectedValue = [];
+
+        setTimeout(() => {
+          this.multipleSelectedValue = ['Moto'];
+        }, 1000);
+      }, 1000);
+    }, 1000);
+  },
 };
 </script>
 

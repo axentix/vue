@@ -1,3 +1,11 @@
+# 0.7.3 - 2021-06-14
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Form autocomplete & Form select watch not work properly
+
 # 0.7.2 - 2021-06-13
 
 - ADDED

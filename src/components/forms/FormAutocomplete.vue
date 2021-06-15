@@ -149,6 +149,10 @@ export default defineComponent({
       return opacity.value === 1 ? 1 : inputValue.value.length;
     });
 
+    watch(result, () => {
+      validate();
+    });
+
     watch(inputValue, (val, oldVal) => {
       lastInputValue.value = oldVal;
       if (selected.value.index >= 0 && val === '' && !props.multiple) {
@@ -161,24 +165,16 @@ export default defineComponent({
       if (!props.multiple) {
         if (selected.value && val === selected.value.value) return;
         select(val);
-        validate();
         return;
       }
 
       const added = val.filter((item) => !result.value.includes(item));
       const removed = result.value.filter((item) => !val.includes(item));
 
-      added.map((v) => {
+      [...added, ...removed].map((v) => {
         const i = computedItems.value.findIndex((item) => item.value === v);
-        selectMultiple(i);
+        if (i >= 0) selectMultiple(i);
       });
-
-      removed.map((v) => {
-        const i = computedItems.value.findIndex((item) => item.value === v);
-        unselectEl(i, computedItems, multipleSelected);
-      });
-
-      validate();
     });
 
     watch(itemsRef, () => {
@@ -218,7 +214,7 @@ export default defineComponent({
       if (!props.multiple) return;
 
       selectMultipleEl(i, computedItems, multipleSelected, ctx, vmodelEvent, result);
-      input.value.focus();
+      if (isOpened.value) input.value.focus();
     };
 
     const onBackspace = (e) => {

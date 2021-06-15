@@ -110,29 +110,25 @@ export default defineComponent({
       }, []);
     });
 
+    watch(result, () => {
+      validate();
+    });
+
     watch(vmodel, (val) => {
       if (!props.multiple) {
         if (selected.value && val === selected.value.value) return;
         const i = computedItems.value.findIndex((item) => item.value === val);
         if (i >= 0) select(i);
-        validate();
         return;
       }
 
       const added = val.filter((item) => !result.value.includes(item));
       const removed = result.value.filter((item) => !val.includes(item));
 
-      added.map((v) => {
+      [...added, ...removed].map((v) => {
         const i = computedItems.value.findIndex((item) => item.value === v);
-        selectMultiple(i);
+        if (i >= 0) selectMultiple(i);
       });
-
-      removed.map((v) => {
-        const i = computedItems.value.findIndex((item) => item.value === v);
-        unselectEl(i, computedItems, multipleSelected);
-      });
-
-      validate();
     });
 
     watch(itemsRef, () => {
