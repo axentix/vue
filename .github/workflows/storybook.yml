@@ -49,10 +49,11 @@ jobs:
       - name: Build and push
         uses: aevea/action-kaniko@master
         with:
-          image: axentix/storybook-vue:${{ env.BRANCH_NAME }}
+          image: axentix/storybook-vue
           registry: ${{ secrets.DOCKER_REGISTRY }}
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+          tag: ${{ env.BRANCH_NAME }}
 
       - name: Update image
         uses: distributhor/workflow-webhook@v2
