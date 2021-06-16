@@ -1,4 +1,13 @@
-# 0.7.3 - 2021-06-14
+# 0.7.4 - 2021-06-16
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Core store system
+- BUGFIXES
+  - Layout is not reactive when sidenav large option change
+
+# 0.7.3 - 2021-06-15
 
 - ADDED
 - REMOVED
@@ -6,7 +15,7 @@
 - BUGFIXES
   - Form autocomplete & Form select watch not work properly
 
-# 0.7.2 - 2021-06-13
+# 0.7.2 - 2021-06-14
 
 - ADDED
 - REMOVED
@@ -14,7 +23,7 @@
 - BUGFIXES
   - Form autocomplete & Form select validation not work correctly
 
-# 0.7.1 - 2021-06-13
+# 0.7.1 - 2021-06-14
 
 - ADDED
 - REMOVED

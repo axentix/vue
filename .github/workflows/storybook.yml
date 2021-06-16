@@ -25,3 +25,48 @@ jobs:
       - run: |
           npm ci
           npm test
+
+  deploy:
+    if: github.event.pull_request.merged == false && github.event_name	== 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install node
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: 14
+
+      - name: Install & Build storybook
+        run: |
+          npm ci
+          npm run build:storybook
+
+      - name: Get branch name
+        shell: bash
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | tr / -)" >> $GITHUB_ENV
+
+      - name: Build and push
+        uses: aevea/action-kaniko@master
+        with:
+          image: axentix/storybook-vue
+          registry: ${{ secrets.DOCKER_REGISTRY }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          tag: ${{ env.BRANCH_NAME }}
+
+      - name: Update image
+        uses: joelwmale/webhook-action@master
+        if: github.ref == 'refs/heads/master'
+        env:
+          url: ${{ secrets.WEBHOOK_URL }}
+          headers: ${{ secrets.WEBHOOK_HEADERS }}
+          body: '{ "container": "axentix-story-vue" }'
+
+      - name: Update dev image
+        uses: joelwmale/webhook-action@master
+        if: github.ref == 'refs/heads/develop'
+        env:
+          url: ${{ secrets.WEBHOOK_URL }}
+          headers: ${{ secrets.WEBHOOK_HEADERS }}
+          body: '{ "container": "axentix-story-vue-dev" }'

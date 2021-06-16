@@ -16,17 +16,16 @@
 import {
   computed,
   defineComponent,
-  getCurrentInstance,
-  isVue2,
   onMounted,
   onUnmounted,
   onUpdated,
+  provide,
   reactive,
   ref,
   toRefs,
   watch,
 } from 'vue-demi';
-import { addInstance, getInstancesByType, removeInstance } from '../../utils/config';
+import { addComponent, removeComponent, generateUid, getComponentsByType } from '../../utils/global';
 import vModelMixin, { getVModelKey, getVModelEvent } from '../../utils/v-model';
 
 export default defineComponent({
@@ -60,16 +59,20 @@ export default defineComponent({
   },
   setup(props, ctx) {
     const layoutEl = ref(null),
+      propsRef = toRefs(props),
       isActive = ref(false),
       isAnimated = ref(false),
       overlayElement = ref(null),
       overlayActive = ref(false),
       resizeRef = ref(null),
       listenerRef = ref(null),
-      vmodel = toRefs(props)[getVModelKey()],
+      vmodel = propsRef[getVModelKey()],
       sidenav = ref(null);
 
     const vmodelEvent = getVModelEvent();
+    const uid = generateUid();
+
+    provide('ax-sidenav', true);
 
     const extraClasses = reactive([
       'sidenav-right',
@@ -117,8 +120,20 @@ export default defineComponent({
       }
     );
 
+    watch(
+      () => props.large,
+      () => {
+        detectMultipleSidenav();
+      }
+    );
+
     const init = () => {
-      addInstance({ type: 'Sidenav', instance: getCurrentInstance() });
+      addComponent({
+        type: 'Sidenav',
+        uid,
+        data: { fixed: propsRef.fixed, large: propsRef.large, rightAligned: propsRef.rightAligned },
+      });
+
       layoutEl.value = sidenav.value.closest('.layout');
 
       if (props.overlay) createOverlay();
@@ -153,34 +168,26 @@ export default defineComponent({
     };
 
     const detectMultipleSidenav = () => {
-      const sidenavFixed = getInstancesByType('Sidenav').find((ins) =>
-        isVue2 ? ins.props.fixed : ins.ctx.fixed
-      );
-      const firstSidenavInit = sidenavFixed && sidenavFixed === getCurrentInstance();
+      const sidenavs = getComponentsByType('Sidenav').filter((c) => c.data.fixed);
+      const firstSidenavInit = sidenavs[0] && sidenavs[0].uid === uid;
 
       if (layoutEl.value && firstSidenavInit) cleanLayout();
 
-      if (layoutEl.value && props.fixed && firstSidenavInit) handleMultipleSidenav();
+      if (layoutEl.value && props.fixed && firstSidenavInit) handleMultipleSidenav(sidenavs);
     };
 
-    const handleMultipleSidenav = () => {
-      const sidenavs = Array.from(document.querySelectorAll('.sidenav')).filter((sidenav) =>
-        sidenav.classList.contains('fixed')
-      );
-
+    const handleMultipleSidenav = (sidenavs) => {
       const { sidenavsRight, sidenavsLeft } = sidenavs.reduce(
         (acc, sidenav) => {
-          sidenav.classList.contains('right-aligned')
-            ? acc.sidenavsRight.push(sidenav)
-            : acc.sidenavsLeft.push(sidenav);
+          sidenav.data.rightAligned ? acc.sidenavsRight.push(sidenav) : acc.sidenavsLeft.push(sidenav);
           return acc;
         },
         { sidenavsRight: [], sidenavsLeft: [] }
       );
 
       const isBoth = sidenavsLeft.length > 0 && sidenavsRight.length > 0;
-      const sidenavRightLarge = sidenavsRight.some((sidenav) => sidenav.classList.contains('large'));
-      const sidenavLeftLarge = sidenavsLeft.some((sidenav) => sidenav.classList.contains('large'));
+      const sidenavRightLarge = sidenavsRight.some((sidenav) => sidenav.data.large);
+      const sidenavLeftLarge = sidenavsLeft.some((sidenav) => sidenav.data.large);
       const isLarge = sidenavRightLarge || sidenavLeftLarge;
 
       isLarge ? layoutEl.value.classList.add('sidenav-large') : '';
@@ -310,7 +317,7 @@ export default defineComponent({
 
     onUnmounted(() => {
       removeListeners();
-      removeInstance(getCurrentInstance());
+      removeComponent(uid);
     });
 
     return {

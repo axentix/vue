@@ -65,18 +65,8 @@
 </template>
 
 <script>
-import {
-  computed,
-  defineComponent,
-  getCurrentInstance,
-  inject,
-  onMounted,
-  onUnmounted,
-  ref,
-  toRefs,
-  watch,
-} from 'vue-demi';
-import { addInstance, removeInstance } from '../../utils/config';
+import { computed, defineComponent, inject, onMounted, onUnmounted, ref, toRefs, watch } from 'vue-demi';
+import { addComponent, generateUid, removeComponent } from '../../utils/global';
 import vModelMixin, { getVModelEvent, getVModelKey } from '../../utils/v-model';
 import {
   selectEl,
@@ -115,9 +105,10 @@ export default defineComponent({
       itemsRef = toRefs(props).items,
       vmodel = toRefs(props)[getVModelKey()];
 
-    const vmodelEvent = getVModelEvent();
+    const vmodelEvent = getVModelEvent(),
+      uid = generateUid();
 
-    const formUniqid = inject('ax-form-uniqid'),
+    const FormUid = inject('ax-form-uid'),
       formField = inject('ax-form-field');
 
     const style = computed(() => {
@@ -253,14 +244,14 @@ export default defineComponent({
     };
 
     onMounted(() => {
-      addInstance({ type: 'AxFormAutocomplete', instance: getCurrentInstance(), FormUniqid: formUniqid });
+      addComponent({ type: 'FormAutocomplete', uid, data: { FormUid, validate } });
       setupListeners();
       updateComputedItems(computedItems, itemsRef, vmodel, props, multipleSelected, selected);
     });
 
     onUnmounted(() => {
       removeListeners();
-      removeInstance(getCurrentInstance());
+      removeComponent(uid);
     });
 
     return {

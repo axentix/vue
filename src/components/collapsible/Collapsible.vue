@@ -5,20 +5,9 @@
 </template>
 
 <script>
-import {
-  computed,
-  defineComponent,
-  getCurrentInstance,
-  onMounted,
-  onUnmounted,
-  toRefs,
-  ref,
-  watch,
-  isVue2,
-} from 'vue-demi';
+import { computed, defineComponent, onMounted, onUnmounted, toRefs, ref, watch, inject } from 'vue-demi';
 import vModelMixin, { getVModelKey, getVModelEvent } from '../../utils/v-model';
-import { addInstance, getInstancesByType, removeInstance } from '../../utils/config';
-import { getParentByName } from '../../utils/utils';
+import { addComponent, removeComponent, generateUid, getComponentsByType } from '../../utils/global';
 
 export default defineComponent({
   name: 'AxCollapsible',
@@ -42,8 +31,10 @@ export default defineComponent({
       display = ref(null),
       collapsible = ref(null),
       resizeRef = ref(null),
-      isInSidenav = ref(false),
       sidenav = ref(null);
+
+    const uid = generateUid(),
+      isInSidenav = inject('ax-sidenav', false);
 
     const classes = computed(() => {
       return {
@@ -73,11 +64,10 @@ export default defineComponent({
     });
 
     const init = () => {
-      addInstance({ type: 'Collapsible', instance: getCurrentInstance() });
+      addComponent({ type: 'Collapsible', uid, data: { closeCollapsible } });
 
       setupListeners();
 
-      isInSidenav.value = detectSidenav();
       if (vmodel.value) openCollapsible();
 
       ctx.emit('setup');
@@ -92,28 +82,15 @@ export default defineComponent({
       window.removeEventListener('resize', resizeRef.value);
     };
 
-    const detectSidenav = () => {
-      const parent = getCurrentInstance().parent;
-      sidenav.value = getParentByName(parent, 'AxSidenav');
-      if (!sidenav) {
-        return false;
-      }
-      return true;
-    };
-
     const handleResize = () => {
-      if (isActive.value && !isInSidenav.value) style.value.maxHeight = collapsible.value.scrollHeight + 'px';
+      if (isActive.value && !isInSidenav) style.value.maxHeight = collapsible.value.scrollHeight + 'px';
     };
 
     const openCollapsible = () => {
       if (isAnimated.value || isActive.value) return;
 
-      getInstancesByType('Collapsible').map((ins) => {
-        if (isVue2) {
-          ins.proxy.closeCollapsible(collapsible.value, sidenav.value);
-        } else {
-          ins.ctx.closeCollapsible(collapsible.value, sidenav.value);
-        }
+      getComponentsByType('Collapsible').map((c) => {
+        c.data.closeCollapsible(collapsible.value, sidenav.value);
       });
 
       ctx.emit('open');
@@ -142,7 +119,7 @@ export default defineComponent({
         closeInstance === collapsible.value ||
         !isActive.value ||
         (closeInstance &&
-          (!props.autoClose || !isInSidenav.value || (sidenav && sidenav.value !== sidenavInstance)))
+          (!props.autoClose || !isInSidenav || (sidenav && sidenav.value !== sidenavInstance)))
       )
         return;
 
@@ -166,7 +143,7 @@ export default defineComponent({
 
     onUnmounted(() => {
       removeListeners();
-      removeInstance(getCurrentInstance());
+      removeComponent(uid);
     });
 
     return {

@@ -17,18 +17,8 @@
 </template>
 
 <script>
-import {
-  computed,
-  defineComponent,
-  getCurrentInstance,
-  inject,
-  onMounted,
-  onUnmounted,
-  ref,
-  toRefs,
-  watch,
-} from 'vue-demi';
-import { addInstance, removeInstance } from '../../utils/config';
+import { computed, defineComponent, inject, onMounted, onUnmounted, ref, toRefs, watch } from 'vue-demi';
+import { addComponent, removeComponent, generateUid } from '../../utils/global';
 import vModelMixin, { getVModelEvent, getVModelKey } from '../../utils/v-model';
 import validateMixin, { validateField } from './shared/validate';
 
@@ -53,7 +43,8 @@ export default defineComponent({
       input = ref(null),
       localValue = ref(vmodel.value);
 
-    const vmodelEvent = getVModelEvent();
+    const vmodelEvent = getVModelEvent(),
+      uid = generateUid();
 
     watch(vmodel, (val) => {
       localValue.value = val;
@@ -65,7 +56,7 @@ export default defineComponent({
       };
     });
 
-    const formUniqid = inject('ax-form-uniqid'),
+    const FormUid = inject('ax-form-uid'),
       formField = inject('ax-form-field');
 
     const computedValue = computed({
@@ -81,11 +72,11 @@ export default defineComponent({
     const validate = () => validateField(props, localValue, formField);
 
     onMounted(() => {
-      addInstance({ type: 'AxFormCheck', instance: getCurrentInstance(), FormUniqid: formUniqid });
+      addComponent({ type: 'FormCheck', uid, data: { FormUid, validate } });
     });
 
     onUnmounted(() => {
-      removeInstance(getCurrentInstance());
+      removeComponent(uid);
     });
 
     return {
