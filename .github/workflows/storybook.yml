@@ -61,7 +61,7 @@ jobs:
 
       - name: Update image
         uses: distributhor/workflow-webhook@v2
-        if: ${GITHUB_REF##*/} != 'develop'
+        if: contains(github.ref, "master")
         env:
           webhook_url: ${{ secrets.WEBHOOK_URL }}
           webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
@@ -69,7 +69,7 @@ jobs:
 
       - name: Update dev image
         uses: distributhor/workflow-webhook@v2
-        if: ${GITHUB_REF##*/} == 'develop'
+        if: contains(github.ref, "develop")
         env:
           webhook_url: ${{ secrets.WEBHOOK_URL }}
           webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
