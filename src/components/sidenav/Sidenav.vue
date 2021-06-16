@@ -168,7 +168,7 @@ export default defineComponent({
     };
 
     const detectMultipleSidenav = () => {
-      const sidenavs = getComponentsByType('Sidenav').filter((c) => c.data.fixed);
+      const sidenavs = getComponentsByType('Sidenav').filter((c) => c.data.fixed.value);
       const firstSidenavInit = sidenavs[0] && sidenavs[0].uid === uid;
 
       if (layoutEl.value && firstSidenavInit) cleanLayout();
@@ -179,15 +179,15 @@ export default defineComponent({
     const handleMultipleSidenav = (sidenavs) => {
       const { sidenavsRight, sidenavsLeft } = sidenavs.reduce(
         (acc, sidenav) => {
-          sidenav.data.rightAligned ? acc.sidenavsRight.push(sidenav) : acc.sidenavsLeft.push(sidenav);
+          sidenav.data.rightAligned.value ? acc.sidenavsRight.push(sidenav) : acc.sidenavsLeft.push(sidenav);
           return acc;
         },
         { sidenavsRight: [], sidenavsLeft: [] }
       );
 
       const isBoth = sidenavsLeft.length > 0 && sidenavsRight.length > 0;
-      const sidenavRightLarge = sidenavsRight.some((sidenav) => sidenav.data.large);
-      const sidenavLeftLarge = sidenavsLeft.some((sidenav) => sidenav.data.large);
+      const sidenavRightLarge = sidenavsRight.some((sidenav) => sidenav.data.large.value);
+      const sidenavLeftLarge = sidenavsLeft.some((sidenav) => sidenav.data.large.value);
       const isLarge = sidenavRightLarge || sidenavLeftLarge;
 
       isLarge ? layoutEl.value.classList.add('sidenav-large') : '';

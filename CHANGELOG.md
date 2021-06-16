@@ -1,3 +1,11 @@
+# 0.7.5 - 2021-06-16
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Sidenav detection broken
+
 # 0.7.4 - 2021-06-16
 
 - ADDED
