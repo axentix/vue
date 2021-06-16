@@ -27,7 +27,7 @@ jobs:
           npm test
 
   deploy:
-    if: github.event.pull_request.merged == false && github.event	== 'push'
+    if: github.event.pull_request.merged == false && github.event_name	== 'push'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
