@@ -59,13 +59,14 @@ export default defineComponent({
   },
   setup(props, ctx) {
     const layoutEl = ref(null),
+      propsRef = toRefs(props),
       isActive = ref(false),
       isAnimated = ref(false),
       overlayElement = ref(null),
       overlayActive = ref(false),
       resizeRef = ref(null),
       listenerRef = ref(null),
-      vmodel = toRefs(props)[getVModelKey()],
+      vmodel = propsRef[getVModelKey()],
       sidenav = ref(null);
 
     const vmodelEvent = getVModelEvent();
@@ -119,11 +120,18 @@ export default defineComponent({
       }
     );
 
+    watch(
+      () => props.large,
+      () => {
+        detectMultipleSidenav();
+      }
+    );
+
     const init = () => {
       addComponent({
         type: 'Sidenav',
         uid,
-        data: { fixed: props.fixed, large: props.large, rightAligned: props.rightAligned },
+        data: { fixed: propsRef.fixed, large: propsRef.large, rightAligned: propsRef.rightAligned },
       });
 
       layoutEl.value = sidenav.value.closest('.layout');
@@ -161,6 +169,7 @@ export default defineComponent({
 
     const detectMultipleSidenav = () => {
       const sidenavs = getComponentsByType('Sidenav').filter((c) => c.data.fixed);
+      console.log(sidenavs);
       const firstSidenavInit = sidenavs[0] && sidenavs[0].uid === uid;
 
       if (layoutEl.value && firstSidenavInit) cleanLayout();

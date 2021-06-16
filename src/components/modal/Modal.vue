@@ -155,12 +155,7 @@ export default defineComponent({
 
     const setZIndex = () => {
       if (!isActive.value) return;
-      const totalModals = getComponentsByType('Modal').filter((modal) => {
-        console.log(modal);
-        return modal.data.activeClass.value;
-      }).length;
-
-      console.log(totalModals);
+      const totalModals = getComponentsByType('Modal').filter((modal) => modal.data.activeClass.value).length;
 
       if (props.overlay) overlayElement.value.style.zIndex = 800 + totalModals * 6;
       zIndex.value = 800 + totalModals * 10;
