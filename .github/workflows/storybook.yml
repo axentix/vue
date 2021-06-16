@@ -27,7 +27,7 @@ jobs:
           npm test
 
   deploy:
-    if: github.event.pull_request.merged == false
+    if: github.event.pull_request.merged == false && github.event	== 'push'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -37,11 +37,10 @@ jobs:
         with:
           node-version: 14
 
-      - name: Install
-        run: npm ci
-
-      - name: Build storybook
-        run: npm run build:storybook
+      - name: Install & Build storybook
+        run: |
+          npm ci
+          npm run build:storybook
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
