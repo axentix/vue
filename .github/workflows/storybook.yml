@@ -59,7 +59,7 @@ jobs:
         uses: joelwmale/webhook-action@master
         if: github.ref == 'refs/heads/master'
         env:
-          url: ${{ secrets.WEBHOOK_URL }}
+          url: '${{ secrets.WEBHOOK_URL }}'
           headers: ${{ secrets.WEBHOOK_HEADERS }}
           body: '{ "container": "axentix-story-vue" }'
 
@@ -67,6 +67,6 @@ jobs:
         uses: joelwmale/webhook-action@master
         if: github.ref == 'refs/heads/develop'
         env:
-          url: ${{ secrets.WEBHOOK_URL }}
+          url: '${{ secrets.WEBHOOK_URL }}'
           headers: ${{ secrets.WEBHOOK_HEADERS }}
           body: '{ "container": "axentix-story-vue-dev" }'
