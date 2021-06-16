@@ -15,19 +15,8 @@
 </template>
 
 <script>
-import {
-  computed,
-  defineComponent,
-  getCurrentInstance,
-  isVue2,
-  onMounted,
-  onUnmounted,
-  onUpdated,
-  ref,
-  toRefs,
-  watch,
-} from 'vue-demi';
-import { addInstance, getInstancesByType, removeInstance } from '../../utils/config';
+import { computed, defineComponent, onMounted, onUnmounted, onUpdated, ref, toRefs, watch } from 'vue-demi';
+import { addComponent, removeComponent, getComponentsByType, generateUid } from '../../utils/global';
 import vModelMixin, { getVModelKey, getVModelEvent } from '../../utils/v-model';
 
 export default defineComponent({
@@ -65,6 +54,7 @@ export default defineComponent({
       modal = ref(null);
 
     const vmodelEvent = getVModelEvent();
+    const uid = generateUid();
 
     const classes = computed(() => {
       return {
@@ -102,7 +92,7 @@ export default defineComponent({
     );
 
     const init = () => {
-      addInstance({ type: 'Modal', instance: getCurrentInstance() });
+      addComponent({ type: 'Modal', uid, data: { activeClass } });
 
       setupListeners();
 
@@ -165,9 +155,12 @@ export default defineComponent({
 
     const setZIndex = () => {
       if (!isActive.value) return;
-      const totalModals = getInstancesByType('Modal').filter((modal) =>
-        isVue2 ? modal.data.activeClass : modal.ctx.activeClass
-      ).length;
+      const totalModals = getComponentsByType('Modal').filter((modal) => {
+        console.log(modal);
+        return modal.data.activeClass.value;
+      }).length;
+
+      console.log(totalModals);
 
       if (props.overlay) overlayElement.value.style.zIndex = 800 + totalModals * 6;
       zIndex.value = 800 + totalModals * 10;
@@ -256,7 +249,7 @@ export default defineComponent({
 
     onUnmounted(() => {
       removeListeners();
-      removeInstance(getCurrentInstance());
+      removeComponent(uid);
     });
 
     return {

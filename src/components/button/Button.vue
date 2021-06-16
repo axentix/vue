@@ -6,8 +6,7 @@
 </template>
 
 <script>
-import { computed, defineComponent, getCurrentInstance, onMounted, onUnmounted } from 'vue-demi';
-import { addInstance, removeInstance } from '../../utils/config';
+import { computed, defineComponent } from 'vue-demi';
 
 export default defineComponent({
   name: 'AxBtn',
@@ -65,14 +64,6 @@ export default defineComponent({
         'outline-text': props.outline,
         'outline-invert': props.outlineInvert,
       };
-    });
-
-    onMounted(() => {
-      addInstance({ type: 'Button', instance: getCurrentInstance() });
-    });
-
-    onUnmounted(() => {
-      removeInstance(getCurrentInstance());
     });
 
     return {

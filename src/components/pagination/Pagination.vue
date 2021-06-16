@@ -43,8 +43,7 @@
 </template>
 
 <script>
-import { computed, getCurrentInstance, onMounted, onUnmounted, ref, toRefs, watch } from 'vue-demi';
-import { addInstance, removeInstance } from '../../utils/config';
+import { computed, ref, toRefs, watch } from 'vue-demi';
 import vModelMixin, { getVModelKey, getVModelEvent } from '../../utils/v-model';
 
 export default {
@@ -193,14 +192,6 @@ export default {
       return true;
     };
 
-    onMounted(() => {
-      addInstance({ type: 'Pagination', instance: getCurrentInstance() });
-    });
-
-    onUnmounted(() => {
-      removeInstance(getCurrentInstance());
-    });
-
     return {
       pageCount,
       classes,
@@ -215,7 +206,7 @@ export default {
 };
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 .pagination {
   user-select: none;
 

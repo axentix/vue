@@ -1,12 +1,12 @@
 <template>
-  <div class="tooltiper" @mouseenter="show" @mouseleave="hide" v-on="listeners">
+  <div class="tooltiper" ref="tooltiper" @mouseenter="show" @mouseleave="hide" v-on="listeners">
     <slot></slot>
   </div>
 </template>
 
 <script>
-import { defineComponent, onMounted, onUnmounted, ref, getCurrentInstance, watch } from 'vue-demi';
-import { addInstance, removeInstance } from '../../utils/config';
+import { defineComponent, onMounted, onUnmounted, ref, watch } from 'vue-demi';
+import { addComponent, removeComponent, generateUid } from '../../utils/global';
 
 export default defineComponent({
   name: 'AxTooltip',
@@ -38,12 +38,14 @@ export default defineComponent({
     },
   },
   setup(props, ctx) {
-    const instance = ref(null),
-      elRect = ref(null),
+    const elRect = ref(null),
       isShown = ref(false),
       tooltip = ref(null),
       resizeRef = ref(null),
+      tooltiper = ref(null),
       tooltipRect = ref(null);
+
+    const uid = generateUid();
 
     watch(
       () => props.content,
@@ -58,12 +60,11 @@ export default defineComponent({
     const init = () => {
       ctx.emit('init');
 
-      instance.value = getCurrentInstance();
-      addInstance({ type: 'Tooltip', instance: instance.value });
+      addComponent({ type: 'Tooltip', uid });
 
       setupListeners();
 
-      tooltipRect.value = instance.value.proxy.$el.getBoundingClientRect();
+      tooltipRect.value = tooltiper.value.getBoundingClientRect();
 
       createTooltip();
       updatePosition();
@@ -98,7 +99,7 @@ export default defineComponent({
     };
 
     const updatePosition = () => {
-      elRect.value = instance.value.proxy.$el.getBoundingClientRect();
+      elRect.value = tooltiper.value.getBoundingClientRect();
 
       setBasicPosition();
 
@@ -180,12 +181,13 @@ export default defineComponent({
 
     onUnmounted(() => {
       removeListeners();
-      removeInstance(getCurrentInstance());
+      removeComponent(uid);
     });
 
     return {
       show,
       hide,
+      tooltiper,
       listeners: ctx.listeners ? ctx.listeners : {},
     };
   },

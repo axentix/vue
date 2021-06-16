@@ -48,18 +48,8 @@
 </template>
 
 <script>
-import {
-  computed,
-  defineComponent,
-  getCurrentInstance,
-  inject,
-  onMounted,
-  onUnmounted,
-  ref,
-  toRefs,
-  watch,
-} from 'vue-demi';
-import { addInstance, removeInstance } from '../../utils/config';
+import { computed, defineComponent, inject, onMounted, onUnmounted, ref, toRefs, watch } from 'vue-demi';
+import { addComponent, removeComponent, generateUid } from '../../utils/global';
 import vModelMixin, { getVModelEvent, getVModelKey } from '../../utils/v-model';
 import { selectEl, selectMixin, selectMultipleEl, toggleState, updateComputedItems } from './shared/select';
 import validateMixin, { resetFormField, validateField } from './shared/validate';
@@ -79,9 +69,10 @@ export default defineComponent({
       itemsRef = toRefs(props).items,
       vmodel = toRefs(props)[getVModelKey()];
 
-    const vmodelEvent = getVModelEvent();
+    const vmodelEvent = getVModelEvent(),
+      uid = generateUid();
 
-    const formUniqid = inject('ax-form-uniqid'),
+    const FormUid = inject('ax-form-uid'),
       formField = inject('ax-form-field');
 
     const style = computed(() => {
@@ -158,12 +149,12 @@ export default defineComponent({
     };
 
     onMounted(() => {
-      addInstance({ type: 'AxFormSelect', instance: getCurrentInstance(), FormUniqid: formUniqid });
+      addComponent({ type: 'FormSelect', uid, data: { FormUid, validate } });
       updateComputedItems(computedItems, itemsRef, vmodel, props, multipleSelected, selected);
     });
 
     onUnmounted(() => {
-      removeInstance(getCurrentInstance());
+      removeComponent(uid);
     });
 
     return {
