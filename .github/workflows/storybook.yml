@@ -69,4 +69,4 @@ jobs:
         env:
           url: ${{ secrets.WEBHOOK_URL }}
           headers: ${{ secrets.WEBHOOK_HEADERS }}
-          body: '{ "container": "axentix-story-vue" }'
+          body: '{ "container": "axentix-story-vue-dev" }'
