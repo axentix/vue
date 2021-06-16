@@ -169,7 +169,6 @@ export default defineComponent({
 
     const detectMultipleSidenav = () => {
       const sidenavs = getComponentsByType('Sidenav').filter((c) => c.data.fixed);
-      console.log(sidenavs);
       const firstSidenavInit = sidenavs[0] && sidenavs[0].uid === uid;
 
       if (layoutEl.value && firstSidenavInit) cleanLayout();
