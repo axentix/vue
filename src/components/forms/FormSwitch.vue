@@ -17,18 +17,8 @@
 </template>
 
 <script>
-import {
-  computed,
-  defineComponent,
-  getCurrentInstance,
-  inject,
-  onMounted,
-  onUnmounted,
-  ref,
-  toRefs,
-  watch,
-} from 'vue-demi';
-import { addInstance, removeInstance } from '../../utils/config';
+import { computed, defineComponent, inject, onMounted, onUnmounted, ref, toRefs, watch } from 'vue-demi';
+import { addComponent, removeComponent, generateUid } from '../../utils/global';
 import vModelMixin, { getVModelEvent, getVModelKey } from '../../utils/v-model';
 import validateMixin, { validateField } from './shared/validate';
 
@@ -61,9 +51,10 @@ export default defineComponent({
       slider = ref(null),
       localValue = ref(vmodel.value);
 
-    const vmodelEvent = getVModelEvent();
+    const vmodelEvent = getVModelEvent(),
+      uid = generateUid();
 
-    const formUniqid = inject('ax-form-uniqid'),
+    const FormUid = inject('ax-form-uid'),
       formField = inject('ax-form-field');
 
     watch(vmodel, (val) => {
@@ -97,11 +88,11 @@ export default defineComponent({
     const validate = () => validateField(props, localValue, formField);
 
     onMounted(() => {
-      addInstance({ type: 'AxFormSwitch', instance: getCurrentInstance(), FormUniqid: formUniqid });
+      addComponent({ type: 'FormSwitch', uid, data: { FormUid, validate } });
     });
 
     onUnmounted(() => {
-      removeInstance(getCurrentInstance());
+      removeComponent(uid);
     });
 
     return {

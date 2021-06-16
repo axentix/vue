@@ -1,3 +1,12 @@
+# 0.7.4 - 2021-06-16
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Core store system
+- BUGFIXES
+  - Layout is not reactive when sidenav large option change
+
 # 0.7.3 - 2021-06-15
 
 - ADDED

@@ -32,7 +32,10 @@
         </ax-tooltip>
       </div>
 
-      <ax-modal class="white rounded-1 shadow-1" v-model="modal"> Hey </ax-modal>
+      <ax-modal class="white rounded-1 shadow-1" v-model="modal">
+        <ax-btn class="airforce dark-1 rounded-1 shadow-1" @click="modal2 = !modal2">Toggle modal 2</ax-btn>
+      </ax-modal>
+      <ax-modal class="white rounded-1 shadow-1" v-model="modal2"> Hey </ax-modal>
 
       <div class="mt-5"></div>
 
@@ -216,6 +219,7 @@ export default {
       autocomplete: (v) => v.length > 0 || 'Required.',
     },
     modal: false,
+    modal2: false,
     isSidenavOpened: false,
     isCollapsibleOpened: false,
     isCollapsibleOpened2: true,
@@ -258,17 +262,15 @@ export default {
     },
   },
   mounted() {
-    setTimeout(() => {
-      this.multipleSelectedValue.push('Voiture');
-
-      setTimeout(() => {
-        this.multipleSelectedValue = [];
-
-        setTimeout(() => {
-          this.multipleSelectedValue = ['Moto'];
-        }, 1000);
-      }, 1000);
-    }, 1000);
+    // setTimeout(() => {
+    //   this.multipleSelectedValue.push('Voiture');
+    //   setTimeout(() => {
+    //     this.multipleSelectedValue = [];
+    //     setTimeout(() => {
+    //       this.multipleSelectedValue = ['Moto'];
+    //     }, 1000);
+    //   }, 1000);
+    // }, 1000);
   },
 };
 </script>

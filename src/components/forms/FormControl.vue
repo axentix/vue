@@ -20,7 +20,6 @@
 import {
   computed,
   defineComponent,
-  getCurrentInstance,
   inject,
   isVue2,
   onMounted,
@@ -34,7 +33,7 @@ import {
 import AxClickOutside from '../../directives/click-outside';
 import vModelMixin, { getVModelEvent, getVModelKey } from '../../utils/v-model';
 import validateMixin, { validateField } from './shared/validate';
-import { addInstance, removeInstance } from '../../utils/config';
+import { addComponent, removeComponent, generateUid } from '../../utils/global';
 
 export default defineComponent({
   name: 'AxFormControl',
@@ -82,10 +81,11 @@ export default defineComponent({
       }),
       input = ref(null);
 
-    const vmodelEvent = getVModelEvent();
+    const vmodelEvent = getVModelEvent(),
+      uid = generateUid();
 
     const isMaterial = inject('ax-form-material', false),
-      formUniqid = inject('ax-form-uniqid'),
+      FormUid = inject('ax-form-uid'),
       formField = inject('ax-form-field');
 
     watch(formField, () => {
@@ -245,7 +245,7 @@ export default defineComponent({
     const validate = () => validateField(props, localValue, formField);
 
     onMounted(() => {
-      addInstance({ type: 'AxFormControl', instance: getCurrentInstance(), FormUniqid: formUniqid });
+      addComponent({ type: 'FormControl', uid, data: { FormUid, validate } });
       handle();
     });
 
@@ -255,7 +255,7 @@ export default defineComponent({
 
     onUnmounted(() => {
       removeListener();
-      removeInstance(getCurrentInstance());
+      removeComponent(uid);
     });
 
     return {
