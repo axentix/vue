@@ -56,29 +56,17 @@ jobs:
           tag: ${{ env.BRANCH_NAME }}
 
       - name: Update image
-        uses: fjogeleit/http-request-action@master
+        uses: joelwmale/webhook-action@master
         if: github.ref == 'refs/heads/master'
-        id: masterUpdate
         with:
           url: ${{ secrets.WEBHOOK_URL }}
-          method: 'POST'
-          customHeaders: ${{ secrets.WEBHOOK_HEADERS }}
-          data: '{ "container": "axentix-story-vue" }'
-
-      - name: Response
-        if: github.ref == 'refs/heads/master'
-        run: echo ${{ steps.masterUpdate.outputs.response }}
+          headers: ${{ secrets.WEBHOOK_HEADERS }}
+          body: '{ "container": "axentix-story-vue" }'
 
       - name: Update dev image
-        uses: fjogeleit/http-request-action@master
+        uses: joelwmale/webhook-action@master
         if: github.ref == 'refs/heads/develop'
-        id: developUpdate
         with:
           url: ${{ secrets.WEBHOOK_URL }}
-          method: 'POST'
-          customHeaders: ${{ secrets.WEBHOOK_HEADERS }}
-          data: '{ "container": "axentix-story-vue-dev" }'
-      
-      - name: Dev Response
-        if: github.ref == 'refs/heads/develop'
-        run: echo ${{ steps.developUpdate.outputs.response }}
+          headers: ${{ secrets.WEBHOOK_HEADERS }}
+          body: '{ "container": "axentix-story-vue-dev" }'
