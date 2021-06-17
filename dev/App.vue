@@ -39,7 +39,7 @@
 
       <div class="mt-5"></div>
 
-      <ax-tab v-model="currentTab" class="shadow-1">
+      <ax-tab v-model="currentTab" class="shadow-1" full-width>
         <template #menu>
           <ax-tab-link href="#tab1">Tab 1</ax-tab-link>
           <ax-tab-link href="#tab2">Tab 2</ax-tab-link>

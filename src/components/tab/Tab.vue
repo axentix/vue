@@ -1,5 +1,5 @@
 <template>
-  <div class="tab" v-bind="$attrs" v-on="listeners" :style="style">
+  <div class="tab" v-bind="$attrs" v-on="listeners" :style="style" :class="classes">
     <ul class="tab-menu" :style="styleMenu" ref="menu">
       <slot name="menu"></slot>
     </ul>
@@ -35,7 +35,8 @@ export default defineComponent({
     },
   },
   setup(props, ctx) {
-    const vmodel = toRefs(props)[getVModelKey()],
+    const propsRef = toRefs(props),
+      vmodel = propsRef[getVModelKey()],
       oldTab = ref({}),
       currentTab = ref({}),
       tabLinks = ref([]),
@@ -70,8 +71,22 @@ export default defineComponent({
       };
     });
 
+    watch(propsRef.fullWidth, () => {
+      setTimeout(() => {
+        updateActiveBar();
+      }, 100);
+    });
+
     watch(vmodel, (state) => {
       if (state === null) return;
+
+      const index = tabLinks.value.findIndex((link) => link.itemId === state);
+      if (index === -1) return;
+
+      oldTab.value.selected = false;
+
+      currentTab.value = tabLinks.value[index];
+      currentTab.value.selected = true;
     });
 
     watch(currentTab, () => {
