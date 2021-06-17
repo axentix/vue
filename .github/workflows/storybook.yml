@@ -56,17 +56,17 @@ jobs:
           tag: ${{ env.BRANCH_NAME }}
 
       - name: Update image
-        uses: joelwmale/webhook-action@master
+        uses: distributhor/workflow-webhook@v2
         if: github.ref == 'refs/heads/master'
         env:
-          url: '${{ secrets.WEBHOOK_URL }}'
-          headers: ${{ secrets.WEBHOOK_HEADERS }}
-          body: '{ "container": "axentix-story-vue" }'
+          webhook_url: '${{ secrets.WEBHOOK_URL }}'
+          webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
+          data: '{ "container": "axentix-story-vue" }'
 
       - name: Update dev image
-        uses: joelwmale/webhook-action@master
+        uses: distributhor/workflow-webhook@v2
         if: github.ref == 'refs/heads/develop'
         env:
-          url: '${{ secrets.WEBHOOK_URL }}'
-          headers: ${{ secrets.WEBHOOK_HEADERS }}
-          body: '{ "container": "axentix-story-vue-dev" }'
+          webhook_url: '${{ secrets.WEBHOOK_URL }}'
+          webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
+          data: '{ "container": "axentix-story-vue-dev" }'
