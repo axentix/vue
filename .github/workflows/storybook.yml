@@ -66,6 +66,7 @@ jobs:
           data: '{ "container": "axentix-story-vue" }'
 
       - name: Response
+        if: github.ref == 'refs/heads/master'
         run: echo ${{ steps.masterUpdate.outputs.response }}
 
       - name: Update dev image
@@ -79,4 +80,5 @@ jobs:
           data: '{ "container": "axentix-story-vue-dev" }'
       
       - name: Dev Response
+        if: github.ref == 'refs/heads/develop'
         run: echo ${{ steps.developUpdate.outputs.response }}
