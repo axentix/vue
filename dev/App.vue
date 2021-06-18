@@ -39,11 +39,22 @@
 
       <div class="mt-5"></div>
 
-      <ax-tab v-model="currentTab" class="shadow-1" full-width>
+      <ax-tab
+        v-model="currentTab"
+        class="shadow-1"
+        full-width
+        arrow
+        prevClasses="shadow-1"
+        nextClasses="shadow-1"
+      >
+        <template #left-arrow> &lsaquo; </template>
+
+        <template #right-arrow> &rsaquo; </template>
+
         <template #menu>
           <ax-tab-link href="#tab1">Tab 1</ax-tab-link>
           <ax-tab-link href="#tab2">Tab 2</ax-tab-link>
-          <ax-tab-link href="#tab3">Tab 3</ax-tab-link>
+          <ax-tab-link href="#tab3">Long tab content long tab content </ax-tab-link>
         </template>
 
         <ax-tab-item id="tab1"> Content 1 </ax-tab-item>

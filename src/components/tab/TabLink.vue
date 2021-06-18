@@ -48,10 +48,6 @@ export default defineComponent({
       registerTabLink();
     });
 
-    // watch(currentTab, () => {
-    //   console.log('currentTab', currentTab.value);
-    // });
-
     const classes = computed(() => {
       return {
         active: data.selected,

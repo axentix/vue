@@ -1,6 +1,20 @@
 <template>
   <div class="tab" v-bind="$attrs" v-on="listeners" :style="style" :class="classes">
-    <ul class="tab-menu" :style="styleMenu" ref="menu">
+    <div class="tab-arrow" v-if="arrow" ref="arrowRef" :class="arrowClasses">
+      <div class="tab-prev" @click="scrollLeft" :class="prevClasses">
+        <slot name="left-arrow"> &lsaquo; </slot>
+      </div>
+
+      <ul class="tab-menu" :style="styleMenu" ref="menu">
+        <slot name="menu"></slot>
+      </ul>
+
+      <div class="tab-next" @click="scrollRight" :class="nextClasses">
+        <slot name="right-arrow"> &rsaquo; </slot>
+      </div>
+    </div>
+
+    <ul class="tab-menu" :style="styleMenu" ref="menu" v-else>
       <slot name="menu"></slot>
     </ul>
 
@@ -33,6 +47,18 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    arrow: {
+      type: Boolean,
+      default: false,
+    },
+    prevClasses: {
+      type: String,
+      default: '',
+    },
+    nextClasses: {
+      type: String,
+      default: '',
+    },
   },
   setup(props, ctx) {
     const propsRef = toRefs(props),
@@ -44,6 +70,8 @@ export default defineComponent({
       tabBarLeftOffset = ref(0),
       tabBarRightOffset = ref(0),
       timer = ref(null),
+      arrowRef = ref(null),
+      isArrowShow = ref(false),
       menu = ref(null);
 
     const vmodelEvent = getVModelEvent();
@@ -55,6 +83,12 @@ export default defineComponent({
     const classes = computed(() => {
       return {
         'full-width': props.fullWidth,
+      };
+    });
+
+    const arrowClasses = computed(() => {
+      return {
+        'tab-arrow-show': isArrowShow.value,
       };
     });
 
@@ -110,6 +144,30 @@ export default defineComponent({
     const handleResize = () => {
       if (timer.value) clearTimeout(timer.value);
       timer.value = setTimeout(updateActiveBar, 100);
+
+      if (props.arrow) toggleArrowMode();
+    };
+
+    const toggleArrowMode = () => {
+      if (!props.arrow) return;
+
+      const totalWidth = tabLinks.value.reduce((acc, link) => {
+        acc += link.el.clientWidth;
+        return acc;
+      }, 0);
+      const arrowWidth = arrowRef.value.clientWidth;
+
+      isArrowShow.value = totalWidth > arrowWidth;
+    };
+
+    const scrollLeft = () => {
+      if (!props.arrow) return;
+      menu.value.scrollLeft -= 40;
+    };
+
+    const scrollRight = () => {
+      if (!props.arrow) return;
+      menu.value.scrollLeft += 40;
     };
 
     const select = () => {
@@ -147,6 +205,7 @@ export default defineComponent({
 
     onMounted(() => {
       setupListeners();
+      if (props.arrow) toggleArrowMode();
       updateActiveElement();
     });
 
@@ -159,6 +218,10 @@ export default defineComponent({
       style,
       styleMenu,
       menu,
+      arrowRef,
+      arrowClasses,
+      scrollLeft,
+      scrollRight,
       listeners: ctx.listeners ? ctx.listeners : {},
     };
   },
