@@ -1,5 +1,5 @@
 <template>
-  <li class="tab-link" ref="el" v-on="listeners" @click="linkSelected" :class="classes">
+  <li class="tab-link" ref="el" v-on="listeners" @click.prevent.stop="linkSelected" :class="classes">
     <a v-bind="$attrs" :href="href">
       <slot></slot>
     </a>

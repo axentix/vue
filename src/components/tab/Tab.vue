@@ -100,8 +100,8 @@ export default defineComponent({
 
     const styleMenu = computed(() => {
       return {
-        '--tab-bar-left-offset': tabBarLeftOffset.value + 'px',
-        '--tab-bar-right-offset': tabBarRightOffset.value + 'px',
+        '--tab-bar-left-offset': tabBarLeftOffset.value,
+        '--tab-bar-right-offset': tabBarRightOffset.value,
       };
     });
 
@@ -182,7 +182,8 @@ export default defineComponent({
     };
 
     const updateActiveBar = () => {
-      if (props.disableActiveBar) return;
+      if (props.disableActiveBar)
+        return (tabBarLeftOffset.value = 'unset'), (tabBarRightOffset.value = 'unset');
 
       const elementRect = currentTab.value.el.getBoundingClientRect();
 
@@ -193,13 +194,17 @@ export default defineComponent({
       const elementWidth = elementRect.width;
       const right = menu.value.clientWidth - left - elementWidth;
 
-      tabBarLeftOffset.value = Math.floor(left);
-      tabBarRightOffset.value = Math.ceil(right);
+      tabBarLeftOffset.value = Math.floor(left) + 'px';
+      tabBarRightOffset.value = Math.ceil(right) + 'px';
     };
 
     const updateActiveElement = () => {
-      const selectedLink = tabLinks.value.find((link) => link.selected);
-      if (!selectedLink) return (currentTab.value = tabLinks.value[0]);
+      let selectedLink = tabLinks.value.find((link) => link.selected);
+      if (!selectedLink)
+        selectedLink = vmodel.value
+          ? tabLinks.value.find((link) => link.itemId === vmodel.value)
+          : tabLinks.value[0];
+
       currentTab.value = selectedLink;
     };
 
@@ -222,6 +227,7 @@ export default defineComponent({
       arrowClasses,
       scrollLeft,
       scrollRight,
+      updateActiveElement,
       listeners: ctx.listeners ? ctx.listeners : {},
     };
   },

@@ -1,76 +1,54 @@
-import AxModal from './Modal.vue';
+import AxTab from './Tab.vue';
+import AxTabItem from './TabItem.vue';
+import AxTabLink from './TabLink.vue';
 
 export default {
-  title: 'Axentix/Components/Modal',
-  component: AxModal,
+  title: 'Axentix/Components/Tab',
+  component: AxTab,
+  subcomponents: { AxTabItem, AxTabLink },
   argTypes: {
-    value: { control: { type: 'boolean' } },
-    mode: { control: { type: 'select', options: ['falling', '', 'bouncing'] } },
-    header: {
-      control: {
-        type: 'text',
-      },
-      defaultValue: '',
-    },
-    footer: {
-      control: {
-        type: 'text',
-      },
-      defaultValue: '',
-    },
-    content: {
-      control: {
-        type: 'text',
-      },
-      defaultValue: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus voluptas ipsam rerum repellendus,
-      quibusdam architecto laboriosam quia itaque voluptates et, fuga tenetur possimus debitis quisquam
-      assumenda fugit modi magnam earum.`,
-    },
+    value: { control: { type: 'text' } },
     classes: {
       control: {
         type: 'text',
       },
-      defaultValue: 'white rounded-1',
+      defaultValue: 'shadow-1',
     },
   },
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { AxModal },
-  template: `<ax-modal :class="classes" v-bind="$props">
-    <template v-slot:header v-if="header">
-      <span v-html="header"></span>
-    </template>
+  components: { AxTab, AxTabItem, AxTabLink },
+  template: `<ax-tab v-model="value" :class="classes" v-bind="$props">
+  <template #menu>
+    <ax-tab-link href="#tab1">Tab 1</ax-tab-link>
+    <ax-tab-link href="#tab2">Tab 2</ax-tab-link>
+    <ax-tab-link href="#tab3">Long tab content long tab content </ax-tab-link>
+  </template>
 
-    <span v-html="content"></span>
-
-    <template v-slot:footer v-if="footer">
-      <span v-html="footer"></span>
-    </template>
-    
-    </ax-modal>`,
+  <ax-tab-item id="tab1"> Content 1 </ax-tab-item>
+  <ax-tab-item id="tab2"> Content 2 </ax-tab-item>
+  <ax-tab-item id="tab3"> This is the 3rd content </ax-tab-item>
+</ax-tab>`,
 });
 
 export const Normal = Template.bind({});
 Normal.args = {};
 
-export const Falling = Template.bind({});
-Falling.args = {
-  mode: 'falling',
+export const FullWidth = Template.bind({});
+FullWidth.args = {
+  fullWidth: true,
 };
 
-export const Bouncing = Template.bind({});
-Bouncing.args = {
-  mode: 'bouncing',
+export const WithoutActiveBar = Template.bind({});
+WithoutActiveBar.args = {
+  disableActiveBar: true,
 };
 
-export const Header = Template.bind({});
-Header.args = {
-  header: 'Header title',
-};
-
-export const Footer = Template.bind({});
-Footer.args = {
-  footer: 'Footer content',
+export const Arrow = Template.bind({});
+Arrow.args = {
+  arrow: true,
+  prevClasses: 'shadow-1',
+  nextClasses: 'shadow-1',
 };
