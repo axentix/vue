@@ -5,7 +5,7 @@
         <slot name="left-arrow"> &lsaquo; </slot>
       </div>
 
-      <ul class="tab-menu" :style="styleMenu" ref="menu">
+      <ul class="tab-menu" :style="menuStyle" ref="menu">
         <slot name="menu"></slot>
       </ul>
 
@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <ul class="tab-menu" :style="styleMenu" ref="menu" v-else>
+    <ul class="tab-menu" :style="menuStyle" ref="menu" v-else>
       <slot name="menu"></slot>
     </ul>
 
@@ -71,7 +71,7 @@ export default defineComponent({
       tabBarRightOffset = ref(0),
       timer = ref(null),
       arrowRef = ref(null),
-      isArrowShow = ref(false),
+      isArrowShown = ref(false),
       menu = ref(null);
 
     const vmodelEvent = getVModelEvent();
@@ -88,7 +88,7 @@ export default defineComponent({
 
     const arrowClasses = computed(() => {
       return {
-        'tab-arrow-show': isArrowShow.value,
+        'tab-arrow-show': isArrowShown.value,
       };
     });
 
@@ -98,7 +98,7 @@ export default defineComponent({
       };
     });
 
-    const styleMenu = computed(() => {
+    const menuStyle = computed(() => {
       return {
         '--tab-bar-left-offset': tabBarLeftOffset.value,
         '--tab-bar-right-offset': tabBarRightOffset.value,
@@ -157,7 +157,7 @@ export default defineComponent({
       }, 0);
       const arrowWidth = arrowRef.value.clientWidth;
 
-      isArrowShow.value = totalWidth > arrowWidth;
+      isArrowShown.value = totalWidth > arrowWidth;
     };
 
     const scrollLeft = () => {
@@ -221,7 +221,7 @@ export default defineComponent({
     return {
       classes,
       style,
-      styleMenu,
+      menuStyle,
       menu,
       arrowRef,
       arrowClasses,
