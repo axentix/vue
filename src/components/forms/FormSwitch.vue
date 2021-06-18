@@ -20,7 +20,7 @@
 import { computed, defineComponent, inject, onMounted, onUnmounted, ref, toRefs, watch } from 'vue-demi';
 import { addComponent, removeComponent, generateUid } from '../../utils/global';
 import vModelMixin, { getVModelEvent, getVModelKey } from '../../utils/v-model';
-import validateMixin, { validateField } from './shared/validate';
+import validateMixin, { resetFormField, validateField } from './shared/validate';
 
 export default defineComponent({
   name: 'AxFormSwitch',
@@ -87,6 +87,8 @@ export default defineComponent({
 
     const validate = () => validateField(props, localValue, formField);
 
+    const resetValidation = () => resetFormField(formField);
+
     onMounted(() => {
       addComponent({ type: 'FormSwitch', uid, data: { FormUid, validate } });
     });
@@ -102,6 +104,7 @@ export default defineComponent({
       style,
       computedValue,
       validate,
+      resetValidation,
     };
   },
 });

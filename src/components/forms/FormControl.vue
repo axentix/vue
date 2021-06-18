@@ -32,7 +32,7 @@ import {
 } from 'vue-demi';
 import AxClickOutside from '../../directives/click-outside';
 import vModelMixin, { getVModelEvent, getVModelKey } from '../../utils/v-model';
-import validateMixin, { validateField } from './shared/validate';
+import validateMixin, { resetFormField, validateField } from './shared/validate';
 import { addComponent, removeComponent, generateUid } from '../../utils/global';
 
 export default defineComponent({
@@ -244,6 +244,8 @@ export default defineComponent({
 
     const validate = () => validateField(props, localValue, formField);
 
+    const resetValidation = () => resetFormField(formField);
+
     onMounted(() => {
       addComponent({ type: 'FormControl', uid, data: { FormUid, validate } });
       handle();
@@ -266,6 +268,7 @@ export default defineComponent({
       computedValue,
       onInput,
       validate,
+      resetValidation,
     };
   },
 });
