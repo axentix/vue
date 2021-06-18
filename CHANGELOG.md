@@ -1,3 +1,13 @@
+# 0.8.0 - 2021-06-18
+
+- ADDED
+  - Tab (normal, arrow)
+  - Form `resetValidation()` method
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+
 # 0.7.5 - 2021-06-16
 
 - ADDED

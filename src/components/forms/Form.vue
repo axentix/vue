@@ -35,9 +35,16 @@ export default defineComponent({
         .map((c) => c.data.validate())
         .every((b) => b);
 
+    const resetValidation = () =>
+      store.value
+        .filter((c) => validType.includes(c.type) && c.data.FormUid === uid)
+        .map((c) => c.data.resetValidation())
+        .every((b) => b);
+
     return {
       classes,
       validate,
+      resetValidation,
       listeners: ctx.listeners ? ctx.listeners : {},
     };
   },
