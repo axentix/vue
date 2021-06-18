@@ -148,6 +148,8 @@ export default defineComponent({
       return validateField(props, selected, formField);
     };
 
+    const resetValidation = () => resetFormField(formField);
+
     onMounted(() => {
       addComponent({ type: 'FormSelect', uid, data: { FormUid, validate } });
       updateComputedItems(computedItems, itemsRef, vmodel, props, multipleSelected, selected);
@@ -165,6 +167,7 @@ export default defineComponent({
       container,
       computedItems,
       validate,
+      resetValidation,
     };
   },
 });

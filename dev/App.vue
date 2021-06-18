@@ -39,6 +39,31 @@
 
       <div class="mt-5"></div>
 
+      <ax-tab
+        v-model="currentTab"
+        class="shadow-1"
+        full-width
+        arrow
+        prevClasses="shadow-1"
+        nextClasses="shadow-1"
+      >
+        <template #left-arrow> &lsaquo; </template>
+
+        <template #right-arrow> &rsaquo; </template>
+
+        <template #menu>
+          <ax-tab-link href="#tab1">Tab 1</ax-tab-link>
+          <ax-tab-link href="#tab2">Tab 2</ax-tab-link>
+          <ax-tab-link href="#tab3">Long tab content long tab content </ax-tab-link>
+        </template>
+
+        <ax-tab-item id="tab1"> Content 1 </ax-tab-item>
+        <ax-tab-item id="tab2"> Content 2 </ax-tab-item>
+        <ax-tab-item id="tab3"> This is the 3rd content </ax-tab-item>
+      </ax-tab>
+
+      <div class="mt-5"></div>
+
       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, officiis distinctio asperiores ea
       quidem laudantium earum ducimus mollitia eos modi atque consectetur praesentium aut. A atque tenetur
       doloremque ad voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, officiis
@@ -214,6 +239,7 @@
 export default {
   name: 'App',
   data: () => ({
+    currentTab: null,
     rules: {
       required: (value) => !!value || 'Required.',
       autocomplete: (v) => v.length > 0 || 'Required.',
@@ -238,6 +264,9 @@ export default {
     test: '',
   }),
   watch: {
+    currentTab(val) {
+      console.log('currentTab', val);
+    },
     radio(val) {
       console.log('radio', val);
     },

@@ -2915,6 +2915,266 @@ exports[`Storyshots Axentix/Components/Sidenav Right Aligned 1`] = `
 </div>
 `;
 
+exports[`Storyshots Axentix/Components/Tab Arrow 1`] = `
+<div
+  class="tab shadow-1"
+  classes="shadow-1"
+  style="transition-duration: 300ms;"
+>
+  <div
+    class="tab-arrow"
+  >
+    <div
+      class="tab-prev shadow-1"
+    >
+       ‹ 
+    </div>
+     
+    <ul
+      class="tab-menu"
+      style="--tab-bar-left-offset: 0; --tab-bar-right-offset: 0;"
+    >
+      <li
+        class="tab-link"
+      >
+        <a
+          href="#tab1"
+        >
+          Tab 1
+        </a>
+      </li>
+       
+      <li
+        class="tab-link"
+      >
+        <a
+          href="#tab2"
+        >
+          Tab 2
+        </a>
+      </li>
+       
+      <li
+        class="tab-link"
+      >
+        <a
+          href="#tab3"
+        >
+          Long tab content long tab content 
+        </a>
+      </li>
+    </ul>
+     
+    <div
+      class="tab-next shadow-1"
+    >
+       › 
+    </div>
+  </div>
+    
+  <div
+    style="display: none;"
+  >
+     Content 1 
+  </div>
+   
+  <div
+    style="display: none;"
+  >
+     Content 2 
+  </div>
+   
+  <div
+    style="display: none;"
+  >
+     This is the 3rd content 
+  </div>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/Tab Full Width 1`] = `
+<div
+  class="tab full-width shadow-1"
+  classes="shadow-1"
+  style="transition-duration: 300ms;"
+>
+  <ul
+    class="tab-menu"
+    style="--tab-bar-left-offset: 0; --tab-bar-right-offset: 0;"
+  >
+    <li
+      class="tab-link"
+    >
+      <a
+        href="#tab1"
+      >
+        Tab 1
+      </a>
+    </li>
+     
+    <li
+      class="tab-link"
+    >
+      <a
+        href="#tab2"
+      >
+        Tab 2
+      </a>
+    </li>
+     
+    <li
+      class="tab-link"
+    >
+      <a
+        href="#tab3"
+      >
+        Long tab content long tab content 
+      </a>
+    </li>
+  </ul>
+    
+  <div
+    style="display: none;"
+  >
+     Content 1 
+  </div>
+   
+  <div
+    style="display: none;"
+  >
+     Content 2 
+  </div>
+   
+  <div
+    style="display: none;"
+  >
+     This is the 3rd content 
+  </div>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/Tab Normal 1`] = `
+<div
+  class="tab shadow-1"
+  classes="shadow-1"
+  style="transition-duration: 300ms;"
+>
+  <ul
+    class="tab-menu"
+    style="--tab-bar-left-offset: 0; --tab-bar-right-offset: 0;"
+  >
+    <li
+      class="tab-link"
+    >
+      <a
+        href="#tab1"
+      >
+        Tab 1
+      </a>
+    </li>
+     
+    <li
+      class="tab-link"
+    >
+      <a
+        href="#tab2"
+      >
+        Tab 2
+      </a>
+    </li>
+     
+    <li
+      class="tab-link"
+    >
+      <a
+        href="#tab3"
+      >
+        Long tab content long tab content 
+      </a>
+    </li>
+  </ul>
+    
+  <div
+    style="display: none;"
+  >
+     Content 1 
+  </div>
+   
+  <div
+    style="display: none;"
+  >
+     Content 2 
+  </div>
+   
+  <div
+    style="display: none;"
+  >
+     This is the 3rd content 
+  </div>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/Tab Without Active Bar 1`] = `
+<div
+  class="tab shadow-1"
+  classes="shadow-1"
+  style="transition-duration: 300ms;"
+>
+  <ul
+    class="tab-menu"
+    style="--tab-bar-left-offset: 0; --tab-bar-right-offset: 0;"
+  >
+    <li
+      class="tab-link"
+    >
+      <a
+        href="#tab1"
+      >
+        Tab 1
+      </a>
+    </li>
+     
+    <li
+      class="tab-link"
+    >
+      <a
+        href="#tab2"
+      >
+        Tab 2
+      </a>
+    </li>
+     
+    <li
+      class="tab-link"
+    >
+      <a
+        href="#tab3"
+      >
+        Long tab content long tab content 
+      </a>
+    </li>
+  </ul>
+    
+  <div
+    style="display: none;"
+  >
+     Content 1 
+  </div>
+   
+  <div
+    style="display: none;"
+  >
+     Content 2 
+  </div>
+   
+  <div
+    style="display: none;"
+  >
+     This is the 3rd content 
+  </div>
+</div>
+`;
+
 exports[`Storyshots Axentix/Components/Tooltip Bottom 1`] = `
 <div
   class="d-flex fx-center"

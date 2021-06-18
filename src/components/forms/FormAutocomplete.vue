@@ -243,6 +243,8 @@ export default defineComponent({
       return validateField(props, selected, formField);
     };
 
+    const resetValidation = () => resetFormField(formField);
+
     onMounted(() => {
       addComponent({ type: 'FormAutocomplete', uid, data: { FormUid, validate } });
       setupListeners();
@@ -266,6 +268,7 @@ export default defineComponent({
       filteredItems,
       validate,
       autocompleteActive,
+      resetValidation,
     };
   },
 });
