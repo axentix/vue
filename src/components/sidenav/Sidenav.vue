@@ -317,6 +317,7 @@ export default defineComponent({
 
     onUnmounted(() => {
       removeListeners();
+      toggleBodyScroll(true);
       removeComponent(uid);
     });
 

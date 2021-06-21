@@ -1,3 +1,11 @@
+# 0.8.1 - 2021-06-21
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Force Sidenav & Modal toggle bodyScroll on onUnmounted() event
+
 # 0.8.0 - 2021-06-18
 
 - ADDED
