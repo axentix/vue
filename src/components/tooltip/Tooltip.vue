@@ -42,6 +42,7 @@ export default defineComponent({
       isShown = ref(false),
       tooltip = ref(null),
       resizeRef = ref(null),
+      timeoutRef = ref(null),
       tooltiper = ref(null),
       tooltipRect = ref(null);
 
@@ -151,7 +152,7 @@ export default defineComponent({
       isShown.value = true;
 
       ctx.emit('show');
-      setTimeout(() => {
+      timeoutRef.value = setTimeout(() => {
         props.position == 'top'
           ? (tooltip.value.style.transform = `translateY(-${props.offset}px)`)
           : props.position == 'right'
@@ -168,7 +169,7 @@ export default defineComponent({
 
     const hide = () => {
       ctx.emit('hide');
-
+      clearTimeout(timeoutRef.value);
       isShown.value = false;
 
       tooltip.value.style.transform = 'translate(0)';
