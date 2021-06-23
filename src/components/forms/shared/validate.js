@@ -1,5 +1,3 @@
-import { isVue2 } from 'vue-demi';
-
 export default {
   props: {
     rules: {
@@ -14,13 +12,8 @@ export default {
 };
 
 export const resetFormField = (formField) => {
-  if (isVue2) {
-    formField.value.data.notValidHelper = null;
-    formField.value.data.notValidColor = null;
-  } else {
-    formField.value.proxy.notValidHelper = null;
-    formField.value.proxy.notValidColor = null;
-  }
+  formField.value.proxy.notValidHelper = null;
+  formField.value.proxy.notValidColor = null;
 };
 
 export const validateField = (props, localValue, formField) => {
@@ -40,14 +33,8 @@ export const validateField = (props, localValue, formField) => {
     return true;
   }
 
-  if (typeof notValidRule === 'string') {
-    isVue2
-      ? (formField.value.data.notValidHelper = notValidRule)
-      : (formField.value.proxy.notValidHelper = notValidRule);
-  }
+  if (typeof notValidRule === 'string') formField.value.proxy.notValidHelper = notValidRule;
 
-  isVue2
-    ? (formField.value.data.notValidColor = props.errorColor)
-    : (formField.value.proxy.notValidColor = props.errorColor);
+  formField.value.proxy.notValidColor = props.errorColor;
   return false;
 };

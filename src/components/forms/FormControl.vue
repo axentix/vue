@@ -93,15 +93,11 @@ export default defineComponent({
     });
 
     watch(formFieldClasses, () => {
-      isVue2
-        ? (formField.value.data.extraClasses = formFieldClasses)
-        : (formField.value.proxy.extraClasses = formFieldClasses);
+      formField.value.proxy.extraClasses = formFieldClasses;
     });
 
     watch(formFieldStyle, () => {
-      isVue2
-        ? (formField.value.data.extraStyle = formFieldStyle)
-        : (formField.value.proxy.extraStyle = formFieldStyle);
+      formField.value.proxy.extraStyle = formFieldStyle;
     });
 
     watch(vmodel, (val) => {
