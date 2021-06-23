@@ -1,3 +1,12 @@
+# 0.8.2 - 2021-06-23
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - FormControl not work when we build to vue 2
+  - Tooltip clear timeout
+
 # 0.8.1 - 2021-06-21
 
 - ADDED
