@@ -170,7 +170,7 @@
         <ax-form-field>
           <ax-form-check type="radio" v-model="radio" name="yon" native-value="Yes">Yes</ax-form-check>
           <ax-form-check type="radio" v-model="radio" name="yon" full native-value="No">No</ax-form-check>
-          <ax-form-check type="checkbox" v-model="checked">Ok</ax-form-check>
+          <ax-form-check type="checkbox" v-model="checked" @click.native="say">Ok</ax-form-check>
         </ax-form-field>
 
         <ax-form-field default>
@@ -288,6 +288,9 @@ export default {
     },
     validateForm() {
       console.log(this.$refs.form.validate());
+    },
+    say() {
+      console.log('hey');
     },
   },
   mounted() {

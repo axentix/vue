@@ -5,9 +5,9 @@
       :type="type"
       v-model="computedValue"
       ref="input"
-      :value="nativeValue"
       @input="validate"
       @change="validate"
+      @click.stop
     />
 
     <span :class="spanClasses">
@@ -75,6 +75,7 @@ export default defineComponent({
 
     onMounted(() => {
       addComponent({ type: 'FormCheck', uid, data: { FormUid, validate } });
+      if (props.nativeValue && !vmodel.value) computedValue.value = props.nativeValue;
     });
 
     onUnmounted(() => {
