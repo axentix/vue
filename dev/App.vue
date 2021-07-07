@@ -27,6 +27,14 @@
 
     <main class="m-5">
       <div class="d-flex" style="justify-content: flex-end">
+        <ax-dropdown v-model="isDropdownOpened" content-classes="grey light-4">
+          <template #trigger>
+            <ax-btn class="btn blue" @click="isDropdownOpened = !isDropdownOpened">Trigger dropdown</ax-btn>
+          </template>
+
+          <div class="dropdown-item">Hello</div>
+          <div class="dropdown-item">Hello</div>
+        </ax-dropdown>
         <ax-tooltip content="sidenav toggler">
           <ax-btn class="airforce dark-1 rounded-1 shadow-1" @click="modal = !modal">Toggle sidenav</ax-btn>
         </ax-tooltip>
@@ -249,6 +257,7 @@ export default {
     isSidenavOpened: false,
     isCollapsibleOpened: false,
     isCollapsibleOpened2: true,
+    isDropdownOpened: true,
     current: 4,
     maxVisible: 5,
     radio: 'Yes',
