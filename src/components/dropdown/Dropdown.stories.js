@@ -1,4 +1,5 @@
 import AxDropdown from './Dropdown.vue';
+import AxBtn from '../button/Button.vue';
 
 export default {
   title: 'Axentix/Components/Dropdown',
@@ -22,7 +23,7 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { AxDropdown },
+  components: { AxDropdown, AxBtn },
   template: `<ax-dropdown v-model="value" v-bind="$props">
     <template #trigger>
       <ax-btn class="btn blue" @click="value = !value">Trigger dropdown</ax-btn>
@@ -43,3 +44,17 @@ export const Fade = Template.bind({});
 Fade.args = {
   animationType: 'fade',
 };
+
+const HoverTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { AxDropdown, AxBtn },
+  template: `<ax-dropdown v-model="value" v-bind="$props">
+    <template #trigger>
+      <ax-btn class="btn blue" @mouseleave="value = !value" @mouseover="value = !value">Trigger dropdown</ax-btn>
+    </template>
+    <span v-html="content"></span>
+  </ax-dropdown>`,
+});
+
+export const Hover = HoverTemplate.bind({});
+Hover.args = {};

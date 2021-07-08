@@ -284,6 +284,150 @@ exports[`Storyshots Axentix/Components/Collapsible Normal 1`] = `
 </div>
 `;
 
+exports[`Storyshots Axentix/Components/Dropdown Constrained 1`] = `
+<div
+  class="dropdown anim-fade"
+  content="<div class=\\"dropdown-item\\">Hello</div>
+      <div class=\\"dropdown-item\\">Hello number 2</div>"
+  style="transition-duration: 300ms;"
+>
+  <button
+    class="btn btn blue"
+  >
+    Trigger dropdown
+  </button>
+   
+  <div
+    class="dropdown-content constrain-width"
+    style="max-height: auto;"
+  >
+     
+    <span>
+      <div
+        class="dropdown-item"
+      >
+        Hello
+      </div>
+      
+      
+      <div
+        class="dropdown-item"
+      >
+        Hello number 2
+      </div>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/Dropdown Fade 1`] = `
+<div
+  class="dropdown anim-fade"
+  content="<div class=\\"dropdown-item\\">Hello</div>
+      <div class=\\"dropdown-item\\">Hello number 2</div>"
+  style="transition-duration: 300ms;"
+>
+  <button
+    class="btn btn blue"
+  >
+    Trigger dropdown
+  </button>
+   
+  <div
+    class="dropdown-content"
+    style="max-height: auto;"
+  >
+     
+    <span>
+      <div
+        class="dropdown-item"
+      >
+        Hello
+      </div>
+      
+      
+      <div
+        class="dropdown-item"
+      >
+        Hello number 2
+      </div>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/Dropdown Hover 1`] = `
+<div
+  class="dropdown anim-fade"
+  content="<div class=\\"dropdown-item\\">Hello</div>
+      <div class=\\"dropdown-item\\">Hello number 2</div>"
+  style="transition-duration: 300ms;"
+>
+  <button
+    class="btn btn blue"
+  >
+    Trigger dropdown
+  </button>
+   
+  <div
+    class="dropdown-content"
+    style="max-height: auto;"
+  >
+     
+    <span>
+      <div
+        class="dropdown-item"
+      >
+        Hello
+      </div>
+      
+      
+      <div
+        class="dropdown-item"
+      >
+        Hello number 2
+      </div>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/Dropdown Normal 1`] = `
+<div
+  class="dropdown anim-fade"
+  content="<div class=\\"dropdown-item\\">Hello</div>
+      <div class=\\"dropdown-item\\">Hello number 2</div>"
+  style="transition-duration: 300ms;"
+>
+  <button
+    class="btn btn blue"
+  >
+    Trigger dropdown
+  </button>
+   
+  <div
+    class="dropdown-content"
+    style="max-height: auto;"
+  >
+     
+    <span>
+      <div
+        class="dropdown-item"
+      >
+        Hello
+      </div>
+      
+      
+      <div
+        class="dropdown-item"
+      >
+        Hello number 2
+      </div>
+    </span>
+  </div>
+</div>
+`;
+
 exports[`Storyshots Axentix/Components/Forms/Autocomplete Chips 1`] = `
 <form
   class="form-material"
