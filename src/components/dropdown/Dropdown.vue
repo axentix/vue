@@ -39,7 +39,7 @@ export default defineComponent({
     },
     animationType: {
       type: String,
-      default: 'fade',
+      default: 'none',
       validator: (val) => ['none', 'fade'].includes(val),
     },
     constrainWidth: {
@@ -138,13 +138,13 @@ export default defineComponent({
     };
 
     const openDropdown = () => {
-      if (isActive.value || isAnimated.value) {
-        return;
-      }
+      if (isActive.value || isAnimated.value) return;
 
-      getComponentsByType('Dropdown').map((c) => {
-        c.data.closeDropdown(uid);
-      });
+      if (props.autoClose) {
+        getComponentsByType('Dropdown').map((c) => {
+          c.data.closeDropdown(uid);
+        });
+      }
 
       ctx.emit('open');
 
@@ -166,9 +166,7 @@ export default defineComponent({
     };
 
     const closeDropdown = (id) => {
-      if (!isActive.value || (props.autoClose && id !== uid.value)) {
-        return;
-      }
+      if (!isActive.value || id === uid.value) return;
 
       ctx.emit('close');
       isActive.value = false;
