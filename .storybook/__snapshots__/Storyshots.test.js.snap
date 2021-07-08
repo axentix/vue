@@ -286,10 +286,9 @@ exports[`Storyshots Axentix/Components/Collapsible Normal 1`] = `
 
 exports[`Storyshots Axentix/Components/Dropdown Constrained 1`] = `
 <div
-  class="dropdown anim-fade"
+  class="dropdown anim-none"
   content="<div class=\\"dropdown-item\\">Hello</div>
       <div class=\\"dropdown-item\\">Hello number 2</div>"
-  style="transition-duration: 300ms;"
 >
   <button
     class="btn btn blue"
@@ -358,10 +357,9 @@ exports[`Storyshots Axentix/Components/Dropdown Fade 1`] = `
 
 exports[`Storyshots Axentix/Components/Dropdown Hover 1`] = `
 <div
-  class="dropdown anim-fade"
+  class="dropdown anim-none"
   content="<div class=\\"dropdown-item\\">Hello</div>
       <div class=\\"dropdown-item\\">Hello number 2</div>"
-  style="transition-duration: 300ms;"
 >
   <button
     class="btn btn blue"
@@ -394,10 +392,9 @@ exports[`Storyshots Axentix/Components/Dropdown Hover 1`] = `
 
 exports[`Storyshots Axentix/Components/Dropdown Normal 1`] = `
 <div
-  class="dropdown anim-fade"
+  class="dropdown anim-none"
   content="<div class=\\"dropdown-item\\">Hello</div>
       <div class=\\"dropdown-item\\">Hello number 2</div>"
-  style="transition-duration: 300ms;"
 >
   <button
     class="btn btn blue"
