@@ -1,5 +1,12 @@
 <template>
-  <div :style="style" class="dropdown" v-bind="$attrs" v-on="listeners">
+  <div
+    :style="style"
+    :class="[classes, animation]"
+    class="dropdown"
+    v-ax-click-outside="() => onDocumentClick()"
+    v-bind="$attrs"
+    v-on="listeners"
+  >
     <slot name="trigger"></slot>
 
     <div
@@ -17,10 +24,14 @@
 import { computed, defineComponent, onMounted, onUnmounted, toRefs, ref, watch } from 'vue-demi';
 import { addComponent, removeComponent, generateUid, getComponentsByType } from '../../utils/global';
 import vModelMixin, { getVModelEvent, getVModelKey } from '../../utils/v-model';
+import AxClickOutside from '../../directives/click-outside';
 
 export default defineComponent({
   name: 'AxDropdown',
   mixins: [vModelMixin],
+  directives: {
+    axClickOutside: AxClickOutside,
+  },
   props: {
     animationDuration: {
       type: Number,
@@ -28,12 +39,12 @@ export default defineComponent({
     },
     animationType: {
       type: String,
-      default: 'none',
+      default: 'fade',
       validator: (val) => ['none', 'fade'].includes(val),
     },
     constrainWidth: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     contentClasses: {
       type: String,
@@ -53,17 +64,15 @@ export default defineComponent({
       vmodelEvent = getVModelEvent(),
       isActive = ref(false),
       isAnimated = ref(false),
-      documentClickRef = ref(null),
       contentMaxHeight = ref(0),
       contentDisplay = ref(''),
       content = ref(null),
       uid = generateUid();
 
     const classes = computed(() => {
-      const anim = 'anim-' + props.animationType;
       return {
-        anim: props.animationType !== 'none' ? '' : anim,
         active: isActive.value,
+        'dropdown-vp': props.preventViewport,
       };
     });
 
@@ -84,8 +93,6 @@ export default defineComponent({
       if (state === null) return;
 
       state ? openDropdown() : closeDropdown();
-      isActive.value = state;
-      console.log('vmodel', state, isActive.value);
       ctx.emit(vmodelEvent, state);
     });
 
@@ -96,8 +103,6 @@ export default defineComponent({
     const init = () => {
       addComponent({ type: 'Dropdown', uid, data: { closeDropdown } });
 
-      setupListeners();
-
       if (vmodel.value) {
         openDropdown();
         isActive.value = true;
@@ -106,22 +111,10 @@ export default defineComponent({
       ctx.emit('setup');
     };
 
-    const setupListeners = () => {
-      documentClickRef.value = onDocumentClick.bind(this);
-      document.addEventListener('click', documentClickRef, true);
-    };
-
-    const removeListeners = () => {
-      document.removeEventListener('click', documentClickRef, true);
-      documentClickRef.value = undefined;
-    };
-
-    const onDocumentClick = (e) => {
-      if (e.target.matches('.dropdown-trigger') || isAnimated.value || !isActive.value) {
+    const onDocumentClick = () => {
+      if (isAnimated.value || !isActive.value) {
         return;
       }
-
-      console.log('clicked on document');
 
       closeDropdown();
     };
@@ -140,7 +133,7 @@ export default defineComponent({
 
       const bottom =
         elRect.height - (elRect.bottom - (window.innerHeight || document.documentElement.clientHeight)) - 10;
-      console.log(elRect);
+
       contentMaxHeight.value = bottom + 'px';
     };
 
@@ -153,12 +146,13 @@ export default defineComponent({
         c.data.closeDropdown(uid);
       });
 
-      console.log('open');
       ctx.emit('open');
 
       contentDisplay.value = 'flex';
-
-      props.preventViewport ? setContentHeight() : '';
+      setTimeout(() => {
+        isActive.value = true;
+        props.preventViewport ? setContentHeight() : '';
+      }, 10);
 
       if (props.animationType !== 'none') {
         isAnimated.value = true;
@@ -175,10 +169,9 @@ export default defineComponent({
       if (!isActive.value || (props.autoClose && id !== uid.value)) {
         return;
       }
-      console.log('close');
 
       ctx.emit('close');
-
+      isActive.value = false;
       if (props.animationType !== 'none') {
         isAnimated.value = true;
         setTimeout(() => {
@@ -198,7 +191,6 @@ export default defineComponent({
     });
 
     onUnmounted(() => {
-      removeListeners();
       removeComponent(uid);
     });
 
@@ -208,6 +200,8 @@ export default defineComponent({
       onClickTrigger,
       content,
       contentStyle,
+      onDocumentClick,
+      animation: 'anim-' + props.animationType,
       isConstrainWidth: props.constrainWidth,
       contentClass: props.contentClasses,
       listeners: ctx.listeners ? ctx.listeners : {},
