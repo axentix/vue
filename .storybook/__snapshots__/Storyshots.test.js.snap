@@ -496,7 +496,6 @@ exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Checkbox 1`] = `
         classes=""
         content="Ok"
         type="checkbox"
-        value=""
       />
        
       <span
@@ -531,7 +530,6 @@ exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Full Material Radi
         content="Ok"
         material="true"
         type="radio"
-        value="1"
       />
        
       <span
@@ -549,7 +547,6 @@ exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Full Material Radi
         content="Ok"
         material="true"
         type="radio"
-        value="2"
       />
        
       <span
@@ -567,7 +564,6 @@ exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Full Material Radi
         content="Ok"
         material="true"
         type="radio"
-        value="3"
       />
        
       <span
@@ -600,7 +596,6 @@ exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Material Checkbox 
         content="Ok"
         material="true"
         type="checkbox"
-        value=""
       />
        
       <span
@@ -635,7 +630,6 @@ exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Material Radio 1`]
         content="Ok"
         material="true"
         type="radio"
-        value="1"
       />
        
       <span
@@ -653,7 +647,6 @@ exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Material Radio 1`]
         content="Ok"
         material="true"
         type="radio"
-        value="2"
       />
        
       <span
@@ -671,7 +664,6 @@ exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Material Radio 1`]
         content="Ok"
         material="true"
         type="radio"
-        value="3"
       />
        
       <span
@@ -703,7 +695,6 @@ exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Radio 1`] = `
         classes=""
         content="Ok"
         type="radio"
-        value="1"
       />
        
       <span
@@ -720,7 +711,6 @@ exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Radio 1`] = `
         classes=""
         content="Ok"
         type="radio"
-        value="2"
       />
        
       <span
@@ -737,7 +727,6 @@ exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Radio 1`] = `
         classes=""
         content="Ok"
         type="radio"
-        value="3"
       />
        
       <span

@@ -1,3 +1,11 @@
+# 0.8.4 - 2021-07-12
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Form `resetValidation()` not working
+
 # 0.8.3 - 2021-06-24
 
 - ADDED

@@ -246,7 +246,7 @@ export default defineComponent({
     const resetValidation = () => resetFormField(formField);
 
     onMounted(() => {
-      addComponent({ type: 'FormAutocomplete', uid, data: { FormUid, validate } });
+      addComponent({ type: 'FormAutocomplete', uid, data: { FormUid, validate, resetValidation } });
       setupListeners();
       updateComputedItems(computedItems, itemsRef, vmodel, props, multipleSelected, selected);
     });

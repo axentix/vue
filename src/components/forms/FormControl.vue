@@ -243,7 +243,7 @@ export default defineComponent({
     const resetValidation = () => resetFormField(formField);
 
     onMounted(() => {
-      addComponent({ type: 'FormControl', uid, data: { FormUid, validate } });
+      addComponent({ type: 'FormControl', uid, data: { FormUid, validate, resetValidation } });
       handle();
     });
 

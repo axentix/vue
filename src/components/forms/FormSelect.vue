@@ -151,7 +151,7 @@ export default defineComponent({
     const resetValidation = () => resetFormField(formField);
 
     onMounted(() => {
-      addComponent({ type: 'FormSelect', uid, data: { FormUid, validate } });
+      addComponent({ type: 'FormSelect', uid, data: { FormUid, validate, resetValidation } });
       updateComputedItems(computedItems, itemsRef, vmodel, props, multipleSelected, selected);
     });
 

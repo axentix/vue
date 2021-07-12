@@ -74,7 +74,7 @@ export default defineComponent({
     const resetValidation = () => resetFormField(formField);
 
     onMounted(() => {
-      addComponent({ type: 'FormCheck', uid, data: { FormUid, validate } });
+      addComponent({ type: 'FormCheck', uid, data: { FormUid, validate, resetValidation } });
       if (props.nativeValue && !vmodel.value) computedValue.value = props.nativeValue;
     });
 
