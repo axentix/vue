@@ -1,3 +1,11 @@
+# 0.8.5 - 2021-07-12
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+
 # 0.8.4 - 2021-07-12
 
 - ADDED
