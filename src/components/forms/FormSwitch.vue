@@ -90,7 +90,7 @@ export default defineComponent({
     const resetValidation = () => resetFormField(formField);
 
     onMounted(() => {
-      addComponent({ type: 'FormSwitch', uid, data: { FormUid, validate } });
+      addComponent({ type: 'FormSwitch', uid, data: { FormUid, validate, resetValidation } });
     });
 
     onUnmounted(() => {

@@ -23,7 +23,7 @@ export default defineComponent({
       };
     });
 
-    const validType = ['FormControl', 'FormCheck', 'FormAutocomplete', 'FormSwitch'],
+    const validType = ['FormControl', 'FormCheck', 'FormAutocomplete', 'FormSwitch', 'FormSelect'],
       uid = generateUid();
 
     provide('ax-form-material', props.material);
@@ -38,8 +38,7 @@ export default defineComponent({
     const resetValidation = () =>
       store.value
         .filter((c) => validType.includes(c.type) && c.data.FormUid === uid)
-        .map((c) => c.data.resetValidation())
-        .every((b) => b);
+        .map((c) => c.data.resetValidation());
 
     return {
       classes,
