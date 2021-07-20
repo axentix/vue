@@ -119,15 +119,6 @@ export default defineComponent({
       closeDropdown();
     };
 
-    const onClickTrigger = (e) => {
-      e.preventDefault();
-      if (isAnimated.value) {
-        return;
-      }
-
-      isActive.value ? closeDropdown() : openDropdown();
-    };
-
     const setContentHeight = () => {
       const elRect = content.value.getBoundingClientRect();
 
@@ -142,7 +133,7 @@ export default defineComponent({
 
       if (props.autoClose) {
         getComponentsByType('Dropdown').map((c) => {
-          c.data.closeDropdown(uid);
+          c.data.closeDropdown();
         });
       }
 
@@ -165,8 +156,8 @@ export default defineComponent({
       }
     };
 
-    const closeDropdown = (id) => {
-      if (!isActive.value || id === uid.value) return;
+    const closeDropdown = () => {
+      if (!isActive.value) return;
 
       ctx.emit('close');
       isActive.value = false;
@@ -195,7 +186,6 @@ export default defineComponent({
     return {
       classes,
       style,
-      onClickTrigger,
       content,
       contentStyle,
       onDocumentClick,
