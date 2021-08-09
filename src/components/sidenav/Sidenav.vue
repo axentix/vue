@@ -72,7 +72,7 @@ export default defineComponent({
     const vmodelEvent = getVModelEvent();
     const uid = generateUid();
 
-    provide('ax-sidenav', true);
+    provide('ax-sidenav', uid);
 
     const extraClasses = reactive([
       'sidenav-right',

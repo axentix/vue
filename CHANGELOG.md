@@ -1,3 +1,12 @@
+# 0.8.6 - 2021-08-09
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+  - Collapsible sidenav detection not working
+
 # 0.8.5 - 2021-07-12
 
 - ADDED

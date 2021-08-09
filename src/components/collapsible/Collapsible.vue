@@ -30,11 +30,10 @@ export default defineComponent({
       maxHeight = ref(null),
       display = ref(null),
       collapsible = ref(null),
-      resizeRef = ref(null),
-      sidenav = ref(null);
+      resizeRef = ref(null);
 
     const uid = generateUid(),
-      isInSidenav = inject('ax-sidenav', false);
+      sidenavUid = inject('ax-sidenav', null);
 
     const classes = computed(() => {
       return {
@@ -83,14 +82,14 @@ export default defineComponent({
     };
 
     const handleResize = () => {
-      if (isActive.value && !isInSidenav) style.value.maxHeight = collapsible.value.scrollHeight + 'px';
+      if (isActive.value && !sidenavUid) style.value.maxHeight = collapsible.value.scrollHeight + 'px';
     };
 
     const openCollapsible = () => {
       if (isAnimated.value || isActive.value) return;
 
       getComponentsByType('Collapsible').map((c) => {
-        c.data.closeCollapsible(collapsible.value, sidenav.value);
+        c.data.closeCollapsible(collapsible.value, sidenavUid);
       });
 
       ctx.emit('open');
@@ -118,8 +117,7 @@ export default defineComponent({
         (isAnimated.value && !closeInstance) ||
         closeInstance === collapsible.value ||
         !isActive.value ||
-        (closeInstance &&
-          (!props.autoClose || !isInSidenav || (sidenav && sidenav.value !== sidenavInstance)))
+        (closeInstance && (!props.autoClose || !sidenavUid || (sidenavUid && sidenavUid !== sidenavInstance)))
       )
         return;
 
