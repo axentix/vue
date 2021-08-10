@@ -6,34 +6,15 @@ on:
     branches:
       - master
       - develop
-  pull_request:
-    branches:
-      - master
-      - develop
-    types: [opened, closed, synchronize, reopened]
 
 jobs:
-  test:
-    if: github.event.pull_request.merged == false
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install node
-        uses: actions/setup-node@v2.1.5
-        with:
-          node-version: 14
-      - run: |
-          npm ci
-          npm test
-
   deploy:
-    if: github.event.pull_request.merged == false && github.event_name	== 'push'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
       - name: Install node
-        uses: actions/setup-node@v2.1.5
+        uses: actions/setup-node@v2
         with:
           node-version: 14
 
