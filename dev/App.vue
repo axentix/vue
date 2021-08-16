@@ -231,7 +231,7 @@
           </li>
         </template>
       </ax-pagination>
-      <ax-dropdown v-model="isDropdownOpened" content-classes="grey light-4">
+      <ax-dropdown v-model="isDropdownOpened" constrain-width content-classes="red light-4">
         <template #trigger>
           <ax-btn class="btn blue" @click="isDropdownOpened = !isDropdownOpened">Trigger dropdown</ax-btn>
         </template>

@@ -11,7 +11,7 @@
 
     <div
       :style="contentStyle"
-      :class="[{ 'constrain-width': isConstrainWidth }, contentClass]"
+      :class="[{ 'constrain-width': constrainWidth }, contentClasses]"
       class="dropdown-content"
       ref="content"
     >
@@ -190,8 +190,6 @@ export default defineComponent({
       contentStyle,
       onDocumentClick,
       animation: 'anim-' + props.animationType,
-      isConstrainWidth: props.constrainWidth,
-      contentClass: props.contentClasses,
       listeners: ctx.listeners ? ctx.listeners : {},
     };
   },
