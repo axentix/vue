@@ -231,6 +231,14 @@
           </li>
         </template>
       </ax-pagination>
+      <ax-dropdown v-model="isDropdownOpened" constrain-width content-classes="red light-4">
+        <template #trigger>
+          <ax-btn class="btn blue" @click="isDropdownOpened = !isDropdownOpened">Trigger dropdown</ax-btn>
+        </template>
+
+        <div class="dropdown-item">Hello</div>
+        <div class="dropdown-item">Hello</div>
+      </ax-dropdown>
     </main>
   </div>
 </template>
@@ -249,6 +257,7 @@ export default {
     isSidenavOpened: false,
     isCollapsibleOpened: false,
     isCollapsibleOpened2: true,
+    isDropdownOpened: false,
     current: 4,
     maxVisible: 5,
     radio: 'Yes',

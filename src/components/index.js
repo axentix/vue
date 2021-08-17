@@ -1,10 +1,11 @@
 import AxBtn from './button';
-import AxSidenav from './sidenav';
 import AxForms from './forms';
-import AxModal from './modal';
-import AxTooltip from './tooltip';
 import AxCollapsible from './collapsible';
+import AxDropdown from './dropdown';
+import AxModal from './modal';
 import AxPagination from './pagination';
+import AxSidenav from './sidenav';
 import AxTab from './tab';
+import AxTooltip from './tooltip';
 
-export { AxBtn, AxSidenav, AxForms, AxModal, AxTooltip, AxCollapsible, AxPagination, AxTab };
+export { AxBtn, AxForms, AxCollapsible, AxDropdown, AxModal, AxPagination, AxSidenav, AxTab, AxTooltip };
