@@ -1,3 +1,12 @@
+# 0.9.0 - 2021-08-17
+
+- ADDED
+  - Dropdown
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+
 # 0.8.6 - 2021-08-09
 
 - ADDED

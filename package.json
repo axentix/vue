@@ -1,6 +1,6 @@
 {
   "name": "@axentix/vue",
-  "version": "0.8.6",
+  "version": "0.9.0",
   "description": "Vue Axentix is the Axentix integration for the VueJS framework.",
   "license": "MIT",
   "author": "Axel SIMONET, Vincent LEVEQUE",
@@ -51,21 +51,21 @@
     "CHANGELOG"
   ],
   "dependencies": {
-    "axentix": "^1.3.2",
-    "vue-demi": "^0.11.2"
+    "axentix": "^1.3.3",
+    "vue-demi": "^0.11.3"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
-    "@storybook/addon-a11y": "^6.3.6",
-    "@storybook/addon-actions": "^6.3.6",
+    "@storybook/addon-a11y": "^6.3.7",
+    "@storybook/addon-actions": "^6.3.7",
     "@storybook/addon-console": "^1.2.3",
-    "@storybook/addon-essentials": "^6.3.6",
-    "@storybook/addon-links": "^6.3.6",
-    "@storybook/addon-storyshots": "^6.3.6",
-    "@storybook/vue": "^6.3.6",
+    "@storybook/addon-essentials": "^6.3.7",
+    "@storybook/addon-links": "^6.3.7",
+    "@storybook/addon-storyshots": "^6.3.7",
+    "@storybook/vue": "^6.3.7",
     "@vitejs/plugin-vue": "^1.4.0",
-    "@vue/compiler-sfc": "^3.1.5",
-    "@vue/composition-api": "^1.0.6",
+    "@vue/compiler-sfc": "^3.2.3",
+    "@vue/composition-api": "^1.1.1",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@whitespace/storybook-addon-html": "^5.0.0",
     "babel-loader": "^8.2.2",
@@ -76,18 +76,18 @@
     "jest-css-modules": "^2.1.0",
     "jest-vue-preprocessor": "^1.7.1",
     "prettier": "^2.3.2",
-    "sass": "^1.37.5",
+    "sass": "^1.38.0",
     "sass-loader": "^10.1.1",
     "storybook-addon-pseudo-states": "^1.0.0",
     "storybook-addon-turbo-build": "^1.0.0-beta.0",
     "storybook-dark-mode": "^1.0.8",
     "typescript": "^4.3.5",
-    "vite": "^2.4.4",
-    "vite-plugin-vue2": "^1.7.3",
+    "vite": "^2.5.0",
+    "vite-plugin-vue2": "^1.8.1",
     "vue": "^2.6.14",
     "vue-loader": "^15.9.8",
     "vue-template-compiler": "^2.6.14",
-    "vue3": "npm:vue@^3.1.5"
+    "vue3": "npm:vue@^3.2.3"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-rc.9",
