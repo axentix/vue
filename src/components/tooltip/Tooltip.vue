@@ -69,6 +69,7 @@ export default defineComponent({
 
       createTooltip();
       updatePosition();
+      tooltip.value.style.display = 'none';
     };
 
     const setupListeners = () => {
@@ -146,9 +147,9 @@ export default defineComponent({
     };
 
     const show = () => {
+      tooltip.value.style.display = 'block';
       setProperties();
       updatePosition();
-
       isShown.value = true;
 
       ctx.emit('show');
@@ -174,6 +175,10 @@ export default defineComponent({
 
       tooltip.value.style.transform = 'translate(0)';
       tooltip.value.style.opacity = 0;
+
+      setTimeout(() => {
+        tooltip.value.style.display = 'none';
+      }, props.animationDuration);
     };
 
     onMounted(() => {
