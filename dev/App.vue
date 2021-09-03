@@ -106,6 +106,48 @@
       distinctio asperiores ea quidem laudantium earum ducimus mollitia eos modi atque consectetur praesentium
       aut. A atque tenetur doloremque ad voluptates.
 
+      <div class="responsive-table">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Age</th>
+              <th>City</th>
+              <th>Country</th>
+              <th>Car</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Paul</td>
+              <td>24</td>
+              <td>Paris</td>
+              <td>France</td>
+              <td>Mustang</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Patrick</td>
+              <td>34</td>
+              <td>Nice</td>
+              <td>France</td>
+              <td>Renault</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Robert</td>
+              <td>62</td>
+              <td>Limoges</td>
+              <td>France</td>
+              <ax-tooltip content="test">
+                <td>Ferrari</td>
+              </ax-tooltip>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <ax-btn class="airforce dark-1 shadow-1 rounded-1 d-block" @click="validateForm">Validate form</ax-btn>
 
       <ax-form material ref="form">
