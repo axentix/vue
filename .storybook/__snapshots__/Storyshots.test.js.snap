@@ -120,6 +120,206 @@ exports[`Storyshots Axentix/Components/Button Small 1`] = `
 </button>
 `;
 
+exports[`Storyshots Axentix/Components/ButtonGroup Large 1`] = `
+<div
+  class="btn-group btn-group-large"
+  classes=""
+>
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/ButtonGroup Normal 1`] = `
+<div
+  class="btn-group"
+  classes=""
+>
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/ButtonGroup Rounded 1`] = `
+<div
+  class="btn-group rounded-1"
+  classes="rounded-1"
+>
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/ButtonGroup Small 1`] = `
+<div
+  class="btn-group btn-group-small"
+  classes=""
+>
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/ButtonGroup Vertical 1`] = `
+<div
+  class="btn-group btn-group-vertical"
+  classes=""
+>
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/ButtonGroup Vertical Large 1`] = `
+<div
+  class="btn-group btn-group-vertical btn-group-large"
+  classes=""
+>
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/ButtonGroup Vertical Rounded 1`] = `
+<div
+  class="btn-group btn-group-vertical rounded-1"
+  classes="rounded-1"
+>
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/ButtonGroup Vertical Small 1`] = `
+<div
+  class="btn-group btn-group-vertical btn-group-small"
+  classes=""
+>
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+</div>
+`;
+
 exports[`Storyshots Axentix/Components/Collapsible Auto Close 1`] = `
 <div
   class="sidenav shadow-1 fixed"
