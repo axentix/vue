@@ -11,7 +11,7 @@
 
     <div
       :style="contentStyle"
-      :class="[{ 'constrain-width': constrainWidth }, contentClasses]"
+      :class="[{ 'dropdown-constrain-width': constrainWidth }, contentClasses]"
       class="dropdown-content"
       ref="content"
     >
