@@ -85,7 +85,7 @@ export default defineComponent({
     const classes = computed(() => {
       return {
         active: isActive.value,
-        fixed: props.fixed,
+        'sidenav-fixed': props.fixed,
         'right-aligned': props.rightAligned,
         large: props.large,
       };

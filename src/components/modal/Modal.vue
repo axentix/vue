@@ -59,8 +59,8 @@ export default defineComponent({
     const classes = computed(() => {
       return {
         active: activeClass.value,
-        falling: props.mode === 'falling',
-        bouncing: props.mode === 'bouncing',
+        'modal-falling': props.mode === 'falling',
+        'modal-bouncing': props.mode === 'bouncing',
       };
     });
 
