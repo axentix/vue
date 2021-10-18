@@ -501,7 +501,9 @@ exports[`Storyshots Axentix/Components/Dropdown Constrained 1`] = `
     style="max-height: auto;"
   >
      
-    <span>
+    <span
+      class="white"
+    >
       <div
         class="dropdown-item"
       >
@@ -537,7 +539,9 @@ exports[`Storyshots Axentix/Components/Dropdown Fade 1`] = `
     style="max-height: auto;"
   >
      
-    <span>
+    <span
+      class="white"
+    >
       <div
         class="dropdown-item"
       >
@@ -572,7 +576,9 @@ exports[`Storyshots Axentix/Components/Dropdown Hover 1`] = `
     style="max-height: auto;"
   >
      
-    <span>
+    <span
+      class="white"
+    >
       <div
         class="dropdown-item"
       >
@@ -607,7 +613,9 @@ exports[`Storyshots Axentix/Components/Dropdown Normal 1`] = `
     style="max-height: auto;"
   >
      
-    <span>
+    <span
+      class="white"
+    >
       <div
         class="dropdown-item"
       >
@@ -2488,7 +2496,7 @@ exports[`Storyshots Axentix/Components/Pagination Custom Items 1`] = `
 
 exports[`Storyshots Axentix/Components/Pagination Large 1`] = `
 <ul
-  class="pagination large"
+  class="pagination pagination-large"
 >
   <li
     class="arrow disabled"
@@ -2881,7 +2889,7 @@ exports[`Storyshots Axentix/Components/Pagination Normal 1`] = `
 
 exports[`Storyshots Axentix/Components/Pagination Small 1`] = `
 <ul
-  class="pagination small"
+  class="pagination pagination-small"
 >
   <li
     class="arrow disabled"
