@@ -213,7 +213,7 @@ export default defineComponent({
     }
 
     &.selected {
-      color: var(--form-material-color);
+      color: var(--ax-form-material-color);
     }
 
     &.disabled {
@@ -247,10 +247,10 @@ export default defineComponent({
 }
 
 .form-chips {
-  --form-chips-background: #e2e2e2;
-  --form-chips-color: #000000;
-  --form-chips-closable-background: #686868;
-  --form-chips-closable-color: #ffffff;
+  --ax-form-chips-background: #e2e2e2;
+  --ax-form-chips-color: #000000;
+  --ax-form-chips-closable-background: #686868;
+  --ax-form-chips-closable-color: #ffffff;
 
   display: flex;
   justify-content: center;
@@ -258,11 +258,11 @@ export default defineComponent({
   padding: 0.5rem;
   margin: 0.125rem;
   border-radius: 20px;
-  background-color: var(--form-chips-background);
-  color: var(--form-chips-color);
+  background-color: var(--ax-form-chips-background);
+  color: var(--ax-form-chips-color);
 
   .form-chips-closable {
-    color: var(--form-chips-closable-color);
+    color: var(--ax-form-chips-closable-color);
     position: relative;
     display: flex;
     justify-content: center;
@@ -275,7 +275,7 @@ export default defineComponent({
     font-size: 1rem;
     line-height: 1;
     z-index: 2;
-    background-color: var(--form-chips-closable-background);
+    background-color: var(--ax-form-chips-closable-background);
     transition: opacity 0.2s ease;
 
     svg {

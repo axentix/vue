@@ -12,7 +12,7 @@
     <slot></slot>
 
     <span class="form-helper" :class="helperClasses" v-if="helper && !notValidHelper">{{ helper }}</span>
-    <span class="form-helper txt-error" :class="helperClasses" v-else-if="notValidHelper">
+    <span class="form-helper text-error" :class="helperClasses" v-else-if="notValidHelper">
       {{ notValidHelper }}
     </span>
   </div>
@@ -56,7 +56,7 @@ export default defineComponent({
   setup(props, ctx) {
     const classes = computed(() => {
       return {
-        inline: props.inline,
+        'form-inline': props.inline,
         'form-default': props.default,
         'form-rtl': props.rtl,
         'not-valid': notValidColor.value ? true : false,
@@ -75,7 +75,7 @@ export default defineComponent({
 
     const style = computed(() => {
       return {
-        '--form-material-color': notValidColor.value ? notValidColor.value : props.materialColor,
+        '--ax-form-material-color': notValidColor.value ? notValidColor.value : props.materialColor,
       };
     });
 
@@ -101,11 +101,11 @@ export default defineComponent({
 <style lang="scss">
 .form-material .form-field:not(.form-default).not-valid {
   label {
-    color: var(--form-material-color);
+    color: var(--ax-form-material-color);
   }
 
   &::after {
-    width: var(--form-material-width);
+    width: var(--ax-form-material-width);
   }
 }
 </style>
