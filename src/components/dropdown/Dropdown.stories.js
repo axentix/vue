@@ -28,7 +28,7 @@ const Template = (args, { argTypes }) => ({
     <template #trigger>
       <ax-btn class="btn blue" @click="value = !value">Trigger dropdown</ax-btn>
     </template>
-    <span v-html="content"></span>
+    <span class="white" v-html="content"></span>
   </ax-dropdown>`,
 });
 
@@ -52,7 +52,7 @@ const HoverTemplate = (args, { argTypes }) => ({
     <template #trigger>
       <ax-btn class="btn blue" @mouseleave="value = !value" @mouseover="value = !value">Trigger dropdown</ax-btn>
     </template>
-    <span v-html="content"></span>
+    <span class="white" v-html="content"></span>
   </ax-dropdown>`,
 });
 

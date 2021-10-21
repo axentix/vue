@@ -71,13 +71,13 @@ export default defineComponent({
       formFieldClasses = reactive({
         active: false,
         'is-focused': false,
-        'is-txtarea-focused': false,
+        'is-textarea-focused': false,
       }),
       formFieldStyle = reactive({
-        '--form-material-position': 0,
-        '--form-material-left-offset': 0,
-        '--form-material-right-offset': 0,
-        '--form-material-width': 0,
+        '--ax-form-material-position': 0,
+        '--ax-form-material-left-offset': 0,
+        '--ax-form-material-right-offset': 0,
+        '--ax-form-material-width': 0,
       }),
       input = ref(null);
 
@@ -205,8 +205,8 @@ export default defineComponent({
         : (formFieldClasses['is-focused'] = false);
 
       isFocused && isTextArea
-        ? (formFieldClasses['is-txtarea-focused'] = true)
-        : (formFieldClasses['is-txtarea-focused'] = false);
+        ? (formFieldClasses['is-textarea-focused'] = true)
+        : (formFieldClasses['is-textarea-focused'] = false);
     };
 
     const setFormPosition = () => {
@@ -215,7 +215,7 @@ export default defineComponent({
 
       const topOffset = input.value.clientHeight + input.value.offsetTop + 'px';
 
-      formFieldStyle['--form-material-position'] = topOffset;
+      formFieldStyle['--ax-form-material-position'] = topOffset;
 
       let offset = inputLeftOffset,
         side = 'left',
@@ -227,11 +227,11 @@ export default defineComponent({
         offset = formField.value.refs.field.clientWidth - inputWidth - inputLeftOffset;
       }
 
-      formFieldStyle[`--form-material-${side}-offset`] = offset + 'px';
+      formFieldStyle[`--ax-form-material-${side}-offset`] = offset + 'px';
 
       if (offset != 0) labelLeft = inputLeftOffset;
 
-      formFieldStyle['--form-material-width'] = width;
+      formFieldStyle['--ax-form-material-width'] = width;
 
       const label = formField.value.refs.labelRef;
       if (!label) return;

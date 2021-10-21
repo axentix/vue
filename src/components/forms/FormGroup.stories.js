@@ -25,7 +25,7 @@ const PrefixTemplate = (args, { argTypes }) => ({
     <ax-form :material="material">
       <ax-form-field>
         <ax-form-group v-bind="$props" :class="classes">
-          <span class="form-group-txt">@</span>
+          <span class="form-group-text">@</span>
           <ax-form-control tag="input" type="text"></ax-form-control>
         </ax-form-group>
       </ax-form-field>
@@ -44,7 +44,7 @@ const SuffixTemplate = (args, { argTypes }) => ({
       <ax-form-field>
         <ax-form-group v-bind="$props" :class="classes">
         <ax-form-control tag="input" type="text"></ax-form-control>
-        <span class="form-group-txt">@</span>
+        <span class="form-group-text">@</span>
         </ax-form-group>
       </ax-form-field>
     </ax-form>
@@ -61,13 +61,13 @@ const BothTemplate = (args, { argTypes }) => ({
     <ax-form :material="material">
       <ax-form-field>
         <ax-form-group v-bind="$props" :class="classes">
-          <span class="form-group-txt bd-1 bd-solid bd-r-0 bd-grey bd-light-1" v-if="!material">@</span>
-          <span class="form-group-txt" v-else>@</span>
+          <span class="form-group-text bd-1 bd-solid bd-r-0 bd-grey bd-light-1" v-if="!material">@</span>
+          <span class="form-group-text" v-else>@</span>
 
           <ax-form-control tag="input" type="text"></ax-form-control>
 
-          <span class="form-group-txt bd-1 bd-solid bd-l-0 bd-grey bd-light-1 grey light-3" v-if="!material">useaxentix.com</span>
-          <span class="form-group-txt" v-else>useaxentix.com</span>
+          <span class="form-group-text bd-1 bd-solid bd-l-0 bd-grey bd-light-1 grey light-3" v-if="!material">useaxentix.com</span>
+          <span class="form-group-text" v-else>useaxentix.com</span>
         </ax-form-group>
       </ax-form-field>
     </ax-form>

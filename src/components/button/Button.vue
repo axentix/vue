@@ -49,20 +49,20 @@ export default defineComponent({
   setup(props, ctx) {
     const classes = computed(() => {
       return {
-        circle: props.circle,
-        press: props.press,
-        outline: props.outline,
-        opening: props.outlineOpening,
-        small: props.size === 'small',
-        large: props.size === 'large',
-        disabled: props.disabled,
+        'btn-circle': props.circle,
+        'btn-press': props.press,
+        'btn-outline': props.outline,
+        'btn-opening': props.outlineOpening,
+        'btn-small': props.size === 'small',
+        'btn-large': props.size === 'large',
+        'btn-disabled': props.disabled,
       };
     });
 
     const outlineClasses = computed(() => {
       return {
-        'outline-text': props.outline,
-        'outline-invert': props.outlineInvert,
+        'btn-outline-text': props.outline,
+        'btn-outline-invert': props.outlineInvert,
       };
     });
 

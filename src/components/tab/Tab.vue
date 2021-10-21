@@ -82,7 +82,7 @@ export default defineComponent({
 
     const classes = computed(() => {
       return {
-        'full-width': props.fullWidth,
+        'tab-full-width': props.fullWidth,
       };
     });
 

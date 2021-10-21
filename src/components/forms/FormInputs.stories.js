@@ -116,7 +116,7 @@ Helper.args = {
 export const HelperCustom = Template.bind({});
 HelperCustom.args = {
   helper: 'Error message.',
-  helperClasses: 'txt-red txt-center',
+  helperClasses: 'text-red text-center',
 };
 
 export const Textarea = Template.bind({});
