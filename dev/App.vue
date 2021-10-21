@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="layout with-sidenav fixed-sidenav">
+  <div id="app" class="layout-sidenav-fixed">
     <header>
       <nav class="navbar primary"><span class="navbar-brand">Vue Axentix</span></nav>
     </header>
@@ -21,14 +21,88 @@
         <div class="sidenav-link">Link 1</div>
         <div class="sidenav-link">Link 2</div>
       </ax-collapsible>
-
-      <ax-btn class="red" @click="isSidenavOpened = !isSidenavOpened">Toggle</ax-btn>
     </ax-sidenav>
 
     <main class="m-5">
+      <ax-btn circle class="grey dark-3 mr-2" size="small">&#9996;</ax-btn>
+      <ax-btn circle press class="grey dark-3 mr-2">&#9996;</ax-btn>
+      <ax-btn circle outline class="text-grey text-dark-3 mr-2" size="large">&#9996;</ax-btn>
+      <ax-btn outline outline-invert class="text-red text-light-2 mr-2" size="large">Invert</ax-btn>
+      <ax-btn outline outline-opening outline-invert class="text-red text-light-2" size="large">
+        Invert
+      </ax-btn>
+      <br />
+      <div class="grix xs1 sm2">
+        <div class="">
+          <ax-btn-group class="my-2" size="small">
+            <ax-btn class="airforce dark-1">1</ax-btn>
+            <ax-btn class="airforce dark-1">2</ax-btn>
+            <ax-btn class="airforce dark-1">3</ax-btn>
+          </ax-btn-group>
+          <ax-btn-group class="mb-2">
+            <ax-btn class="airforce dark-1">1</ax-btn>
+            <ax-btn class="airforce dark-1">2</ax-btn>
+            <ax-btn class="airforce dark-1">3</ax-btn>
+          </ax-btn-group>
+          <ax-btn-group size="large">
+            <ax-btn class="airforce dark-1">1</ax-btn>
+            <ax-btn class="airforce dark-1">2</ax-btn>
+            <ax-btn class="airforce dark-1">3</ax-btn>
+          </ax-btn-group>
+        </div>
+        <div class="d-flex">
+          <ax-btn-group vertical class="mr-2" size="small">
+            <ax-btn class="airforce dark-1">1</ax-btn>
+            <ax-btn class="airforce dark-1">2</ax-btn>
+            <ax-btn class="airforce dark-1">3</ax-btn>
+          </ax-btn-group>
+          <ax-btn-group vertical class="mr-2">
+            <ax-btn class="airforce dark-1">1</ax-btn>
+            <ax-btn class="airforce dark-1">2</ax-btn>
+            <ax-btn class="airforce dark-1">3</ax-btn>
+          </ax-btn-group>
+          <ax-btn-group vertical size="large">
+            <ax-btn class="airforce dark-1">1</ax-btn>
+            <ax-btn class="airforce dark-1">2</ax-btn>
+            <ax-btn class="airforce dark-1">3</ax-btn>
+          </ax-btn-group>
+        </div>
+      </div>
+
+      <!-- Dropdown -->
+      <ax-dropdown
+        class="mr-2"
+        v-model="isDropdownOpened2"
+        @click="isDropdownOpened2 = !isDropdownOpened2"
+        content-classes="white shadow-1"
+      >
+        <template #trigger>
+          <ax-btn class="airforce dark-1 text-white rounded-1">Dropdown</ax-btn>
+        </template>
+        <div class="dropdown-item">Dropdown-item</div>
+        <div class="dropdown-item">Dropdown-item</div>
+      </ax-dropdown>
+
+      <ax-dropdown
+        v-model="isDropdownOpened2"
+        @click="isDropdownOpened2 = !isDropdownOpened2"
+        content-classes="white shadow-1 dropdown-right"
+      >
+        <template #trigger>
+          <ax-btn class="airforce dark-1 text-white rounded-1">Dropdown Right</ax-btn>
+        </template>
+        <div class="dropdown-item">Dropdown-item</div>
+        <div class="dropdown-item">Dropdown-item</div>
+      </ax-dropdown>
+
       <div class="d-flex" style="justify-content: flex-end">
+        <ax-tooltip content="modal toggler">
+          <ax-btn class="airforce dark-1 rounded-1 shadow-1" @click="modal = !modal">Toggle modal</ax-btn>
+        </ax-tooltip>
         <ax-tooltip content="sidenav toggler">
-          <ax-btn class="airforce dark-1 rounded-1 shadow-1" @click="modal = !modal">Toggle sidenav</ax-btn>
+          <ax-btn class="airforce dark-1 rounded-1 shadow-1 ml-2" @click="isSidenavOpened = !isSidenavOpened">
+            Toggle sidenav
+          </ax-btn>
         </ax-tooltip>
       </div>
 
@@ -106,7 +180,7 @@
       distinctio asperiores ea quidem laudantium earum ducimus mollitia eos modi atque consectetur praesentium
       aut. A atque tenetur doloremque ad voluptates.
 
-      <div class="responsive-table">
+      <div class="table-responsive">
         <table class="table">
           <thead>
             <tr>
@@ -141,9 +215,11 @@
               <td>62</td>
               <td>Limoges</td>
               <td>France</td>
-              <ax-tooltip content="test">
-                <td>Ferrari</td>
-              </ax-tooltip>
+              <td>
+                <ax-tooltip content="test">
+                  <span>Ferrari</span>
+                </ax-tooltip>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -203,7 +279,7 @@
         <ax-form-field>
           <ax-form-group>
             <ax-form-control tag="input" type="text"></ax-form-control>
-            <span class="form-group-txt">@</span>
+            <span class="form-group-item">@</span>
           </ax-form-group>
         </ax-form-field>
 
@@ -300,6 +376,7 @@ export default {
     isCollapsibleOpened: false,
     isCollapsibleOpened2: true,
     isDropdownOpened: false,
+    isDropdownOpened2: false,
     current: 4,
     maxVisible: 5,
     radio: 'Yes',

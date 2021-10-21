@@ -83,8 +83,8 @@ export default {
 
     const classes = computed(() => {
       return {
-        small: props.size === 'small',
-        large: props.size === 'large',
+        'pagination-small': props.size === 'small',
+        'pagination-large': props.size === 'large',
       };
     });
 
@@ -227,12 +227,12 @@ export default {
     font-size: 1.5rem !important;
   }
 
-  &.small .arrow {
+  &.pagination-small .arrow {
     height: 31px;
     font-size: 1.2rem !important;
   }
 
-  &.large .arrow {
+  &.pagination-large .arrow {
     height: 55px;
     font-size: 2rem !important;
   }

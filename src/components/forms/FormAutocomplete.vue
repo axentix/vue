@@ -276,8 +276,8 @@ export default defineComponent({
 
 <style lang="scss">
 :root {
-  --form-autocomplete-focus: #4c9f85;
-  --form-autocomplete-focus-chips-color: #ffffff;
+  --ax-form-autocomplete-focus: #4c9f85;
+  --ax-form-autocomplete-focus-chips-color: #ffffff;
 }
 
 .form-autocomplete-input {
@@ -296,11 +296,11 @@ export default defineComponent({
   margin-right: 0.25rem;
 
   &.form-autocomplete-focused {
-    color: var(--form-autocomplete-focus);
+    color: var(--ax-form-autocomplete-focus);
 
     &.form-chips {
-      color: var(--form-autocomplete-focus-chips-color);
-      background-color: var(--form-autocomplete-focus);
+      color: var(--ax-form-autocomplete-focus-chips-color);
+      background-color: var(--ax-form-autocomplete-focus);
     }
   }
 }
