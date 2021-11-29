@@ -209,7 +209,7 @@ export default defineComponent({
 
     const createOverlay = () => {
       overlayElement.value = document.createElement('div');
-      overlayElement.value.classList.add('sidenav-overlay');
+      overlayElement.value.classList.add('ax-overlay');
     };
 
     const updateOverlay = (state) => {

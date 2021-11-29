@@ -113,12 +113,14 @@ export default defineComponent({
 
     const createOverlay = () => {
       overlayElement.value = document.createElement('div');
-      overlayElement.value.classList.add('modal-overlay');
+      overlayElement.value.classList.add('ax-overlay');
     };
 
     const updateOverlay = (state) => {
       if (overlayElement.value) {
         if (!state) destroyOverlay();
+        console.log('update overlay', state);
+
 
         if (isActive.value && state && !overlayActive.value) setOverlay(true);
         return;
@@ -210,6 +212,7 @@ export default defineComponent({
     };
 
     const setOverlay = (state) => {
+      console.log("setoverlay", state)
       if (!props.overlay) return;
 
       overlayElement.value.style.transitionDuration = props.animationDuration + 'ms';
