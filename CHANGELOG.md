@@ -1,4 +1,4 @@
-# 0.9.1 - 2021-11-29
+# 0.10.0 - 2021-11-29
 
 - ADDED
   - Button group component
