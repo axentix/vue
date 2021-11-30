@@ -1,6 +1,6 @@
 {
   "name": "@axentix/vue",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "Vue Axentix is the Axentix integration for the VueJS framework.",
   "license": "MIT",
   "author": "Axel SIMONET, Vincent LEVEQUE",
@@ -52,17 +52,17 @@
   ],
   "dependencies": {
     "axentix": "^2.0.0-beta.3",
-    "vue-demi": "^0.11.4"
+    "vue-demi": "^0.12.1"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
-    "@storybook/addon-a11y": "^6.3.12",
-    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-a11y": "^6.4.1",
+    "@storybook/addon-actions": "^6.4.1",
     "@storybook/addon-console": "^1.2.3",
-    "@storybook/addon-essentials": "^6.3.12",
-    "@storybook/addon-links": "^6.3.12",
-    "@storybook/addon-storyshots": "^6.3.12",
-    "@storybook/vue": "^6.3.12",
+    "@storybook/addon-essentials": "^6.4.1",
+    "@storybook/addon-links": "^6.4.1",
+    "@storybook/addon-storyshots": "^6.4.1",
+    "@storybook/vue": "^6.4.1",
     "@vitejs/plugin-vue": "^1.9.3",
     "@vue/compiler-sfc": "^3.2.20",
     "@vue/composition-api": "^1.2.4",
@@ -71,6 +71,7 @@
     "babel-loader": "^8.2.3",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-storybook": "^0.5.1",
     "eslint-plugin-vue": "^6.2.2",
     "jest": "^26.6.3",
     "jest-css-modules": "^2.1.0",
