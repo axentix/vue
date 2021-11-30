@@ -39,8 +39,8 @@ Large.args = {
   size: 'large',
 };
 
-export const maxVisible = Template.bind({});
-maxVisible.args = {
+export const MaxVisible = Template.bind({});
+MaxVisible.args = {
   maxVisible: 5,
 };
 
@@ -66,8 +66,8 @@ const ArrowTemplate = (args, { argTypes }) => ({
   </ax-pagination>`,
 });
 
-export const customArrows = ArrowTemplate.bind({});
-customArrows.args = {};
+export const CustomArrows = ArrowTemplate.bind({});
+CustomArrows.args = {};
 
 const ItemsTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
@@ -81,10 +81,10 @@ const ItemsTemplate = (args, { argTypes }) => ({
   </ax-pagination>`,
 });
 
-export const customItems = ItemsTemplate.bind({});
-customItems.args = {};
+export const CustomItems = ItemsTemplate.bind({});
+CustomItems.args = {};
 
-const TotallyCustom = (args, { argTypes }) => ({
+const TotallyCustomTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { AxPagination },
   template: `<ax-pagination v-bind="$props" v-model="value">
@@ -112,5 +112,5 @@ const TotallyCustom = (args, { argTypes }) => ({
   </ax-pagination>`,
 });
 
-export const totallyCustom = TotallyCustom.bind({});
-totallyCustom.args = {};
+export const TotallyCustom = TotallyCustomTemplate.bind({});
+TotallyCustom.args = {};

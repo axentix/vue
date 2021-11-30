@@ -10,7 +10,7 @@
       @input="validate"
       @change="validate"
     />
-    <span class="slider" :class="classes" :style="style" ref="slider"></span>
+    <span class="form-slider" :class="classes" :style="style" ref="slider"></span>
 
     <slot></slot>
   </label>
@@ -63,15 +63,15 @@ export default defineComponent({
 
     const classes = computed(() => {
       return {
-        thin: props.thin,
-        small: props.size === 'small',
-        large: props.size === 'large',
+        'form-slider-thin': props.thin,
+        'form-slider-small': props.size === 'small',
+        'form-slider-large': props.size === 'large',
       };
     });
 
     const style = computed(() => {
       return {
-        '--form-switch-active-color': props.color,
+        '--ax-form-switch-active-color': props.color,
       };
     });
 

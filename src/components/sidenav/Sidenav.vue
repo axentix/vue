@@ -85,7 +85,7 @@ export default defineComponent({
     const classes = computed(() => {
       return {
         active: isActive.value,
-        fixed: props.fixed,
+        'sidenav-fixed': props.fixed,
         'right-aligned': props.rightAligned,
         large: props.large,
       };
@@ -209,7 +209,7 @@ export default defineComponent({
 
     const createOverlay = () => {
       overlayElement.value = document.createElement('div');
-      overlayElement.value.classList.add('sidenav-overlay');
+      overlayElement.value.classList.add('ax-overlay');
     };
 
     const updateOverlay = (state) => {

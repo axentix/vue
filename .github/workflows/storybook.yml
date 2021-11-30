@@ -16,7 +16,7 @@ jobs:
       - name: Install node
         uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 16
 
       - name: Install & Build storybook
         run: |

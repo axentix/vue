@@ -59,8 +59,8 @@ export default defineComponent({
     const classes = computed(() => {
       return {
         active: activeClass.value,
-        falling: props.mode === 'falling',
-        bouncing: props.mode === 'bouncing',
+        'modal-falling': props.mode === 'falling',
+        'modal-bouncing': props.mode === 'bouncing',
       };
     });
 
@@ -113,7 +113,7 @@ export default defineComponent({
 
     const createOverlay = () => {
       overlayElement.value = document.createElement('div');
-      overlayElement.value.classList.add('modal-overlay');
+      overlayElement.value.classList.add('ax-overlay');
     };
 
     const updateOverlay = (state) => {

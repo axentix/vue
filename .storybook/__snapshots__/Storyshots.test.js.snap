@@ -2,7 +2,7 @@
 
 exports[`Storyshots Axentix/Components/Button Circle 1`] = `
 <button
-  class="btn circle primary rounded-1"
+  class="btn btn-circle primary rounded-1"
   classes="primary rounded-1"
   content="I"
 >
@@ -14,7 +14,7 @@ exports[`Storyshots Axentix/Components/Button Circle 1`] = `
 
 exports[`Storyshots Axentix/Components/Button Disabled 1`] = `
 <button
-  class="btn disabled primary rounded-1"
+  class="btn btn-disabled primary rounded-1"
   classes="primary rounded-1"
   content="Button"
 >
@@ -26,7 +26,7 @@ exports[`Storyshots Axentix/Components/Button Disabled 1`] = `
 
 exports[`Storyshots Axentix/Components/Button Large 1`] = `
 <button
-  class="btn large primary rounded-1"
+  class="btn btn-large primary rounded-1"
   classes="primary rounded-1"
   content="Button"
 >
@@ -50,12 +50,12 @@ exports[`Storyshots Axentix/Components/Button Normal 1`] = `
 
 exports[`Storyshots Axentix/Components/Button Outline 1`] = `
 <button
-  class="btn outline txt-airforce rounded-1"
+  class="btn btn-outline txt-airforce rounded-1"
   classes="txt-airforce rounded-1"
   content="Button"
 >
   <span
-    class="outline-text"
+    class="btn-outline-text"
   >
     <span>
       Button
@@ -66,12 +66,12 @@ exports[`Storyshots Axentix/Components/Button Outline 1`] = `
 
 exports[`Storyshots Axentix/Components/Button Outline Invert 1`] = `
 <button
-  class="btn outline txt-blue txt-light-3 rounded-1"
+  class="btn btn-outline txt-blue txt-light-3 rounded-1"
   classes="txt-blue txt-light-3 rounded-1"
   content="Button"
 >
   <span
-    class="outline-text outline-invert"
+    class="btn-outline-text btn-outline-invert"
   >
     <span>
       Button
@@ -82,12 +82,12 @@ exports[`Storyshots Axentix/Components/Button Outline Invert 1`] = `
 
 exports[`Storyshots Axentix/Components/Button Outline Opening 1`] = `
 <button
-  class="btn outline opening txt-airforce rounded-1"
+  class="btn btn-outline btn-opening txt-airforce rounded-1"
   classes="txt-airforce rounded-1"
   content="Button"
 >
   <span
-    class="outline-text"
+    class="btn-outline-text"
   >
     <span>
       Button
@@ -98,7 +98,7 @@ exports[`Storyshots Axentix/Components/Button Outline Opening 1`] = `
 
 exports[`Storyshots Axentix/Components/Button Press 1`] = `
 <button
-  class="btn press primary rounded-1"
+  class="btn btn-press primary rounded-1"
   classes="primary rounded-1"
   content="Button"
 >
@@ -110,7 +110,7 @@ exports[`Storyshots Axentix/Components/Button Press 1`] = `
 
 exports[`Storyshots Axentix/Components/Button Small 1`] = `
 <button
-  class="btn small primary rounded-1"
+  class="btn btn-small primary rounded-1"
   classes="primary rounded-1"
   content="Button"
 >
@@ -120,9 +120,209 @@ exports[`Storyshots Axentix/Components/Button Small 1`] = `
 </button>
 `;
 
+exports[`Storyshots Axentix/Components/ButtonGroup Large 1`] = `
+<div
+  class="btn-group btn-group-large"
+  classes=""
+>
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/ButtonGroup Normal 1`] = `
+<div
+  class="btn-group"
+  classes=""
+>
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/ButtonGroup Rounded 1`] = `
+<div
+  class="btn-group rounded-1"
+  classes="rounded-1"
+>
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/ButtonGroup Small 1`] = `
+<div
+  class="btn-group btn-group-small"
+  classes=""
+>
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/ButtonGroup Vertical 1`] = `
+<div
+  class="btn-group btn-group-vertical"
+  classes=""
+>
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/ButtonGroup Vertical Large 1`] = `
+<div
+  class="btn-group btn-group-vertical btn-group-large"
+  classes=""
+>
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/ButtonGroup Vertical Rounded 1`] = `
+<div
+  class="btn-group btn-group-vertical rounded-1"
+  classes="rounded-1"
+>
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+</div>
+`;
+
+exports[`Storyshots Axentix/Components/ButtonGroup Vertical Small 1`] = `
+<div
+  class="btn-group btn-group-vertical btn-group-small"
+  classes=""
+>
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+   
+  <button
+    class="btn airforce dark-2"
+  >
+    Button
+  </button>
+</div>
+`;
+
 exports[`Storyshots Axentix/Components/Collapsible Auto Close 1`] = `
 <div
-  class="sidenav shadow-1 fixed"
+  class="sidenav shadow-1 sidenav-fixed"
   style="transition-duration: 300ms;"
 >
   <!---->
@@ -193,7 +393,7 @@ exports[`Storyshots Axentix/Components/Collapsible Auto Close 1`] = `
 
 exports[`Storyshots Axentix/Components/Collapsible In Sidenav 1`] = `
 <div
-  class="sidenav shadow-1 fixed"
+  class="sidenav shadow-1 sidenav-fixed"
   style="transition-duration: 300ms;"
 >
   <!---->
@@ -297,11 +497,13 @@ exports[`Storyshots Axentix/Components/Dropdown Constrained 1`] = `
   </button>
    
   <div
-    class="dropdown-content constrain-width"
+    class="dropdown-content dropdown-constrain-width"
     style="max-height: auto;"
   >
      
-    <span>
+    <span
+      class="white"
+    >
       <div
         class="dropdown-item"
       >
@@ -337,7 +539,9 @@ exports[`Storyshots Axentix/Components/Dropdown Fade 1`] = `
     style="max-height: auto;"
   >
      
-    <span>
+    <span
+      class="white"
+    >
       <div
         class="dropdown-item"
       >
@@ -372,7 +576,9 @@ exports[`Storyshots Axentix/Components/Dropdown Hover 1`] = `
     style="max-height: auto;"
   >
      
-    <span>
+    <span
+      class="white"
+    >
       <div
         class="dropdown-item"
       >
@@ -407,7 +613,9 @@ exports[`Storyshots Axentix/Components/Dropdown Normal 1`] = `
     style="max-height: auto;"
   >
      
-    <span>
+    <span
+      class="white"
+    >
       <div
         class="dropdown-item"
       >
@@ -431,7 +639,7 @@ exports[`Storyshots Axentix/Components/Forms/Autocomplete Chips 1`] = `
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
   >
     <label>
       Choose options
@@ -471,7 +679,7 @@ exports[`Storyshots Axentix/Components/Forms/Autocomplete Chips Closable 1`] = `
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
   >
     <label>
       Choose options
@@ -511,7 +719,7 @@ exports[`Storyshots Axentix/Components/Forms/Autocomplete Multiple 1`] = `
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
   >
     <label>
       Choose options
@@ -551,7 +759,7 @@ exports[`Storyshots Axentix/Components/Forms/Autocomplete Normal 1`] = `
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
   >
     <label>
       Choose an option
@@ -586,7 +794,7 @@ exports[`Storyshots Axentix/Components/Forms/Autocomplete Single Line 1`] = `
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
   >
     <label>
       Choose options
@@ -626,7 +834,7 @@ exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Checkbox 1`] = `
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
   >
     <!---->
      
@@ -659,7 +867,7 @@ exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Full Material Radi
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
   >
     <!---->
      
@@ -725,7 +933,7 @@ exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Material Checkbox 
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
   >
     <!---->
      
@@ -759,7 +967,7 @@ exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Material Radio 1`]
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
   >
     <!---->
      
@@ -825,7 +1033,7 @@ exports[`Storyshots Axentix/Components/Forms/Checkbox & Radio Radio 1`] = `
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
   >
     <!---->
      
@@ -943,7 +1151,7 @@ exports[`Storyshots Axentix/Components/Forms/Group (Suffix & Prefix) Both 1`] = 
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
   >
     <!---->
      
@@ -952,7 +1160,7 @@ exports[`Storyshots Axentix/Components/Forms/Group (Suffix & Prefix) Both 1`] = 
       classes="rounded-1"
     >
       <span
-        class="form-group-txt bd-1 bd-solid bd-r-0 bd-grey bd-light-1"
+        class="form-group-text bd-1 bd-solid bd-r-0 bd-grey bd-light-1"
       >
         @
       </span>
@@ -963,7 +1171,7 @@ exports[`Storyshots Axentix/Components/Forms/Group (Suffix & Prefix) Both 1`] = 
       />
        
       <span
-        class="form-group-txt bd-1 bd-solid bd-l-0 bd-grey bd-light-1 grey light-3"
+        class="form-group-text bd-1 bd-solid bd-l-0 bd-grey bd-light-1 grey light-3"
       >
         useaxentix.com
       </span>
@@ -980,7 +1188,7 @@ exports[`Storyshots Axentix/Components/Forms/Group (Suffix & Prefix) Prefix 1`] 
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
   >
     <!---->
      
@@ -989,7 +1197,7 @@ exports[`Storyshots Axentix/Components/Forms/Group (Suffix & Prefix) Prefix 1`] 
       classes=""
     >
       <span
-        class="form-group-txt"
+        class="form-group-text"
       >
         @
       </span>
@@ -1011,7 +1219,7 @@ exports[`Storyshots Axentix/Components/Forms/Group (Suffix & Prefix) Suffix 1`] 
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
   >
     <!---->
      
@@ -1025,7 +1233,7 @@ exports[`Storyshots Axentix/Components/Forms/Group (Suffix & Prefix) Suffix 1`] 
       />
        
       <span
-        class="form-group-txt"
+        class="form-group-text"
       >
         @
       </span>
@@ -1045,7 +1253,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Basic 1`] = `
     controlclasses=""
     fieldclasses=""
     placeholder=""
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
     tag="input"
     type="text"
   >
@@ -1074,7 +1282,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Basic Material 1`] = `
     fieldclasses=""
     material="true"
     placeholder=""
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
     tag="input"
     type="text"
   >
@@ -1103,7 +1311,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Disabled 1`] = `
     disabled="disabled"
     fieldclasses=""
     placeholder=""
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
     tag="input"
     type="text"
   >
@@ -1134,7 +1342,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Disabled Material 1`] = `
     fieldclasses=""
     material="true"
     placeholder=""
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
     tag="input"
     type="text"
   >
@@ -1163,7 +1371,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Helper 1`] = `
     controlclasses=""
     fieldclasses=""
     placeholder=""
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
     tag="input"
     type="text"
   >
@@ -1195,7 +1403,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Helper Custom 1`] = `
     controlclasses=""
     fieldclasses=""
     placeholder=""
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
     tag="input"
     type="text"
   >
@@ -1210,7 +1418,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Helper Custom 1`] = `
     />
      
     <span
-      class="form-helper txt-red txt-center"
+      class="form-helper text-red text-center"
     >
       Error message.
     </span>
@@ -1223,11 +1431,11 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Inline 1`] = `
   class=""
 >
   <div
-    class="form-field inline"
+    class="form-field form-inline"
     controlclasses=""
     fieldclasses=""
     placeholder=""
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
     tag="input"
     type="text"
   >
@@ -1256,7 +1464,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Multiple Select 1`] = `
     fieldclasses=""
     multiple="multiple"
     placeholder=""
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
     tag="select"
     type=""
   >
@@ -1295,7 +1503,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Placeholder 1`] = `
     controlclasses=""
     fieldclasses=""
     placeholder="Axentix <3"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
     tag="input"
     type="text"
   >
@@ -1324,7 +1532,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Placeholder Material 1`] = `
     fieldclasses=""
     material="true"
     placeholder="Axentix <3"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
     tag="input"
     type="text"
   >
@@ -1353,7 +1561,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Readonly 1`] = `
     fieldclasses=""
     placeholder=""
     readonly="readonly"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
     tag="input"
     type="text"
   >
@@ -1384,7 +1592,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Readonly Material 1`] = `
     material="true"
     placeholder=""
     readonly="readonly"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
     tag="input"
     type="text"
   >
@@ -1413,7 +1621,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Select 1`] = `
     controlclasses=""
     fieldclasses=""
     placeholder=""
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
     tag="select"
     type=""
   >
@@ -1452,7 +1660,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Select Material 1`] = `
     fieldclasses=""
     material="true"
     placeholder=""
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
     tag="select"
     type=""
   >
@@ -1490,7 +1698,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Textarea 1`] = `
     controlclasses=""
     fieldclasses=""
     placeholder=""
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
     tag="textarea"
     type="text"
   >
@@ -1519,7 +1727,7 @@ exports[`Storyshots Axentix/Components/Forms/Inputs Textarea Material 1`] = `
     fieldclasses=""
     material="true"
     placeholder=""
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
     tag="textarea"
     type="text"
   >
@@ -1544,7 +1752,7 @@ exports[`Storyshots Axentix/Components/Forms/Select Chips 1`] = `
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
   >
     <label>
       Choose options
@@ -1578,7 +1786,7 @@ exports[`Storyshots Axentix/Components/Forms/Select Chips Closable 1`] = `
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
   >
     <label>
       Choose options
@@ -1612,7 +1820,7 @@ exports[`Storyshots Axentix/Components/Forms/Select Multiple 1`] = `
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
   >
     <label>
       Choose options
@@ -1650,7 +1858,7 @@ exports[`Storyshots Axentix/Components/Forms/Select Normal 1`] = `
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
   >
     <label>
       Choose an option
@@ -1688,7 +1896,7 @@ exports[`Storyshots Axentix/Components/Forms/Select Single Line 1`] = `
 >
   <div
     class="form-field"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
   >
     <label>
       Choose options
@@ -1722,7 +1930,7 @@ exports[`Storyshots Axentix/Components/Forms/Switch Custom Color 1`] = `
 >
   <div
     class="form-field form-default"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
   >
     <!---->
      
@@ -1739,8 +1947,8 @@ exports[`Storyshots Axentix/Components/Forms/Switch Custom Color 1`] = `
       />
        
       <span
-        class="slider"
-        style="--form-switch-active-color: #000000;"
+        class="form-slider"
+        style="--ax-form-switch-active-color: #000000;"
       />
         
       <span>
@@ -1759,7 +1967,7 @@ exports[`Storyshots Axentix/Components/Forms/Switch Large 1`] = `
 >
   <div
     class="form-field form-default"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
   >
     <!---->
      
@@ -1776,8 +1984,8 @@ exports[`Storyshots Axentix/Components/Forms/Switch Large 1`] = `
       />
        
       <span
-        class="slider large"
-        style="--form-switch-active-color: #4c9f85;"
+        class="form-slider form-slider-large"
+        style="--ax-form-switch-active-color: #4c9f85;"
       />
         
       <span>
@@ -1796,7 +2004,7 @@ exports[`Storyshots Axentix/Components/Forms/Switch Normal 1`] = `
 >
   <div
     class="form-field form-default"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
   >
     <!---->
      
@@ -1813,8 +2021,8 @@ exports[`Storyshots Axentix/Components/Forms/Switch Normal 1`] = `
       />
        
       <span
-        class="slider"
-        style="--form-switch-active-color: #4c9f85;"
+        class="form-slider"
+        style="--ax-form-switch-active-color: #4c9f85;"
       />
         
       <span>
@@ -1833,7 +2041,7 @@ exports[`Storyshots Axentix/Components/Forms/Switch Small 1`] = `
 >
   <div
     class="form-field form-default"
-    style="--form-material-color: #4c9f85;"
+    style="--ax-form-material-color: #4c9f85;"
   >
     <!---->
      
@@ -1850,8 +2058,8 @@ exports[`Storyshots Axentix/Components/Forms/Switch Small 1`] = `
       />
        
       <span
-        class="slider small"
-        style="--form-switch-active-color: #4c9f85;"
+        class="form-slider form-slider-small"
+        style="--ax-form-switch-active-color: #4c9f85;"
       />
         
       <span>
@@ -1866,7 +2074,7 @@ exports[`Storyshots Axentix/Components/Forms/Switch Small 1`] = `
 
 exports[`Storyshots Axentix/Components/Modal Bouncing 1`] = `
 <div
-  class="modal bouncing white rounded-1"
+  class="modal modal-bouncing white rounded-1"
   classes="white rounded-1"
   content="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus voluptas ipsam rerum repellendus,
       quibusdam architecto laboriosam quia itaque voluptates et, fuga tenetur possimus debitis quisquam
@@ -1894,7 +2102,7 @@ exports[`Storyshots Axentix/Components/Modal Bouncing 1`] = `
 
 exports[`Storyshots Axentix/Components/Modal Falling 1`] = `
 <div
-  class="modal falling white rounded-1"
+  class="modal modal-falling white rounded-1"
   classes="white rounded-1"
   content="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus voluptas ipsam rerum repellendus,
       quibusdam architecto laboriosam quia itaque voluptates et, fuga tenetur possimus debitis quisquam
@@ -2288,7 +2496,7 @@ exports[`Storyshots Axentix/Components/Pagination Custom Items 1`] = `
 
 exports[`Storyshots Axentix/Components/Pagination Large 1`] = `
 <ul
-  class="pagination large"
+  class="pagination pagination-large"
 >
   <li
     class="arrow disabled"
@@ -2681,7 +2889,7 @@ exports[`Storyshots Axentix/Components/Pagination Normal 1`] = `
 
 exports[`Storyshots Axentix/Components/Pagination Small 1`] = `
 <ul
-  class="pagination small"
+  class="pagination pagination-small"
 >
   <li
     class="arrow disabled"
@@ -3124,7 +3332,7 @@ exports[`Storyshots Axentix/Components/Tab Arrow 1`] = `
 
 exports[`Storyshots Axentix/Components/Tab Full Width 1`] = `
 <div
-  class="tab full-width shadow-1"
+  class="tab tab-full-width shadow-1"
   classes="shadow-1"
   style="transition-duration: 300ms;"
 >
