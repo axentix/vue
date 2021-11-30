@@ -1,3 +1,14 @@
+# 0.10.0 - 2021-11-30
+
+- ADDED
+  - Button group component
+- REMOVED
+- IMPROVED
+  - Update dependencies to axentix v2
+  - Refactor components for axentix v2
+- BUGFIXES
+  - Tooltips default display
+
 # 0.9.0 - 2021-08-17
 
 - ADDED

@@ -51,7 +51,7 @@
     "CHANGELOG"
   ],
   "dependencies": {
-    "axentix": "^2.0.0-beta.1",
+    "axentix": "^2.0.0-beta.3",
     "vue-demi": "^0.11.4"
   },
   "devDependencies": {
@@ -87,7 +87,7 @@
     "vue": "^2.6.14",
     "vue-loader": "^15.9.8",
     "vue-template-compiler": "^2.6.14",
-    "vue3": "npm:vue@^3.2.8"
+    "vue3": "npm:vue@^3.2.23"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-rc.9",
