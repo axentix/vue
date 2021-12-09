@@ -284,7 +284,6 @@ export default defineComponent({
   background-origin: content-box !important;
   background-position: right -0.25rem center !important;
   color: inherit !important;
-  border-bottom: 1px solid #c7c7c7 !important;
 
   &[disabled] {
     cursor: default !important;

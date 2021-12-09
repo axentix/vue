@@ -1,3 +1,12 @@
+# 0.10.1 - 2021-12-09
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+  - Custom form select override axentix border
+
 # 0.10.0 - 2021-11-30
 
 - ADDED

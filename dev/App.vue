@@ -1,22 +1,26 @@
 <template>
   <div id="app" class="layout-sidenav-fixed">
     <header>
-      <nav class="navbar primary"><span class="navbar-brand">Vue Axentix</span></nav>
+      <nav class="navbar primary">
+        <span class="navbar-brand">Vue Axentix</span>
+      </nav>
     </header>
 
     <ax-sidenav v-model="isSidenavOpened" class="airforce" fixed large>
-      <template v-slot:header> Test </template>
+      <template v-slot:header>Test</template>
 
-      <ax-sidenav-link :active="isCollapsibleOpened" @click="isCollapsibleOpened = !isCollapsibleOpened">
-        Collapse
-      </ax-sidenav-link>
+      <ax-sidenav-link
+        :active="isCollapsibleOpened"
+        @click="isCollapsibleOpened = !isCollapsibleOpened"
+      >Collapse</ax-sidenav-link>
       <ax-collapsible :auto-close="false" v-model="isCollapsibleOpened">
         <div class="sidenav-link">Link 1</div>
         <div class="sidenav-link">Link 2</div>
       </ax-collapsible>
-      <ax-sidenav-link :active="isCollapsibleOpened2" @click="isCollapsibleOpened2 = !isCollapsibleOpened2">
-        Collapse
-      </ax-sidenav-link>
+      <ax-sidenav-link
+        :active="isCollapsibleOpened2"
+        @click="isCollapsibleOpened2 = !isCollapsibleOpened2"
+      >Collapse</ax-sidenav-link>
       <ax-collapsible v-model="isCollapsibleOpened2">
         <div class="sidenav-link">Link 1</div>
         <div class="sidenav-link">Link 2</div>
@@ -28,12 +32,16 @@
       <ax-btn circle press class="grey dark-3 mr-2">&#9996;</ax-btn>
       <ax-btn circle outline class="text-grey text-dark-3 mr-2" size="large">&#9996;</ax-btn>
       <ax-btn outline outline-invert class="text-red text-light-2 mr-2" size="large">Invert</ax-btn>
-      <ax-btn outline outline-opening outline-invert class="text-red text-light-2" size="large">
-        Invert
-      </ax-btn>
+      <ax-btn
+        outline
+        outline-opening
+        outline-invert
+        class="text-red text-light-2"
+        size="large"
+      >Invert</ax-btn>
       <br />
       <div class="grix xs1 sm2">
-        <div class="">
+        <div class>
           <ax-btn-group class="my-2" size="small">
             <ax-btn class="airforce dark-1">1</ax-btn>
             <ax-btn class="airforce dark-1">2</ax-btn>
@@ -100,16 +108,17 @@
           <ax-btn class="airforce dark-1 rounded-1 shadow-1" @click="modal = !modal">Toggle modal</ax-btn>
         </ax-tooltip>
         <ax-tooltip content="sidenav toggler">
-          <ax-btn class="airforce dark-1 rounded-1 shadow-1 ml-2" @click="isSidenavOpened = !isSidenavOpened">
-            Toggle sidenav
-          </ax-btn>
+          <ax-btn
+            class="airforce dark-1 rounded-1 shadow-1 ml-2"
+            @click="isSidenavOpened = !isSidenavOpened"
+          >Toggle sidenav</ax-btn>
         </ax-tooltip>
       </div>
 
       <ax-modal class="white rounded-1 shadow-1" v-model="modal">
         <ax-btn class="airforce dark-1 rounded-1 shadow-1" @click="modal2 = !modal2">Toggle modal 2</ax-btn>
       </ax-modal>
-      <ax-modal class="white rounded-1 shadow-1" v-model="modal2"> Hey </ax-modal>
+      <ax-modal class="white rounded-1 shadow-1" v-model="modal2">Hey</ax-modal>
 
       <div class="mt-5"></div>
 
@@ -121,24 +130,23 @@
         prevClasses="shadow-1"
         nextClasses="shadow-1"
       >
-        <template #left-arrow> &lsaquo; </template>
+        <template #left-arrow>&lsaquo;</template>
 
-        <template #right-arrow> &rsaquo; </template>
+        <template #right-arrow>&rsaquo;</template>
 
         <template #menu>
           <ax-tab-link href="#tab1">Tab 1</ax-tab-link>
           <ax-tab-link href="#tab2">Tab 2</ax-tab-link>
-          <ax-tab-link href="#tab3">Long tab content long tab content </ax-tab-link>
+          <ax-tab-link href="#tab3">Long tab content long tab content</ax-tab-link>
         </template>
 
-        <ax-tab-item id="tab1"> Content 1 </ax-tab-item>
-        <ax-tab-item id="tab2"> Content 2 </ax-tab-item>
-        <ax-tab-item id="tab3"> This is the 3rd content </ax-tab-item>
+        <ax-tab-item id="tab1">Content 1</ax-tab-item>
+        <ax-tab-item id="tab2">Content 2</ax-tab-item>
+        <ax-tab-item id="tab3">This is the 3rd content</ax-tab-item>
       </ax-tab>
 
       <div class="mt-5"></div>
-
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, officiis distinctio asperiores ea
+Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, officiis distinctio asperiores ea
       quidem laudantium earum ducimus mollitia eos modi atque consectetur praesentium aut. A atque tenetur
       doloremque ad voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, officiis
       distinctio asperiores ea quidem laudantium earum ducimus mollitia eos modi atque consectetur praesentium
@@ -179,7 +187,6 @@
       doloremque ad voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, officiis
       distinctio asperiores ea quidem laudantium earum ducimus mollitia eos modi atque consectetur praesentium
       aut. A atque tenetur doloremque ad voluptates.
-
       <div class="table-responsive">
         <table class="table">
           <thead>
@@ -228,7 +235,7 @@
 
       <ax-form material ref="form">
         <ax-form-field label="Choisissez une option">
-          <ax-form-select :items="items" v-model="selectedValue"> </ax-form-select>
+          <ax-form-select :items="items" v-model="selectedValue"></ax-form-select>
         </ax-form-field>
 
         <ax-form-field>
@@ -267,8 +274,8 @@
 
         <ax-form-field label="Select">
           <ax-form-control tag="select">
-            <option value="">1</option>
-            <option value="">2</option>
+            <option value>1</option>
+            <option value>2</option>
           </ax-form-control>
         </ax-form-field>
 
@@ -293,7 +300,7 @@
 
         <ax-form-field default>
           <ax-form-switch>
-            <template v-slot:false-value> Off </template>
+            <template v-slot:false-value>Off</template>
             On
           </ax-form-switch>
         </ax-form-field>
@@ -325,7 +332,7 @@
             :class="isActive ? 'active' : 'grey light-4 bd-solid bd-1 bd-grey bd-light-3'"
             @click="goto(pageNumber)"
           >
-            <a> {{ pageNumber }} </a>
+            <a>{{ pageNumber }}</a>
           </li>
         </template>
 
