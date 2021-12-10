@@ -9,18 +9,16 @@
     <ax-sidenav v-model="isSidenavOpened" class="airforce" fixed large>
       <template v-slot:header>Test</template>
 
-      <ax-sidenav-link
-        :active="isCollapsibleOpened"
-        @click="isCollapsibleOpened = !isCollapsibleOpened"
-      >Collapse</ax-sidenav-link>
+      <ax-sidenav-link :active="isCollapsibleOpened" @click="isCollapsibleOpened = !isCollapsibleOpened"
+        >Collapse</ax-sidenav-link
+      >
       <ax-collapsible :auto-close="false" v-model="isCollapsibleOpened">
         <div class="sidenav-link">Link 1</div>
         <div class="sidenav-link">Link 2</div>
       </ax-collapsible>
-      <ax-sidenav-link
-        :active="isCollapsibleOpened2"
-        @click="isCollapsibleOpened2 = !isCollapsibleOpened2"
-      >Collapse</ax-sidenav-link>
+      <ax-sidenav-link :active="isCollapsibleOpened2" @click="isCollapsibleOpened2 = !isCollapsibleOpened2"
+        >Collapse</ax-sidenav-link
+      >
       <ax-collapsible v-model="isCollapsibleOpened2">
         <div class="sidenav-link">Link 1</div>
         <div class="sidenav-link">Link 2</div>
@@ -32,13 +30,9 @@
       <ax-btn circle press class="grey dark-3 mr-2">&#9996;</ax-btn>
       <ax-btn circle outline class="text-grey text-dark-3 mr-2" size="large">&#9996;</ax-btn>
       <ax-btn outline outline-invert class="text-red text-light-2 mr-2" size="large">Invert</ax-btn>
-      <ax-btn
-        outline
-        outline-opening
-        outline-invert
-        class="text-red text-light-2"
-        size="large"
-      >Invert</ax-btn>
+      <ax-btn outline outline-opening outline-invert class="text-red text-light-2" size="large"
+        >Invert</ax-btn
+      >
       <br />
       <div class="grix xs1 sm2">
         <div class>
@@ -108,14 +102,18 @@
           <ax-btn class="airforce dark-1 rounded-1 shadow-1" @click="modal = !modal">Toggle modal</ax-btn>
         </ax-tooltip>
         <ax-tooltip content="sidenav toggler">
-          <ax-btn
-            class="airforce dark-1 rounded-1 shadow-1 ml-2"
-            @click="isSidenavOpened = !isSidenavOpened"
-          >Toggle sidenav</ax-btn>
+          <ax-btn class="airforce dark-1 rounded-1 shadow-1 ml-2" @click="isSidenavOpened = !isSidenavOpened"
+            >Toggle sidenav</ax-btn
+          >
         </ax-tooltip>
       </div>
 
       <ax-modal class="white rounded-1 shadow-1" v-model="modal">
+        <ax-form>
+          <ax-form-field>
+            <ax-form-control></ax-form-control>
+          </ax-form-field>
+        </ax-form>
         <ax-btn class="airforce dark-1 rounded-1 shadow-1" @click="modal2 = !modal2">Toggle modal 2</ax-btn>
       </ax-modal>
       <ax-modal class="white rounded-1 shadow-1" v-model="modal2">Hey</ax-modal>
@@ -146,7 +144,7 @@
       </ax-tab>
 
       <div class="mt-5"></div>
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, officiis distinctio asperiores ea
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, officiis distinctio asperiores ea
       quidem laudantium earum ducimus mollitia eos modi atque consectetur praesentium aut. A atque tenetur
       doloremque ad voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, officiis
       distinctio asperiores ea quidem laudantium earum ducimus mollitia eos modi atque consectetur praesentium
@@ -422,7 +420,7 @@ export default {
       toggle(false);
     },
     validateForm() {
-      console.log(this.$refs.form.validate());
+      console.log('validate', this.$refs.form.validate());
     },
     say() {
       console.log('hey');

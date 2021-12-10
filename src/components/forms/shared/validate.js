@@ -12,8 +12,8 @@ export default {
 };
 
 export const resetFormField = (formField) => {
-  formField.value.proxy.notValidHelper = null;
-  formField.value.proxy.notValidColor = null;
+  formField.notValidHelper = null;
+  formField.notValidColor = null;
 };
 
 export const validateField = (props, localValue, formField) => {
@@ -28,13 +28,13 @@ export const validateField = (props, localValue, formField) => {
     }
   }
 
-  if (!notValidRule || !formField.value) {
+  if (!notValidRule || !formField) {
     resetFormField(formField);
     return true;
   }
 
-  if (typeof notValidRule === 'string') formField.value.proxy.notValidHelper = notValidRule;
+  if (typeof notValidRule === 'string') formField.notValidHelper = notValidRule;
 
-  formField.value.proxy.notValidColor = props.errorColor;
+  formField.notValidColor = props.errorColor;
   return false;
 };
