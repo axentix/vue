@@ -20,9 +20,7 @@
     "lint": "eslint src --fix",
     "switch:2": "vue-demi-switch 2",
     "switch:3": "vue-demi-switch 3",
-    "postinstall": "node ./scripts/postinstall.js",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "postinstall": "node ./scripts/postinstall.js"
   },
   "repository": {
     "type": "git",
