@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { computed, defineComponent, getCurrentInstance, onMounted, provide, ref } from 'vue-demi';
+import { computed, defineComponent, provide, reactive, ref } from 'vue-demi';
 
 export default defineComponent({
   name: 'AxFormField',
@@ -64,23 +64,30 @@ export default defineComponent({
     });
 
     const notValidColor = ref(null),
-      currentInstance = ref(null),
       notValidHelper = ref(null),
       extraClasses = ref(null),
       extraStyle = ref(null),
       labelRef = ref(null),
       field = ref(null);
 
-    provide('ax-form-field', currentInstance);
+    provide(
+      'ax-form-field',
+      reactive({
+        notValidColor,
+        notValidHelper,
+        extraClasses,
+        extraStyle,
+        default: props.default,
+        rtl: props.rtl,
+        field,
+        labelRef,
+      })
+    );
 
     const style = computed(() => {
       return {
         '--ax-form-material-color': notValidColor.value ? notValidColor.value : props.materialColor,
       };
-    });
-
-    onMounted(() => {
-      currentInstance.value = getCurrentInstance();
     });
 
     return {

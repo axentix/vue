@@ -15,7 +15,17 @@
 </template>
 
 <script>
-import { computed, defineComponent, onMounted, onUnmounted, onUpdated, ref, toRefs, watch } from 'vue-demi';
+import {
+  computed,
+  defineComponent,
+  onMounted,
+  onUnmounted,
+  onUpdated,
+  reactive,
+  ref,
+  toRefs,
+  watch,
+} from 'vue-demi';
 import { addComponent, removeComponent, getComponentsByType, generateUid } from '../../utils/global';
 import vModelMixin, { getVModelKey, getVModelEvent } from '../../utils/v-model';
 
@@ -92,7 +102,7 @@ export default defineComponent({
     );
 
     const init = () => {
-      addComponent({ type: 'Modal', uid, data: { activeClass } });
+      addComponent({ type: 'Modal', uid, data: reactive({ activeClass }) });
 
       setupListeners();
 
@@ -155,9 +165,9 @@ export default defineComponent({
 
     const setZIndex = () => {
       if (!isActive.value) return;
-      const totalModals = getComponentsByType('Modal').filter((modal) => modal.data.activeClass.value).length;
+      const totalModals = getComponentsByType('Modal').filter((m) => m.data.activeClass).length + 1;
 
-      if (props.overlay) overlayElement.value.style.zIndex = 800 + totalModals * 6;
+      if (props.overlay) overlayElement.value.style.zIndex = 800 + totalModals * 10 - 2;
       zIndex.value = 800 + totalModals * 10;
     };
 

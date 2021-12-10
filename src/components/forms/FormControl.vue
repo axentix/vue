@@ -21,7 +21,6 @@ import {
   computed,
   defineComponent,
   inject,
-  isVue2,
   onMounted,
   onUnmounted,
   onUpdated,
@@ -88,16 +87,19 @@ export default defineComponent({
       FormUid = inject('ax-form-uid'),
       formField = inject('ax-form-field');
 
-    watch(formField, () => {
-      handle();
-    });
+    watch(
+      () => ({ ...formField }),
+      () => {
+        handle();
+      }
+    );
 
     watch(formFieldClasses, () => {
-      formField.value.proxy.extraClasses = formFieldClasses;
+      formField.extraClasses = formFieldClasses;
     });
 
     watch(formFieldStyle, () => {
-      formField.value.proxy.extraStyle = formFieldStyle;
+      formField.extraStyle = formFieldStyle;
     });
 
     watch(vmodel, (val) => {
@@ -154,17 +156,17 @@ export default defineComponent({
     };
 
     const handle = (e) => {
+      if (e && (e.type === 'click' || e.type === 'blur')) validate();
+
       if (!isMaterial) {
         removeListener();
         return;
       }
 
-      if (!formField.value || (isVue2 ? formField.value.props.default : formField.value.ctx.default)) {
+      if (!formField || formField.default) {
         removeListener();
         return;
       }
-
-      if (e && (e.type === 'click' || e.type === 'blur')) validate();
 
       setupListener();
 
@@ -222,9 +224,9 @@ export default defineComponent({
         width = inputWidth + 'px',
         labelLeft = '0';
 
-      if (formField.value.props['form-rtl']) {
+      if (formField.rtl) {
         side = 'right';
-        offset = formField.value.refs.field.clientWidth - inputWidth - inputLeftOffset;
+        offset = formField.field.clientWidth - inputWidth - inputLeftOffset;
       }
 
       formFieldStyle[`--ax-form-material-${side}-offset`] = offset + 'px';
@@ -233,7 +235,7 @@ export default defineComponent({
 
       formFieldStyle['--ax-form-material-width'] = width;
 
-      const label = formField.value.refs.labelRef;
+      const label = formField.labelRef;
       if (!label) return;
       label.style.left = labelLeft + 'px';
     };

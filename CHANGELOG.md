@@ -1,3 +1,14 @@
+# 0.10.2 - 2021-12-10
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+  - Form validation not work with default form design
+  - Modal overlay not working correctly
+  - FormField can throw error in Vue 2
+
 # 0.10.1 - 2021-12-09
 
 - ADDED
