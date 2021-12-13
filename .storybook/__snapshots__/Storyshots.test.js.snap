@@ -765,23 +765,7 @@ exports[`Storyshots Axentix/Components/Forms/Autocomplete Normal 1`] = `
       Choose an option
     </label>
      
-    <div
-      class=""
-      classes=""
-      multipleselectedvalue=""
-    >
-      <input
-        class="form-control custom-select"
-        type="text"
-      />
-       
-      <div
-        class="form-select-content"
-        style="opacity: 0;"
-      >
-          
-      </div>
-    </div>
+    <!---->
      
     <!---->
   </div>
@@ -1826,26 +1810,7 @@ exports[`Storyshots Axentix/Components/Forms/Select Multiple 1`] = `
       Choose options
     </label>
      
-    <div
-      class=""
-      classes=""
-      multipleselectedvalue=""
-    >
-      <div
-        class="form-control custom-select"
-      >
-        
-      
-    
-      </div>
-       
-      <div
-        class="form-select-content"
-        style="opacity: 0;"
-      >
-          
-      </div>
-    </div>
+    <!---->
      
     <!---->
   </div>
