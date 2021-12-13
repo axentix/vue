@@ -32,7 +32,17 @@ export const selectMixin = {
   },
 };
 
-export const updateComputedItems = (computedItems, itemsRef, vmodel, props, multipleSelected, selected) => {
+export const updateComputedItems = (
+  computedItems,
+  itemsRef,
+  vmodel,
+  props,
+  multipleSelected,
+  selected,
+  ctx,
+  vmodelEvent,
+  result
+) => {
   computedItems.value = [...new Set(itemsRef.value)].reduce((acc, item, i) => {
     let obj;
     const isSelected =
@@ -59,10 +69,13 @@ export const updateComputedItems = (computedItems, itemsRef, vmodel, props, mult
       if (!obj.value) obj.value = obj.name;
     }
 
-    if (isSelected)
+    if (isSelected) {
       props.multiple && !multipleSelected.value.some((el) => obj.value === el.value)
         ? multipleSelected.value.push(obj)
         : (selected.value = obj);
+
+      ctx.emit(vmodelEvent, result.value);
+    }
 
     acc.push(obj);
     return acc;
@@ -90,7 +103,7 @@ export const toggleState = (state = false, isOpened, opacity, isTop, container) 
   }, 300);
 };
 
-export const selectEl = (i, selected, computedItems, ctx, vmodelEvent) => {
+export const selectEl = (i, selected, computedItems, ctx, vmodelEvent, result) => {
   if (selected.value && selected.value.index >= 0) {
     if (selected.value.index === i) return;
     const lastItem = computedItems.value[selected.value.index];
@@ -104,7 +117,7 @@ export const selectEl = (i, selected, computedItems, ctx, vmodelEvent) => {
 
   computedItems.value.splice(i, 1, item);
 
-  ctx.emit(vmodelEvent, item.value);
+  ctx.emit(vmodelEvent, result.value);
 };
 
 export const selectMultipleEl = (i, computedItems, multipleSelected, ctx, vmodelEvent, result) => {
@@ -112,6 +125,7 @@ export const selectMultipleEl = (i, computedItems, multipleSelected, ctx, vmodel
   const item = computedItems.value[i];
 
   const index = multipleSelected.value.findIndex((val) => val.value === item.value && item.selected);
+  console.log('item', item, index);
 
   if (index !== -1) {
     item.selected = false;

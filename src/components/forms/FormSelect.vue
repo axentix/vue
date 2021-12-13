@@ -2,14 +2,14 @@
   <div v-bind="$attrs" v-ax-click-outside="() => toggle(false)">
     <ax-form-control custom-select tag="div" @click.native="() => toggle(true)" :single-line="singleLine">
       <template v-if="!chips">
-        {{ multiple ? result.join(', ') : result.name }}
+        {{ inputValue }}
       </template>
       <template v-else>
         <template v-if="!multiple">{{ result.name }}</template>
-        <div class="form-chips" v-else v-for="(value, i) in result" :key="'auto-val-' + i">
-          {{ value }}
+        <div class="form-chips" v-else v-for="(item, i) in result" :key="'auto-val-' + i">
+          {{ item.name }}
 
-          <span class="form-chips-closable" v-if="chipsClosable" @click.prevent.stop="select(value)">
+          <span class="form-chips-closable" v-if="chipsClosable" @click.prevent.stop="select(item.value)">
             <svg
               version="1.1"
               viewBox="0 0 512 512"
@@ -83,31 +83,32 @@ export default defineComponent({
       };
     });
 
-    const result = computed(() => {
-      if (!props.multiple) {
-        return selected.value;
-      }
-
-      return multipleSelected.value.reduce((acc, val) => {
-        acc.push(val.value);
-        return acc;
-      }, []);
+    const inputValue = computed(() => {
+      return props.multiple ? result.map((v) => v.name).join(', ') : result.value.name;
     });
 
-    watch(result, () => {
+    const result = computed(() => {
+      return props.multiple ? multipleSelected.value : selected.value;
+    });
+
+    // Show current result (value) data, used for vmodel updates
+    const resultValue = computed(() => {
+      return props.multiple ? multipleSelected.value.map((v) => v.value) : selected.value.value;
+    });
+
+    watch(resultValue, () => {
       validate();
     });
 
     watch(vmodel, (val) => {
       if (!props.multiple) {
         if (selected.value && val === selected.value.value) return;
-        const i = computedItems.value.findIndex((item) => item.value === val);
-        if (i >= 0) select(i);
+        select(val);
         return;
       }
 
-      const added = val.filter((item) => !result.value.includes(item));
-      const removed = result.value.filter((item) => !val.includes(item));
+      const added = val.filter((item) => !resultValue.value.includes(item));
+      const removed = resultValue.value.filter((item) => !val.includes(item));
 
       [...added, ...removed].map((v) => {
         const i = computedItems.value.findIndex((item) => item.value === v);
@@ -116,8 +117,21 @@ export default defineComponent({
     });
 
     watch(itemsRef, () => {
-      updateComputedItems(computedItems, itemsRef, vmodel, props, multipleSelected, selected);
+      updateItems();
     });
+
+    const updateItems = () =>
+      updateComputedItems(
+        computedItems,
+        itemsRef,
+        vmodel,
+        props,
+        multipleSelected,
+        selected,
+        ctx,
+        vmodelEvent,
+        resultValue
+      );
 
     const toggle = (state = false) => {
       if (firstToggle.value && state) firstToggle.value = false;
@@ -132,7 +146,7 @@ export default defineComponent({
       if (i === -1) return;
       if (props.multiple) return selectMultiple(i);
 
-      selectEl(i, selected, computedItems, ctx, vmodelEvent);
+      selectEl(i, selected, computedItems, ctx, vmodelEvent, resultValue);
 
       if (props.closeOnClick) toggle();
     };
@@ -140,7 +154,7 @@ export default defineComponent({
     const selectMultiple = (i) => {
       if (!props.multiple) return;
 
-      selectMultipleEl(i, computedItems, multipleSelected, ctx, vmodelEvent, result);
+      selectMultipleEl(i, computedItems, multipleSelected, ctx, vmodelEvent, resultValue);
     };
 
     const validate = () => {
@@ -152,7 +166,7 @@ export default defineComponent({
 
     onMounted(() => {
       addComponent({ type: 'FormSelect', uid, data: { FormUid, validate, resetValidation } });
-      updateComputedItems(computedItems, itemsRef, vmodel, props, multipleSelected, selected);
+      updateItems();
     });
 
     onUnmounted(() => {
@@ -168,6 +182,7 @@ export default defineComponent({
       computedItems,
       validate,
       resetValidation,
+      inputValue,
     };
   },
 });

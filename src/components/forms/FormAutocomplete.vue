@@ -22,11 +22,15 @@
       <div
         class="form-autocomplete-selected"
         :class="{ 'form-autocomplete-focused': i === result.length - 1 && isFocused, 'form-chips': chips }"
-        v-for="(value, i) in result"
+        v-for="(item, i) in result"
         :key="'auto-val-' + i"
       >
-        {{ value }}<template v-if="i !== result.length - 1 && !chips">,</template>
-        <span class="form-chips-closable" v-if="chips && chipsClosable" @click.prevent.stop="select(value)">
+        {{ item.name }}<template v-if="i !== result.length - 1 && !chips">,</template>
+        <span
+          class="form-chips-closable"
+          v-if="chips && chipsClosable"
+          @click.prevent.stop="select(item.value)"
+        >
           <svg
             version="1.1"
             viewBox="0 0 512 512"
@@ -120,14 +124,12 @@ export default defineComponent({
     });
 
     const result = computed(() => {
-      if (!props.multiple) {
-        return selected.value;
-      }
+      return props.multiple ? multipleSelected.value : selected.value;
+    });
 
-      return multipleSelected.value.reduce((acc, val) => {
-        acc.push(val.value);
-        return acc;
-      }, []);
+    // Show current result (value) data, used for vmodel updates
+    const resultValue = computed(() => {
+      return props.multiple ? multipleSelected.value.map((v) => v.value) : selected.value.value;
     });
 
     const filteredItems = computed(() => {
@@ -136,11 +138,11 @@ export default defineComponent({
     });
 
     const autocompleteActive = computed(() => {
-      if (result.value.length > 0) return 1;
+      if (resultValue.value.length > 0) return 1;
       return opacity.value === 1 ? 1 : inputValue.value.length;
     });
 
-    watch(result, () => {
+    watch(resultValue, () => {
       validate();
     });
 
@@ -159,8 +161,8 @@ export default defineComponent({
         return;
       }
 
-      const added = val.filter((item) => !result.value.includes(item));
-      const removed = result.value.filter((item) => !val.includes(item));
+      const added = val.filter((item) => !resultValue.value.includes(item));
+      const removed = resultValue.value.filter((item) => !val.includes(item));
 
       [...added, ...removed].map((v) => {
         const i = computedItems.value.findIndex((item) => item.value === v);
@@ -169,7 +171,7 @@ export default defineComponent({
     });
 
     watch(itemsRef, () => {
-      updateComputedItems(computedItems, itemsRef, vmodel, props, multipleSelected, selected);
+      updateItems();
     });
 
     const setupListeners = () => {
@@ -181,6 +183,19 @@ export default defineComponent({
       window.removeEventListener('keyup', onBackspace);
       document.removeEventListener('click', removeFocus);
     };
+
+    const updateItems = () =>
+      updateComputedItems(
+        computedItems,
+        itemsRef,
+        vmodel,
+        props,
+        multipleSelected,
+        selected,
+        ctx,
+        vmodelEvent,
+        resultValue
+      );
 
     const toggle = (state = false) => {
       if (firstToggle.value && state) firstToggle.value = false;
@@ -195,7 +210,7 @@ export default defineComponent({
       if (i === -1) return;
       if (props.multiple) return selectMultiple(i);
 
-      selectEl(i, selected, computedItems, ctx, vmodelEvent);
+      selectEl(i, selected, computedItems, ctx, vmodelEvent, resultValue);
       inputValue.value = value;
 
       if (props.closeOnClick) toggle();
@@ -204,7 +219,7 @@ export default defineComponent({
     const selectMultiple = (i) => {
       if (!props.multiple) return;
 
-      selectMultipleEl(i, computedItems, multipleSelected, ctx, vmodelEvent, result);
+      selectMultipleEl(i, computedItems, multipleSelected, ctx, vmodelEvent, resultValue);
       if (isOpened.value) input.value.focus();
     };
 
@@ -248,7 +263,7 @@ export default defineComponent({
     onMounted(() => {
       addComponent({ type: 'FormAutocomplete', uid, data: { FormUid, validate, resetValidation } });
       setupListeners();
-      updateComputedItems(computedItems, itemsRef, vmodel, props, multipleSelected, selected);
+      updateItems();
     });
 
     onUnmounted(() => {
