@@ -236,7 +236,7 @@
           <ax-form-select :items="items" v-model="selectedValue"></ax-form-select>
         </ax-form-field>
 
-        <ax-form-field>
+        <!-- <ax-form-field>
           <ax-form-select
             :items="items"
             multiple
@@ -249,7 +249,7 @@
               <div @click.prevent="selectAll(toggle)" class="form-select-item">Select all</div>
             </template>
           </ax-form-select>
-        </ax-form-field>
+        </ax-form-field> -->
 
         <ax-form-field label="Toto">
           <ax-form-autocomplete
@@ -386,12 +386,12 @@ export default {
     maxVisible: 5,
     radio: 'Yes',
     checked: true,
-    items: ['Voiture', 'Moto', 'Bus', 'Velo', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
+    // items: ['Voiture', 'Moto', 'Bus', 'Velo', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
     // items: [],
-    // items: [
-    //   { name: 'Voiture', value: 'Voiture', disabled: false, selected: true },
-    //   { name: 'Moto', value: 'Moto', disabled: false },
-    // ],
+    items: [
+      { name: 'Voiture', value: 'voiture', disabled: false, selected: true },
+      { name: 'Moto', value: 'moto', disabled: false },
+    ],
     selectedValue: '',
     multipleSelectedValue: [],
     test: '',

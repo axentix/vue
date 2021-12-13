@@ -1,3 +1,13 @@
+# 0.10.3 - 2021-12-13
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+  - Form select / autocomplete not synchronised with vmodel
+  - Form select / autocomplete no longer work with object items
+
 # 0.10.2 - 2021-12-10
 
 - ADDED
