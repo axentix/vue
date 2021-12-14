@@ -117,28 +117,28 @@ export default {
 
     const prev = () => {
       if (current.value !== 1) {
-        ctx.emit('prev', current.value - 1);
         current.value -= 1;
+        ctx.emit('prev', current.value);
       }
     };
 
     const next = () => {
       if (current.value !== pageCount.value) {
-        ctx.emit('next', current.value + 1);
         current.value += 1;
+        ctx.emit('next', current.value);
       }
     };
 
     const goto = (i) => {
       if (current.value !== i) {
-        ctx.emit('goto', i);
         current.value = i;
+        ctx.emit('goto', i);
       }
     };
 
     const isShown = (i) => {
       if (props.maxVisible < 3 || props.maxVisible > pageCount.value) return true;
-      let active = current.value - 1;
+      const active = current.value - 1;
 
       if (i === 0 || i === pageCount.value - 1 || active === i) {
         handleActiveOrExtremity(i);
