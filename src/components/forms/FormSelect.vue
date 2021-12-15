@@ -93,7 +93,7 @@ export default defineComponent({
 
     // Show current result (value) data, used for vmodel updates
     const resultValue = computed(() => {
-      return props.multiple ? multipleSelected.value.map((v) => v.value) : selected.value.value;
+      return (props.multiple ? multipleSelected.value.map((v) => v.value) : selected.value.value) || '';
     });
 
     watch(resultValue, () => {

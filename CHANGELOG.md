@@ -1,3 +1,12 @@
+# 0.10.4 - 2021-12-15
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+  - Form select / autocomplete (single) throw an error when no value is set
+
 # 0.10.3 - 2021-12-13
 
 - ADDED
