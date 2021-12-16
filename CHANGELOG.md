@@ -1,3 +1,11 @@
+# 0.10.5 - 2021-12-16
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Update to latest Axentix version
+- BUGFIXES
+
 # 0.10.4 - 2021-12-15
 
 - ADDED
