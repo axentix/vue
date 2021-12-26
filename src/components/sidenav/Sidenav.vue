@@ -40,11 +40,7 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    large: {
-      type: Boolean,
-      default: false,
-    },
-    rightAligned: {
+    right: {
       type: Boolean,
       default: false,
     },
@@ -66,20 +62,13 @@ export default defineComponent({
 
     provide('ax-sidenav', uid);
 
-    const extraClasses = reactive([
-      'sidenav-right',
-      'sidenav-both',
-      'sidenav-large',
-      'sidenav-large-left',
-      'sidenav-large-right',
-    ]);
+    const extraClasses = reactive(['layout-sidenav-right', 'layout-sidenav-both']);
 
     const classes = computed(() => {
       return {
         active: isActive.value,
         'sidenav-fixed': props.fixed,
-        'right-aligned': props.rightAligned,
-        large: props.large,
+        'sidenav-right': props.right,
       };
     });
 
@@ -112,18 +101,11 @@ export default defineComponent({
       }
     );
 
-    watch(
-      () => props.large,
-      () => {
-        detectMultipleSidenav();
-      }
-    );
-
     const init = () => {
       addComponent({
         type: 'Sidenav',
         uid,
-        data: { fixed: propsRef.fixed, large: propsRef.large, rightAligned: propsRef.rightAligned },
+        data: { fixed: propsRef.fixed, right: propsRef.right },
       });
 
       layoutEl.value = sidenav.value.closest('.layout');
@@ -151,7 +133,7 @@ export default defineComponent({
     };
 
     const cleanLayout = () => {
-      extraClasses.map((classes) => layoutEl.value.classList.remove(classes));
+      extraClasses.forEach((classes) => layoutEl.value.classList.remove(classes));
     };
 
     const handleResize = () => {
@@ -171,32 +153,16 @@ export default defineComponent({
     const handleMultipleSidenav = (sidenavs) => {
       const { sidenavsRight, sidenavsLeft } = sidenavs.reduce(
         (acc, sidenav) => {
-          sidenav.data.rightAligned.value ? acc.sidenavsRight.push(sidenav) : acc.sidenavsLeft.push(sidenav);
+          sidenav.data.right.value ? acc.sidenavsRight.push(sidenav) : acc.sidenavsLeft.push(sidenav);
           return acc;
         },
         { sidenavsRight: [], sidenavsLeft: [] }
       );
 
       const isBoth = sidenavsLeft.length > 0 && sidenavsRight.length > 0;
-      const sidenavRightLarge = sidenavsRight.some((sidenav) => sidenav.data.large.value);
-      const sidenavLeftLarge = sidenavsLeft.some((sidenav) => sidenav.data.large.value);
-      const isLarge = sidenavRightLarge || sidenavLeftLarge;
 
-      isLarge ? layoutEl.value.classList.add('sidenav-large') : '';
-
-      if (sidenavsRight.length > 0 && !isBoth) {
-        layoutEl.value.classList.add('sidenav-right');
-      } else if (isBoth) {
-        layoutEl.value.classList.add('sidenav-both');
-      }
-
-      if (isLarge && isBoth) {
-        if (sidenavRightLarge && !sidenavLeftLarge) {
-          layoutEl.value.classList.add('sidenav-large-right');
-        } else if (!sidenavRightLarge && sidenavLeftLarge) {
-          layoutEl.value.classList.add('sidenav-large-left');
-        }
-      }
+      if (sidenavsRight.length > 0 && !isBoth) layoutEl.value.classList.add('layout-sidenav-right');
+      else if (isBoth) layoutEl.value.classList.add('layout-sidenav-both');
     };
 
     const createOverlay = () => {
@@ -231,9 +197,7 @@ export default defineComponent({
     };
 
     const toggleBodyScroll = (state) => {
-      if (!props.bodyScrolling && window.innerWidth < 960) {
-        state ? (document.body.style.overflow = '') : (document.body.style.overflow = 'hidden');
-      }
+      if (!props.bodyScrolling) document.body.style.overflow = state ? '' : 'hidden';
     };
 
     const onClickTrigger = (e) => {
@@ -276,7 +240,7 @@ export default defineComponent({
     };
 
     const setOverlay = (state) => {
-      if (!props.overlay || window.innerWidth >= 960) return;
+      if (!props.overlay) return;
 
       overlayElement.value.style.transitionDuration = props.animationDuration + 'ms';
 

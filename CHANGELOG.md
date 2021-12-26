@@ -7,6 +7,7 @@
   - Sidenav header slot
   - Sidenav footer slot
 - IMPROVED
+  - Sidenav reworked
   - Update dependencies
 - BUGFIXES
   - Tooltip `setup` event

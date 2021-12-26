@@ -1,12 +1,12 @@
 <template>
-  <div id="app" class="layout-sidenav-fixed">
+  <div id="app">
     <header>
       <nav class="navbar primary">
         <span class="navbar-brand">Vue Axentix</span>
       </nav>
     </header>
 
-    <ax-sidenav v-model="isSidenavOpened" class="airforce" fixed large>
+    <ax-sidenav v-model="isSidenavOpened" class="airforce">
       <template v-slot:header>Test</template>
 
       <ax-sidenav-link :active="isCollapsibleOpened" @click="isCollapsibleOpened = !isCollapsibleOpened"
