@@ -239,7 +239,7 @@ export default defineComponent({
     };
 
     const setOverlay = (state) => {
-      if (!props.overlay) return;
+      if (!props.overlay || (window.innerWidth >= 960 && props.fixed)) return;
 
       overlayElement.value.style.transitionDuration = props.animationDuration + 'ms';
 
