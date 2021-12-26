@@ -1,7 +1,11 @@
-# 0.10.6 - 2021-12-26
+# 0.11.0 - 2021-12-26
 
 - ADDED
+  - Sidenav Header component
+  - Sidenav Footer component
 - REMOVED
+  - Sidenav header slot
+  - Sidenav footer slot
 - IMPROVED
   - Update dependencies
 - BUGFIXES

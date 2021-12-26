@@ -1,10 +1,12 @@
 import AxSidenav from './Sidenav.vue';
 import AxSidenavLink from './SidenavLink.vue';
+import AxSidenavHeader from './SidenavHeader.vue';
+import AxSidenavFooter from './SidenavFooter.vue';
 
 export default {
   title: 'Axentix/Components/Sidenav',
   component: AxSidenav,
-  subcomponents: { AxSidenavLink },
+  subcomponents: { AxSidenavLink, AxSidenavHeader, AxSidenavFooter },
   argTypes: {
     value: { control: { type: 'boolean' } },
     overlay: true,
@@ -13,18 +15,6 @@ export default {
     fixed: false,
     large: false,
     rightAligned: false,
-    header: {
-      control: {
-        type: 'text',
-      },
-      defaultValue: '',
-    },
-    footer: {
-      control: {
-        type: 'text',
-      },
-      defaultValue: '',
-    },
     classes: {
       control: {
         type: 'text',
@@ -36,19 +26,19 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { AxSidenav, AxSidenavLink },
+  components: { AxSidenav, AxSidenavLink, AxSidenavHeader, AxSidenavFooter },
   template: `<ax-sidenav :class="classes" v-bind="$props" v-model="value" >
-    <template v-slot:header v-if="header">
-      <span v-html="header"></span>
-    </template>
+    <ax-sidenav-header>
+      Sidenav header
+    </ax-sidenav-header>
 
     <ax-sidenav-link>Link 1</ax-sidenav-link>
     <ax-sidenav-link :active="true">Link 2</ax-sidenav-link>
     <ax-sidenav-link>Link 3</ax-sidenav-link>
 
-    <template v-slot:footer v-if="footer">
-      <span v-html="footer"></span>
-    </template>
+    <ax-sidenav-footer>
+      Sidenav footer
+    </ax-sidenav-footer>
   </ax-sidenav>`,
 });
 

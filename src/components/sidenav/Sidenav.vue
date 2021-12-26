@@ -1,14 +1,6 @@
 <template>
   <div class="sidenav" ref="sidenav" :class="classes" :style="style" v-bind="$attrs" v-on="listeners">
-    <div class="sidenav-header" v-if="!!$slots.header">
-      <slot name="header"></slot>
-    </div>
-
     <slot></slot>
-
-    <div class="sidenav-footer" v-if="!!$slots.footer">
-      <slot name="footer"></slot>
-    </div>
   </div>
 </template>
 
