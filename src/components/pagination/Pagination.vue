@@ -12,7 +12,7 @@
       </li>
     </slot>
 
-    <div v-for="(total, i) of pageCount" :key="i" class="flex">
+    <div v-for="(total, i) of pageCount" :key="i" class="d-flex">
       <slot
         v-if="isShown(i)"
         :pageNumber="i + 1"
@@ -210,8 +210,8 @@ export default {
 .pagination {
   user-select: none;
 
-  .flex {
-    display: flex;
+  li {
+    transition: none !important;
   }
 
   .dots {

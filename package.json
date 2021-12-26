@@ -51,7 +51,7 @@
     "CHANGELOG"
   ],
   "dependencies": {
-    "axentix": "^2.0.0-beta.3",
+    "axentix": "^2.0.0-beta.4",
     "vue-demi": "^0.12.1"
   },
   "devDependencies": {
