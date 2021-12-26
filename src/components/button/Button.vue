@@ -55,7 +55,7 @@ export default defineComponent({
         'btn-opening': props.outlineOpening,
         'btn-small': props.size === 'small',
         'btn-large': props.size === 'large',
-        'btn-disabled': props.disabled,
+        disabled: props.disabled,
       };
     });
 

@@ -1,3 +1,15 @@
+# 0.10.6 - 2021-12-26
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+  - Tooltip `setup` event
+  - Button disabled
+  - Dropdown fade animation
+  - Pagination transition
+
 # 0.10.5 - 2021-12-16
 
 - ADDED
