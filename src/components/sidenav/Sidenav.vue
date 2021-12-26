@@ -12,7 +12,6 @@ import {
   onUnmounted,
   onUpdated,
   provide,
-  reactive,
   ref,
   toRefs,
   watch,
@@ -61,8 +60,6 @@ export default defineComponent({
     const uid = generateUid();
 
     provide('ax-sidenav', uid);
-
-    const extraClasses = reactive(['layout-sidenav-right', 'layout-sidenav-both']);
 
     const classes = computed(() => {
       return {
@@ -133,7 +130,9 @@ export default defineComponent({
     };
 
     const cleanLayout = () => {
-      extraClasses.forEach((classes) => layoutEl.value.classList.remove(classes));
+      ['layout-sidenav-right', 'layout-sidenav-both'].forEach((classes) =>
+        layoutEl.value.classList.remove(classes)
+      );
     };
 
     const handleResize = () => {
