@@ -59,8 +59,6 @@ export default defineComponent({
     );
 
     const init = () => {
-      ctx.emit('init');
-
       addComponent({ type: 'Tooltip', uid });
 
       setupListeners();
@@ -70,6 +68,8 @@ export default defineComponent({
       createTooltip();
       updatePosition();
       tooltip.value.style.display = 'none';
+
+      ctx.emit('setup');
     };
 
     const setupListeners = () => {
