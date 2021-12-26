@@ -14,6 +14,7 @@
   - Button disabled
   - Dropdown fade animation
   - Pagination transition
+  - Tab active border is not shown
 
 # 0.10.5 - 2021-12-16
 

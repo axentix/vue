@@ -14,7 +14,7 @@ exports[`Storyshots Axentix/Components/Button Circle 1`] = `
 
 exports[`Storyshots Axentix/Components/Button Disabled 1`] = `
 <button
-  class="btn btn-disabled primary rounded-1"
+  class="btn disabled primary rounded-1"
   classes="primary rounded-1"
   content="Button"
 >
@@ -325,8 +325,6 @@ exports[`Storyshots Axentix/Components/Collapsible Auto Close 1`] = `
   class="sidenav shadow-1 sidenav-fixed"
   style="transition-duration: 300ms;"
 >
-  <!---->
-   
   <a
     class="sidenav-link"
   >
@@ -386,8 +384,6 @@ exports[`Storyshots Axentix/Components/Collapsible Auto Close 1`] = `
       Collapsed 2
     </a>
   </div>
-   
-  <!---->
 </div>
 `;
 
@@ -396,8 +392,6 @@ exports[`Storyshots Axentix/Components/Collapsible In Sidenav 1`] = `
   class="sidenav shadow-1 sidenav-fixed"
   style="transition-duration: 300ms;"
 >
-  <!---->
-   
   <a
     class="sidenav-link"
   >
@@ -457,8 +451,6 @@ exports[`Storyshots Axentix/Components/Collapsible In Sidenav 1`] = `
       Collapsed 2
     </a>
   </div>
-   
-  <!---->
 </div>
 `;
 
@@ -486,7 +478,7 @@ exports[`Storyshots Axentix/Components/Collapsible Normal 1`] = `
 
 exports[`Storyshots Axentix/Components/Dropdown Constrained 1`] = `
 <div
-  class="dropdown anim-none"
+  class="dropdown dropdown-anim-none"
   content="<div class=\\"dropdown-item\\">Hello</div>
       <div class=\\"dropdown-item\\">Hello number 2</div>"
 >
@@ -523,7 +515,7 @@ exports[`Storyshots Axentix/Components/Dropdown Constrained 1`] = `
 
 exports[`Storyshots Axentix/Components/Dropdown Fade 1`] = `
 <div
-  class="dropdown anim-fade"
+  class="dropdown dropdown-anim-fade"
   content="<div class=\\"dropdown-item\\">Hello</div>
       <div class=\\"dropdown-item\\">Hello number 2</div>"
   style="transition-duration: 300ms;"
@@ -561,7 +553,7 @@ exports[`Storyshots Axentix/Components/Dropdown Fade 1`] = `
 
 exports[`Storyshots Axentix/Components/Dropdown Hover 1`] = `
 <div
-  class="dropdown anim-none"
+  class="dropdown dropdown-anim-none"
   content="<div class=\\"dropdown-item\\">Hello</div>
       <div class=\\"dropdown-item\\">Hello number 2</div>"
 >
@@ -598,7 +590,7 @@ exports[`Storyshots Axentix/Components/Dropdown Hover 1`] = `
 
 exports[`Storyshots Axentix/Components/Dropdown Normal 1`] = `
 <div
-  class="dropdown anim-none"
+  class="dropdown dropdown-anim-none"
   content="<div class=\\"dropdown-item\\">Hello</div>
       <div class=\\"dropdown-item\\">Hello number 2</div>"
 >
@@ -2226,7 +2218,7 @@ exports[`Storyshots Axentix/Components/Pagination Custom Arrows 1`] = `
   </li>
    
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="active"
@@ -2237,7 +2229,7 @@ exports[`Storyshots Axentix/Components/Pagination Custom Arrows 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2248,7 +2240,7 @@ exports[`Storyshots Axentix/Components/Pagination Custom Arrows 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2259,7 +2251,7 @@ exports[`Storyshots Axentix/Components/Pagination Custom Arrows 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2270,7 +2262,7 @@ exports[`Storyshots Axentix/Components/Pagination Custom Arrows 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2281,7 +2273,7 @@ exports[`Storyshots Axentix/Components/Pagination Custom Arrows 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2292,17 +2284,17 @@ exports[`Storyshots Axentix/Components/Pagination Custom Arrows 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <!---->
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <!---->
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="dots"
@@ -2311,7 +2303,7 @@ exports[`Storyshots Axentix/Components/Pagination Custom Arrows 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2361,7 +2353,7 @@ exports[`Storyshots Axentix/Components/Pagination Custom Items 1`] = `
   </li>
    
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="active"
@@ -2372,7 +2364,7 @@ exports[`Storyshots Axentix/Components/Pagination Custom Items 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="grey light-4 bd-solid bd-1 bd-grey bd-light-3"
@@ -2383,7 +2375,7 @@ exports[`Storyshots Axentix/Components/Pagination Custom Items 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="grey light-4 bd-solid bd-1 bd-grey bd-light-3"
@@ -2394,7 +2386,7 @@ exports[`Storyshots Axentix/Components/Pagination Custom Items 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="grey light-4 bd-solid bd-1 bd-grey bd-light-3"
@@ -2405,7 +2397,7 @@ exports[`Storyshots Axentix/Components/Pagination Custom Items 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="grey light-4 bd-solid bd-1 bd-grey bd-light-3"
@@ -2416,7 +2408,7 @@ exports[`Storyshots Axentix/Components/Pagination Custom Items 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="grey light-4 bd-solid bd-1 bd-grey bd-light-3"
@@ -2427,17 +2419,17 @@ exports[`Storyshots Axentix/Components/Pagination Custom Items 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <!---->
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <!---->
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="dots"
@@ -2446,7 +2438,7 @@ exports[`Storyshots Axentix/Components/Pagination Custom Items 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="grey light-4 bd-solid bd-1 bd-grey bd-light-3"
@@ -2496,7 +2488,7 @@ exports[`Storyshots Axentix/Components/Pagination Large 1`] = `
   </li>
    
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="active"
@@ -2507,7 +2499,7 @@ exports[`Storyshots Axentix/Components/Pagination Large 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2518,7 +2510,7 @@ exports[`Storyshots Axentix/Components/Pagination Large 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2529,7 +2521,7 @@ exports[`Storyshots Axentix/Components/Pagination Large 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2540,7 +2532,7 @@ exports[`Storyshots Axentix/Components/Pagination Large 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2551,7 +2543,7 @@ exports[`Storyshots Axentix/Components/Pagination Large 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2562,17 +2554,17 @@ exports[`Storyshots Axentix/Components/Pagination Large 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <!---->
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <!---->
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="dots"
@@ -2581,7 +2573,7 @@ exports[`Storyshots Axentix/Components/Pagination Large 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2631,7 +2623,7 @@ exports[`Storyshots Axentix/Components/Pagination Max Visible 1`] = `
   </li>
    
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="active"
@@ -2642,7 +2634,7 @@ exports[`Storyshots Axentix/Components/Pagination Max Visible 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2653,7 +2645,7 @@ exports[`Storyshots Axentix/Components/Pagination Max Visible 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2664,7 +2656,7 @@ exports[`Storyshots Axentix/Components/Pagination Max Visible 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2675,27 +2667,27 @@ exports[`Storyshots Axentix/Components/Pagination Max Visible 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <!---->
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <!---->
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <!---->
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <!---->
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="dots"
@@ -2704,7 +2696,7 @@ exports[`Storyshots Axentix/Components/Pagination Max Visible 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2754,7 +2746,7 @@ exports[`Storyshots Axentix/Components/Pagination Normal 1`] = `
   </li>
    
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="active"
@@ -2765,7 +2757,7 @@ exports[`Storyshots Axentix/Components/Pagination Normal 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2776,7 +2768,7 @@ exports[`Storyshots Axentix/Components/Pagination Normal 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2787,7 +2779,7 @@ exports[`Storyshots Axentix/Components/Pagination Normal 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2798,7 +2790,7 @@ exports[`Storyshots Axentix/Components/Pagination Normal 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2809,7 +2801,7 @@ exports[`Storyshots Axentix/Components/Pagination Normal 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2820,17 +2812,17 @@ exports[`Storyshots Axentix/Components/Pagination Normal 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <!---->
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <!---->
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="dots"
@@ -2839,7 +2831,7 @@ exports[`Storyshots Axentix/Components/Pagination Normal 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2889,7 +2881,7 @@ exports[`Storyshots Axentix/Components/Pagination Small 1`] = `
   </li>
    
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="active"
@@ -2900,7 +2892,7 @@ exports[`Storyshots Axentix/Components/Pagination Small 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2911,7 +2903,7 @@ exports[`Storyshots Axentix/Components/Pagination Small 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2922,7 +2914,7 @@ exports[`Storyshots Axentix/Components/Pagination Small 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2933,7 +2925,7 @@ exports[`Storyshots Axentix/Components/Pagination Small 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2944,7 +2936,7 @@ exports[`Storyshots Axentix/Components/Pagination Small 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -2955,17 +2947,17 @@ exports[`Storyshots Axentix/Components/Pagination Small 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <!---->
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <!---->
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="dots"
@@ -2974,7 +2966,7 @@ exports[`Storyshots Axentix/Components/Pagination Small 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class=""
@@ -3024,7 +3016,7 @@ exports[`Storyshots Axentix/Components/Pagination Totally Custom 1`] = `
   </li>
    
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="active"
@@ -3035,7 +3027,7 @@ exports[`Storyshots Axentix/Components/Pagination Totally Custom 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="grey light-4 bd-solid bd-1 bd-grey bd-light-3"
@@ -3046,7 +3038,7 @@ exports[`Storyshots Axentix/Components/Pagination Totally Custom 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="grey light-4 bd-solid bd-1 bd-grey bd-light-3"
@@ -3057,7 +3049,7 @@ exports[`Storyshots Axentix/Components/Pagination Totally Custom 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="grey light-4 bd-solid bd-1 bd-grey bd-light-3"
@@ -3068,7 +3060,7 @@ exports[`Storyshots Axentix/Components/Pagination Totally Custom 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="grey light-4 bd-solid bd-1 bd-grey bd-light-3"
@@ -3079,7 +3071,7 @@ exports[`Storyshots Axentix/Components/Pagination Totally Custom 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="grey light-4 bd-solid bd-1 bd-grey bd-light-3"
@@ -3090,17 +3082,17 @@ exports[`Storyshots Axentix/Components/Pagination Totally Custom 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <!---->
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <!---->
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="dots"
@@ -3109,7 +3101,7 @@ exports[`Storyshots Axentix/Components/Pagination Totally Custom 1`] = `
     </li>
   </div>
   <div
-    class="flex"
+    class="d-flex"
   >
     <li
       class="grey light-4 bd-solid bd-1 bd-grey bd-light-3"
@@ -3140,14 +3132,19 @@ exports[`Storyshots Axentix/Components/Pagination Totally Custom 1`] = `
 
 exports[`Storyshots Axentix/Components/Sidenav Large 1`] = `
 <div
-  class="sidenav large airforce shadow-1"
+  class="sidenav airforce shadow-1"
   classes="airforce shadow-1"
-  footer=""
-  header=""
+  large="true"
   style="transition-duration: 300ms;"
 >
-  <!---->
+  <div
+    class="sidenav-header"
+  >
     
+      Sidenav header
+    
+  </div>
+   
   <a
     class="sidenav-link"
   >
@@ -3166,7 +3163,13 @@ exports[`Storyshots Axentix/Components/Sidenav Large 1`] = `
     Link 3
   </a>
    
-  <!---->
+  <div
+    class="sidenav-footer"
+  >
+    
+      Sidenav footer
+    
+  </div>
 </div>
 `;
 
@@ -3174,12 +3177,16 @@ exports[`Storyshots Axentix/Components/Sidenav Normal 1`] = `
 <div
   class="sidenav airforce shadow-1"
   classes="airforce shadow-1"
-  footer=""
-  header=""
   style="transition-duration: 300ms;"
 >
-  <!---->
+  <div
+    class="sidenav-header"
+  >
     
+      Sidenav header
+    
+  </div>
+   
   <a
     class="sidenav-link"
   >
@@ -3198,20 +3205,31 @@ exports[`Storyshots Axentix/Components/Sidenav Normal 1`] = `
     Link 3
   </a>
    
-  <!---->
+  <div
+    class="sidenav-footer"
+  >
+    
+      Sidenav footer
+    
+  </div>
 </div>
 `;
 
 exports[`Storyshots Axentix/Components/Sidenav Right Aligned 1`] = `
 <div
-  class="sidenav right-aligned airforce shadow-1"
+  class="sidenav airforce shadow-1"
   classes="airforce shadow-1"
-  footer=""
-  header=""
+  rightaligned="true"
   style="transition-duration: 300ms;"
 >
-  <!---->
+  <div
+    class="sidenav-header"
+  >
     
+      Sidenav header
+    
+  </div>
+   
   <a
     class="sidenav-link"
   >
@@ -3230,7 +3248,13 @@ exports[`Storyshots Axentix/Components/Sidenav Right Aligned 1`] = `
     Link 3
   </a>
    
-  <!---->
+  <div
+    class="sidenav-footer"
+  >
+    
+      Sidenav footer
+    
+  </div>
 </div>
 `;
 
@@ -3251,7 +3275,7 @@ exports[`Storyshots Axentix/Components/Tab Arrow 1`] = `
      
     <ul
       class="tab-menu"
-      style="--tab-bar-left-offset: 0; --tab-bar-right-offset: 0;"
+      style="--ax-tab-bar-left-offset: 0; --ax-tab-bar-right-offset: 0;"
     >
       <li
         class="tab-link"
@@ -3319,7 +3343,7 @@ exports[`Storyshots Axentix/Components/Tab Full Width 1`] = `
 >
   <ul
     class="tab-menu"
-    style="--tab-bar-left-offset: 0; --tab-bar-right-offset: 0;"
+    style="--ax-tab-bar-left-offset: 0; --ax-tab-bar-right-offset: 0;"
   >
     <li
       class="tab-link"
@@ -3380,7 +3404,7 @@ exports[`Storyshots Axentix/Components/Tab Normal 1`] = `
 >
   <ul
     class="tab-menu"
-    style="--tab-bar-left-offset: 0; --tab-bar-right-offset: 0;"
+    style="--ax-tab-bar-left-offset: 0; --ax-tab-bar-right-offset: 0;"
   >
     <li
       class="tab-link"
@@ -3441,7 +3465,7 @@ exports[`Storyshots Axentix/Components/Tab Without Active Bar 1`] = `
 >
   <ul
     class="tab-menu"
-    style="--tab-bar-left-offset: 0; --tab-bar-right-offset: 0;"
+    style="--ax-tab-bar-left-offset: 0; --ax-tab-bar-right-offset: 0;"
   >
     <li
       class="tab-link"

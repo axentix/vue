@@ -130,9 +130,7 @@ export default defineComponent({
     };
 
     const cleanLayout = () => {
-      ['layout-sidenav-right', 'layout-sidenav-both'].forEach((classes) =>
-        layoutEl.value.classList.remove(classes)
-      );
+      ['layout-sidenav-right', 'layout-sidenav-both'].forEach((c) => layoutEl.value.classList.remove(c));
     };
 
     const handleResize = () => {
