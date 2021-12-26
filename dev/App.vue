@@ -6,7 +6,7 @@
       </nav>
     </header>
 
-    <ax-sidenav v-model="isSidenavOpened" class="airforce" fixed large>
+    <ax-sidenav v-model="isSidenavOpened" class="airforce" fixed>
       <template v-slot:header>Test</template>
 
       <ax-sidenav-link :active="isCollapsibleOpened" @click="isCollapsibleOpened = !isCollapsibleOpened"

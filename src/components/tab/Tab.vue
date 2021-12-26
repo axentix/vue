@@ -100,8 +100,8 @@ export default defineComponent({
 
     const menuStyle = computed(() => {
       return {
-        '--tab-bar-left-offset': tabBarLeftOffset.value,
-        '--tab-bar-right-offset': tabBarRightOffset.value,
+        '--ax-tab-bar-left-offset': tabBarLeftOffset.value,
+        '--ax-tab-bar-right-offset': tabBarRightOffset.value,
       };
     });
 
@@ -178,6 +178,8 @@ export default defineComponent({
       const item = tabItems.value.find((item) => item.id === currentTab.value.itemId);
       item.hide = false;
 
+      ctx.emit('select', item);
+
       updateActiveBar();
     };
 
@@ -212,6 +214,8 @@ export default defineComponent({
       setupListeners();
       if (props.arrow) toggleArrowMode();
       updateActiveElement();
+
+      ctx.emit('setup');
     });
 
     onUnmounted(() => {

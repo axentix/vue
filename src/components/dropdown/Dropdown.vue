@@ -189,7 +189,7 @@ export default defineComponent({
       content,
       contentStyle,
       onDocumentClick,
-      animation: 'anim-' + props.animationType,
+      animation: `dropdown-anim-${props.animationType}`,
       listeners: ctx.listeners ? ctx.listeners : {},
     };
   },
