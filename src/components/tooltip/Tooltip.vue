@@ -141,12 +141,15 @@ export default defineComponent({
       const scrollY = window.scrollY;
       const tooltipTop = parseFloat(tooltip.value.style.top);
 
+      console.log(scrollY * 2 + tooltipTop + 'px', scrollY + tooltipTop + 'px')
       props.position === 'top'
         ? (tooltip.value.style.top = scrollY * 2 + tooltipTop + 'px')
         : (tooltip.value.style.top = scrollY + tooltipTop + 'px');
+      console.log(tooltip.value.style.top)
     };
 
     const show = () => {
+      clearTimeout(timeoutRef.value);
       tooltip.value.style.display = 'block';
       setProperties();
       updatePosition();
@@ -176,7 +179,7 @@ export default defineComponent({
       tooltip.value.style.transform = 'translate(0)';
       tooltip.value.style.opacity = 0;
 
-      setTimeout(() => {
+      timeoutRef.value = setTimeout(() => {
         tooltip.value.style.display = 'none';
       }, props.animationDuration);
     };

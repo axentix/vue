@@ -101,7 +101,7 @@
         <ax-tooltip content="modal toggler">
           <ax-btn class="airforce dark-1 rounded-1 shadow-1" @click="modal = !modal">Toggle modal</ax-btn>
         </ax-tooltip>
-        <ax-tooltip content="sidenav toggler">
+        <ax-tooltip position="bottom" content="sidenav toggler">
           <ax-btn class="airforce dark-1 rounded-1 shadow-1 ml-2" @click="isSidenavOpened = !isSidenavOpened"
             >Toggle sidenav</ax-btn
           >
