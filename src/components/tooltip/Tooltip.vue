@@ -147,6 +147,7 @@ export default defineComponent({
     };
 
     const show = () => {
+      clearTimeout(timeoutRef.value);
       tooltip.value.style.display = 'block';
       setProperties();
       updatePosition();
@@ -176,7 +177,7 @@ export default defineComponent({
       tooltip.value.style.transform = 'translate(0)';
       tooltip.value.style.opacity = 0;
 
-      setTimeout(() => {
+      timeoutRef.value = setTimeout(() => {
         tooltip.value.style.display = 'none';
       }, props.animationDuration);
     };
