@@ -362,6 +362,7 @@
         <div class="dropdown-item">Hello</div>
         <div class="dropdown-item">Hello</div>
       </ax-dropdown>
+      <ax-lightbox v-model="test" responsive src="https://picsum.photos/1280/720?random=2"></ax-lightbox>
     </main>
   </div>
 </template>
