@@ -141,11 +141,9 @@ export default defineComponent({
       const scrollY = window.scrollY;
       const tooltipTop = parseFloat(tooltip.value.style.top);
 
-      console.log(scrollY * 2 + tooltipTop + 'px', scrollY + tooltipTop + 'px')
       props.position === 'top'
         ? (tooltip.value.style.top = scrollY * 2 + tooltipTop + 'px')
         : (tooltip.value.style.top = scrollY + tooltipTop + 'px');
-      console.log(tooltip.value.style.top)
     };
 
     const show = () => {
