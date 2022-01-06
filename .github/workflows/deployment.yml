@@ -25,7 +25,7 @@ jobs:
       - name: Get the version
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-      - uses: papeloto/action-zip@v1
+      - uses: vimtor/action-zip@v1
         with:
           files: dist/ LICENSE CHANGELOG.md README.md
           dest: vue-axentix-${{ steps.get_version.outputs.VERSION }}.zip
