@@ -4,6 +4,7 @@
       ref="lightbox"
       class="lightbox"
       @click="onClickTrigger"
+      @keyup="closeLightbox"
       :class="classes"
       :style="style"
       v-bind="$attrs"
@@ -57,7 +58,8 @@ export default defineComponent({
       newWidth = ref(0),
       newHeight = ref(0),
       resizeRef = ref(null),
-      isResponsive = ref(false),
+      keyUpRef = ref(null),
+      scrollRef = ref(null),
       listenerRef = ref(null),
       isAnimated = ref(null);
 
@@ -66,7 +68,6 @@ export default defineComponent({
 
     const classes = computed(() => {
       return {
-        active: isActive.value,
         'responsive-media': props.responsive,
       };
     });
@@ -84,7 +85,7 @@ export default defineComponent({
         return;
       }
 
-      console.log("on update", state);
+      console.log('on update', state);
       isActive.value = state;
       state ? openLightbox() : closeLightbox();
     });
@@ -105,8 +106,13 @@ export default defineComponent({
 
     const setupListeners = () => {
       listenerRef.value = onClickTrigger.bind(this);
+      keyUpRef.value = handleKeyUp.bind(this);
+      scrollRef.value = handleScroll.bind(this);
       resizeRef.value = handleResize.bind(this);
+
       window.addEventListener('resize', resizeRef.value);
+      window.addEventListener('keyup', keyUpRef.value);
+      window.addEventListener('scroll', scrollRef.value);
     };
 
     const removeListeners = () => {
@@ -119,6 +125,14 @@ export default defineComponent({
       if (isAnimated.value) return;
 
       isActive.value = !isActive.value;
+    };
+
+    const handleKeyUp = (e) => {
+      if (e.key === 'esc') closeLightbox();
+    };
+
+    const handleScroll = () => {
+      if (isActive.value) closeLightbox();
     };
 
     const handleResize = () => {
@@ -167,6 +181,7 @@ export default defineComponent({
 
         if (props.responsive) lightbox.value.classList.remove('responsive-media');
         isActive.value = true;
+        lightbox.value.classList.add('active');
 
         container.value.style.width = baseRect.value['width'] + 'px';
         container.value.style.height = baseRect.value['height'] + 'px';
@@ -186,6 +201,33 @@ export default defineComponent({
 
     const closeLightbox = () => {
       if (isAnimated.value) return;
+      isAnimated.value = true;
+
+      lightbox.value.style.top = '0';
+      lightbox.value.style.left = '0';
+
+      lightbox.value.style.width = baseRect.value['width'] + 'px';
+      lightbox.value.style.height = baseRect.value['height'] + 'px';
+
+      setTimeout(() => {
+        lightbox.value.classList.remove('active');
+
+        if (props.responsive) lightbox.value.classList.add('responsive-media');
+
+        container.value.removeAttribute('style');
+        lightbox.value.style.left = '';
+        lightbox.value.style.top = '';
+        lightbox.value.style.width = '';
+        lightbox.value.style.height = '';
+        lightbox.value.style.transform = '';
+
+        // this.#unsetOverflowParents();
+
+        isActive.value = false;
+        isAnimated.value = false;
+
+        ctx.emit('closed');
+      }, props.animationDuration + 50);
     };
 
     onMounted(() => {
@@ -201,6 +243,7 @@ export default defineComponent({
       classes,
       lightbox,
       container,
+      closeLightbox,
       style,
       onClickTrigger,
       listeners: ctx.listeners ? ctx.listeners : {},
