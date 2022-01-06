@@ -194,7 +194,8 @@ export default defineComponent({
     };
 
     const toggleBodyScroll = (state) => {
-      if (!props.bodyScrolling) document.body.style.overflow = state ? '' : 'hidden';
+      if (!props.bodyScrolling)
+        document.body.style.overflow = state || window.innerWidth >= 960 ? '' : 'hidden';
     };
 
     const onClickTrigger = (e) => {
