@@ -1,3 +1,11 @@
+# 0.11.1 - 2022-01-06
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Sidenav set overflow `hidden` on lg screen
+
 # 0.11.0 - 2021-12-26
 
 - ADDED
