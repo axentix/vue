@@ -1,3 +1,11 @@
+# 0.11.2 - 2022-01-08
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Form select / autocomplete can return incorrect value
+
 # 0.11.1 - 2022-01-06
 
 - ADDED

@@ -386,12 +386,12 @@ export default {
     maxVisible: 5,
     radio: 'Yes',
     checked: true,
-    items: ['Voiture', 'Moto', 'Bus', 'Velo', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
+    // items: ['Voiture', 'Moto', 'Bus', 'Velo', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
     // items: [],
-    // items: [
-    //   { name: 'Voiture', value: 'voiture', disabled: false, selected: true },
-    //   { name: 'Moto', value: 'moto', disabled: false },
-    // ],
+    items: [
+      { name: 'Voiture', value: 0, disabled: false, selected: false },
+      { name: 'Moto', value: 2, disabled: false },
+    ],
     selectedValue: '',
     multipleSelectedValue: [],
     test: '',

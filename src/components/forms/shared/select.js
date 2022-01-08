@@ -66,7 +66,7 @@ export const updateComputedItems = (
       );
     } else {
       obj = Object.assign(item, baseObj);
-      if (!obj.value) obj.value = obj.name;
+      if (typeof obj.value === 'undefined') obj.value = obj.name;
     }
 
     if (isSelected) {

@@ -129,7 +129,9 @@ export default defineComponent({
 
     // Show current result (value) data, used for vmodel updates
     const resultValue = computed(() => {
-      return (props.multiple ? multipleSelected.value.map((v) => v.value) : selected.value.value) || '';
+      let v = props.multiple ? multipleSelected.value.map((v) => v.value) : selected.value.value;
+      if (typeof v === 'undefined') v = props.multiple ? [] : '';
+      return v;
     });
 
     const filteredItems = computed(() => {
