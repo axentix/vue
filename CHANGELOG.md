@@ -1,3 +1,12 @@
+# 0.11.3 - 2022-01-14
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+  - Form autocomplete show value instead of name in single mode
+
 # 0.11.2 - 2022-01-08
 
 - ADDED
