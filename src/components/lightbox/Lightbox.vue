@@ -62,6 +62,8 @@ export default defineComponent({
       scrollRef = ref(null),
       listenerRef = ref(null),
       transitionRef = ref(null),
+      isClosing = ref(false),
+      isOpening = ref(false),
       isAnimated = ref(null);
 
     const vmodelEvent = getVModelEvent();
@@ -117,7 +119,7 @@ export default defineComponent({
       window.addEventListener('resize', resizeRef.value);
       window.addEventListener('keyup', keyUpRef.value);
       window.addEventListener('scroll', scrollRef.value);
-      lightbox.value.addEventListener('transitionend', );
+      lightbox.value.addEventListener('transitionend', transitionRef.value);
     };
 
     const removeListeners = () => {
@@ -127,25 +129,35 @@ export default defineComponent({
 
     const onClickTrigger = (e) => {
       e.preventDefault();
-      if (isAnimated.value) return;
 
       isActive.value = !isActive.value;
     };
 
     const handleKeyUp = (e) => {
-      if (e.key === 'esc') closeLightbox();
+      if (e.key === 'esc' && (isClosing.value || isActive.value)) isActive.value = false;
     };
 
     const handleScroll = () => {
-      if (isActive.value) closeLightbox();
+      if (isActive.value || isOpening.value) isActive.value = false;
     };
 
     const handleResize = () => {
       if (isActive.value) isActive.value = false;
     };
 
-    const handleTransitionEnd = () => {
-      isAnimated.value = false;
+    const handleTransitionEnd = (e) => {
+      if (!e.propertyName.includes('width') && !e.propertyName.includes('height')) {
+        return;
+      }
+
+      if (isClosing.value) {
+        clearLightbox();
+        isClosing.value = false;
+        ctx.emit('closed');
+      } else if (isOpening.value) {
+        isOpening.value = false;
+        ctx.emit('opened');
+      }
     };
 
     const calculateRatio = () => {
@@ -161,13 +173,18 @@ export default defineComponent({
     };
 
     const openLightbox = () => {
-      if (!isActive.value) return;
+      isOpening.value = true;
+      let rect, containerRect;
+
+      if (isClosing.value) {
+        rect = containerRect = container.value.getBoundingClientRect();
+      } else {
+        rect = containerRect = lightbox.value.getBoundingClientRect();
+      }
+      isClosing.value = false;
 
       const centerTop = window.innerHeight / 2;
       const centerLeft = window.innerWidth / 2;
-
-      const rect = lightbox.value.getBoundingClientRect();
-      const containerRect = lightbox.value.getBoundingClientRect();
 
       baseRect.value = rect;
       lightbox.value.style.width = baseRect.value['width'] + 'px';
@@ -182,6 +199,7 @@ export default defineComponent({
       calculateRatio();
 
       container.value.style.position = 'relative';
+
       // setOverlay();
 
       setTimeout(() => {
@@ -199,44 +217,34 @@ export default defineComponent({
         lightbox.value.style.height = newHeight.value + 'px';
         lightbox.value.style.top = newTop - newHeight.value / 2 + 'px';
         lightbox.value.style.left = newLeft - newWidth.value / 2 + 'px';
-
-        isAnimated.value = false;
       }, 50);
-
-      setTimeout(() => {
-        ctx.emit('opened');
-      }, props.animationDuration + 50);
     };
 
     const closeLightbox = () => {
-      if (isAnimated.value) return;
-      isAnimated.value = true;
+      isClosing.value = true;
+      isOpening.value = false;
 
-      lightbox.value.style.top = '0';
-      lightbox.value.style.left = '0';
+      lightbox.value.style.position = 'absolute';
+      lightbox.value.style.top = '0px';
+      lightbox.value.style.left = '0px';
 
       lightbox.value.style.width = baseRect.value['width'] + 'px';
       lightbox.value.style.height = baseRect.value['height'] + 'px';
+    };
 
-      setTimeout(() => {
-        lightbox.value.classList.remove('active');
+    const clearLightbox = () => {
+      lightbox.value.classList.remove('active');
+      if (props.responsive) lightbox.value.classList.add('responsive-media');
 
-        if (props.responsive) lightbox.value.classList.add('responsive-media');
+      container.value.removeAttribute('style');
+      lightbox.value.style.position = '';
+      lightbox.value.style.left = '';
+      lightbox.value.style.top = '';
+      lightbox.value.style.width = '';
+      lightbox.value.style.height = '';
+      lightbox.value.style.transform = '';
 
-        container.value.removeAttribute('style');
-        lightbox.value.style.left = '';
-        lightbox.value.style.top = '';
-        lightbox.value.style.width = '';
-        lightbox.value.style.height = '';
-        lightbox.value.style.transform = '';
-
-        // this.#unsetOverflowParents();
-
-        isActive.value = false;
-        isAnimated.value = false;
-
-        ctx.emit('closed');
-      }, props.animationDuration + 50);
+      // this.#unsetOverflowParents();
     };
 
     onMounted(() => {
