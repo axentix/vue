@@ -61,6 +61,7 @@ export default defineComponent({
       keyUpRef = ref(null),
       scrollRef = ref(null),
       listenerRef = ref(null),
+      transitionRef = ref(null),
       isAnimated = ref(null);
 
     const vmodelEvent = getVModelEvent();
@@ -81,13 +82,15 @@ export default defineComponent({
 
     watch(vmodel, (state) => {
       if (state === null) {
-        isActive.value ? openLightbox() : closeLightbox();
+        if (isActive.value) openLightbox();
+        else closeLightbox();
+
         return;
       }
 
-      console.log('on update', state);
       isActive.value = state;
-      state ? openLightbox() : closeLightbox();
+      if (state) openLightbox();
+      else closeLightbox();
     });
 
     watch(isActive, (state) => {
@@ -109,10 +112,12 @@ export default defineComponent({
       keyUpRef.value = handleKeyUp.bind(this);
       scrollRef.value = handleScroll.bind(this);
       resizeRef.value = handleResize.bind(this);
+      transitionRef.value = handleTransitionEnd.bind(this);
 
       window.addEventListener('resize', resizeRef.value);
       window.addEventListener('keyup', keyUpRef.value);
       window.addEventListener('scroll', scrollRef.value);
+      lightbox.value.addEventListener('transitionend', );
     };
 
     const removeListeners = () => {
@@ -137,6 +142,10 @@ export default defineComponent({
 
     const handleResize = () => {
       if (isActive.value) isActive.value = false;
+    };
+
+    const handleTransitionEnd = () => {
+      isAnimated.value = false;
     };
 
     const calculateRatio = () => {
