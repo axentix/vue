@@ -64,8 +64,7 @@ export default defineComponent({
       listenerRef = ref(null),
       transitionRef = ref(null),
       isClosing = ref(false),
-      isOpening = ref(false),
-      isAnimated = ref(null);
+      isOpening = ref(false);
 
     const vmodelEvent = getVModelEvent();
     const uid = generateUid();
@@ -135,7 +134,7 @@ export default defineComponent({
     };
 
     const handleKeyUp = (e) => {
-      if (e.key === 'esc' && (isClosing.value || isActive.value)) isActive.value = false;
+      if (e.key === 'Escape' && (isOpening.value || isActive.value)) isActive.value = false;
     };
 
     const handleScroll = () => {
@@ -206,7 +205,6 @@ export default defineComponent({
 
       setTimeout(() => {
         ctx.emit('open');
-        isAnimated.value = true;
 
         if (props.responsive) lightbox.value.classList.remove('responsive-media');
         isActive.value = true;
@@ -226,6 +224,7 @@ export default defineComponent({
       isClosing.value = true;
       isOpening.value = false;
       hideOverlay();
+      ctx.emit('close');
 
       lightbox.value.style.position = 'absolute';
       lightbox.value.style.top = '0px';
@@ -252,12 +251,14 @@ export default defineComponent({
     };
 
     const setOverlay = () => {
-      if (!overlay.value) {
-        overlay.value = document.createElement('div');
-        overlay.value.style.transitionDuration = props.animationDuration + 'ms';
-        overlay.value.className = `lightbox-overlay ${props.overlayClass}`;
-        container.value.appendChild(overlay.value);
+      if (overlay.value) {
+        return;
       }
+
+      overlay.value = document.createElement('div');
+      overlay.value.style.transitionDuration = props.animationDuration + 'ms';
+      overlay.value.className = `lightbox-overlay ${props.overlayClass}`;
+      container.value.appendChild(overlay.value);
     };
 
     const unsetOverlay = () => {
