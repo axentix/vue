@@ -31,7 +31,7 @@ export default defineComponent({
       type: Number,
       default: 400,
     },
-    overlayColor: {
+    overlayClass: {
       type: String,
       default: 'grey dark-4',
     },
@@ -54,6 +54,7 @@ export default defineComponent({
       position = ref(''),
       lightbox = ref(null),
       container = ref(null),
+      overlay = ref(null),
       baseRect = ref(null),
       newWidth = ref(0),
       newHeight = ref(0),
@@ -124,7 +125,7 @@ export default defineComponent({
 
     const removeListeners = () => {
       window.removeEventListener('resize', resizeRef.value);
-      // destroyOverlay();
+      unsetOverlay();
     };
 
     const onClickTrigger = (e) => {
@@ -183,6 +184,9 @@ export default defineComponent({
       }
       isClosing.value = false;
 
+      setOverlay();
+      showOverlay();
+
       const centerTop = window.innerHeight / 2;
       const centerLeft = window.innerWidth / 2;
 
@@ -199,8 +203,6 @@ export default defineComponent({
       calculateRatio();
 
       container.value.style.position = 'relative';
-
-      // setOverlay();
 
       setTimeout(() => {
         ctx.emit('open');
@@ -223,6 +225,7 @@ export default defineComponent({
     const closeLightbox = () => {
       isClosing.value = true;
       isOpening.value = false;
+      hideOverlay();
 
       lightbox.value.style.position = 'absolute';
       lightbox.value.style.top = '0px';
@@ -234,6 +237,7 @@ export default defineComponent({
 
     const clearLightbox = () => {
       lightbox.value.classList.remove('active');
+      unsetOverlay();
       if (props.responsive) lightbox.value.classList.add('responsive-media');
 
       container.value.removeAttribute('style');
@@ -245,6 +249,32 @@ export default defineComponent({
       lightbox.value.style.transform = '';
 
       // this.#unsetOverflowParents();
+    };
+
+    const setOverlay = () => {
+      if (!overlay.value) {
+        overlay.value = document.createElement('div');
+        overlay.value.style.transitionDuration = props.animationDuration + 'ms';
+        overlay.value.className = `lightbox-overlay ${props.overlayClass}`;
+        container.value.appendChild(overlay.value);
+      }
+    };
+
+    const unsetOverlay = () => {
+      if (overlay.value) {
+        overlay.value.remove();
+        overlay.value = null;
+      }
+    };
+
+    const showOverlay = () => {
+      setTimeout(() => {
+        overlay.value.style.opacity = 1;
+      }, 50);
+    };
+
+    const hideOverlay = () => {
+      overlay.value.style.opacity = 0;
     };
 
     onMounted(() => {
