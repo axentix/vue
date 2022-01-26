@@ -64,7 +64,8 @@ export default defineComponent({
       listenerRef = ref(null),
       transitionRef = ref(null),
       isClosing = ref(false),
-      isOpening = ref(false);
+      isOpening = ref(false),
+      overflowParents = ref([]);
 
     const vmodelEvent = getVModelEvent();
     const uid = generateUid();
@@ -247,13 +248,37 @@ export default defineComponent({
       lightbox.value.style.height = '';
       lightbox.value.style.transform = '';
 
-      // this.#unsetOverflowParents();
+      unsetOverflowParents();
+    };
+
+    const setOverflowParents = () => {
+      overflowParents.value = [];
+      // @ts-ignore
+      for (let elem = lightbox.value; elem && elem !== document; elem = elem.parentNode) {
+        const elementSyle = window.getComputedStyle(elem);
+        if (
+          elementSyle.overflow === 'hidden' ||
+          elementSyle.overflowX === 'hidden' ||
+          elementSyle.overflowY === 'hidden' ||
+          elem === document.body
+        ) {
+          overflowParents.value.push(elem);
+          elem.style.setProperty('overflow', 'visible', 'important');
+        }
+      }
+    };
+
+    const unsetOverflowParents = () => {
+      overflowParents.value.forEach((parent) => (parent.style.overflow = ''));
+      document.body.style.overflowX = '';
     };
 
     const setOverlay = () => {
       if (overlay.value) {
         return;
       }
+
+      setOverflowParents();
 
       overlay.value = document.createElement('div');
       overlay.value.style.transitionDuration = props.animationDuration + 'ms';
