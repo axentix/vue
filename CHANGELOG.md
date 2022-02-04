@@ -1,3 +1,12 @@
+# 0.11.4 - 2022-02-04
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+  - Form control show incorrect v-model value
+
 # 0.11.3 - 2022-01-14
 
 - ADDED

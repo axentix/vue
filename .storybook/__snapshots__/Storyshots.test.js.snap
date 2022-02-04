@@ -765,6 +765,7 @@ exports[`Storyshots Axentix/Components/Forms/Autocomplete Normal 1`] = `
       <input
         class="form-control custom-select"
         type="text"
+        value=""
       />
        
       <div

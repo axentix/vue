@@ -5,6 +5,7 @@
     :class="classes"
     v-bind="$attrs"
     ref="input"
+    :value="computedValue"
     @focus="handle"
     @blur="handle"
     @click="handleDiv"
@@ -116,9 +117,8 @@ export default defineComponent({
       },
     });
 
-    watch(computedValue, (val) => {
+    watch(computedValue, () => {
       if (props.tag === 'div') return;
-      input.value.value = val;
       handle();
       validate();
     });

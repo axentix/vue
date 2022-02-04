@@ -267,7 +267,7 @@
         </ax-form-field>
 
         <ax-form-field label="Test input">
-          <ax-form-control tag="input" type="text" :rules="[rules.required]"></ax-form-control>
+          <ax-form-control tag="input" v-model="test" type="text" :rules="[rules.required]"></ax-form-control>
         </ax-form-field>
 
         <ax-form-field label="Select">
@@ -394,7 +394,7 @@ export default {
     ],
     selectedValue: '',
     multipleSelectedValue: [],
-    test: '',
+    test: 'hey',
   }),
   watch: {
     currentTab(val) {

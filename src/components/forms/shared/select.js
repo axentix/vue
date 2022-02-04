@@ -125,7 +125,6 @@ export const selectMultipleEl = (i, computedItems, multipleSelected, ctx, vmodel
   const item = computedItems.value[i];
 
   const index = multipleSelected.value.findIndex((val) => val.value === item.value && item.selected);
-  console.log('item', item, index);
 
   if (index !== -1) {
     item.selected = false;
