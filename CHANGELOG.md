@@ -1,3 +1,11 @@
+# 0.11.5 - 2022-02-04
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Fix vue 3 build
+
 # 0.11.4 - 2022-02-04
 
 - ADDED

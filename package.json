@@ -1,6 +1,6 @@
 {
   "name": "@axentix/vue",
-  "version": "0.11.4",
+  "version": "0.11.5",
   "description": "Vue Axentix is the Axentix integration for the VueJS framework.",
   "license": "MIT",
   "author": "Axel SIMONET, Vincent LEVEQUE",
@@ -19,10 +19,8 @@
     "build:storybook": "npm run switch:2 && build-storybook",
     "lint": "eslint src --fix",
     "switch:2": "vue-demi-switch 2",
-    "switch:3": "vue-demi-switch 3",
-    "postinstall": "node ./scripts/postinstall.js",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "switch:3": "vue-demi-switch 3 vue3",
+    "postinstall": "node ./scripts/postinstall.js"
   },
   "repository": {
     "type": "git",
@@ -90,7 +88,8 @@
     "vite-plugin-vue2": "^1.9.3",
     "vue": "^2.6.14",
     "vue-loader": "^15.9.8",
-    "vue-template-compiler": "^2.6.14"
+    "vue-template-compiler": "^2.6.14",
+    "vue3": "npm:vue@^3.2.29"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-rc.9",
