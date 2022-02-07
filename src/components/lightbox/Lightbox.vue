@@ -7,6 +7,7 @@
       @keyup="closeLightbox"
       :class="classes"
       :style="style"
+      alt="lightbox"
       v-bind="$attrs"
       v-on="listeners"
     />
