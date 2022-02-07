@@ -63,6 +63,7 @@ export default defineComponent({
       scrollRef = ref(null),
       listenerRef = ref(null),
       transitionRef = ref(null),
+      timeoutRef = ref(null),
       isClosing = ref(false),
       isOpening = ref(false),
       overflowParents = ref([]);
@@ -92,8 +93,8 @@ export default defineComponent({
       }
 
       isActive.value = state;
-      if (state) openLightbox();
-      else closeLightbox();
+      if (state && !isOpening.value) openLightbox();
+      else if (!isClosing.value && (isActive.value || isOpening.value)) closeLightbox();
     });
 
     watch(isActive, (state) => {
@@ -139,7 +140,7 @@ export default defineComponent({
     };
 
     const handleScroll = () => {
-      if (isActive.value || isOpening.value) isActive.value = false;
+      if (isActive.value || (!isClosing.value && isOpening.value)) isActive.value = false;
     };
 
     const handleResize = () => {
@@ -147,7 +148,10 @@ export default defineComponent({
     };
 
     const handleTransitionEnd = (e) => {
-      if (!e.propertyName.includes('width') && !e.propertyName.includes('height')) {
+      if (
+        (!e.propertyName.includes('width') && !e.propertyName.includes('height')) ||
+        isClosing.value !== isOpening.value
+      ) {
         return;
       }
 
@@ -157,6 +161,7 @@ export default defineComponent({
         ctx.emit('closed');
       } else if (isOpening.value) {
         isOpening.value = false;
+        isActive.value = true;
         ctx.emit('opened');
       }
     };
@@ -174,6 +179,11 @@ export default defineComponent({
     };
 
     const openLightbox = () => {
+      if (isOpening.value) {
+        return;
+      }
+
+      clearTimeout(timeoutRef.value);
       isOpening.value = true;
       let rect, containerRect;
 
@@ -204,11 +214,10 @@ export default defineComponent({
 
       container.value.style.position = 'relative';
 
-      setTimeout(() => {
+      timeoutRef.value = setTimeout(() => {
         ctx.emit('open');
 
         if (props.responsive) lightbox.value.classList.remove('responsive-media');
-        isActive.value = true;
         lightbox.value.classList.add('active');
 
         container.value.style.width = baseRect.value['width'] + 'px';
@@ -222,9 +231,14 @@ export default defineComponent({
     };
 
     const closeLightbox = () => {
+      clearTimeout(timeoutRef.value);
       isClosing.value = true;
       isOpening.value = false;
-      hideOverlay();
+
+      setTimeout(() => {
+        hideOverlay();
+      }, 50);
+
       ctx.emit('close');
 
       lightbox.value.style.position = 'absolute';
@@ -295,12 +309,12 @@ export default defineComponent({
 
     const showOverlay = () => {
       setTimeout(() => {
-        overlay.value.style.opacity = 1;
+        if (overlay.value) overlay.value.style.opacity = 1;
       }, 50);
     };
 
     const hideOverlay = () => {
-      overlay.value.style.opacity = 0;
+      if (overlay.value) overlay.value.style.opacity = 0;
     };
 
     onMounted(() => {
