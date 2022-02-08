@@ -56,6 +56,7 @@ export default defineComponent({
       lightbox = ref(null),
       container = ref(null),
       overlay = ref(null),
+      caption = ref(null),
       baseRect = ref(null),
       newWidth = ref(0),
       newHeight = ref(0),
@@ -96,7 +97,7 @@ export default defineComponent({
 
       isActive.value = state;
       if (state && !isOpening.value) openLightbox();
-      else if (!isClosing.value && (isActive.value || isOpening.value)) closeLightbox();
+      else if (!isClosing.value && (!isActive.value || isOpening.value)) closeLightbox();
     });
 
     watch(isActive, (state) => {
@@ -161,10 +162,7 @@ export default defineComponent({
     };
 
     const handleTransitionEnd = (e) => {
-      if (
-        (!e.propertyName.includes('width') && !e.propertyName.includes('height')) ||
-        isClosing.value !== isOpening.value
-      ) {
+      if (e.propertyName !== 'width' && e.propertyName !== 'height') {
         return;
       }
 
@@ -192,9 +190,7 @@ export default defineComponent({
     };
 
     const openLightbox = () => {
-      if (isOpening.value) {
-        return;
-      }
+      if (isOpening.value) return;
 
       clearTimeout(timeoutRef.value);
       isOpening.value = true;
@@ -309,15 +305,24 @@ export default defineComponent({
       setOverflowParents();
 
       overlay.value = document.createElement('div');
-      setOverlayEvent();
 
       overlay.value.style.transitionDuration = props.animationDuration + 'ms';
       overlay.value.className = `lightbox-overlay ${props.overlayClass}`;
       container.value.appendChild(overlay.value);
+
+      if (props.caption) {
+        caption.value = document.createElement('p');
+        caption.value.className = 'lightbox-caption';
+        caption.value.innerHTML = props.caption;
+        overlay.value.appendChild(caption.value);
+      }
+
+      setOverlayEvent();
     };
 
     const unsetOverlay = () => {
       if (overlay.value) {
+        if (props.caption) caption.value.remove();
         overlay.value.removeEventListener('click', overlayClickRef.value);
         overlay.value.remove();
         overlay.value = null;

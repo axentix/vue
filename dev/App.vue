@@ -363,7 +363,12 @@
         <div class="dropdown-item">Hello</div>
       </ax-dropdown>
       <div class="card">
-        <ax-lightbox v-model="test" responsive src="https://picsum.photos/1280/720?random=2"></ax-lightbox>
+        <ax-lightbox
+          v-model="test"
+          caption="PGM WTF"
+          responsive
+          src="https://picsum.photos/1280/720?random=2"
+        ></ax-lightbox>
       </div>
     </main>
   </div>
