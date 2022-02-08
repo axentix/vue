@@ -62,6 +62,7 @@ export default defineComponent({
       resizeRef = ref(null),
       keyUpRef = ref(null),
       scrollRef = ref(null),
+      overlayClickRef = ref(null),
       listenerRef = ref(null),
       transitionRef = ref(null),
       timeoutRef = ref(null),
@@ -146,6 +147,17 @@ export default defineComponent({
 
     const handleResize = () => {
       if (isActive.value) isActive.value = false;
+    };
+
+    const setOverlayEvent = () => {
+      overlayClickRef.value = handleOverlayClick.bind(this);
+      overlay.value.addEventListener('click', overlayClickRef.value);
+    };
+
+    const handleOverlayClick = (e) => {
+      e.preventDefault();
+      overlay.value.removeEventListener('click', overlayClickRef.value);
+      isActive.value = false;
     };
 
     const handleTransitionEnd = (e) => {
@@ -290,12 +302,15 @@ export default defineComponent({
 
     const setOverlay = () => {
       if (overlay.value) {
+        setOverlayEvent();
         return;
       }
 
       setOverflowParents();
 
       overlay.value = document.createElement('div');
+      setOverlayEvent();
+
       overlay.value.style.transitionDuration = props.animationDuration + 'ms';
       overlay.value.className = `lightbox-overlay ${props.overlayClass}`;
       container.value.appendChild(overlay.value);
@@ -303,6 +318,7 @@ export default defineComponent({
 
     const unsetOverlay = () => {
       if (overlay.value) {
+        overlay.value.removeEventListener('click', overlayClickRef.value);
         overlay.value.remove();
         overlay.value = null;
       }
