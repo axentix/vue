@@ -2045,6 +2045,8 @@ exports[`Storyshots Axentix/Components/Forms/Switch Small 1`] = `
 </form>
 `;
 
+exports[`Storyshots Axentix/Components/Lightbox Normal 1`] = `<!--function (a, b, c, d) { return createElement(vm, a, b, c, d, true); }-->`;
+
 exports[`Storyshots Axentix/Components/Modal Bouncing 1`] = `
 <div
   class="modal modal-bouncing white rounded-1"
