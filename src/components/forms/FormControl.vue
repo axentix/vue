@@ -5,7 +5,7 @@
     :class="classes"
     v-bind="$attrs"
     ref="input"
-    :value="computedValue"
+    :value="computedValue ? computedValue : ''"
     @focus="handle"
     @blur="handle"
     @click="handleDiv"

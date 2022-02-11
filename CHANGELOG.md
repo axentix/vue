@@ -1,3 +1,11 @@
+# 0.11.6 - 2022-02-11
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Form control can show `false` when v-model is null.
+
 # 0.11.5 - 2022-02-04
 
 - ADDED

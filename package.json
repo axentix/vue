@@ -1,6 +1,6 @@
 {
   "name": "@axentix/vue",
-  "version": "0.11.5",
+  "version": "0.11.6",
   "description": "Vue Axentix is the Axentix integration for the VueJS framework.",
   "license": "MIT",
   "author": "Axel SIMONET, Vincent LEVEQUE",
@@ -20,7 +20,9 @@
     "lint": "eslint src --fix",
     "switch:2": "vue-demi-switch 2",
     "switch:3": "vue-demi-switch 3 vue3",
-    "postinstall": "node ./scripts/postinstall.js"
+    "postinstall": "node ./scripts/postinstall.js",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -55,7 +57,7 @@
     "vue-demi": "^0.12.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.0",
+    "@babel/core": "^7.17.2",
     "@storybook/addon-a11y": "^6.4.18",
     "@storybook/addon-actions": "^6.4.18",
     "@storybook/addon-console": "^1.2.3",
@@ -65,8 +67,8 @@
     "@storybook/addon-storyshots": "^6.4.18",
     "@storybook/vue": "^6.4.18",
     "@vitejs/plugin-vue": "^1.10.2",
-    "@vue/compiler-sfc": "^3.2.29",
-    "@vue/composition-api": "^1.4.5",
+    "@vue/compiler-sfc": "^3.2.30",
+    "@vue/composition-api": "^1.4.6",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@whitespace/storybook-addon-html": "^5.0.0",
     "babel-loader": "^8.2.3",
@@ -84,12 +86,12 @@
     "storybook-addon-turbo-build": "^1.0.1",
     "storybook-dark-mode": "^1.0.8",
     "typescript": "^4.5.5",
-    "vite": "^2.7.13",
+    "vite": "^2.8.1",
     "vite-plugin-vue2": "^1.9.3",
     "vue": "^2.6.14",
     "vue-loader": "^15.9.8",
     "vue-template-compiler": "^2.6.14",
-    "vue3": "npm:vue@^3.2.29"
+    "vue3": "npm:vue@^3.2.30"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-rc.9",
