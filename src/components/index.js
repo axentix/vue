@@ -1,6 +1,7 @@
 import AxBtn from './button';
 import AxBtnGroup from './button-group';
 import AxForms from './forms';
+import AxLightbox from './lightbox';
 import AxCollapsible from './collapsible';
 import AxDropdown from './dropdown';
 import AxModal from './modal';
@@ -13,6 +14,7 @@ export {
   AxBtn,
   AxBtnGroup,
   AxForms,
+  AxLightbox,
   AxCollapsible,
   AxDropdown,
   AxModal,
