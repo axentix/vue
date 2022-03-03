@@ -15,6 +15,7 @@
 
 This repo is under development, so there is currently no documentation.  
 The documentation will come with the v1.0.0.
+
 ## Quickstart
 
 ### NPM
@@ -33,10 +34,6 @@ npm install
 ```
 
 After installation you have access to our source files.
-
-## Storybook
-
-Test every components on [https://storybook.useaxentix.com/vue/v1/](https://storybook.useaxentix.com/vue/v1/).
 
 ## Changelog
 
