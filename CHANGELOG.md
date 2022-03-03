@@ -1,3 +1,11 @@
+# 0.12.0 - Under development
+
+- ADDED
+  - Lightbox
+- REMOVED
+- IMPROVED
+- BUGFIXES
+
 # 0.11.6 - 2022-02-11
 
 - ADDED
