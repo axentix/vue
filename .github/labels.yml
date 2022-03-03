@@ -44,9 +44,6 @@
 - name: scope/ci
   description: Improvements or additions to CI.
   color: 0075ca
-- name: scope/storybook
-  description: Improvements or additions to Storybook.
-  color: 0075ca
 
 # Sizing labels
 - name: size/XS

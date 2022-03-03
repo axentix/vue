@@ -364,7 +364,7 @@
       </ax-dropdown>
       <div class="card">
         <ax-lightbox
-          v-model="test"
+          v-model="lightbox"
           caption="PGM WTF"
           responsive
           src="https://picsum.photos/1280/720?random=2"
@@ -403,6 +403,7 @@ export default {
     selectedValue: '',
     multipleSelectedValue: [],
     test: 'hey',
+    lightbox: false,
   }),
   watch: {
     currentTab(val) {
