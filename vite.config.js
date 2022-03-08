@@ -1,22 +1,28 @@
 import { defineConfig } from 'vite';
-import { createVuePlugin } from 'vite-plugin-vue2';
+// import { createVuePlugin } from 'vite-plugin-vue2';
 import vue from '@vitejs/plugin-vue';
 import path from 'path';
-import { isVue3 } from 'vue-demi';
+import { isVue2 } from 'vue-demi';
+import autoprefixer from 'autoprefixer';
 
 const plugins = [];
 let outDir = 'dist/';
 
-if (isVue3) {
-  plugins.push(vue());
-  outDir += 'vue3/';
-} else {
-  plugins.push(createVuePlugin());
-  outDir += 'vue2/';
-}
+// if (isVue2) {
+//   plugins.push(createVuePlugin());
+//   outDir += 'vue2/';
+// } else {
+plugins.push(vue());
+outDir += 'vue3/';
+// }
 
 export default defineConfig({
   plugins,
+  css: {
+    postcss: {
+      plugins: [autoprefixer()],
+    },
+  },
   server: {
     port: 8080,
   },

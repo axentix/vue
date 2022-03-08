@@ -1,13 +1,9 @@
-import Vue from 'vue';
+import { createApp } from 'vue';
 import App from './App.vue';
 import VueAxentix from '@/index';
 
 import 'axentix/dist/axentix.min.css';
 
-Vue.config.productionTip = false;
-
-Vue.use(VueAxentix);
-
-new Vue({
-  render: (h) => h(App),
-}).$mount('#app');
+const app = createApp(App);
+app.use(VueAxentix);
+app.mount('#app');
