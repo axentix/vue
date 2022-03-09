@@ -83,12 +83,12 @@ export default defineComponent({
       };
     });
 
-    const inputValue = computed(() => {
-      return props.multiple ? result.map((v) => v.name).join(', ') : result.value.name;
-    });
-
     const result = computed(() => {
       return props.multiple ? multipleSelected.value : selected.value;
+    });
+
+    const inputValue = computed(() => {
+      return props.multiple ? result.value.map((v) => v.name).join(', ') : result.value.name;
     });
 
     // Show current result (value) data, used for vmodel updates

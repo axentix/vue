@@ -1,10 +1,11 @@
-# 0.12.0 - Under development
+# 0.12.0 - 2022-03-09
 
 - ADDED
   - Lightbox
 - REMOVED
 - IMPROVED
 - BUGFIXES
+  - Form select can throw an error with multiple option
 
 # 0.11.6 - 2022-02-11
 
