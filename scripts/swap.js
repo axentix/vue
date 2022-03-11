@@ -15,25 +15,25 @@ const move = (from, to) => {
   });
 };
 
-const useVueVersion = (version) => {
+const useVueVersion = (v) => {
   if (!existsSync(DefaultVue)) {
-    if (version === 2 && existsSync(Vue3)) {
+    if (v === 2 && existsSync(Vue3)) {
       move(Vue3, DefaultVue);
     } else {
       move(Vue2, DefaultVue);
     }
 
-    console.log(`[Vue Axentix] Swapped to Vue ${version}`);
+    console.log(`[Vue Axentix] Swapped to Vue ${v}`);
   }
 
-  if (version === 3 && existsSync(Vue3)) {
+  if (v === 3 && existsSync(Vue3)) {
     move(DefaultVue, Vue2);
     move(Vue3, DefaultVue);
-  } else if (version === 2 && existsSync(Vue2)) {
+  } else if (v === 2 && existsSync(Vue2)) {
     move(DefaultVue, Vue3);
     move(Vue2, DefaultVue);
   } else {
-    console.log(`[Vue Axentix] Vue ${version} is already in use`);
+    console.log(`[Vue Axentix] Vue ${v} is already in use`);
   }
 };
 
