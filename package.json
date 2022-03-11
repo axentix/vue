@@ -10,12 +10,13 @@
   "unpkg": "dist/vue3/vue-axentix.iife.js",
   "scripts": {
     "dev": "npm run switch:3 && vite --host",
+    "dev:2": "npm run switch:2 && vite --host --config vite.config-2.js",
     "build": "npm run build:2 && npm run build:3",
-    "build:2": "npm run switch:2 && vite build",
+    "build:2": "npm run switch:2 && vite build --config vite.config-2.js",
     "build:3": "npm run switch:3 && vite build",
     "lint": "eslint src --fix",
-    "switch:2": "vue-demi-switch 2",
-    "switch:3": "vue-demi-switch 3",
+    "switch:2": "node ./scripts/swap.js 2 && vue-demi-switch 2",
+    "switch:3": "node ./scripts/swap.js 3 && vue-demi-switch 3",
     "postinstall": "node ./scripts/postinstall.js"
   },
   "repository": {
@@ -53,13 +54,16 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.2.4",
     "@vue/compiler-sfc": "^3.2.31",
+    "@vue/composition-api": "^1.4.9",
     "@vue/eslint-config-prettier": "^6.0.0",
     "autoprefixer": "^10.4.2",
     "prettier": "^2.5.1",
     "sass": "^1.49.9",
     "typescript": "^4.6.2",
     "vite": "^2.8.6",
-    "vue": "^3.2.31"
+    "vite-plugin-vue2": "^1.9.3",
+    "vue": "^3.2.31",
+    "vue2": "npm:vue@2.6.14"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-rc.1",
