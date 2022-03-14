@@ -1,10 +1,10 @@
 import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
+import { createVuePlugin } from 'vite-plugin-vue2';
 import path from 'path';
 import autoprefixer from 'autoprefixer';
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [createVuePlugin()],
   css: {
     postcss: {
       plugins: [autoprefixer()],
@@ -16,10 +16,10 @@ export default defineConfig({
     },
   },
   server: {
-    open: '/',
+    open: '/dev/vue2/',
   },
   build: {
-    outDir: 'dist/vue3/',
+    outDir: 'dist/vue2/',
     lib: {
       entry: path.resolve(__dirname, 'src/index.js'),
       name: 'VueAxentix',
