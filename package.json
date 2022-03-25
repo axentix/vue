@@ -8,6 +8,7 @@
   "module": "dist/vue3/vue-axentix.es.js",
   "browser": "dist/vue3/vue-axentix.es.js",
   "unpkg": "dist/vue3/vue-axentix.iife.js",
+  "types": "dist/vue3/index.d.ts",
   "scripts": {
     "dev": "npm run switch:3 && vite --host",
     "dev:2": "npm run switch:2 && vite --host --config vite.config-2.js",
@@ -49,21 +50,22 @@
   ],
   "dependencies": {
     "axentix": "^2.0.0",
-    "vue-demi": "^0.12.1"
+    "vue-demi": "^0.12.4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.2.4",
     "@vue/compiler-sfc": "^3.2.31",
     "@vue/composition-api": "^1.4.9",
     "@vue/eslint-config-prettier": "^7.0.0",
-    "autoprefixer": "^10.4.2",
-    "eslint": "^8.10.0",
+    "autoprefixer": "^10.4.4",
+    "eslint": "^8.11.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.5.0",
-    "prettier": "^2.5.1",
+    "prettier": "^2.6.1",
     "sass": "^1.49.9",
-    "typescript": "^4.6.2",
+    "typescript": "^4.6.3",
     "vite": "^2.8.6",
+    "vite-plugin-dts": "^1.0.3",
     "vite-plugin-vue2": "^1.9.3",
     "vue": "^3.2.31",
     "vue2": "npm:vue@2.6.14"

@@ -19,6 +19,7 @@ pkg.main = `dist/vue${v}/vue-axentix.cjs.js`;
 pkg.module = `dist/vue${v}/vue-axentix.es.js`;
 pkg.browser = `dist/vue${v}/vue-axentix.es.js`;
 pkg.unpkg = `dist/vue${v}/vue-axentix.iife.js`;
+pkg.types = `dist/vue${v}/index.d.ts`;
 
 fs.writeFileSync(path.resolve(__dirname, '../package.json'), JSON.stringify(pkg, null, 2), {
   encoding: 'utf-8',
