@@ -1,16 +1,14 @@
-import { ref } from 'vue-demi';
+import { ref, Ref } from 'vue-demi';
 
-/**
- * Example scheme
- * {
- *  type: 'Modal',
- *  uid: uid,
- *  data: {} <= extra data
- * }
- */
-export const store = ref([]);
+interface StoreData {
+  type: string;
+  uid: string;
+  data: any;
+}
 
-export const addComponent = (data: any) => store.value.push(data);
+export const store: Ref<Array<StoreData>> = ref([]);
+
+export const addComponent = (data: StoreData) => store.value.push(data);
 
 export const removeComponent = (uid: string) => {
   const i = store.value.findIndex((c) => c.uid === uid);
