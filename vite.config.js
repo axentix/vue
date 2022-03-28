@@ -2,9 +2,10 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import path from 'path';
 import autoprefixer from 'autoprefixer';
+import dts from 'vite-plugin-dts';
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [dts({ skipDiagnostics: false, logDiagnostics: true }), vue()],
   css: {
     postcss: {
       plugins: [autoprefixer()],
@@ -21,7 +22,7 @@ export default defineConfig({
   build: {
     outDir: 'dist/vue3/',
     lib: {
-      entry: path.resolve(__dirname, 'src/index.js'),
+      entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'VueAxentix',
       formats: ['cjs', 'es', 'iife'],
       fileName: 'vue-axentix',

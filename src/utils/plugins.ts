@@ -3,7 +3,7 @@ import { isVue3 } from 'vue-demi';
 export const use = (plugin) => {
   if (isVue3) return;
 
-  if (typeof window !== 'undefined' && window.Vue) window.Vue.use(plugin);
+  if (typeof window !== 'undefined' && (window as any).Vue) (window as any).Vue.use(plugin);
 };
 
 export const registerComponent = (Vue, component) => {
