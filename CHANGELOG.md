@@ -1,3 +1,13 @@
+# 0.13.0 - 2022-04-19
+
+- ADDED
+  - Generate definitions files
+- REMOVED
+- IMPROVED
+  - Switch our main version to Vue 3
+  - Update dependencies
+- BUGFIXES
+
 # 0.12.0 - 2022-03-09
 
 - ADDED
