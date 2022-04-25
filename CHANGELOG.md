@@ -1,3 +1,12 @@
+# 0.13.1 - 2022-04-25
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+  - Missing generated ts definition files
+
 # 0.13.0 - 2022-04-19
 
 - ADDED
