@@ -44,7 +44,7 @@
 
           <tr v-if="computedItems.length === 0">
             <td :colspan="expandable ? localHeaders.length + 1 : localHeaders.length" class="text-center">
-              {{ noDataMessage }}
+              {{ noDataText }}
             </td>
           </tr>
 
@@ -113,7 +113,8 @@
 
       <template v-else>
         {{ firstItemIndex + 1 }} -
-        {{ lastItemIndex > computedItems.length * page ? total : computedItems.length * page }} of
+        {{ lastItemIndex > computedItems.length * page ? total : computedItems.length * page }}
+        {{ paginationText }}
         {{ total }}
       </template>
 
@@ -189,9 +190,13 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
-    noDataMessage: {
+    noDataText: {
       type: String,
       default: 'No data available.',
+    },
+    paginationText: {
+      type: String,
+      default: 'of',
     },
   },
   setup(props, ctx) {
@@ -208,7 +213,6 @@ export default defineComponent({
     const expandedItems = ref([]);
     const sortedHeader = ref(null);
     const isAsc = ref(false);
-    const wasSorted = ref(false);
 
     watch(
       () => props.headers,
@@ -335,7 +339,6 @@ export default defineComponent({
       if (sortedHeader.value === header && !isAsc.value) {
         sortedHeader.value = null;
         isAsc.value = false;
-        wasSorted.value = true;
         return;
       }
       sortedHeader.value = header;
