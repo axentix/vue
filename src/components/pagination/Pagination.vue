@@ -1,18 +1,18 @@
 <template>
   <ul class="pagination" :class="classes" v-bind="$attrs" v-on="listeners">
     <slot name="first-arrow" :goto="goto" :pageCount="pageCount" :isDisabled="current === 1">
-      <li class="arrow" @click.prevent="goto(1)" :class="{ disabled: current === 1 }">
+      <li class="pagination-arrow" @click.prevent="goto(1)" :class="{ disabled: current === 1 }">
         <a>&#171;</a>
       </li>
     </slot>
 
     <slot name="prev-arrow" :prev="prev" :pageCount="pageCount" :isDisabled="current === 1">
-      <li class="arrow" @click.prevent="prev" :class="{ disabled: current === 1 }">
+      <li class="pagination-arrow" @click.prevent="prev" :class="{ disabled: current === 1 }">
         <a>&#8249;</a>
       </li>
     </slot>
 
-    <div v-for="(total, i) of pageCount" :key="i" class="d-flex">
+    <div v-for="(_, i) of pageCount" :key="i" class="d-flex">
       <slot
         v-if="isShown(i)"
         :pageNumber="i + 1"
@@ -25,17 +25,21 @@
         </li>
       </slot>
 
-      <li v-else-if="i === 1 || i === pageCount - 2" class="dots">...</li>
+      <li v-else-if="i === 1 || i === pageCount - 2" class="pagination-dots">...</li>
     </div>
 
     <slot name="next-arrow" :next="next" :pageCount="pageCount" :isDisabled="current === pageCount">
-      <li class="arrow" @click.prevent="next" :class="{ disabled: current === pageCount }">
+      <li class="pagination-arrow" @click.prevent="next" :class="{ disabled: current === pageCount }">
         <a>&#8250;</a>
       </li>
     </slot>
 
     <slot name="last-arrow" :goto="goto" :pageCount="pageCount" :isDisabled="current === pageCount">
-      <li class="arrow" @click.prevent="goto(pageCount)" :class="{ disabled: current === pageCount }">
+      <li
+        class="pagination-arrow"
+        @click.prevent="goto(pageCount)"
+        :class="{ disabled: current === pageCount }"
+      >
         <a>&#187;</a>
       </li>
     </slot>
@@ -214,7 +218,7 @@ export default {
     transition: none !important;
   }
 
-  .dots {
+  .pagination-dots {
     margin: 0 1rem;
 
     &:hover {
@@ -222,17 +226,17 @@ export default {
     }
   }
 
-  .arrow {
+  .pagination-arrow {
     height: 42px;
     font-size: 1.5rem !important;
   }
 
-  &.pagination-small .arrow {
+  &.pagination-small .pagination-arrow {
     height: 31px;
     font-size: 1.2rem !important;
   }
 
-  &.pagination-large .arrow {
+  &.pagination-large .pagination-arrow {
     height: 55px;
     font-size: 2rem !important;
   }
