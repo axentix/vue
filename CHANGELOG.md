@@ -1,3 +1,12 @@
+# 0.14.0 - 2022-06-08
+
+- ADDED
+  - DataTable
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+
 # 0.13.1 - 2022-04-25
 
 - ADDED
