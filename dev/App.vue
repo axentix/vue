@@ -304,6 +304,20 @@
         </ax-form-field>
       </ax-form>
 
+      <ax-data-table
+        :headers="headers"
+        :items="tableItems"
+        :search="search"
+        classes="hover"
+        v-model="page"
+        expandable
+        single-expand
+      >
+        <template v-slot:[`item.actions`]="{ item }"> L'id est {{ item.id }} </template>
+
+        <template v-slot:expanded-item="{ item }"> {{ item.name }} | <em>Soon</em> </template>
+      </ax-data-table>
+
       <ax-pagination :max-visible="maxVisible" v-model="current" :total="15" :per-page="1">
         <template #first-arrow="{ goto, isDisabled }">
           <li
@@ -404,6 +418,159 @@ export default {
     multipleSelectedValue: [],
     test: 'hey',
     lightbox: false,
+    page: 1,
+    search: '',
+    headers: [
+      {
+        text: 'ID',
+        value: 'id',
+      },
+      {
+        text: 'Name',
+        value: 'name',
+      },
+      {
+        text: 'Test',
+        value: 'test',
+      },
+      {
+        text: 'Validated at',
+        value: 'validated_at',
+      },
+      {
+        text: 'Actions',
+        value: 'actions',
+        sortable: false,
+      },
+    ],
+    tableItems: [
+      {
+        id: 0,
+        name: 'Huber Gilmore',
+        test: true,
+        validated_at: new Date('2018-06-11T09:40:17'),
+      },
+      {
+        id: 1,
+        name: 'Mayo Dickson',
+        test: true,
+        validated_at: new Date('2017-03-15T10:38:38'),
+      },
+      {
+        id: 2,
+        name: 'Augusta Butler',
+        test: true,
+        validated_at: new Date('2020-10-10T08:41:35'),
+      },
+      {
+        id: 3,
+        name: 'James Lewis',
+        test: true,
+        validated_at: new Date('2016-06-29T02:03:22'),
+      },
+      {
+        id: 4,
+        name: 'Jarvis Solis',
+        test: false,
+        validated_at: new Date('2014-04-26T05:48:25'),
+      },
+      {
+        id: 5,
+        name: 'Barker Donaldson',
+        test: false,
+        validated_at: new Date('2014-03-27T08:36:58'),
+      },
+      {
+        id: 6,
+        name: 'Clark Long',
+        test: false,
+        validated_at: new Date('2015-09-29T04:40:03'),
+      },
+      {
+        id: 7,
+        name: 'Theresa Kinney',
+        test: false,
+        validated_at: new Date('2018-09-29T09:11:48'),
+      },
+      {
+        id: 8,
+        name: 'Liliana Andrews',
+        test: false,
+        validated_at: new Date('2018-01-04T03:22:21'),
+      },
+      {
+        id: 9,
+        name: 'Boyer Decker',
+        test: true,
+        validated_at: new Date('2014-01-04T01:15:37'),
+      },
+      {
+        id: 10,
+        name: 'Villarreal Robinson',
+        test: true,
+        validated_at: new Date('2016-06-09T05:23:33'),
+      },
+      {
+        id: 11,
+        name: 'Greer Bolton',
+        test: true,
+        validated_at: new Date('2016-11-05T03:53:03'),
+      },
+      {
+        id: 12,
+        name: 'Camacho Emerson',
+        test: true,
+        validated_at: new Date('2014-08-11T09:03:19'),
+      },
+      {
+        id: 13,
+        name: 'Willie Myers',
+        test: true,
+        validated_at: new Date('2016-01-16T04:05:38'),
+      },
+      {
+        id: 14,
+        name: 'Koch Leonard',
+        test: true,
+        validated_at: new Date('2017-05-19T09:13:35'),
+      },
+      {
+        id: 15,
+        name: 'Espinoza Dennis',
+        test: true,
+        validated_at: new Date('2018-07-29T11:04:35'),
+      },
+      {
+        id: 16,
+        name: 'Latoya Rodgers',
+        test: true,
+        validated_at: new Date('2019-05-24T07:49:45'),
+      },
+      {
+        id: 17,
+        name: 'Pamela Castro',
+        test: true,
+        validated_at: new Date('2015-08-15T10:35:59'),
+      },
+      {
+        id: 18,
+        name: 'Karina Brock',
+        test: true,
+        validated_at: new Date('2021-02-10T12:20:45'),
+      },
+      {
+        id: 19,
+        name: 'Dale Hughes',
+        test: true,
+        validated_at: new Date('2020-04-01T07:14:28'),
+      },
+      {
+        id: 20,
+        name: 'Oscar White',
+        test: true,
+        validated_at: new Date('2020-04-01T07:14:28'),
+      },
+    ],
   }),
   watch: {
     currentTab(val) {
