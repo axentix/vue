@@ -18,5 +18,5 @@ const VueAxentix = {
 use(VueAxentix);
 
 export default VueAxentix;
-
 export * from './components';
+export { AxClickOutside };

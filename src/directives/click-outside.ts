@@ -2,7 +2,7 @@ import { isVue2 } from 'vue-demi';
 
 const bindFunction = (el, binding) => {
   el.clickOutsideEvent = function (e) {
-    if (!(el === e.target || el.contains(e.target))) binding.value();
+    if (!(el === e.target || el.contains(e.target) || e.composedPath().includes(el))) binding.value();
   };
   document.addEventListener('click', el.clickOutsideEvent);
 };

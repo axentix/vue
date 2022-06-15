@@ -1,3 +1,11 @@
+# 0.14.1 - 2022-06-15
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - AxClickOutside directive detection
+
 # 0.14.0 - 2022-06-08
 
 - ADDED
