@@ -1,3 +1,11 @@
+# 0.15.0 - 2022-07-11
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Update dependencies (Axentix v2.1.0)
+- BUGFIXES
+
 # 0.14.1 - 2022-06-15
 
 - ADDED
