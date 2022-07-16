@@ -1,3 +1,11 @@
+# 0.15.1 - 2022-07-16
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - DataTable cannot show any data when no v-model is set
+
 # 0.15.0 - 2022-07-11
 
 - ADDED

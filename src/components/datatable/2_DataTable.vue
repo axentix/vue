@@ -48,8 +48,8 @@
             </td>
           </tr>
 
-          <!-- eslint-disable-next-line vue/no-v-for-template-key -->
           <template v-for="(item, i) in computedItems">
+            <!-- eslint-disable-next-line -->
             <tr :key="i">
               <td v-for="(header, j) in localHeaders" :key="j">
                 <slot :name="'item.' + header.value" :item="item">
@@ -205,7 +205,7 @@ export default defineComponent({
 
     const localHeaders = ref([]);
     const localItems = ref([]);
-    const page = ref(vmodel.value);
+    const page = ref(vmodel.value || 1);
     const firstItemIndex = ref(1);
     const lastItemIndex = ref(10);
     const total = ref(props.items.length);

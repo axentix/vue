@@ -418,7 +418,7 @@ export default {
     multipleSelectedValue: [],
     test: 'hey',
     lightbox: false,
-    page: 1,
+    page: 0,
     search: '',
     headers: [
       {
@@ -443,7 +443,8 @@ export default {
         sortable: false,
       },
     ],
-    tableItems: [
+    tableItems: [],
+    fakeTableItems: [
       {
         id: 0,
         name: 'Huber Gilmore',
@@ -612,6 +613,10 @@ export default {
     //     }, 1000);
     //   }, 1000);
     // }, 1000);
+
+    setTimeout(() => {
+      this.tableItems = this.fakeTableItems;
+    }, 3000);
   },
 };
 </script>

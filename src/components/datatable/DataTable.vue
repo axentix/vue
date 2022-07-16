@@ -205,7 +205,7 @@ export default defineComponent({
 
     const localHeaders = ref([]);
     const localItems = ref([]);
-    const page = ref(vmodel.value);
+    const page = ref(vmodel.value || 1);
     const firstItemIndex = ref(1);
     const lastItemIndex = ref(10);
     const total = ref(props.items.length);
