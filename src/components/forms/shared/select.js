@@ -111,11 +111,15 @@ export const selectEl = (i, selected, computedItems, ctx, vmodelEvent, result) =
     computedItems.value.splice(selected.value.index, 1, lastItem);
   }
 
-  const item = computedItems.value[i];
-  item.selected = true;
-  selected.value = item;
+  if (i !== -1) {
+    const item = computedItems.value[i];
+    item.selected = true;
+    selected.value = item;
 
-  computedItems.value.splice(i, 1, item);
+    computedItems.value.splice(i, 1, item);
+  } else {
+    selected.value = {};
+  }
 
   ctx.emit(vmodelEvent, result.value);
 };

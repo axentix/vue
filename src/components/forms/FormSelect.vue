@@ -2,7 +2,7 @@
   <div v-bind="$attrs" v-ax-click-outside="() => toggle(false)">
     <ax-form-control custom-select tag="div" @click.native="() => toggle(true)" :single-line="singleLine">
       <template v-if="!chips">
-        {{ inputValue }}
+        {{ result.name }}
       </template>
       <template v-else>
         <template v-if="!multiple">{{ result.name }}</template>
@@ -87,10 +87,6 @@ export default defineComponent({
       return props.multiple ? multipleSelected.value : selected.value;
     });
 
-    const inputValue = computed(() => {
-      return props.multiple ? result.value.map((v) => v.name).join(', ') : result.value.name;
-    });
-
     // Show current result (value) data, used for vmodel updates
     const resultValue = computed(() => {
       let v = props.multiple ? multipleSelected.value.map((v) => v.value) : selected.value.value;
@@ -145,11 +141,10 @@ export default defineComponent({
 
     const select = (value) => {
       const i = computedItems.value.findIndex((item) => item.value === value);
-      if (i === -1) return;
+      if (value && i === -1) return;
       if (props.multiple) return selectMultiple(i);
 
       selectEl(i, selected, computedItems, ctx, vmodelEvent, resultValue);
-      inputValue.value = computedItems.value[i].name;
 
       if (props.closeOnClick) toggle();
     };
@@ -185,7 +180,6 @@ export default defineComponent({
       computedItems,
       validate,
       resetValidation,
-      inputValue,
     };
   },
 });

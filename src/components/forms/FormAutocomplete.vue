@@ -209,7 +209,7 @@ export default defineComponent({
 
     const select = (value) => {
       const i = computedItems.value.findIndex((item) => item.value === value);
-      if (i === -1) return;
+      if (value && i === -1) return;
       if (props.multiple) return selectMultiple(i);
 
       selectEl(i, selected, computedItems, ctx, vmodelEvent, resultValue);

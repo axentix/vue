@@ -229,7 +229,13 @@
           </tbody>
         </table>
       </div>
-      <ax-btn class="airforce dark-1 shadow-1 rounded-1 d-block" @click="validateForm">Validate form</ax-btn>
+
+      <div class="d-flex mt-4">
+        <ax-btn class="airforce dark-1 shadow-1 rounded-1 d-block" @click="validateForm">
+          Validate form
+        </ax-btn>
+        <ax-btn class="meadow dark-3 shadow-1 rounded-1 d-block ml-2" @click="resetForm">Reset form</ax-btn>
+      </div>
 
       <ax-form material ref="form">
         <ax-form-field label="Choisissez une option">
@@ -598,6 +604,10 @@ export default {
     },
     validateForm() {
       console.log('validate', this.$refs.form.validate());
+    },
+    resetForm() {
+      this.selectedValue = '';
+      console.log('reset', this.$refs.form.reset());
     },
     say() {
       console.log('hey');

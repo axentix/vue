@@ -1,3 +1,13 @@
+# 0.16.0 - 2022-07-19
+
+- ADDED
+  - AxForm `reset()` method
+- REMOVED
+- IMPROVED
+  - Clean form select
+- BUGFIXES
+  - AxFormSelect & AxFormAutocomplete handle reset
+
 # 0.15.2 - 2022-07-19
 
 - ADDED
