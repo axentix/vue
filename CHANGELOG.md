@@ -1,3 +1,11 @@
+# 0.15.2 - 2022-07-19
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Form select won't update input in specific case
+
 # 0.15.1 - 2022-07-16
 
 - ADDED
