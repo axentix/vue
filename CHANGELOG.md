@@ -1,3 +1,11 @@
+# 0.16.1 - 2022-07-20
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - AxFormControl with `textarea` tag isn't be reactive in Vue 2
+
 # 0.16.0 - 2022-07-19
 
 - ADDED

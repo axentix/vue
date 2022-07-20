@@ -273,7 +273,7 @@
         </ax-form-field>
 
         <ax-form-field label="Test input">
-          <ax-form-control tag="input" v-model="test" type="text" :rules="[rules.required]"></ax-form-control>
+          <ax-form-control tag="textarea" v-model="test" :rules="[rules.required]"></ax-form-control>
         </ax-form-field>
 
         <ax-form-field label="Select">
@@ -284,7 +284,7 @@
         </ax-form-field>
 
         <ax-form-field>
-          <ax-form-control tag="textarea">Hey</ax-form-control>
+          <ax-form-control tag="textarea">rho</ax-form-control>
         </ax-form-field>
 
         <ax-form-field>

@@ -1,5 +1,6 @@
 <template>
   <component
+    v-if="tag !== 'textarea'"
     :is="tag"
     class="form-control"
     :class="classes"
@@ -15,6 +16,23 @@
   >
     <slot></slot>
   </component>
+
+  <textarea
+    v-else
+    class="form-control"
+    :class="classes"
+    v-bind="$attrs"
+    ref="input"
+    :value="computedValue ? computedValue : ''"
+    @focus="handle"
+    @blur="handle"
+    @click="handleDiv"
+    @change="onInput"
+    @input="onInput"
+    v-ax-click-outside="() => handleDiv(false)"
+  >
+    <slot></slot>
+  </textarea>
 </template>
 
 <script>
