@@ -45,15 +45,9 @@ export const updateComputedItems = (
 ) => {
   computedItems.value = [...new Set(itemsRef.value)].reduce((acc, item, i) => {
     let obj;
-    const isSelected =
-      (item.selected && !vmodel.value) ||
-      (!props.multiple && vmodel.value === item) ||
-      (props.multiple && vmodel.value.includes(item)) ||
-      (props.multiple && vmodel.value.length === 0 && item.selected);
 
     const baseObj = {
       index: i,
-      selected: isSelected,
     };
 
     if (typeof item !== 'object') {
@@ -68,6 +62,14 @@ export const updateComputedItems = (
       obj = Object.assign(item, baseObj);
       if (typeof obj.value === 'undefined') obj.value = obj.name;
     }
+
+    const isSelected =
+      (item.selected && !vmodel.value) ||
+      (!props.multiple && vmodel.value === item.value) ||
+      (props.multiple && vmodel.value.includes(item.value)) ||
+      (props.multiple && vmodel.value.length === 0 && item.selected);
+
+    obj.selected = isSelected;
 
     if (isSelected) {
       props.multiple && !multipleSelected.value.some((el) => obj.value === el.value)

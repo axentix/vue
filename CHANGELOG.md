@@ -1,3 +1,11 @@
+# 0.16.2 - 2022-07-21
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - AxFormSelect & AxFormAutocomplete in rare case cannot show the correct vmodel value.
+
 # 0.16.1 - 2022-07-20
 
 - ADDED
