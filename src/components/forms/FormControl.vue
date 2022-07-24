@@ -296,7 +296,7 @@ export default defineComponent({
   flex-wrap: wrap;
   align-items: center;
   height: auto;
-  padding: 0.5rem;
+  padding: 0.5rem 0.75rem;
   min-height: 2.5rem;
   cursor: pointer !important;
   background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20xmlns%3Axlink%3D'http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink'%20aria-hidden%3D'true'%20focusable%3D'false'%20width%3D'1.5rem'%20height%3D'1.5rem'%20style%3D'-ms-transform%3A%20rotate(360deg)%3B%20-webkit-transform%3A%20rotate(360deg)%3B%20transform%3A%20rotate(360deg)%3B'%20preserveAspectRatio%3D'xMidYMid%20meet'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M8.12%209.29L12%2013.17l3.88-3.88a.996.996%200%201%201%201.41%201.41l-4.59%204.59a.996.996%200%200%201-1.41%200L6.7%2010.7a.996.996%200%200%201%200-1.41c.39-.38%201.03-.39%201.42%200z'%20fill%3D'%23626262'%2F%3E%3C%2Fsvg%3E") !important;
