@@ -41,7 +41,8 @@ export const updateComputedItems = (
   selected,
   ctx,
   vmodelEvent,
-  result
+  result,
+  inputValue = ''
 ) => {
   computedItems.value = [...new Set(itemsRef.value)].reduce((acc, item, i) => {
     let obj;
@@ -76,6 +77,7 @@ export const updateComputedItems = (
         ? multipleSelected.value.push(obj)
         : (selected.value = obj);
 
+      if (inputValue && !props.multiple) inputValue.value = obj.name;
       ctx.emit(vmodelEvent, result.value);
     }
 

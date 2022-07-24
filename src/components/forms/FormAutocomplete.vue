@@ -196,7 +196,8 @@ export default defineComponent({
         selected,
         ctx,
         vmodelEvent,
-        resultValue
+        resultValue,
+        inputValue
       );
 
     const toggle = (state = false) => {

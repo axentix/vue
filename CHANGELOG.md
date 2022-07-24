@@ -1,3 +1,11 @@
+# 0.16.4 - 2022-07-24
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - AxFormAutocomplete don't update the input value on initialization.
+
 # 0.16.3 - 2022-07-24
 
 - ADDED
