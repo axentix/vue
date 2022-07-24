@@ -213,9 +213,9 @@ export default defineComponent({
       if (props.multiple) return selectMultiple(i);
 
       selectEl(i, selected, computedItems, ctx, vmodelEvent, resultValue);
-      inputValue.value = computedItems.value[i].name;
+      inputValue.value = computedItems.value[i]?.name || '';
 
-      if (props.closeOnClick) toggle();
+      if (props.closeOnClick && computedItems.value[i]?.name) toggle();
     };
 
     const selectMultiple = (i) => {

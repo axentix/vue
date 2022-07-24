@@ -239,7 +239,7 @@
 
       <ax-form material ref="form">
         <ax-form-field label="Choisissez une option">
-          <ax-form-select :items="items" v-model="selectedValue"></ax-form-select>
+          <ax-form-autocomplete :items="items" v-model="selectedValue"></ax-form-autocomplete>
         </ax-form-field>
 
         <!-- <ax-form-field>

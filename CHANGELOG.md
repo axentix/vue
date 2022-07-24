@@ -1,3 +1,11 @@
+# 0.16.3 - 2022-07-24
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - AxFormAutocomplete can throw an error when reseting the input.
+
 # 0.16.2 - 2022-07-21
 
 - ADDED
