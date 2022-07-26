@@ -1,3 +1,11 @@
+# 0.16.6 - 2022-07-26
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Update to Axentix 2.1.1
+- BUGFIXES
+
 # 0.16.5 - 2022-07-24
 
 - ADDED
