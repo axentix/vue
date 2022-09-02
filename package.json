@@ -49,29 +49,28 @@
     "CHANGELOG"
   ],
   "dependencies": {
-    "axentix": "^2.1.1",
-    "vue-demi": "^0.13.2"
+    "axentix": "^2.2.0",
+    "vue-demi": "^0.13.11"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^2.3.3",
-    "@vue/compiler-sfc": "^3.2.37",
-    "@vue/composition-api": "^1.6.2",
+    "@vitejs/plugin-vue": "^3.0.3",
+    "@vue/compiler-sfc": "^3.2.38",
     "@vue/eslint-config-prettier": "^7.0.0",
-    "autoprefixer": "^10.4.7",
-    "eslint": "^8.18.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-vue": "^8.7.1",
+    "autoprefixer": "^10.4.8",
+    "eslint": "^8.23.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.4.0",
     "prettier": "^2.7.1",
-    "sass": "^1.53.0",
-    "typescript": "^4.7.4",
-    "vite": "^2.9.14",
-    "vite-plugin-dts": "^1.2.1",
-    "vite-plugin-vue2": "^2.0.1",
-    "vue": "^3.2.37",
-    "vue2": "npm:vue@2.6.14"
+    "sass": "^1.54.8",
+    "typescript": "^4.8.2",
+    "vite": "^3.0.9",
+    "vite-plugin-dts": "^1.4.1",
+    "vite-plugin-vue2": "^2.0.2",
+    "vue": "^3.2.38",
+    "vue-template-compiler": "^2.7.10",
+    "vue2": "npm:vue@2.7.10"
   },
   "peerDependencies": {
-    "@vue/composition-api": "^1.0.0-rc.1",
     "vue": "^2.0.0 || >=3.0.0"
   },
   "peerDependenciesMeta": {
