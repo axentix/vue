@@ -1,4 +1,4 @@
-const { rename, existsSync } = require('fs');
+const { renameSync, existsSync } = require('fs');
 const { join } = require('path');
 
 const Vue2 = join(__dirname, '../node_modules/vue2');
@@ -14,7 +14,7 @@ const version = Number(process.argv[2]) || 3;
 const move = (from, to) => {
   if (!existsSync(from)) return;
 
-  rename(from, to, (err) => {
+  renameSync(from, to, (err) => {
     if (err) console.error(`[Vue Axentix] ${err}`);
   });
 };

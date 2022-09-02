@@ -15,10 +15,10 @@ if (isVue2) {
   v = '3';
 }
 
-pkg.main = `dist/vue${v}/vue-axentix.cjs.js`;
-pkg.module = `dist/vue${v}/vue-axentix.es.js`;
-pkg.browser = `dist/vue${v}/vue-axentix.es.js`;
-pkg.unpkg = `dist/vue${v}/vue-axentix.iife.js`;
+pkg.main = `dist/vue${v}/vue-axentix.umd.js`;
+pkg.module = `dist/vue${v}/vue-axentix.mjs.js`;
+pkg.browser = `dist/vue${v}/vue-axentix.mjs.js`;
+pkg.unpkg = `dist/vue${v}/vue-axentix.umd.js`;
 pkg.types = `dist/vue${v}/index.d.ts`;
 
 fs.writeFileSync(path.resolve(__dirname, '../package.json'), JSON.stringify(pkg, null, 2), {

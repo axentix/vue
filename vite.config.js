@@ -24,7 +24,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'VueAxentix',
-      formats: ['cjs', 'es', 'iife'],
+      formats: ['es', 'umd'],
       fileName: 'vue-axentix',
     },
     rollupOptions: {
