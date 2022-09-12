@@ -1,12 +1,12 @@
 {
   "name": "@axentix/vue",
-  "version": "0.17.0",
+  "version": "0.17.1",
   "description": "Vue Axentix is the Axentix integration for the VueJS framework.",
   "license": "MIT",
   "author": "Axel SIMONET, Vincent LEVEQUE",
   "main": "dist/vue3/vue-axentix.umd.js",
-  "module": "dist/vue3/vue-axentix.mjs.js",
-  "browser": "dist/vue3/vue-axentix.mjs.js",
+  "module": "dist/vue3/vue-axentix.mjs",
+  "browser": "dist/vue3/vue-axentix.mjs",
   "unpkg": "dist/vue3/vue-axentix.umd.js",
   "types": "dist/vue3/index.d.ts",
   "scripts": {

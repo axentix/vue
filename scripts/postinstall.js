@@ -16,8 +16,8 @@ if (isVue2) {
 }
 
 pkg.main = `dist/vue${v}/vue-axentix.umd.js`;
-pkg.module = `dist/vue${v}/vue-axentix.mjs.js`;
-pkg.browser = `dist/vue${v}/vue-axentix.mjs.js`;
+pkg.module = `dist/vue${v}/vue-axentix.mjs`;
+pkg.browser = `dist/vue${v}/vue-axentix.mjs`;
 pkg.unpkg = `dist/vue${v}/vue-axentix.umd.js`;
 pkg.types = `dist/vue${v}/index.d.ts`;
 
