@@ -10,7 +10,7 @@
     @focus="handle"
     @blur="handle"
     @click="handleDiv"
-    @change="onInput"
+    @change="onChange"
     @input="onInput"
     v-ax-click-outside="() => handleDiv(false)"
   >
@@ -27,7 +27,7 @@
     @focus="handle"
     @blur="handle"
     @click="handleDiv"
-    @change="onInput"
+    @change="onChange"
     @input="onInput"
     v-ax-click-outside="() => handleDiv(false)"
   >
@@ -138,7 +138,6 @@ export default defineComponent({
     watch(computedValue, () => {
       if (props.tag === 'div') return;
       handle();
-      validate();
     });
 
     const classes = computed(() => {
@@ -149,7 +148,11 @@ export default defineComponent({
     });
 
     const onInput = (e) => {
-      if (props.lazy && e.type === 'input') return;
+      computedValue.value = e.target.value;
+      if (!props.lazy) validate();
+    };
+
+    const onChange = (e) => {
       computedValue.value = e.target.value;
     };
 
@@ -283,6 +286,7 @@ export default defineComponent({
       classes,
       computedValue,
       onInput,
+      onChange,
       validate,
       resetValidation,
     };

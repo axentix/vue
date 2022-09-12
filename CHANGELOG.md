@@ -1,3 +1,14 @@
+# 0.17.0 - 2022-09-12
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Lazy validation mode
+  - New build files formats
+  - Update to Axentix 2.2.0
+  - Update dependencies
+- BUGFIXES
+
 # 0.16.6 - 2022-07-26
 
 - ADDED
