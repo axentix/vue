@@ -103,13 +103,13 @@ export default defineComponent({
         if (selected.value && val === selected.value.value) return;
         select(val);
         return;
-      }
+      } else if (!Array.isArray(val)) return;
 
       const added = val.filter((item) => !resultValue.value.includes(item));
       const removed = resultValue.value.filter((item) => !val.includes(item));
 
       [...added, ...removed].map((v) => {
-        const i = computedItems.value.findIndex((item) => item.value === v);
+        const i = computedItems.value.findIndex((item) => item.value === v || item.value === v.value);
         if (i >= 0) selectMultiple(i);
       });
     });

@@ -41,7 +41,7 @@ export const updateComputedItems = (
   selected,
   ctx,
   vmodelEvent,
-  result,
+  resultValue,
   inputValue = ''
 ) => {
   computedItems.value = [...new Set(itemsRef.value)].reduce((acc, item, i) => {
@@ -65,10 +65,10 @@ export const updateComputedItems = (
     }
 
     const isSelected =
-      (item.selected && !vmodel.value) ||
-      (!props.multiple && vmodel.value === item.value) ||
-      (props.multiple && vmodel.value.includes(item.value)) ||
-      (props.multiple && vmodel.value.length === 0 && item.selected);
+      (obj.selected && !vmodel.value) ||
+      (!props.multiple && vmodel.value === obj.value) ||
+      (props.multiple && vmodel.value && vmodel.value.includes(obj.value)) ||
+      (props.multiple && vmodel.value && vmodel.value.length === 0 && obj.selected);
 
     obj.selected = isSelected;
 
@@ -78,7 +78,7 @@ export const updateComputedItems = (
         : (selected.value = obj);
 
       if (inputValue && !props.multiple) inputValue.value = obj.name;
-      ctx.emit(vmodelEvent, result.value);
+      ctx.emit(vmodelEvent, resultValue.value);
     }
 
     acc.push(obj);

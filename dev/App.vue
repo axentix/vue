@@ -414,12 +414,12 @@ export default {
     maxVisible: 5,
     radio: 'Yes',
     checked: true,
-    // items: ['Voiture', 'Moto', 'Bus', 'Velo', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
+    items: ['Voiture', 'Moto', 'Bus', 'Velo', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
     // items: [],
-    items: [
-      { name: 'Voiture', value: 0, disabled: false, selected: false },
-      { name: 'Moto', value: 2, disabled: false },
-    ],
+    // items: [
+    //   { name: 'Voiture', value: 0, disabled: false, selected: false },
+    //   { name: 'Moto', value: 2, disabled: false },
+    // ],
     selectedValue: '',
     multipleSelectedValue: [],
     test: 'hey',
@@ -615,7 +615,7 @@ export default {
   },
   mounted() {
     // setTimeout(() => {
-    //   this.multipleSelectedValue.push('Voiture');
+    //   this.multipleSelectedValue = ['Voiture'];
     //   setTimeout(() => {
     //     this.multipleSelectedValue = [];
     //     setTimeout(() => {

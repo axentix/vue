@@ -1,3 +1,13 @@
+# 0.17.2 - 2022-11-05
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Update to Axentix 2.2.1
+  - Update dependencies
+- BUGFIXES
+  - Autocomplete / Select multiple can throw an error with an undefined vmodel
+
 # 0.17.1 - 2022-09-12
 
 - ADDED
