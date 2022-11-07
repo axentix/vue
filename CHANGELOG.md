@@ -1,3 +1,11 @@
+# 0.17.3 - 2022-11-07
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Autocomplete / Select validation
+
 # 0.17.2 - 2022-11-05
 
 - ADDED
