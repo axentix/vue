@@ -7,13 +7,14 @@
     v-bind="$attrs"
     v-on="listeners"
   >
-    <slot name="trigger"></slot>
+    <slot name="trigger" :trigger="onTriggerClick"></slot>
 
     <div
       :style="contentStyle"
       :class="[{ 'dropdown-constrain-width': constrainWidth }, contentClasses]"
       class="dropdown-content"
       ref="content"
+      @click="onTriggerClick"
     >
       <slot></slot>
     </div>
@@ -111,10 +112,14 @@ export default defineComponent({
       ctx.emit('setup');
     };
 
+    const onTriggerClick = () => {
+      if (isAnimated.value) return;
+
+      isActive.value ? closeDropdown() : openDropdown();
+    };
+
     const onDocumentClick = () => {
-      if (isAnimated.value || !isActive.value) {
-        return;
-      }
+      if (isAnimated.value || !isActive.value) return;
 
       closeDropdown();
     };
@@ -189,6 +194,7 @@ export default defineComponent({
       content,
       contentStyle,
       onDocumentClick,
+      onTriggerClick,
       animation: `dropdown-anim-${props.animationType}`,
       listeners: ctx.listeners ? ctx.listeners : {},
     };

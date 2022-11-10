@@ -72,14 +72,11 @@
       </div>
 
       <!-- Dropdown -->
-      <ax-dropdown
-        class="mr-2"
-        v-model="isDropdownOpened2"
-        @click="isDropdownOpened2 = !isDropdownOpened2"
-        content-classes="white shadow-1"
-      >
-        <template #trigger>
-          <ax-btn class="airforce dark-1 text-white rounded-1">Dropdown</ax-btn>
+      <ax-dropdown class="mr-2" content-classes="white shadow-1">
+        <template #trigger="{ trigger }">
+          <ax-btn class="airforce dark-1 text-white rounded-1" @click="trigger">
+            Dropdown without vmodel
+          </ax-btn>
         </template>
         <div class="dropdown-item">Dropdown-item</div>
         <div class="dropdown-item">Dropdown-item</div>

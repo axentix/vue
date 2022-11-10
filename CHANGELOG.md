@@ -1,3 +1,12 @@
+# 0.18.0 - 2022-11-10
+
+- ADDED
+  - Ability to toggle dropdown without vmodel
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+
 # 0.17.3 - 2022-11-07
 
 - ADDED
