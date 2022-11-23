@@ -1,3 +1,12 @@
+# 0.18.1 - 2022-11-23
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+  - Autocomplete / Select is some case won't be reactive
+
 # 0.18.0 - 2022-11-10
 
 - ADDED

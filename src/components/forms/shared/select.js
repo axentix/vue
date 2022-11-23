@@ -108,7 +108,7 @@ export const toggleState = (state = false, isOpened, opacity, isTop, container) 
 };
 
 export const selectEl = (i, selected, computedItems, ctx, vmodelEvent, result) => {
-  if (selected.value && selected.value.index >= 0 && i !== -1) {
+  if (selected.value && selected.value.index >= 0) {
     if (selected.value.index === i) return;
     const lastItem = computedItems.value[selected.value.index];
     lastItem.selected = false;
