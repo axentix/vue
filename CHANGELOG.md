@@ -1,3 +1,13 @@
+# 0.18.2 - 2022-12-01
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+  - Fix Autocomplete / Select reactivity
+  - Add datatable arrow `click.prevent` 
+
 # 0.18.1 - 2022-11-23
 
 - ADDED

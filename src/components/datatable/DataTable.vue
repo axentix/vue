@@ -119,14 +119,14 @@
       </template>
 
       <template v-if="!pagination">
-        <ax-btn class="ml-4 rounded-2 shadow-0" :disabled="page === 1" @click="goto(page - 1)">
+        <ax-btn class="ml-4 rounded-2 shadow-0" :disabled="page === 1" @click.prevent="goto(page - 1)">
           &lsaquo;
         </ax-btn>
 
         <ax-btn
           class="ml-2 rounded-2 shadow-0"
           :disabled="page === totalPage || totalPage === 0"
-          @click="goto(page + 1)"
+          @click.prevent="goto(page + 1)"
         >
           &rsaquo;
         </ax-btn>

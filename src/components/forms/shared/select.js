@@ -108,6 +108,8 @@ export const toggleState = (state = false, isOpened, opacity, isTop, container) 
 };
 
 export const selectEl = (i, selected, computedItems, ctx, vmodelEvent, result) => {
+  if (computedItems.value.length === 0) return;
+
   if (selected.value && selected.value.index >= 0) {
     if (selected.value.index === i) return;
     const lastItem = computedItems.value[selected.value.index];
@@ -129,7 +131,7 @@ export const selectEl = (i, selected, computedItems, ctx, vmodelEvent, result) =
 };
 
 export const selectMultipleEl = (i, computedItems, multipleSelected, ctx, vmodelEvent, result) => {
-  if (i < 0) return;
+  if (i < 0 || computedItems.value.length === 0) return;
   const item = computedItems.value[i];
 
   const index = multipleSelected.value.findIndex((val) => val.value === item.value && item.selected);
@@ -148,7 +150,7 @@ export const selectMultipleEl = (i, computedItems, multipleSelected, ctx, vmodel
 };
 
 export const unselectEl = (i, computedItems, multipleSelected) => {
-  if (i < 0) return;
+  if (i < 0 || computedItems.value.length === 0) return;
   const item = computedItems.value[i];
   item.selected = false;
   computedItems.value.splice(i, 1, item);
