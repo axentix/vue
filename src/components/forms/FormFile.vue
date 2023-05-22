@@ -1,8 +1,8 @@
 <template>
   <div class="form-file">
-    <label for="input" :class="labelClasses">{{ label }}</label>
+    <label :for="id" :class="labelClasses">{{ label }}</label>
 
-    <input type="file" ref="input" id="input" v-bind="$attrs" v-on="listeners" @change="handleFileInput" />
+    <input type="file" ref="input" :id="id" v-bind="$attrs" v-on="listeners" @change="handleFileInput" />
 
     <div class="form-file-path" ref="path"></div>
   </div>
@@ -22,6 +22,10 @@ export default defineComponent({
     label: {
       type: String,
       default: '',
+    },
+    id: {
+      type: String,
+      default: 'input',
     },
   },
   setup(_, ctx) {
