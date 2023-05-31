@@ -315,62 +315,15 @@
         v-model="page"
         expandable
         single-expand
+        pagination
+        :total="tableTotal"
+        @update:options="updateDatatable"
       >
         <template v-slot:[`item.actions`]="{ item }"> L'id est {{ item.id }} </template>
 
         <template v-slot:expanded-item="{ item }"> {{ item.name }} | <em>Soon</em> </template>
       </ax-data-table>
 
-      <ax-pagination :max-visible="maxVisible" v-model="current" :total="15" :per-page="1">
-        <template #first-arrow="{ goto, isDisabled }">
-          <li
-            class="txt-blue arrow pb-1 grey light-4 bd-solid bd-1 bd-grey bd-light-3"
-            :class="{ disabled: isDisabled }"
-            @click="goto(1)"
-          >
-            <a>&#8592;</a>
-          </li>
-        </template>
-
-        <template #prev-arrow="{ prev, isDisabled }">
-          <li
-            class="txt-blue grey light-4 bd-solid bd-1 bd-grey bd-light-3"
-            :class="{ disabled: isDisabled }"
-            @click="prev"
-          >
-            <a>prev</a>
-          </li>
-        </template>
-
-        <template #default="{ pageNumber, goto, isActive }">
-          <li
-            :class="isActive ? 'active' : 'grey light-4 bd-solid bd-1 bd-grey bd-light-3'"
-            @click="goto(pageNumber)"
-          >
-            <a>{{ pageNumber }}</a>
-          </li>
-        </template>
-
-        <template #next-arrow="{ next, isDisabled }">
-          <li
-            class="txt-blue grey light-4 bd-solid bd-1 bd-grey bd-light-3"
-            :class="{ disabled: isDisabled }"
-            @click="next"
-          >
-            <a>next</a>
-          </li>
-        </template>
-
-        <template #last-arrow="{ goto, pageCount, isDisabled }">
-          <li
-            class="arrow txt-blue pb-1 grey light-4 bd-solid bd-1 bd-grey bd-light-3"
-            :class="{ disabled: isDisabled }"
-            @click="goto(pageCount)"
-          >
-            <a>&#8594;</a>
-          </li>
-        </template>
-      </ax-pagination>
       <ax-dropdown v-model="isDropdownOpened" constrain-width content-classes="red light-4">
         <template #trigger>
           <ax-btn class="btn blue" @click="isDropdownOpened = !isDropdownOpened">Trigger dropdown</ax-btn>
@@ -409,6 +362,7 @@ export default {
     isDropdownOpened2: false,
     current: 4,
     maxVisible: 5,
+    tableTotal: 20,
     radio: 'Yes',
     checked: true,
     items: ['Voiture', 'Moto', 'Bus', 'Velo', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
@@ -608,6 +562,12 @@ export default {
     },
     say() {
       console.log('hey');
+    },
+    updateDatatable(data) {
+      console.log('update datatable', data);
+      if (data.page === 2) {
+        this.tableItems = this.fakeTableItems.slice(9, 20);
+      } else this.tableItems = this.fakeTableItems;
     },
   },
   mounted() {

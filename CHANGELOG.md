@@ -1,3 +1,12 @@
+# 0.20.0 - 2023-05-31
+
+- ADDED
+  - DataTable can handle server side data
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+
 # 0.19.0 - 2023-05-22
 
 - ADDED

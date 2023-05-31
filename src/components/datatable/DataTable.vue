@@ -101,7 +101,7 @@
 
     <div class="datatable-footer">
       <ax-pagination
-        :total="search ? filteredItems.length : localItems.length"
+        :total="localTotal"
         :perPage="perPage"
         :size="paginationSize"
         v-model="page"
@@ -113,9 +113,9 @@
 
       <template v-else>
         {{ firstItemIndex + 1 }} -
-        {{ lastItemIndex > computedItems.length * page ? total : computedItems.length * page }}
+        {{ lastItemIndex > computedItems.length * page ? localTotal : computedItems.length * page }}
         {{ paginationText }}
-        {{ total }}
+        {{ localTotal }}
       </template>
 
       <template v-if="!pagination">
@@ -198,21 +198,33 @@ export default defineComponent({
       type: String,
       default: 'of',
     },
+    total: {
+      type: Number,
+    },
+    serverSide: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, ctx) {
     const vmodel = toRefs(props)[getVModelKey()];
     const vmodelEvent = getVModelEvent();
+    const updateEvent = 'update:options';
 
     const localHeaders = ref([]);
     const localItems = ref([]);
     const page = ref(vmodel.value || 1);
     const firstItemIndex = ref(1);
     const lastItemIndex = ref(10);
-    const total = ref(props.items.length);
-    const totalPage = ref(Math.ceil(props.perPage / total.value));
     const expandedItems = ref([]);
     const sortedHeader = ref(null);
     const isAsc = ref(false);
+
+    const localTotal = computed(() => {
+      if (props.total) return props.total;
+      return !props.serverSide && props.search ? filteredItems.value.length : localItems.value.length;
+    });
+    const totalPage = ref(Math.ceil(props.perPage / localTotal.value));
 
     watch(
       () => props.headers,
@@ -238,12 +250,26 @@ export default defineComponent({
 
     watch(page, (val) => {
       ctx.emit(vmodelEvent, val);
+      ctx.emit(updateEvent, {
+        page: val,
+        perPage: props.perPage,
+        sortBy: sortedHeader.value?.value,
+        sortAsc: isAsc.value,
+        search: props.search,
+      });
     });
 
     watch(
       () => props.search,
       () => {
         goto(1);
+        ctx.emit(updateEvent, {
+          page: page.value,
+          perPage: props.perPage,
+          sortBy: sortedHeader.value?.value,
+          sortAsc: isAsc.value,
+          search: props.search,
+        });
       }
     );
 
@@ -266,13 +292,13 @@ export default defineComponent({
     });
 
     const computedItems = computed(() => {
-      let data = props.search ? filteredItems.value : localItems.value;
+      let data = !props.serverSide && props.search ? filteredItems.value : localItems.value;
       if (sortedHeader.value && sortedHeader.value.sortable !== false) {
         data = sortData([...data]);
         if (!isAsc.value) data = data.reverse();
       }
       updateIndexData();
-      return data.slice(firstItemIndex.value, lastItemIndex.value);
+      return props.serverSide ? data : data.slice(firstItemIndex.value, lastItemIndex.value);
     });
 
     const goto = (p) => {
@@ -284,8 +310,7 @@ export default defineComponent({
     const updateIndexData = () => {
       firstItemIndex.value = (page.value - 1) * props.perPage;
       lastItemIndex.value = page.value * props.perPage;
-      total.value = props.search ? filteredItems.value.length : localItems.value.length;
-      totalPage.value = Math.ceil(total.value / props.perPage);
+      totalPage.value = Math.ceil(localTotal.value / props.perPage);
     };
 
     const getHeaderForKeyItem = (key) => {
@@ -339,10 +364,26 @@ export default defineComponent({
       if (sortedHeader.value === header && !isAsc.value) {
         sortedHeader.value = null;
         isAsc.value = false;
+
+        ctx.emit(updateEvent, {
+          page: page.value,
+          perPage: props.perPage,
+          sortBy: sortedHeader.value,
+          sortAsc: isAsc.value,
+          search: props.search,
+        });
         return;
       }
       sortedHeader.value = header;
       isAsc.value = !isAsc.value;
+
+      ctx.emit(updateEvent, {
+        page: page.value,
+        perPage: props.perPage,
+        sortBy: sortedHeader.value.value,
+        sortAsc: isAsc.value,
+        search: props.search,
+      });
     };
 
     const sortData = (data) => {
@@ -374,7 +415,7 @@ export default defineComponent({
       page,
       firstItemIndex,
       lastItemIndex,
-      total,
+      localTotal,
       isAsc,
       totalPage,
       goto,
