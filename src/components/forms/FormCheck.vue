@@ -5,6 +5,7 @@
       :type="type"
       v-model="computedValue"
       ref="input"
+      :value="nativeValue"
       @input="validate"
       @change="validate"
       @click.stop
@@ -75,7 +76,6 @@ export default defineComponent({
 
     onMounted(() => {
       addComponent({ type: 'FormCheck', uid, data: { FormUid, validate, resetValidation } });
-      if (props.nativeValue && !vmodel.value) computedValue.value = props.nativeValue;
     });
 
     onUnmounted(() => {

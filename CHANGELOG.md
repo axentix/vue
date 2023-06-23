@@ -1,3 +1,12 @@
+# 0.20.1 - 2023-06-23
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+  - Radio doesn't work
+
 # 0.20.0 - 2023-05-31
 
 - ADDED
