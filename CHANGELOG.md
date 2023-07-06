@@ -1,3 +1,12 @@
+# 0.20.2 - 2023-07-06
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Update Axentix 2.4.0
+  - Update dependencies
+- BUGFIXES
+
 # 0.20.1 - 2023-06-23
 
 - ADDED
