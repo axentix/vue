@@ -1,6 +1,6 @@
 {
   "name": "@axentix/vue",
-  "version": "0.20.2",
+  "version": "0.20.3",
   "description": "Vue Axentix is the Axentix integration for the VueJS framework.",
   "license": "MIT",
   "author": "Axel SIMONET, Vincent LEVEQUE",

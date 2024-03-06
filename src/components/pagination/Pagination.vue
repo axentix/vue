@@ -79,7 +79,7 @@ export default {
   setup(props, ctx) {
     const pageCount = ref(Math.ceil(props.total / props.perPage)),
       vmodel = toRefs(props)[getVModelKey()],
-      current = ref(1);
+      current = ref(vmodel.value || 1);
 
     let shownCount = 1,
       rest = 0;

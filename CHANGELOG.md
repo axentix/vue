@@ -1,3 +1,11 @@
+# 0.20.3 - 2024-03-06
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Pagination `v-model` not working properly
+
 # 0.20.2 - 2023-07-06
 
 - ADDED

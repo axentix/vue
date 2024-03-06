@@ -117,6 +117,10 @@
 
       <div class="mt-5"></div>
 
+      <ax-pagination v-model="pagination" :max-visible="5" :per-page="15" :total="100"></ax-pagination>
+
+      <div class="mt-5"></div>
+
       <ax-tab
         v-model="currentTab"
         class="shadow-1"
@@ -365,6 +369,7 @@ export default {
     tableTotal: 20,
     radio: 'Yes',
     checked: true,
+    pagination: 2,
     items: ['Voiture', 'Moto', 'Bus', 'Velo', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
     // items: [],
     // items: [
@@ -545,6 +550,9 @@ export default {
     },
     multipleSelectedValue(val) {
       console.log('multipleSelectedValue', val);
+    },
+    pagination(val) {
+      console.log('pagination', val);
     },
   },
   methods: {
